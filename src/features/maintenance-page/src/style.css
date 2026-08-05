@@ -1,0 +1,50 @@
+.maintenance-page {
+  height: 100dvh;
+}
+
+.maintenance-page__content {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.maintenance-page__title {
+  margin: 0 0 2rem;
+}
+
+.maintenance-page__description {
+  font-size: var(--font-size-l);
+}
+
+.maintenance-page__links {
+  margin-top: 3rem;
+}
+
+.maintenance-page__links-list {
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.maintenance-page__links-item {
+  font-size: var(--font-size-l);
+}
+
+a.maintenance-page__links-item-link {
+  text-decoration: none;
+  gap: 1rem;
+  transition: color 0.2s ease-in-out;
+  padding: 0.5rem 1rem;
+}
+
+a.maintenance-page__links-item-link:hover {
+  cursor: pointer;
+}
+
+.maintenance-page__links-item-link svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  flex-shrink: 0;
+}
