@@ -11,7 +11,7 @@
     "maintenance:dev": "pnpm --filter @allondeveen-portfolio/maintenance dev",
     "maintenance:build": "pnpm --filter @allondeveen-portfolio/maintenance build",
     "maintenance:preview": "pnpm --filter @allondeveen-portfolio/maintenance preview",
-    "maintenance:deploy": "pnpm --filter @allondeveen-portfolio/maintenance deploy",
+    "maintenance:deploy": "pnpm --filter @allondeveen-portfolio/maintenance run deploy",
     "website:dev": "pnpm --filter @allondeveen-portfolio/website dev",
     "website:build": "pnpm --filter @allondeveen-portfolio/website build",
     "website:preview": "pnpm --filter @allondeveen-portfolio/website preview",
