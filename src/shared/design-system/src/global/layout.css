@@ -1,0 +1,25 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.vertical {
+    flex-direction: column;
+  }
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
