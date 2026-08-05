@@ -8,3 +8,6 @@ allowBuilds:
   unrs-resolver: true
   workerd: true
 linkWorkspacePackages: true
+minimumReleaseAgeExclude:
+  - miniflare@5.20260801.0-alpha
+  - wrangler@4.119.0
