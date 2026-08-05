@@ -7,3 +7,4 @@ coverage
 wrangler
 *.jsonc
 pnpm-lock.yaml
+src/apps/cms/src/payload-types.ts
