@@ -42,23 +42,23 @@ Taxonomies, supporting collections, fixed templates, and globals do not support 
 
 ## Model overview
 
-| Model | Kind | Public route | Drafts |
-| --- | --- | --- | --- |
-| Page | Public collection | Hierarchical slug | Yes |
-| Project | Public collection | `/projects/:slug` | Yes |
-| Article | Public collection | `/articles/:slug` | Yes |
-| Topic | Taxonomy | None | No |
-| Series | Taxonomy | None | No |
-| Client | Taxonomy | None | No |
-| Media | Supporting | None | No |
-| Menu | Supporting | None | No |
-| Forms | Supporting | None | No |
-| Form submissions | Supporting | None | No |
-| Templates | Supporting | None | No |
-| Redirects | Supporting | None | No |
-| Not found | Fixed template | None | No |
-| Error page | Fixed template | None | No |
-| Site settings | Global | None | No |
+| Model            | Kind              | Public route      | Drafts |
+| ---------------- | ----------------- | ----------------- | ------ |
+| Page             | Public collection | Hierarchical slug | Yes    |
+| Project          | Public collection | `/projects/:slug` | Yes    |
+| Article          | Public collection | `/articles/:slug` | Yes    |
+| Topic            | Taxonomy          | None              | No     |
+| Series           | Taxonomy          | None              | No     |
+| Client           | Taxonomy          | None              | No     |
+| Media            | Supporting        | None              | No     |
+| Menu             | Supporting        | None              | No     |
+| Forms            | Supporting        | None              | No     |
+| Form submissions | Supporting        | None              | No     |
+| Templates        | Supporting        | None              | No     |
+| Redirects        | Supporting        | None              | No     |
+| Not found        | Fixed template    | None              | No     |
+| Error page       | Fixed template    | None              | No     |
+| Site settings    | Global            | None              | No     |
 
 ## Shared public-content rules
 
@@ -97,15 +97,15 @@ Draft and unpublished content is never available to AI search. Detailed AI-searc
 - Request query strings are ignored unless the redirect record explicitly specifies query-string behaviour.
 - When the slug of an item of a public collection is changed, a redirect is required to resolve the old slug.
 - If the slug has been changed multiple times, the original redirect must point to the new slug.
-    - Each intermediate step must resolve to the new slug in one redirect.
+  - Each intermediate step must resolve to the new slug in one redirect.
 - Before the redirects are created, the new state is validated:
-    - The redirect state is normalized before validation.
-    - The source location must be different from the destination location.
-    - Each source location must be unique in the set of source locations.
-    - The source location can't be an active public route.
-    - The destination location must not be a source location in the new redirect state.
-    - If the new state is invalid and the redirects are created automatically after a slug change, the public collection item can't be saved, the redirects can't be saved and the user will be notified.
-    - If the new state is invalid and the redirects are created manually, the redirects can't be saved and the user will be notified.
+  - The redirect state is normalized before validation.
+  - The source location must be different from the destination location.
+  - Each source location must be unique in the set of source locations.
+  - The source location can't be an active public route.
+  - The destination location must not be a source location in the new redirect state.
+  - If the new state is invalid and the redirects are created automatically after a slug change, the public collection item can't be saved, the redirects can't be saved and the user will be notified.
+  - If the new state is invalid and the redirects are created manually, the redirects can't be saved and the user will be notified.
 
 ### Hierarchical page routing
 
@@ -212,51 +212,51 @@ The following models contain an ordered set of content blocks:
 - Only one series table of contents block is allowed, also when included through a template.
 - Media, menus, forms, taxonomies and public collections may be referenced through the block's fields.
 - The following blocks reference or derive data that is resolved during server-side delivery mapping. Their mapped output is static:
-    - Image
-    - Embedded video
-    - File download
-    - Icon
-    - Related articles
-    - Related projects
-    - Article reference
-    - Table of contents
-    - Series table of contents
-    - Series pagination
-    - Menu
-    - Site title
-    - Form
-    - Template
+  - Image
+  - Embedded video
+  - File download
+  - Icon
+  - Related articles
+  - Related projects
+  - Article reference
+  - Table of contents
+  - Series table of contents
+  - Series pagination
+  - Menu
+  - Site title
+  - Form
+  - Template
 - Every mapped content block is static. The route-specific AI interface is client-side and dynamic but is not a content block, as defined by [ADR 0009](decisions/0009-use-turso-backed-rag-for-ai-search.md).
 - The following blocks contain authored data:
-    - Rich text
-    - Heading
-    - Quote
-    - List item
-    - Label
-    - Code
-    - Table
-    - Metric
-    - Hero
-    - Text section
-    - Text with media
-    - Callout
-    - Chapter
-    - Button
-    - Call-to-Action
-    - Contact
+  - Rich text
+  - Heading
+  - Quote
+  - List item
+  - Label
+  - Code
+  - Table
+  - Metric
+  - Hero
+  - Text section
+  - Text with media
+  - Callout
+  - Chapter
+  - Button
+  - Call-to-Action
+  - Contact
 - The following blocks are composed blocks:
-    - Grid
-    - Stack
-    - Container
-    - Group
-    - List
-    - Gallery
-    - Icons
-    - Hero
-    - Text section
-    - Text with media
-    - Callout
-    - Chapter
+  - Grid
+  - Stack
+  - Container
+  - Group
+  - List
+  - Gallery
+  - Icons
+  - Hero
+  - Text section
+  - Text with media
+  - Callout
+  - Chapter
 - Block intances don't have stable identifiers.
 - Block types have stable identifiers.
 - A change in a block will create a new revision. They won't be published until the author explicitly publishes them or after the scheduled publicatoin date. They can be previewed.
@@ -296,7 +296,7 @@ Other rules:
 
 - See the Block Library in the Functional Design for the required fields of the blocks and the validation rules.
 - Template
-    - Template name is required.
-    - Template name can't be `header` or `footer`.
+  - Template name is required.
+  - Template name can't be `header` or `footer`.
 
 [Back to technical design](README.md)

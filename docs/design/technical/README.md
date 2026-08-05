@@ -9,6 +9,7 @@
 - **Related functional design:** [Functional design overview](../functional/README.md)
 
 ## Purpose
+
 This section describes how the functional requirements of the portfolio website are implemented. It records the architecture, hosting strategy, technical content model, delivery design, quality controls, operational approach, and consequential decisions.
 
 The technical-design documents describe the current architecture and its required behaviour. [Architecture decision records](decisions/README.md) explain why consequential technical choices were made. Known risks and deliberately deferred work are tracked separately from those decisions.

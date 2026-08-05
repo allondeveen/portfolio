@@ -56,17 +56,17 @@ The website consumes only the shared domain representation and owns the domain-t
 
 The website routes use the CMS procedures as follows:
 
-| Website request | CMS procedure | Integration purpose |
-| --- | --- | --- |
-| `GET /` | `content` | Retrieve the homepage together with the header, footer, not-found, and error-page templates |
-| `GET /articles` | `content` | Retrieve the article overview, normalized topic-filter and pagination input, the requested page of article summaries, and the shared templates |
-| `GET /projects` | `content` | Retrieve the project overview, normalized topic-filter and pagination input, the requested page of project summaries, and the shared templates |
-| `GET /search` | `content` | Retrieve the Page assigned to the agentic-search route and the shared templates before the first prompt is submitted |
-| `GET /*` | `content` | Resolve published content from the complete hierarchical and contextual path and retrieve it with the shared templates |
-| `GET /preview/articles` | `previews` | Retrieve the article-overview preview, normalized topic-filter and pagination input, the requested page of article summaries, and the shared templates |
-| `GET /preview/projects` | `previews` | Retrieve the project-overview preview, normalized topic-filter and pagination input, the requested page of project summaries, and the shared templates |
-| `GET /preview/*` | `previews` | Resolve preview content from the complete hierarchical and contextual path beneath `/preview/` and retrieve it with the shared templates |
-| `POST /forms/:id` | `form-submission` | Forward a form submission to the CMS |
+| Website request         | CMS procedure     | Integration purpose                                                                                                                                    |
+| ----------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET /`                 | `content`         | Retrieve the homepage together with the header, footer, not-found, and error-page templates                                                            |
+| `GET /articles`         | `content`         | Retrieve the article overview, normalized topic-filter and pagination input, the requested page of article summaries, and the shared templates         |
+| `GET /projects`         | `content`         | Retrieve the project overview, normalized topic-filter and pagination input, the requested page of project summaries, and the shared templates         |
+| `GET /search`           | `content`         | Retrieve the Page assigned to the agentic-search route and the shared templates before the first prompt is submitted                                   |
+| `GET /*`                | `content`         | Resolve published content from the complete hierarchical and contextual path and retrieve it with the shared templates                                 |
+| `GET /preview/articles` | `previews`        | Retrieve the article-overview preview, normalized topic-filter and pagination input, the requested page of article summaries, and the shared templates |
+| `GET /preview/projects` | `previews`        | Retrieve the project-overview preview, normalized topic-filter and pagination input, the requested page of project summaries, and the shared templates |
+| `GET /preview/*`        | `previews`        | Resolve preview content from the complete hierarchical and contextual path beneath `/preview/` and retrieve it with the shared templates               |
+| `POST /forms/:id`       | `form-submission` | Forward a form submission to the CMS                                                                                                                   |
 
 The website forwards the request-specific one-time preview token and the information required to verify its website-URL binding to `previews`. The CMS procedure authoritatively validates and consumes that token while retrieving the preview, as defined by [ADR 0010](0010-use-single-use-tokens-for-shared-previews.md). The downstream tRPC call also uses the CMS access token defined here.
 
@@ -106,17 +106,17 @@ The `previews` procedure may return the unpublished revision and referenced unpu
 
 The CMS procedures return stable outcome categories that allow the website to apply the following visitor-facing behaviour. Their exact tRPC error shape remains an implementation detail.
 
-| Condition | Visitor-facing website behaviour |
-| --- | --- |
-| Requested content does not exist or is not publicly eligible | HTTP `404 Not Found` and the not-found page |
-| The contextual content path is malformed | HTTP `404 Not Found` and the not-found page |
-| The website sends invalid procedure input | HTTP `500 Internal Server Error` and the error page, because the shared integration contract has been violated |
-| The requested form does not exist | HTTP `404 Not Found` and the not-found page |
-| The form exists but its current state prevents submission | HTTP `409 Conflict` and the error page |
-| A form submission fails validation | HTTP `400 Bad Request`; retain the current page content and display the returned form-validation errors |
-| The website's runtime configuration is invalid | HTTP `500 Internal Server Error` and the error page |
-| CMS authentication fails after the expired-token recovery path, or the CMS is otherwise unavailable | HTTP `503 Service Unavailable` and the error page |
-| Any other unclassified application conflict or failure | HTTP `500 Internal Server Error` and the error page |
+| Condition                                                                                           | Visitor-facing website behaviour                                                                               |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Requested content does not exist or is not publicly eligible                                        | HTTP `404 Not Found` and the not-found page                                                                    |
+| The contextual content path is malformed                                                            | HTTP `404 Not Found` and the not-found page                                                                    |
+| The website sends invalid procedure input                                                           | HTTP `500 Internal Server Error` and the error page, because the shared integration contract has been violated |
+| The requested form does not exist                                                                   | HTTP `404 Not Found` and the not-found page                                                                    |
+| The form exists but its current state prevents submission                                           | HTTP `409 Conflict` and the error page                                                                         |
+| A form submission fails validation                                                                  | HTTP `400 Bad Request`; retain the current page content and display the returned form-validation errors        |
+| The website's runtime configuration is invalid                                                      | HTTP `500 Internal Server Error` and the error page                                                            |
+| CMS authentication fails after the expired-token recovery path, or the CMS is otherwise unavailable | HTTP `503 Service Unavailable` and the error page                                                              |
+| Any other unclassified application conflict or failure                                              | HTTP `500 Internal Server Error` and the error page                                                            |
 
 If invalid CMS configuration prevents the website from using the CMS, the website treats that downstream condition as CMS unavailability and returns `503`. The CMS itself returns `500` and displays its error page when serving a request with invalid local configuration.
 
@@ -142,12 +142,12 @@ Exact tRPC input and output schemas, serializer configuration, router compositio
 
 The website applies the following maximum timeout to each downstream operation:
 
-| Operation | Maximum timeout |
-| --- | ---: |
-| One token exchange | 2 seconds |
-| Initial procedure call with the available access token | 2 seconds |
-| `content` or `previews` procedure | 5 seconds |
-| `form-submission` procedure | 10 seconds |
+| Operation                                              | Maximum timeout |
+| ------------------------------------------------------ | --------------: |
+| One token exchange                                     |       2 seconds |
+| Initial procedure call with the available access token |       2 seconds |
+| `content` or `previews` procedure                      |       5 seconds |
+| `form-submission` procedure                            |      10 seconds |
 
 A request pipeline with an available access token calls the request-specific procedure directly. If the procedure rejects that token specifically because it has expired, the website may obtain one replacement token and call the procedure once more. The initial procedure attempt is limited to 2 seconds; the replacement token exchange uses its 2-second timeout; and the repeated procedure call receives the full request-specific timeout. If the Worker has no available access token, the pipeline obtains one and then makes one procedure call with the full request-specific timeout.
 
@@ -184,14 +184,14 @@ The signing key is a cryptographically random 256-bit symmetric key. It is gener
 
 The access-token claims use the following contract:
 
-| Claim | Required value |
-| --- | --- |
-| `iss` | The configured canonical CMS origin for the current environment |
-| `aud` | The canonical CMS origin with `/trpc` appended |
-| `iat` | The NumericDate at which the token is issued |
-| `exp` | Exactly 300 seconds after `iat` |
-| `nbf` | Omitted because the token is valid immediately |
-| `scope` | `website-downstream` |
+| Claim   | Required value                                                  |
+| ------- | --------------------------------------------------------------- |
+| `iss`   | The configured canonical CMS origin for the current environment |
+| `aud`   | The canonical CMS origin with `/trpc` appended                  |
+| `iat`   | The NumericDate at which the token is issued                    |
+| `exp`   | Exactly 300 seconds after `iat`                                 |
+| `nbf`   | Omitted because the token is valid immediately                  |
+| `scope` | `website-downstream`                                            |
 
 Issuer and audience comparisons are exact and case-sensitive. The CMS permits a maximum thirty-second clock-skew tolerance when validating time-based claims and rejects a token whose `iat` is more than thirty seconds in the future.
 
@@ -203,17 +203,17 @@ Issued access tokens cannot be individually revoked and remain valid until their
 
 The token endpoint and protected tRPC interface use the following responses:
 
-| Boundary and condition | Response |
-| --- | --- |
-| `/oauth/token/` receives a malformed or incomplete request body | HTTP `400` with `{"error":"invalid_request"}` |
-| `/oauth/token/` receives a grant type other than `client_credentials` | HTTP `400` with `{"error":"unsupported_grant_type"}` |
-| `/oauth/token/` receives a scope other than `website-downstream` | HTTP `400` with `{"error":"invalid_scope"}` |
-| `/oauth/token/` receives missing or incorrect client credentials | HTTP `401` with `{"error":"invalid_client"}` |
-| `/oauth/token/` receives a method other than `POST` | HTTP `405` with `Allow: POST` |
-| A protected tRPC procedure receives no access token | tRPC `UNAUTHORIZED` and HTTP `401` with `WWW-Authenticate: Bearer` |
-| A protected tRPC procedure receives an expired token | tRPC `UNAUTHORIZED` and HTTP `401` with `WWW-Authenticate: Bearer error="invalid_token"`, together with the stable machine-readable expiry classification used by the website's authentication-recovery path |
-| A protected tRPC procedure receives a malformed, incorrectly signed, or otherwise invalid token, including a token with the wrong issuer or audience | tRPC `UNAUTHORIZED` and HTTP `401` with `WWW-Authenticate: Bearer error="invalid_token"` |
-| A protected tRPC procedure receives an otherwise valid token without the `website-downstream` scope | tRPC `FORBIDDEN` and HTTP `403` with `WWW-Authenticate: Bearer error="insufficient_scope", scope="website-downstream"` |
+| Boundary and condition                                                                                                                               | Response                                                                                                                                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `/oauth/token/` receives a malformed or incomplete request body                                                                                      | HTTP `400` with `{"error":"invalid_request"}`                                                                                                                                                                |
+| `/oauth/token/` receives a grant type other than `client_credentials`                                                                                | HTTP `400` with `{"error":"unsupported_grant_type"}`                                                                                                                                                         |
+| `/oauth/token/` receives a scope other than `website-downstream`                                                                                     | HTTP `400` with `{"error":"invalid_scope"}`                                                                                                                                                                  |
+| `/oauth/token/` receives missing or incorrect client credentials                                                                                     | HTTP `401` with `{"error":"invalid_client"}`                                                                                                                                                                 |
+| `/oauth/token/` receives a method other than `POST`                                                                                                  | HTTP `405` with `Allow: POST`                                                                                                                                                                                |
+| A protected tRPC procedure receives no access token                                                                                                  | tRPC `UNAUTHORIZED` and HTTP `401` with `WWW-Authenticate: Bearer`                                                                                                                                           |
+| A protected tRPC procedure receives an expired token                                                                                                 | tRPC `UNAUTHORIZED` and HTTP `401` with `WWW-Authenticate: Bearer error="invalid_token"`, together with the stable machine-readable expiry classification used by the website's authentication-recovery path |
+| A protected tRPC procedure receives a malformed, incorrectly signed, or otherwise invalid token, including a token with the wrong issuer or audience | tRPC `UNAUTHORIZED` and HTTP `401` with `WWW-Authenticate: Bearer error="invalid_token"`                                                                                                                     |
+| A protected tRPC procedure receives an otherwise valid token without the `website-downstream` scope                                                  | tRPC `FORBIDDEN` and HTTP `403` with `WWW-Authenticate: Bearer error="insufficient_scope", scope="website-downstream"`                                                                                       |
 
 All token-endpoint responses use JSON and include `Cache-Control: no-store`. Detailed token-validation failures are logged internally and represented externally only as `invalid_token`, except for the stable expiry classification required by the service-to-service authentication-recovery path. That classification is not shown to visitors.
 

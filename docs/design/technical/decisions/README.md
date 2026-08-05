@@ -6,18 +6,18 @@ ADRs 0001 through 0010 record accepted, written decisions.
 
 ## Contents
 
-| ADR | Decision state | Documentation state |
-| --- | --- | --- |
-| [0001 — Separate the CMS and public website](0001-separate-cms-and-public-website.md) | Accepted | Written |
-| [0002 — Use Payload CMS](0002-use-payload-cms.md) | Accepted | Written |
-| [0003 — Use React Router Framework](0003-use-react-router-framework.md) | Accepted | Written |
-| [0004 — Deploy on Cloudflare Workers](0004-deploy-on-cloudflare-workers.md) | Accepted | Written |
-| [0005 — Use Cloudflare D1 for relational storage](0005-use-cloudflare-d1-for-relational-storage.md) | Accepted | Written |
-| [0006 — Use Cloudflare R2 for object storage](0006-use-cloudflare-r2-for-object-storage.md) | Accepted | Written |
-| [0007 — Use tRPC for website-to-CMS data access](0007-use-trpc-for-website-to-cms-data-access.md) | Accepted | Written |
-| [0008 — Use Cloudflare CDN caching with targeted publication invalidation](0008-use-cloudflare-cdn-caching-with-targeted-publication-invalidation.md) | Accepted | Written |
-| [0009 — Use Turso-backed RAG for AI search](0009-use-turso-backed-rag-for-ai-search.md) | Accepted | Written |
-| [0010 — Use single-use tokens for shared previews](0010-use-single-use-tokens-for-shared-previews.md) | Accepted | Written |
+| ADR                                                                                                                                                   | Decision state | Documentation state |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------- |
+| [0001 — Separate the CMS and public website](0001-separate-cms-and-public-website.md)                                                                 | Accepted       | Written             |
+| [0002 — Use Payload CMS](0002-use-payload-cms.md)                                                                                                     | Accepted       | Written             |
+| [0003 — Use React Router Framework](0003-use-react-router-framework.md)                                                                               | Accepted       | Written             |
+| [0004 — Deploy on Cloudflare Workers](0004-deploy-on-cloudflare-workers.md)                                                                           | Accepted       | Written             |
+| [0005 — Use Cloudflare D1 for relational storage](0005-use-cloudflare-d1-for-relational-storage.md)                                                   | Accepted       | Written             |
+| [0006 — Use Cloudflare R2 for object storage](0006-use-cloudflare-r2-for-object-storage.md)                                                           | Accepted       | Written             |
+| [0007 — Use tRPC for website-to-CMS data access](0007-use-trpc-for-website-to-cms-data-access.md)                                                     | Accepted       | Written             |
+| [0008 — Use Cloudflare CDN caching with targeted publication invalidation](0008-use-cloudflare-cdn-caching-with-targeted-publication-invalidation.md) | Accepted       | Written             |
+| [0009 — Use Turso-backed RAG for AI search](0009-use-turso-backed-rag-for-ai-search.md)                                                               | Accepted       | Written             |
+| [0010 — Use single-use tokens for shared previews](0010-use-single-use-tokens-for-shared-previews.md)                                                 | Accepted       | Written             |
 
 ## When to use an ADR
 

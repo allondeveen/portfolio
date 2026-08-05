@@ -4,12 +4,12 @@
 
 The contact form lets visitors contact the portfolio author. A successful submission notifies both the author and the visitor; the visitor's notification contains all submitted data.
 
-| Name | Purpose | Type | Required | Error condition |
-| --- | --- | --- | --- | --- |
-| Name | Visitor's name | Text | Yes | Field is empty |
-| Inquiry type | Kind of inquiry or project | Dropdown | Yes | No value selected |
-| Email address | Visitor's email address | Email | Yes | Field is empty |
-| Explanation | Explanation of the project or inquiry | Text area | No | Not applicable |
+| Name          | Purpose                               | Type      | Required | Error condition   |
+| ------------- | ------------------------------------- | --------- | -------- | ----------------- |
+| Name          | Visitor's name                        | Text      | Yes      | Field is empty    |
+| Inquiry type  | Kind of inquiry or project            | Dropdown  | Yes      | No value selected |
+| Email address | Visitor's email address               | Email     | Yes      | Field is empty    |
+| Explanation   | Explanation of the project or inquiry | Text area | No       | Not applicable    |
 
 ### Submission
 
