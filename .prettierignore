@@ -6,3 +6,4 @@ coverage
 .react-router
 wrangler
 *.jsonc
+pnpm-lock.yaml
