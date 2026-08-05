@@ -27,6 +27,10 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
   "prettier.requireConfig": true,
   "prettier.useEditorConfig": false,
   "js/ts.tsdk.path": "node_modules/typescript/lib"
