@@ -1,0 +1,10 @@
+packages:
+  - "src/apps/*"
+  - "src/features/*"
+  - "src/shared/*"
+allowBuilds:
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+  workerd: true
+linkWorkspacePackages: true
