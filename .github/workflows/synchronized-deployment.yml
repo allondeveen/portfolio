@@ -115,7 +115,7 @@ jobs:
         run: |
           curl --fail-with-body \
             --request POST \
-            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            "https://api.cloudflare.com/client/v4/zones/${{ env.CLOUDFLARE_ZONE_ID }}/purge_cache" \
             --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             --header "Content-Type: application/json" \
             --data '{
