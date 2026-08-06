@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "portfolio-website",
+	"name": "portfolio-website-dev",
 	"compatibility_date": "2026-08-06",
 	"main": "./workers/app.ts",
 	"observability": {
@@ -29,10 +29,28 @@
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
-	"assets": {  "directory": "./public/",  "binding": "ASSETS" }
+	"assets": {  "directory": "./public/",  "binding": "ASSETS" },
 	/**
 	 * Service Bindings (communicate between multiple Workers)
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
-	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ],
+  "env": {
+    "staging" : {
+      "name": "portfolio-website-staging"
+      /**
+      * Service Bindings (communicate between multiple Workers)
+      * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+      */
+      // "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+    },
+    "production" : {
+      "name": "portfolio-website"
+      /**
+      * Service Bindings (communicate between multiple Workers)
+      * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+      */
+      // "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+    }
+  }
 }
