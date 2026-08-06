@@ -6,6 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteLoaderData,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -26,19 +27,53 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export async function loader() {
+  const buffer = new Uint8Array(16);
+  crypto.getRandomValues(buffer);
+  const nonce = btoa(String.fromCharCode(...buffer));
+  return new Response(JSON.stringify({ nonce }), {
+    headers: {
+      "Content-Type": "application/json",
+      "X-Root-Loader-Nonce": nonce,
+    },
+  });
+}
+
+export function headers({ loaderHeaders }: Route.HeadersArgs) {
+  const nonce = loaderHeaders.get("X-Root-Loader-Nonce");
+
+  const cspDirectives = [
+    "default-src 'self'",
+    `script-src 'self' 'unsafe-inline' 'nonce-${nonce}' https://*.youtube.com https://*.ytimg.com`,
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "frame-src https://youtube-nocookie.com https://*.youtube.com",
+    "frame-ancestors 'none'",
+  ];
+
+  return {
+    "Content-Security-Policy": cspDirectives.join("; "),
+  };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const data = useRouteLoaderData<typeof loader>("root");
+  if (!data) {
+    throw new Error("Root loader data is unavailable");
+  }
+  const { nonce } = data;
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
-        <Links />
+        <Links nonce="" />
       </head>
       <body className={darkTheme}>
         {children}
-        <ScrollRestoration />
-        <Scripts />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
       </body>
     </html>
   );
