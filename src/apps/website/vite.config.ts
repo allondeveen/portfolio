@@ -22,11 +22,12 @@ function removeVanillaExtractExternals(): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const port = parseInt(env.PORT) || 5173;
+  const inspectorPort = parseInt(env.INSPECTOR_PORT) || 9229;
   return {
     plugins: [
       vanillaExtractPlugin(),
       removeVanillaExtractExternals(),
-      cloudflare({ viteEnvironment: { name: "ssr" } }),
+      cloudflare({ viteEnvironment: { name: "ssr" }, inspectorPort }),
       reactRouter(),
     ],
     preview: {
