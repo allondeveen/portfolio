@@ -63,9 +63,6 @@ jobs:
           fi
 
           echo "datetime=$bookmark" >> "$GITHUB_OUTPUT"
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         timeout-minutes: 1
       - name: Migrate
         id: migration
@@ -144,6 +141,9 @@ jobs:
             exit 0
           fi
         continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       - name: Run release-blocking checks
         id: release_checks
         if: |
