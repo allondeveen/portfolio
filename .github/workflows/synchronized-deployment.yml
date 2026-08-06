@@ -15,6 +15,7 @@ jobs:
       D1_DATABASE_NAME: ${{ github.ref_name == 'main' && 'portfolio-cms' || 'portfolio-cms-staging' }}
       CMS_WORKER_NAME: ${{ github.ref_name == 'main' && 'portfolio-cms' || 'portfolio-cms-staging' }}
       WEBSITE_WORKER_NAME: ${{ github.ref_name == 'main' && 'portfolio-website' || 'portfolio-cms-website' }}
+      DNS_ZONE_ID: ${{ secrets.DNS_ZONE_ID }}
     if: |
       github.ref_name == 'main' ||
       github.ref_name == 'staging'
@@ -114,9 +115,18 @@ jobs:
       - name: Clear Cache
         id: cache_clear
         if: steps.deploy_cms.outcome == 'success' && steps.deploy_website.outcome == 'success'
-        run: echo "Not implemented yet"
+        run: |
+          curl --fail-with-body \
+            --request POST \
+            "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data '{
+              "purge_everything": true
+            }'
         continue-on-error: true
         env:
+          DNS_ZONE_ID: ${{ secrets.DNS_ZONE_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         timeout-minutes: 1
