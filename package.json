@@ -21,7 +21,13 @@
     "prepare": "husky",
     "dev": "pnpm --parallel --filter './src/apps/*' run dev",
     "build": "pnpm --recursive build",
-    "preview": "pnpm --parallel --recursive preview"
+    "preview": "pnpm --parallel --recursive preview",
+    "maintenance:on": "pnpm --filter @allondeveen-portfolio/website exec wrangler kv key put --binding RUNTIME_CONFIG maintenance-mode enabled --remote",
+    "maintenance:off": "pnpm --filter @allondeveen-portfolio/website exec wrangler kv key put --binding RUNTIME_CONFIG maintenance-mode disabled --remote",
+    "maintenance:staging:on": "pnpm --filter @allondeveen-portfolio/website exec wrangler kv key put --env staging --binding RUNTIME_CONFIG maintenance-mode enabled --remote",
+    "maintenance:staging:off": "pnpm --filter @allondeveen-portfolio/website exec wrangler kv key put --env staging --binding RUNTIME_CONFIG maintenance-mode disabled --remote",
+    "maintenance:production:on": "pnpm --filter @allondeveen-portfolio/website exec wrangler kv key put --env production --binding RUNTIME_CONFIG maintenance-mode enabled --remote",
+    "maintenance:production:off": "pnpm --filter @allondeveen-portfolio/website exec wrangler kv key put --env production --binding RUNTIME_CONFIG maintenance-mode disabled --remote"
   },
   "keywords": [],
   "author": "",
