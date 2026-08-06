@@ -34,7 +34,7 @@ jobs:
         run: pnpm --filter @allondeveen-portfolio/cms --filter @allondeveen-portfolio/website build
         timeout-minutes: 2
       - name: Activate Maintenance Mode
-        run: echo "Not implemented yet"
+        run: "pnpm maintenance:${{ env.CLOUDFLARE_ENV }}:on"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -228,7 +228,7 @@ jobs:
             exit 1
           fi
       - name: Disable Maintenance Mode
-        run: echo "Not implemented yet"
+        run: "pnpm maintenance:${{ env.CLOUDFLARE_ENV }}:off"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
