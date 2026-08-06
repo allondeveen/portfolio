@@ -30,7 +30,7 @@ A release uses the following sequence:
 2. Use Payload's migration status to determine whether the release contains a D1 migration that has not yet been applied.
 3. If a migration is pending, retrieve the current D1 Time Travel bookmark, store its ID in the GitHub Actions pipeline, and then apply every pending migration through the dedicated deployment pipeline step.
 4. If no migration is pending, continue without running the migration command.
-5. Deploy the website Worker and CMS Worker concurrently from the same repository revision.
+5. Deploy the website Worker and CMS Worker within the same release process from the same repository revision.
 6. Empty the Cloudflare response cache before normal traffic is restored.
 7. Verify the applied migration when applicable and run the release-blocking path checks defined in [Quality and safety](quality-and-safety.md#verification-gates).
 8. Mark the release as successful and disable maintenance mode.
