@@ -153,7 +153,7 @@ jobs:
             steps.should_migrate.outputs.should_migrate == 'false' ||
             steps.verify_migration.outcome == 'success'
           )
-        run: echo "Not implemented yet"
+        run: "pnpm release_checks:${{ env.CLOUDFLARE_ENV }}"
         continue-on-error: true
       - name: Restore bookmark
         id: restore_bookmark
