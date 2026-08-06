@@ -1,0 +1,211 @@
+name: Deploy Workers
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - staging
+concurrency:
+  group: deploy-workers-${{ github.ref_name }}
+  cancel-in-progress: false
+jobs:
+  deploy:
+    timeout-minutes: 60
+    env:
+      CLOUDFLARE_ENV: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+    if: |
+      github.ref_name == 'main' ||
+      github.ref_name == 'staging'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+        timeout-minutes: 3
+      - name: Build
+        run: pnpm --filter @allondeveen-portfolio/cms --filter @allondeveen-portfolio/website build
+        timeout-minutes: 2
+      - name: Activate Maintenance Mode
+        run: echo "Not implemented yet"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 1
+      - name: Inspect migration
+        id: should_migrate
+        run: echo "should_migrate=true" >> "$GITHUB_OUTPUT" # not implemented yet
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Bookmark D1
+        id: bookmark
+        if: steps.should_migrate.outputs.should_migrate == 'true'
+        run: |
+          bookmark="BOOKMARK_ID" # not implemented yet
+
+          if [[ -z "$bookmark" ]]; then
+            echo "D1 returned an empty pre-migration bookmark" >&2
+            exit 1
+          fi
+
+          echo "id=$bookmark" >> "$GITHUB_OUTPUT"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 1
+      - name: Migrate
+        id: migration
+        if: steps.should_migrate.outputs.should_migrate == 'true' && steps.bookmark.outputs.id != ''
+        run: |
+          echo "started=true" >> "$GITHUB_OUTPUT"
+          pnpm --filter @allondeveen-portfolio/cms deploy:database
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Record current Worker deployments
+        id: previous_deployments
+        run: |
+          # Query Cloudflare for currently active deployment IDs.
+          echo "cms=CMS_DEPLOYMENT_ID" >> "$GITHUB_OUTPUT"
+          echo "website=WEBSITE_DEPLOYMENT_ID" >> "$GITHUB_OUTPUT"
+      - name: Deploy CMS
+        id: deploy_cms
+        if: |
+          steps.should_migrate.outputs.should_migrate == 'false' ||
+          (
+            steps.should_migrate.outputs.should_migrate == 'true' &&
+            steps.migration.outcome == 'success'
+          )
+        run: "pnpm --filter @allondeveen-portfolio/cms deploy:app"
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 5
+      - name: Deploy Website
+        id: deploy_website
+        if: |
+          steps.should_migrate.outputs.should_migrate == 'false' ||
+          (
+            steps.should_migrate.outputs.should_migrate == 'true' &&
+            steps.migration.outcome == 'success'
+          )
+        run: "pnpm --filter @allondeveen-portfolio/website deploy"
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 5
+      - name: Clear Cache
+        id: cache_clear
+        if: steps.deploy_cms.outcome == 'success' && steps.deploy_website.outcome == 'success'
+        run: echo "Not implemented yet"
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 1
+      - name: Verify migration
+        id: verify_migration
+        if: |
+          steps.should_migrate.outputs.should_migrate == 'true' &&
+          steps.migration.outcome == 'success' &&
+          steps.deploy_cms.outcome == 'success' &&
+          steps.deploy_website.outcome == 'success'
+        run: echo "Not implemented yet"
+        continue-on-error: true
+      - name: Run release-blocking checks
+        id: release_checks
+        if: |
+          steps.deploy_cms.outcome == 'success' &&
+          steps.deploy_website.outcome == 'success' &&
+          (
+            steps.should_migrate.outputs.should_migrate == 'false' ||
+            steps.verify_migration.outcome == 'success'
+          )
+        run: echo "Not implemented yet"
+        continue-on-error: true
+      - name: Restore bookmark
+        id: restore_bookmark
+        if: |
+          always() &&
+          steps.migration.outputs.started == 'true' &&
+          (
+            steps.migration.outcome == 'failure' ||
+            steps.deploy_cms.outcome != 'success' ||
+            steps.deploy_website.outcome != 'success' ||
+            steps.verify_migration.outcome == 'failure' ||
+            steps.release_checks.outcome == 'failure'
+          )
+        run: echo "Not implemented yet"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 1
+      - name: Rollback cms
+        id: rollback_cms
+        if: |
+          always() &&
+          (
+            steps.migration.outcome == 'failure' ||
+            steps.deploy_cms.outcome != 'success' ||
+            steps.deploy_website.outcome != 'success' ||
+            steps.verify_migration.outcome == 'failure' ||
+            steps.release_checks.outcome == 'failure'
+          )
+        run: echo "Not implemented yet"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 5
+      - name: Rollback website
+        id: rollback_website
+        if: |
+          always() &&
+          (
+            steps.migration.outcome == 'failure' ||
+            steps.deploy_cms.outcome != 'success' ||
+            steps.deploy_website.outcome != 'success' ||
+            steps.verify_migration.outcome == 'failure' ||
+            steps.release_checks.outcome == 'failure'
+          )
+        run: echo "Not implemented yet"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 5
+      - name: Verify Deployment
+        if: always()
+        run: |
+          if
+            [[ "${{ steps.deploy_cms.outcome }}" == "success" ]] &&
+            [[ "${{ steps.deploy_website.outcome }}" == "success" ]] &&
+            (
+              [[ "${{ steps.should_migrate.outputs.should_migrate }}" == "false" ]] ||
+              [[ "${{ steps.migration.outcome }}" == "success" ]]
+            ) &&
+            [[ "${{ steps.restore_bookmark.outcome }}" == "skipped" ]] &&
+            [[ "${{ steps.rollback_cms.outcome }}" == "skipped" ]] &&
+            [[ "${{ steps.rollback_website.outcome }}" == "skipped" ]] &&
+            (
+              [[ "${{ steps.should_migrate.outputs.should_migrate }}" == "false" ]] ||
+              [[ "${{ steps.verify_migration.outcome }}" == "success" ]]
+            ) &&
+            [[ "${{ steps.release_checks.outcome }}" == "success" ]]
+          then
+            exit 0
+          else
+            exit 1
+          fi
+      - name: Disable Maintenance Mode
+        run: echo "Not implemented yet"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        timeout-minutes: 1
