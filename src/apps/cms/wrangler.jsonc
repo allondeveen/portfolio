@@ -55,7 +55,8 @@
 			"r2_buckets": [
 				{
 					"binding": "R2",
-					"bucket_name": "portfolio-assets-staging"
+					"bucket_name": "portfolio-assets-staging",
+			    "remote": true
 				}
 			]
 		},
@@ -79,7 +80,8 @@
 			"r2_buckets": [
 				{
 					"binding": "R2",
-					"bucket_name": "portfolio-assets"
+					"bucket_name": "portfolio-assets",
+			    "remote": true
 				}
 			]
 		}
