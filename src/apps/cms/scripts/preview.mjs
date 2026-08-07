@@ -1,0 +1,17 @@
+import { spawnSync } from "node:child_process";
+
+const port = process.env.PORT ?? "3000";
+const env = process.env.CLOUDFLARE_ENV ?? "development";
+
+spawnSync("opennextjs-cloudflare", ["build"], { stdio: "inherit", shell: true });
+
+let previewArgs = ["preview"];
+if (env !== "development") {
+  previewArgs = [...previewArgs, `--env=${env}`];
+}
+previewArgs = [...previewArgs, "--", `--port=${port}`];
+
+spawnSync("opennextjs-cloudflare", previewArgs, {
+  stdio: "inherit",
+  shell: true,
+});
