@@ -37,6 +37,12 @@
 	"env": {
 		"staging": {
 			"name": "portfolio-cms-staging",
+      "routes": [
+        {
+          "pattern": "cms-staging.allondeveen.com",
+          "custom_domain": true
+        }
+      ],
 			"d1_databases": [
 				{
 					"binding": "D1",
@@ -62,6 +68,12 @@
 		},
 		"production": {
 			"name": "portfolio-cms",
+      "routes": [
+        {
+          "pattern": "cms.allondeveen.com",
+          "custom_domain": true
+        }
+      ],
 			"d1_databases": [
 				{
 					"binding": "D1",
