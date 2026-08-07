@@ -47,6 +47,12 @@
   "env": {
     "staging" : {
       "name": "portfolio-website-staging",
+      "routes": [
+        {
+          "pattern": "staging.allondeveen.com",
+          "custom_domain": true
+        }
+      ],
       "kv_namespaces": [
         {
           "binding": "RUNTIME_CONFIG",
@@ -62,6 +68,12 @@
     },
     "production" : {
       "name": "portfolio-website",
+      "routes": [
+        {
+          "pattern": "www.allondeveen.com",
+          "custom_domain": true
+        }
+      ],
       "kv_namespaces": [
         {
           "binding": "RUNTIME_CONFIG",
