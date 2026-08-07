@@ -28,7 +28,7 @@
 	"r2_buckets": [
 		{
 			"bucket_name": "portfolio-assets-dev",
-			"binding": "portfolio_assets_dev",
+			"binding": "R2",
 			"remote": true
 		}
 	],
