@@ -40,7 +40,7 @@
 			"d1_databases": [
 				{
 					"binding": "D1",
-					"database_id": "DATABASE_ID",
+					"database_id": "fe1310f3-b1d1-40b7-973d-46abf7772f72",
 					"database_name": "portfolio-cms-staging",
 					"remote": true
 				}
@@ -65,7 +65,7 @@
 			"d1_databases": [
 				{
 					"binding": "D1",
-					"database_id": "DATABASE_ID",
+					"database_id": "41ebaab8-e581-48b0-9626-2db1b1679111",
 					"database_name": "portfolio-cms",
 					"remote": true
 				}
