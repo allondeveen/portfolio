@@ -1,6 +1,8 @@
+import {
+  handleMaintenanceRequest,
+  isMaintenanceRequest,
+} from "@allondeveen-portfolio/maintenance-mode";
 import { createRequestHandler } from "react-router";
-
-import { handleMaintenanceRequest } from "./maintenance";
 
 const requestHandler = createRequestHandler(
   // eslint-disable-next-line
@@ -10,7 +12,7 @@ const requestHandler = createRequestHandler(
 
 export default {
   async fetch(request, env) {
-    const maintenanceEnabled = (await env.RUNTIME_CONFIG.get("maintenance-mode")) === "enabled";
+    const maintenanceEnabled = await isMaintenanceRequest(env);
 
     if (maintenanceEnabled) {
       return await handleMaintenanceRequest(request, env);

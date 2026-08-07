@@ -1,4 +1,16 @@
-export async function handleMaintenanceRequest(request: Request, env: Env): Promise<Response> {
+type MaintenanceEnv = {
+  RUNTIME_CONFIG: KVNamespace;
+  MAINTENANCE: Fetcher;
+};
+
+export async function isMaintenanceRequest(env: MaintenanceEnv) {
+  return (await env.RUNTIME_CONFIG.get("maintenance-mode")) === "enabled";
+}
+
+export async function handleMaintenanceRequest(
+  request: Request,
+  env: MaintenanceEnv,
+): Promise<Response> {
   const isDocument = isDocumentRequest(request);
 
   const maintenanceRequest = isDocument ? request : withoutConditionalHeaders(request);
