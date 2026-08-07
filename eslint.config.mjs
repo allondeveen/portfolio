@@ -58,6 +58,8 @@ export default tseslint.config(
           ],
         }),
       ],
+
+      "import/ignore": ["^cloudflare:workers$"],
     },
 
     rules: {
@@ -71,7 +73,12 @@ export default tseslint.config(
       "import-x/newline-after-import": "error",
       "import-x/no-duplicates": "error",
       "import-x/no-self-import": "error",
-      "import-x/no-unresolved": "error",
+      "import-x/no-unresolved": [
+        "error",
+        {
+          ignore: ["^cloudflare:workers$"],
+        },
+      ],
 
       "import-x/order": [
         "error",
