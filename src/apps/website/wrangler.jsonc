@@ -74,6 +74,10 @@
       "name": "portfolio-website",
       "routes": [
         {
+          "pattern": "allondeveen.com",
+          "custom_domain": true
+        },
+        {
           "pattern": "www.allondeveen.com",
           "custom_domain": true
         }
