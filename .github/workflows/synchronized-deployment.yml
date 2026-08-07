@@ -79,8 +79,8 @@ jobs:
         id: previous_deployments
         run: |
           # Query Cloudflare for currently active deployment IDs.
-          echo "cms=$(pnpm exec wrangler versions list --name=${{ env.CMS_WORKER_NAME }}) --json  | jq -r '.[0].id')" >> "$GITHUB_OUTPUT"
-          echo "website=$(pnpm exec wrangler versions list --name=${{ env.WEBSITE_WORKER_NAME }}) --json  | jq -r '.[0].id')" >> "$GITHUB_OUTPUT"
+          echo "cms=$(pnpm --filter @allondeveen-portfolio/website exec wrangler versions list --name=${{ env.CMS_WORKER_NAME }}) --json  | jq -r '.[0].id')" >> "$GITHUB_OUTPUT"
+          echo "website=$(pnpm --filter @allondeveen-portfolio/website exec wrangler versions list --name=${{ env.WEBSITE_WORKER_NAME }}) --json  | jq -r '.[0].id')" >> "$GITHUB_OUTPUT"
       - name: Deploy CMS
         id: deploy_cms
         if: |
@@ -115,7 +115,7 @@ jobs:
         run: |
           curl --fail-with-body \
             --request POST \
-            "https://api.cloudflare.com/client/v4/zones/${{ env.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            "https://api.cloudflare.com/client/v4/zones/${{ env.DNS_ZONE_ID }}/purge_cache" \
             --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             --header "Content-Type: application/json" \
             --data '{
@@ -167,7 +167,7 @@ jobs:
             steps.verify_migration.outcome == 'failure' ||
             steps.release_checks.outcome == 'failure'
           )
-        run: pnpm exec wrangler d1 time-travel restore ${{ env.D1_DATABASE_NAME }}
+        run: pnpm --filter @allondeveen-portfolio/website exec wrangler d1 time-travel restore ${{ env.D1_DATABASE_NAME }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -183,7 +183,7 @@ jobs:
             steps.verify_migration.outcome == 'failure' ||
             steps.release_checks.outcome == 'failure'
           )
-        run: pnpm exec wrangler rollback ${{ steps.previous_deployments.outcome.cms }}
+        run: pnpm --filter @allondeveen-portfolio/website exec wrangler rollback ${{ steps.previous_deployments.outcome.cms }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -199,7 +199,7 @@ jobs:
             steps.verify_migration.outcome == 'failure' ||
             steps.release_checks.outcome == 'failure'
           )
-        run: pnpm exec wrangler rollback ${{ steps.previous_deployments.outcome.website }}
+        run: pnpm --filter @allondeveen-portfolio/website exec wrangler rollback ${{ steps.previous_deployments.outcome.website }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
