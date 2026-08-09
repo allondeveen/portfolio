@@ -1,7 +1,7 @@
 type MaintenanceEnv = {
   RUNTIME_CONFIG: KVNamespace;
   ASSETS: Fetcher;
-  CMS: Fetcher;
+  CMS?: Fetcher;
   WEBSITE: Fetcher;
   CMS_HOST: string;
   WEBSITE_HOST: string;
@@ -15,10 +15,10 @@ export async function dispatchServiceRequest(
   request: Request,
   env: MaintenanceEnv,
 ): Promise<Response> {
-  const routes = new Map([
-    [env.WEBSITE_HOST, env.WEBSITE],
-    [env.CMS_HOST, env.CMS],
-  ]);
+  const routes = new Map([[env.WEBSITE_HOST, env.WEBSITE]]);
+  if (env.CMS) {
+    routes.set(env.CMS_HOST, env.CMS);
+  }
   const url = new URL(request.url);
   const hostname = url.hostname;
   const service = routes.get(hostname);
