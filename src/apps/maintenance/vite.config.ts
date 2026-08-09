@@ -37,7 +37,11 @@ export default defineConfig(({ mode }) => {
     server: {
       port,
       strictPort: true,
-      allowedHosts: ["maintenance-dev.allondeveen.com"],
+      allowedHosts: [
+        "maintenance-dev.allondeveen.com",
+        "dev.allondeveen.com",
+        "cms-dev.allondeveen.com",
+      ],
     },
     resolve: {
       tsconfigPaths: true,

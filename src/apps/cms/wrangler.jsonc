@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"main": "worker.ts",
+  "main": ".open-next/worker.js",
 	"name": "portfolio-cms-dev",
 	"compatibility_date": "2025-08-15",
 	"compatibility_flags": [
@@ -18,20 +18,6 @@
 			"database_id": "DATABASE_ID"
 		}
 	],
-  "kv_namespaces": [
-    {
-      "binding": "RUNTIME_CONFIG",
-      "id": "3d86b9a726a64de6a5b75e3ef17b5891",
-      "remote": true
-    }
-  ],
-  "services": [
-    {
-      "binding": "MAINTENANCE",
-      "service": "portfolio-maintenance",
-      "remote": true
-    }
-  ],
 	"r2_buckets": [
 		{
 			"bucket_name": "portfolio-assets-dev",
@@ -44,12 +30,6 @@
 	"env": {
 		"staging": {
 			"name": "portfolio-cms-staging",
-      "routes": [
-        {
-          "pattern": "cms-staging.allondeveen.com",
-          "custom_domain": true
-        }
-      ],
 			"d1_databases": [
 				{
 					"binding": "D1",
@@ -58,18 +38,6 @@
 					"remote": true
 				}
 			],
-      "kv_namespaces": [
-        {
-          "binding": "RUNTIME_CONFIG",
-          "id": "85b4698d48da467cb17d7f9b68c3cc23"
-        }
-      ],
-      "services": [
-        {
-          "binding": "MAINTENANCE",
-          "service": "portfolio-maintenance"
-        }
-      ],
 			"r2_buckets": [
 				{
 					"binding": "R2",
@@ -80,12 +48,6 @@
 		},
 		"production": {
 			"name": "portfolio-cms",
-      "routes": [
-        {
-          "pattern": "cms.allondeveen.com",
-          "custom_domain": true
-        }
-      ],
 			"d1_databases": [
 				{
 					"binding": "D1",
@@ -94,18 +56,6 @@
 					"remote": true
 				}
 			],
-      "kv_namespaces": [
-        {
-          "binding": "RUNTIME_CONFIG",
-          "id": "f852766a34604b699556410e7dc397a8"
-        }
-      ],
-      "services": [
-        {
-          "binding": "MAINTENANCE",
-          "service": "portfolio-maintenance"
-        }
-      ],
 			"r2_buckets": [
 				{
 					"binding": "R2",

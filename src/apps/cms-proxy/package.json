@@ -1,0 +1,18 @@
+{
+  "name": "@allondeveen-portfolio/cms-proxy",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "dotenv -e .env -- node scripts/dev.mjs",
+    "preview": "dotenv -e .env -- node scripts/dev.mjs",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "dotenv-cli": "^11.0.0",
+    "itty-router": "^3.0.12",
+    "typescript": "^5.5.2",
+    "wrangler": "^4.120.0"
+  }
+}

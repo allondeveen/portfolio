@@ -1,7 +1,3 @@
-import {
-  handleMaintenanceRequest,
-  isMaintenanceRequest,
-} from "@allondeveen-portfolio/maintenance-mode";
 import { createRequestHandler } from "react-router";
 
 const requestHandler = createRequestHandler(
@@ -11,13 +7,7 @@ const requestHandler = createRequestHandler(
 );
 
 export default {
-  async fetch(request, env) {
-    const maintenanceEnabled = await isMaintenanceRequest(env);
-
-    if (maintenanceEnabled) {
-      return await handleMaintenanceRequest(request, env);
-    }
-
+  async fetch(request) {
     return requestHandler(request);
   },
 } satisfies ExportedHandler<Env>;

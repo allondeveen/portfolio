@@ -1,25 +1,45 @@
 type MaintenanceEnv = {
   RUNTIME_CONFIG: KVNamespace;
-  MAINTENANCE: Fetcher;
+  ASSETS: Fetcher;
+  CMS: Fetcher;
+  WEBSITE: Fetcher;
+  CMS_HOST: string;
+  WEBSITE_HOST: string;
 };
 
-export async function isMaintenanceRequest(env: MaintenanceEnv) {
+export async function isMaintenanceEnabled(env: MaintenanceEnv) {
   return (await env.RUNTIME_CONFIG.get("maintenance-mode")) === "enabled";
+}
+
+export async function dispatchServiceRequest(
+  request: Request,
+  env: MaintenanceEnv,
+): Promise<Response> {
+  const routes = new Map([
+    [env.WEBSITE_HOST, env.WEBSITE],
+    [env.CMS_HOST, env.CMS],
+  ]);
+  const url = new URL(request.url);
+  const hostname = url.hostname;
+  const service = routes.get(hostname);
+  if (!service) {
+    return new Response("Not found", { status: 404 });
+  }
+  return service.fetch(request);
 }
 
 export async function handleMaintenanceRequest(
   request: Request,
   env: MaintenanceEnv,
+  requestHandler: (_: Request) => Promise<Response>,
 ): Promise<Response> {
   const isDocument = isDocumentRequest(request);
 
-  const maintenanceRequest = isDocument ? request : withoutConditionalHeaders(request);
-
-  const response = await env.MAINTENANCE.fetch(maintenanceRequest);
-
   if (!isDocument) {
-    return response;
+    return env.ASSETS.fetch(request);
   }
+
+  const response = await requestHandler(request);
 
   const headers = new Headers(response.headers);
 
@@ -39,14 +59,4 @@ function isDocumentRequest(request: Request): boolean {
     request.headers.get("Sec-Fetch-Dest") === "document" ||
     request.headers.get("Accept")?.includes("text/html") === true
   );
-}
-
-function withoutConditionalHeaders(request: Request): Request {
-  const headers = new Headers(request.headers);
-
-  // Prevent a cached erroneous asset response from being reused through a 304.
-  headers.delete("If-None-Match");
-  headers.delete("If-Modified-Since");
-
-  return new Request(request, { headers });
 }
