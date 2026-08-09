@@ -33,10 +33,10 @@ export async function handleMaintenanceRequest(
   env: MaintenanceEnv,
   requestHandler: (_: Request) => Promise<Response>,
 ): Promise<Response> {
-  const isDocument = isDocumentRequest(request);
+  const assetResponse = await env.ASSETS.fetch(request);
 
-  if (!isDocument) {
-    return env.ASSETS.fetch(request);
+  if (assetResponse.status != 404) {
+    return assetResponse;
   }
 
   const response = await requestHandler(request);
@@ -52,11 +52,4 @@ export async function handleMaintenanceRequest(
     statusText: "Service Unavailable",
     headers,
   });
-}
-
-function isDocumentRequest(request: Request): boolean {
-  return (
-    request.headers.get("Sec-Fetch-Dest") === "document" ||
-    request.headers.get("Accept")?.includes("text/html") === true
-  );
 }
