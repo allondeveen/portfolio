@@ -32,3 +32,16 @@ The development url has to have one subdomain. The subdomain should have the fol
 ## Fresh development URL setup
 
 See [Development URLs](docs/setup/development-urls.md).
+
+# Maintenance mode
+
+The entire application has a maintenance mode. For more information about the architecture of the maintenance mode, see [Maintenance Mode](docs/setup/maintenance-mode.md).
+
+## Toggling maintenance mode
+
+To enable maintenance mode you have to run the corresponding script in package.json. The script has the following format: `maintenance:[environment]:[on|off]`. For development, the environment can be omitted. Examples:
+
+- Enabling maintenance mode in development: `pnpm maintenance:development:on` or `pnpm maintenance:on`.
+- Disabling maintenance mode in development: `pnpm maintenance:development:off` or `pnpm maintenance:off`.
+- Enabling maintenance mode on staging: `pnpm maintenance:staging:on`.
+- Disabling maintenance mode on staging: `pnpm maintenance:staging:off`.
