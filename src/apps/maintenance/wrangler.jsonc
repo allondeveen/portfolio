@@ -58,11 +58,11 @@
         {
           "pattern": "staging.allondeveen.com",
           "custom_domain": true
-        },
-        {
-          "pattern": "cms-staging.allondeveen.com",
-          "custom_domain": true
         }
+        // {
+        //   "pattern": "cms-staging.allondeveen.com",
+        //   "custom_domain": true
+        // }
       ],
       "kv_namespaces": [
         {
@@ -71,10 +71,10 @@
         }
       ],
       "services": [
-        {
-          "binding": "CMS",
-          "service": "portfolio-cms-staging"
-        },
+        // {
+        //   "binding": "CMS",
+        //   "service": "portfolio-cms-staging"
+        // },
         {
           "binding": "WEBSITE",
           "service": "portfolio-website-staging"
@@ -95,11 +95,11 @@
         {
           "pattern": "www.allondeveen.com",
           "custom_domain": true
-        },
-        {
-          "pattern": "cms.allondeveen.com",
-          "custom_domain": true
         }
+        // {
+        //   "pattern": "cms.allondeveen.com",
+        //   "custom_domain": true
+        // }
       ],
       "kv_namespaces": [
         {
@@ -108,10 +108,10 @@
         }
       ],
       "services": [
-        {
-          "binding": "CMS",
-          "service": "portfolio-cms"
-        },
+        // {
+        //   "binding": "CMS",
+        //   "service": "portfolio-cms"
+        // },
         {
           "binding": "WEBSITE",
           "service": "portfolio-website"
