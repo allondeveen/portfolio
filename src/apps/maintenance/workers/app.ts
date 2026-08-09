@@ -13,7 +13,7 @@ const requestHandler = createRequestHandler(
 
 export default {
   async fetch(request, env) {
-    if (await isMaintenanceEnabled(env)) {
+    if (await isMaintenanceEnabled(request, env)) {
       return handleMaintenanceRequest(request, env, requestHandler);
     }
 

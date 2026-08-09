@@ -29,7 +29,9 @@
   ],
   "vars": {
     "WEBSITE_HOST": "dev.allondeveen.com",
-    "CMS_HOST": "cms-dev.allondeveen.com"
+    "CMS_HOST": "cms-dev.allondeveen.com",
+    "ENVIRONMENT": "development",
+    "DIRECT_HOST": "maintenance-dev.allondeveen.com"
   },
 	/**
 	 * Smart Placement
@@ -82,7 +84,8 @@
       ],
       "vars": {
         "WEBSITE_HOST": "staging.allondeveen.com",
-        "CMS_HOST": "cms-staging.allondeveen.com"
+        "CMS_HOST": "cms-staging.allondeveen.com",
+        "ENVIRONMENT": "staging"
       }
     },
     "production": {
@@ -119,7 +122,8 @@
       ],
       "vars": {
         "WEBSITE_HOST": "www.allondeveen.com",
-        "CMS_HOST": "cms.allondeveen.com"
+        "CMS_HOST": "cms.allondeveen.com",
+        "ENVIRONMENT": "production"
       }
     }
   }

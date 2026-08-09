@@ -5,10 +5,23 @@ type MaintenanceEnv = {
   WEBSITE: Fetcher;
   CMS_HOST: string;
   WEBSITE_HOST: string;
+  ENVIRONMENT: "development" | "staging" | "production";
+  DIRECT_HOST?: string;
 };
 
-export async function isMaintenanceEnabled(env: MaintenanceEnv) {
-  return (await env.RUNTIME_CONFIG.get("maintenance-mode")) === "enabled";
+function isMaintenanceAccessedDirectly(request: Request, env: MaintenanceEnv) {
+  if (env.ENVIRONMENT === "development" && env.DIRECT_HOST) {
+    const url = new URL(request.url);
+    return url.hostname === env.DIRECT_HOST;
+  }
+  return false;
+}
+
+export async function isMaintenanceEnabled(request: Request, env: MaintenanceEnv) {
+  return (
+    (await env.RUNTIME_CONFIG.get("maintenance-mode")) === "enabled" ||
+    isMaintenanceAccessedDirectly(request, env)
+  );
 }
 
 export async function dispatchServiceRequest(
@@ -40,6 +53,10 @@ export async function handleMaintenanceRequest(
   }
 
   const response = await requestHandler(request);
+
+  if (isMaintenanceAccessedDirectly(request, env)) {
+    return response;
+  }
 
   const headers = new Headers(response.headers);
 
