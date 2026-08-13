@@ -8,3 +8,4 @@ wrangler
 *.jsonc
 pnpm-lock.yaml
 src/apps/cms/src/payload-types.ts
+src/apps/cms/src/app/(payload)/admin/importMap.js
