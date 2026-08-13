@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/trpc": "workspace:*",
     "@allondeveen-portfolio/pages": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",
@@ -39,6 +40,7 @@
     "@payloadcms/richtext-lexical": "3.87.0",
     "@payloadcms/storage-r2": "3.87.0",
     "@payloadcms/ui": "3.87.0",
+    "@trpc/server": "^11.18.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",

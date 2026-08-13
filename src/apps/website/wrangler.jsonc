@@ -33,12 +33,39 @@
     "directory": "./public/",
     "binding": "ASSETS"
   },
+  "services": [
+    {
+      "binding": "CMS",
+      "service": "portfolio-cms-proxy"
+    }
+  ],
+  "vars": {
+    "CMS_URL": "https://cms-dev.allondeveen.com"
+  },
   "env": {
     "staging" : {
-      "name": "portfolio-website-staging"
+      "name": "portfolio-website-staging",
+      "services": [
+        {
+          "binding": "CMS",
+          "service": "portfolio-cms-staging"
+        }
+      ],
+      "vars": {
+        "CMS_URL": "https://cms-staging.allondeveen.com"
+      }
     },
     "production" : {
-      "name": "portfolio-website"
+      "name": "portfolio-website",
+      "services": [
+        {
+          "binding": "CMS",
+          "service": "portfolio-cms"
+        }
+      ],
+      "vars": {
+        "CMS_URL": "https://cms.allondeveen.com"
+      }
     }
   }
 }

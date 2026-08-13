@@ -1,0 +1,30 @@
+{
+  "name": "@allondeveen-portfolio/trpc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./client": {
+      "types": "./src/client/index.ts",
+      "import": "./src/client/index.ts"
+    },
+    "./server": {
+      "types": "./src/server/index.ts",
+      "import": "./src/server/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@trpc/client": "^11.18.0",
+    "@trpc/server": "^11.18.0"
+  },
+  "devDependencies": {
+    "payload": "3.87.0",
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "payload": "3.87.0"
+  }
+}
