@@ -1,6 +1,8 @@
 packages:
   - "src/apps/*"
   - "src/features/*"
+  - "src/features/*/*"
+  - "src/features/*/*/*"
   - "src/shared/*"
 allowBuilds:
   core-js: true

@@ -1,0 +1,21 @@
+{
+  "name": "@allondeveen-portfolio/lexical-text",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  }
+}

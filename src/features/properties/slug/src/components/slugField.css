@@ -1,0 +1,12 @@
+.field-description.field-description-slug {
+  margin-bottom: calc(var(--base) / 4);
+}
+
+.field-type__wrap:has(#field-slug) {
+  display: flex;
+  align-items: center;
+}
+
+.slug__hierarchical-segment {
+  margin-right: 0.5rem;
+}

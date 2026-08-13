@@ -1,0 +1,31 @@
+{
+  "name": "@allondeveen-portfolio/blocks-property",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./all": {
+      "types": "./src/collect.ts",
+      "import": "./src/collect.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "payload": "3.87.0"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/heading-block": "workspace:*",
+    "@allondeveen-portfolio/hero-block": "workspace:*",
+    "@allondeveen-portfolio/public-documents": "workspace:*",
+    "@allondeveen-portfolio/rich-text-block": "workspace:*"
+  }
+}

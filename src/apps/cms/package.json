@@ -26,9 +26,16 @@
     "wrangler": "cross-env NODE_OPTIONS=--no-deprecation wrangler"
   },
   "dependencies": {
+    "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/pages": "workspace:*",
+    "@allondeveen-portfolio/public-documents": "workspace:*",
+    "@allondeveen-portfolio/single-line-lexical": "workspace:*",
+    "@allondeveen-portfolio/slug-property": "workspace:*",
+    "@allondeveen-portfolio/sync-hero-metadata": "workspace:*",
     "@opennextjs/cloudflare": "1.20.1",
     "@payloadcms/db-d1-sqlite": "3.87.0",
     "@payloadcms/next": "3.87.0",
+    "@payloadcms/plugin-seo": "3.87.0",
     "@payloadcms/richtext-lexical": "3.87.0",
     "@payloadcms/storage-r2": "3.87.0",
     "@payloadcms/ui": "3.87.0",
