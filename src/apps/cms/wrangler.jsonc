@@ -25,11 +25,23 @@
 			"remote": true
 		}
 	],
+  "vars": {
+    "CMS_ORIGIN": "https://cms-dev.allondeveen.com"
+  },
+  "secrets": {
+    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY"]
+  },
 	// Here's how to configure an additional environment
 	// It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
 	"env": {
 		"staging": {
 			"name": "portfolio-cms-staging",
+      "vars": {
+        "CMS_ORIGIN": "https://cms-staging.allondeveen.com"
+      },
+      "secrets": {
+        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY"]
+      },
 			"d1_databases": [
 				{
 					"binding": "D1",
@@ -48,6 +60,12 @@
 		},
 		"production": {
 			"name": "portfolio-cms",
+      "vars": {
+        "CMS_ORIGIN": "https://cms.allondeveen.com"
+      },
+      "secrets": {
+        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY"]
+      },
 			"d1_databases": [
 				{
 					"binding": "D1",

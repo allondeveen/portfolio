@@ -1,13 +1,11 @@
 import { Document, publicDocumentLoader } from "@allondeveen-portfolio/public-documents/website";
 
-import { cloudflareContext } from "../cloudflareContext";
+import { cmsContext } from "../cmsContext";
 
 import type { Route } from "./+types/home";
 
 export function loader({ context }: Route.LoaderArgs) {
-  const { env } = context.get(cloudflareContext);
-
-  return publicDocumentLoader(env.CMS_URL, env.CMS, "/");
+  return publicDocumentLoader(context.get(cmsContext), "/");
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

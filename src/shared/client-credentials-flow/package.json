@@ -1,0 +1,26 @@
+{
+  "name": "@allondeveen-portfolio/client-credentials-flow",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./client": {
+      "types": "./src/client/index.ts",
+      "import": "./src/client/index.ts"
+    },
+    "./server": {
+      "types": "./src/server/index.ts",
+      "import": "./src/server/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "jose": "^6.2.8",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  }
+}

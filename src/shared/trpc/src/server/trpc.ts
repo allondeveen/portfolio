@@ -1,9 +1,6 @@
-import { initTRPC } from "@trpc/server";
-
-import type { TRPCContext } from "./context";
-
-const t = initTRPC.context<TRPCContext>().create();
+import { t } from "./init";
+import { requireAccessToken } from "./middleware/requireAccessToken";
 
 export const createTRPCRouter = t.router;
 export const mergeTRPCRouters = t.mergeRouters;
-export const publicProcedure = t.procedure;
+export const protectedProcedure = t.procedure.use(requireAccessToken);

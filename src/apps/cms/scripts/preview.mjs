@@ -7,13 +7,13 @@ spawnSync("node", ["assets.mjs", "-b"], { stdio: "inherit", shell: true });
 
 spawnSync("opennextjs-cloudflare", ["build"], { stdio: "inherit", shell: true });
 
-let previewArgs = ["preview"];
+let previewArgs = ["-e", ".dev.vars", "opennextjs-cloudflare", "preview"];
 if (env !== "development") {
   previewArgs = [...previewArgs, `--env=${env}`];
 }
 previewArgs = [...previewArgs, "--", `--port=${port}`];
 
-spawnSync("opennextjs-cloudflare", previewArgs, {
+spawnSync("dotenv", previewArgs, {
   stdio: "inherit",
   shell: true,
 });

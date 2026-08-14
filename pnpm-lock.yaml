@@ -62,6 +62,9 @@ importers:
       '@allondeveen-portfolio/blocks-property':
         specifier: workspace:*
         version: link:../../features/properties/blocks
+      '@allondeveen-portfolio/client-credentials-flow':
+        specifier: workspace:*
+        version: link:../../shared/client-credentials-flow
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/pages
@@ -265,12 +268,21 @@ importers:
 
   src/apps/website:
     dependencies:
+      '@allondeveen-portfolio/client-credentials-flow':
+        specifier: workspace:*
+        version: link:../../shared/client-credentials-flow
       '@allondeveen-portfolio/design-system':
         specifier: workspace:*
         version: link:../../shared/design-system
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../features/public-documents
+      '@allondeveen-portfolio/trpc':
+        specifier: workspace:*
+        version: link:../../shared/trpc
+      '@trpc/client':
+        specifier: ^11.18.0
+        version: 11.18.0(@trpc/server@11.18.0(typescript@5.9.3))(typescript@5.9.3)
       '@vanilla-extract/css':
         specifier: ^1.21.2
         version: 1.21.2(babel-plugin-macros@3.1.0)
@@ -632,6 +644,19 @@ importers:
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/shared/client-credentials-flow:
+    dependencies:
+      jose:
+        specifier: ^6.2.8
+        version: 6.2.8
+      zod:
+        specifier: 4.4.3
+        version: 4.4.3
+    devDependencies:
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -5456,6 +5481,9 @@ packages:
   jose@5.10.0:
     resolution: {integrity: sha512-s+3Al/p9g32Iq+oqXxkW//7jk2Vig6FF1CFqzVXoTUXt2qz89YWbL+OwS17NFYEvxC35n0FKeGO2LGYSxeM2Gg==}
 
+  jose@6.2.8:
+    resolution: {integrity: sha512-Bsdjwm3Qsd/P0jR+BHDe3LytDfY7WBq2HmCCLIwuVRHMuEC9ae7/R474GIUdF1NgCyZjzVo/A9DOiOBtXq8ZoQ==}
+
   joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
@@ -10258,9 +10286,18 @@ snapshots:
       '@trpc/server': 11.18.0(typescript@5.7.3)
       typescript: 5.7.3
 
+  '@trpc/client@11.18.0(@trpc/server@11.18.0(typescript@5.9.3))(typescript@5.9.3)':
+    dependencies:
+      '@trpc/server': 11.18.0(typescript@5.9.3)
+      typescript: 5.9.3
+
   '@trpc/server@11.18.0(typescript@5.7.3)':
     dependencies:
       typescript: 5.7.3
+
+  '@trpc/server@11.18.0(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
 
   '@tsconfig/node18@1.0.3': {}
 
@@ -12888,6 +12925,8 @@ snapshots:
   jiti@2.7.0: {}
 
   jose@5.10.0: {}
+
+  jose@6.2.8: {}
 
   joycon@3.1.1: {}
 

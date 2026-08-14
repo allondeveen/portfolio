@@ -1,6 +1,6 @@
 import { createRequestHandler, RouterContextProvider } from "react-router";
 
-import { cloudflareContext } from "../src/cloudflareContext";
+import { cmsContext, createCMSClient } from "../src/cmsContext";
 
 const requestHandler = createRequestHandler(
   // eslint-disable-next-line
@@ -9,13 +9,10 @@ const requestHandler = createRequestHandler(
 );
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const context = new RouterContextProvider();
 
-    context.set(cloudflareContext, {
-      env,
-      ctx,
-    });
+    context.set(cmsContext, await createCMSClient(env, request.signal));
 
     return requestHandler(request, context);
   },

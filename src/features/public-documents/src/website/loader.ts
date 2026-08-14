@@ -1,18 +1,9 @@
-import { createTRPCClient } from "@allondeveen-portfolio/trpc/client";
-import { httpLink } from "@trpc/client";
-
 import type { PublicDocumentsRouter } from "../trpc-server";
+import type { TRPCClient } from "@allondeveen-portfolio/trpc/client";
 
-export async function publicDocumentLoader(cmsUrl: string, cms: Fetcher, slug: string) {
-  const client = createTRPCClient<PublicDocumentsRouter>({
-    links: [
-      httpLink({
-        url: new URL("/trpc", cmsUrl),
-        fetch(input, init) {
-          return cms.fetch(new Request(input, init));
-        },
-      }),
-    ],
-  });
+export async function publicDocumentLoader(
+  client: TRPCClient<PublicDocumentsRouter>,
+  slug: string,
+) {
   return await client.content.query(slug);
 }
