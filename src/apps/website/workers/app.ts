@@ -9,10 +9,10 @@ const requestHandler = createRequestHandler(
 );
 
 export default {
-  async fetch(request, env) {
+  fetch(request, env) {
     const context = new RouterContextProvider();
 
-    context.set(cmsContext, await createCMSClient(env, request.signal));
+    context.set(cmsContext, createCMSClient(env, request.signal));
 
     return requestHandler(request, context);
   },

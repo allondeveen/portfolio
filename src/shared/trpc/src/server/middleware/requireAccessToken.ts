@@ -1,8 +1,7 @@
 import { TRPCError } from "@trpc/server";
 
+import { ACCESS_TOKEN_EXPIRED } from "../../accessTokenAuthentication";
 import { t } from "../init";
-
-const ACCESS_TOKEN_EXPIRED = "access_token_expired";
 
 export const requireAccessToken = t.middleware(async ({ ctx, next }) => {
   const authorization = ctx.req.headers.get("Authorization");
