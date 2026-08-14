@@ -39,7 +39,7 @@ export async function loader() {
   });
 }
 
-export function headers({ loaderHeaders }: Route.HeadersArgs) {
+export function headers({ errorHeaders, loaderHeaders }: Route.HeadersArgs) {
   const nonce = loaderHeaders.get("X-Root-Loader-Nonce");
 
   const cspDirectives = [
@@ -51,9 +51,10 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
     "frame-ancestors 'none'",
   ];
 
-  return {
-    "Content-Security-Policy": cspDirectives.join("; "),
-  };
+  const headers = new Headers(errorHeaders);
+  headers.set("Content-Security-Policy", cspDirectives.join("; "));
+
+  return headers;
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
