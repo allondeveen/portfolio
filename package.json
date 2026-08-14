@@ -19,7 +19,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
-    "dev": "concurrently -k -n assets,apps,typecheck \"node assets.mjs -w\" \"pnpm --parallel --filter './src/apps/*' run dev\" \"pnpm --recursive run typecheck --watch --preserveWatchOutput\"",
+    "dev": "concurrently -k -n assets,apps,typecheck \"node assets.mjs -w\" \"pnpm --parallel --filter './src/apps/*' run dev\" \"pnpm --parallel --recursive run typecheck --watch --preserveWatchOutput\"",
     "build": "node assets.mjs && pnpm --recursive build",
     "preview": "node assets.mjs && pnpm --parallel --filter './src/apps/*' preview",
     "maintenance:on": "pnpm run maintenance:development:on",
