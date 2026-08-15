@@ -1,4 +1,4 @@
-import { validateBlocks } from "./hooks/validateBlocks";
+import { validateBlocks } from "./cms/hooks/validateBlocks";
 
 import type { BlocksField } from "payload";
 

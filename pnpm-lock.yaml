@@ -341,6 +341,12 @@ importers:
 
   src/features/blocks/section/hero:
     dependencies:
+      '@allondeveen-portfolio/heading-block':
+        specifier: workspace:^
+        version: link:../../textual/heading
+      '@allondeveen-portfolio/rich-text-block':
+        specifier: workspace:^
+        version: link:../../textual/rich-text
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
@@ -354,6 +360,9 @@ importers:
 
   src/features/blocks/textual/heading:
     dependencies:
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:*
+        version: link:../../../../shared/lexical-text
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
         version: link:../../../single-line-lexical
@@ -382,6 +391,9 @@ importers:
 
   src/features/blocks/textual/rich-text:
     dependencies:
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:*
+        version: link:../../../../shared/lexical-text
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
         version: link:../../../single-line-lexical
@@ -487,6 +499,9 @@ importers:
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      zod:
+        specifier: 4.4.3
+        version: 4.4.3
     devDependencies:
       typescript:
         specifier: 5.7.3
@@ -545,6 +560,9 @@ importers:
 
   src/features/public-documents:
     dependencies:
+      '@allondeveen-portfolio/blocks-property':
+        specifier: workspace:*
+        version: link:../properties/blocks
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:*
         version: link:../blocks/textual/heading
@@ -579,9 +597,6 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@cloudflare/workers-types':
-        specifier: ^5.20260804.1
-        version: 5.20260804.1
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14

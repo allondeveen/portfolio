@@ -11,6 +11,18 @@
     "./all": {
       "types": "./src/collect.ts",
       "import": "./src/collect.ts"
+    },
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
+    },
+    "./website": {
+      "types": "./src/website.ts",
+      "import": "./src/website.ts"
     }
   },
   "scripts": {
@@ -26,6 +38,7 @@
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
-    "@allondeveen-portfolio/rich-text-block": "workspace:*"
+    "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "zod": "4.4.3"
   }
 }

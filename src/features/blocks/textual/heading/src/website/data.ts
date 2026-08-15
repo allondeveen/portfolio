@@ -1,10 +1,10 @@
-import { LexicalEditorStateSchema } from "@allondeveen-portfolio/lexical-text/cms";
+import { LexicalTextSchema } from "@allondeveen-portfolio/lexical-text/website";
 import * as z from "zod";
 
 export const HeadingSchema = z.object({
-  blockType: z.literal("heading"),
-  size: z.number(),
-  headingText: LexicalEditorStateSchema,
+  kind: z.literal("heading"),
+  size: z.number().min(1).max(6),
+  text: LexicalTextSchema,
   variant: z.literal("default").or(z.literal("muted")).or(z.literal("primary")),
 });
 

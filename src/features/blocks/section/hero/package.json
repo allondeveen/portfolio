@@ -11,6 +11,14 @@
     "./cms": {
       "types": "./src/cms.ts",
       "import": "./src/cms.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
+    },
+    "./website": {
+      "types": "./src/website.ts",
+      "import": "./src/website.ts"
     }
   },
   "scripts": {
@@ -23,6 +31,8 @@
     "payload": "3.87.0"
   },
   "dependencies": {
+    "@allondeveen-portfolio/heading-block": "workspace:^",
+    "@allondeveen-portfolio/rich-text-block": "workspace:^",
     "zod": "^4.4.3"
   }
 }

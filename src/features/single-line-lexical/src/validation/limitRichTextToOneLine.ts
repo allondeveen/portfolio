@@ -1,4 +1,7 @@
-import { LexicalEditorStateSchema, type LexicalNode } from "@allondeveen-portfolio/lexical-text";
+import {
+  LexicalEditorStateSchema,
+  type LexicalNode,
+} from "@allondeveen-portfolio/lexical-text/cms";
 
 import type { RichTextFieldValidation } from "payload";
 

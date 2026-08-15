@@ -1,6 +1,6 @@
 import { type Heading, HeadingSchema } from "@allondeveen-portfolio/heading-block/cms";
 import { type Hero, HeroSchema } from "@allondeveen-portfolio/hero-block/cms";
-import { getLexicalText } from "@allondeveen-portfolio/lexical-text";
+import { getLexicalText } from "@allondeveen-portfolio/lexical-text/cms";
 import { type RichText, RichTextSchema } from "@allondeveen-portfolio/rich-text-block/cms";
 
 import { DocumentSchema as InternalDocumentSchema } from "../data";
@@ -18,7 +18,7 @@ export type HeadingResult = Omit<Heading, "headingText"> & {
   position: number;
 };
 
-export type RichTextResult = Omit<RichText, "richText"> & {
+export type RichTextResult = Omit<RichText, "text"> & {
   text: string | null;
   position: number;
 };

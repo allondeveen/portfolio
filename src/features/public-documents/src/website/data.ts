@@ -1,16 +1,14 @@
-import { BlockSchema } from "@allondeveen-portfolio/blocks-property/cms";
-import * as z from "zod";
+import { BlockSchema } from "@allondeveen-portfolio/blocks-property/website";
+import z from "zod";
 
 export const DocumentSchema = z.object({
   id: z.string(),
-  collection: z.literal("pages"),
+  kind: z.literal("pages"),
   meta: z.object({
     title: z.string().min(1),
     description: z.string().min(1),
   }),
-  parent: z.string().nullish(),
   slug: z.string(),
-  title: z.string(),
   blocks: z.array(BlockSchema).min(1),
 });
 
