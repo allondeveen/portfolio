@@ -1,13 +1,13 @@
-.hero__content {
+.hero {
   height: 100dvh;
 }
 
-.hero__inner-content {
+.hero__content {
   width: 100%;
   padding: 2rem;
   text-align: center;
 }
 
-.hero__inner-content h1.heading {
+.hero__content h1.heading {
   margin-top: 0;
 }

@@ -11,10 +11,8 @@ export type HeroComponentProps = Hero & {
 
 export function HeroComponent({ kind, blocks, renderBlocks }: HeroComponentProps) {
   return (
-    <article className={kind}>
-      <div className={clsx(`${kind}__content`, "container", "center", "vertical")}>
-        <div className={`${kind}__inner-content`}>{blocks.map(renderBlocks)}</div>
-      </div>
+    <article className={clsx(kind, "container", "center", "vertical")}>
+      <div className={`${kind}__content`}>{blocks.map(renderBlocks)}</div>
     </article>
   );
 }

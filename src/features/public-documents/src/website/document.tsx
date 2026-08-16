@@ -1,7 +1,6 @@
 import { BlocksComponent } from "@allondeveen-portfolio/blocks-property/website";
 
 import type { Document } from "./data";
-import "./document.css";
 
 export function Document({ blocks, meta: { title, description } }: Document) {
   return (
