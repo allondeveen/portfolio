@@ -1,8 +1,64 @@
-import type { FieldHook, TypeWithID } from "payload";
+import type { FieldHook, PayloadRequest, TypeWithID } from "payload";
 
 type WithParentDoc = TypeWithID & {
   parent?: string;
 };
+
+async function getParentSlug(
+  id: string | number,
+  sanitisedHierarchicalSegment: string,
+  req: PayloadRequest,
+) {
+  const parent = await req.payload.findByID({
+    collection: "pages",
+    id,
+  });
+  let parentSlug = "";
+  if (parent.slug) {
+    parentSlug = parent.slug;
+    parentSlug = parentSlug.replace(sanitisedHierarchicalSegment, "");
+    parentSlug = parentSlug.replace(/^\/+/, "");
+    parentSlug = parentSlug.replace(/\/$/, "");
+    if (parentSlug == "/") {
+      parentSlug = "";
+    }
+  }
+  return parentSlug;
+}
+
+async function deconstructSlug(
+  slug: string,
+  sanitisedHierarchicalSegment: string,
+  originalDoc: WithParentDoc | undefined,
+  req: PayloadRequest,
+) {
+  let parentSlug = "";
+  if (originalDoc?.parent) {
+    parentSlug = await getParentSlug(originalDoc.parent, sanitisedHierarchicalSegment, req);
+  }
+  let candidateValue = slug?.replace(sanitisedHierarchicalSegment, "/") ?? "";
+  if (parentSlug !== "") {
+    candidateValue = candidateValue?.replace(`/${parentSlug}`, "") ?? "";
+  }
+  candidateValue = candidateValue.replace(/^\//, "");
+  return [parentSlug, candidateValue];
+}
+
+function constructSlug(
+  sanitisedHierarchicalSegment: string,
+  parentSlug: string,
+  candidateValue: string,
+) {
+  let candidateParentSlug = parentSlug;
+  if (candidateParentSlug.length > 0) {
+    candidateParentSlug = candidateParentSlug + "/";
+  }
+  let slug = `${sanitisedHierarchicalSegment}${candidateParentSlug}${candidateValue}`;
+  if (slug.endsWith("/") && slug !== "/") {
+    slug = slug.replace(/\/+$/, "");
+  }
+  return slug;
+}
 
 /**
  * Prefix the raw slug of the content with hierarchical segments and parent slug(s).
@@ -13,48 +69,19 @@ export function prefixHierarchicalSegments(
   sanitisedHierarchicalSegment: string,
 ): FieldHook<WithParentDoc, string> {
   return async ({ value, req, data, originalDoc }) => {
-    let parentSlug = "";
-    if (originalDoc?.parent) {
-      const parent = await req.payload.findByID({
-        collection: "pages",
-        id: originalDoc.parent,
-      });
-      if (parent.slug) {
-        parentSlug = parent.slug;
-        parentSlug = parentSlug.replace(sanitisedHierarchicalSegment, "");
-        parentSlug = parentSlug.replace(/^\/+/, "");
-        parentSlug = parentSlug.replace(/\/$/, "");
-        if (parentSlug == "/") {
-          parentSlug = "";
-        }
-      }
-    }
-    let candidateValue = value?.replace(sanitisedHierarchicalSegment, "/") ?? "";
-    if (parentSlug !== "") {
-      candidateValue = candidateValue?.replace(`/${parentSlug}`, "") ?? "";
-    }
+    const [currentParentSlug, candidateValue] = await deconstructSlug(
+      value ?? "",
+      sanitisedHierarchicalSegment,
+      originalDoc,
+      req,
+    );
+    // eslint-disable-next-line no-useless-assignment
+    let parentSlug = currentParentSlug;
     if (data?.parent) {
-      const parent = await req.payload.findByID({
-        collection: "pages",
-        id: data?.parent,
-      });
-      if (parent.slug) {
-        let candidateParentSlug = parent.slug;
-        candidateParentSlug = candidateParentSlug.replace(sanitisedHierarchicalSegment, "");
-        candidateParentSlug = candidateParentSlug.replace(/^\/+/, "");
-        candidateParentSlug = candidateParentSlug.replace(/\/$/, "");
-        if (candidateParentSlug == "/") {
-          candidateParentSlug = "";
-        }
-        parentSlug = candidateParentSlug;
-      }
+      parentSlug = await getParentSlug(data.parent, sanitisedHierarchicalSegment, req);
     } else {
       parentSlug = "";
     }
-    let slug = `${sanitisedHierarchicalSegment}${parentSlug}${candidateValue}`;
-    if (slug.endsWith("/") && slug !== "/") {
-      slug = slug.replace(/\/+$/, "");
-    }
-    return slug;
+    return constructSlug(sanitisedHierarchicalSegment, parentSlug, candidateValue);
   };
 }
