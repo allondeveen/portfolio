@@ -13,37 +13,44 @@ export function prefixHierarchicalSegments(
   sanitisedHierarchicalSegment: string,
 ): FieldHook<WithParentDoc, string> {
   return async ({ value, req, data, originalDoc }) => {
-    console.log(value);
     let parentSlug = "";
+    if (originalDoc?.parent) {
+      const parent = await req.payload.findByID({
+        collection: "pages",
+        id: originalDoc.parent,
+      });
+      if (parent.slug) {
+        parentSlug = parent.slug;
+        parentSlug = parentSlug.replace(sanitisedHierarchicalSegment, "");
+        parentSlug = parentSlug.replace(/^\/+/, "");
+        parentSlug = parentSlug.replace(/\/$/, "");
+        if (parentSlug == "/") {
+          parentSlug = "";
+        }
+      }
+    }
     let candidateValue = value?.replace(sanitisedHierarchicalSegment, "/") ?? "";
+    if (parentSlug !== "") {
+      candidateValue = candidateValue?.replace(`/${parentSlug}`, "") ?? "";
+    }
     if (data?.parent) {
       const parent = await req.payload.findByID({
         collection: "pages",
         id: data?.parent,
       });
       if (parent.slug) {
-        parentSlug = parent.slug;
-        parentSlug = parentSlug.replace(sanitisedHierarchicalSegment, "");
-        parentSlug = parentSlug.replace(/^\/+/, "");
-        if (!parentSlug.endsWith("/")) {
-          parentSlug = parentSlug + "/";
+        let candidateParentSlug = parent.slug;
+        candidateParentSlug = candidateParentSlug.replace(sanitisedHierarchicalSegment, "");
+        candidateParentSlug = candidateParentSlug.replace(/^\/+/, "");
+        candidateParentSlug = candidateParentSlug.replace(/\/$/, "");
+        if (candidateParentSlug == "/") {
+          candidateParentSlug = "";
         }
-        if (parentSlug == "/") {
-          parentSlug = "";
-        }
+        parentSlug = candidateParentSlug;
       }
-    } else if (originalDoc?.parent) {
+    } else {
       parentSlug = "";
-      const parent = await req.payload.findByID({
-        collection: "pages",
-        id: originalDoc?.parent,
-      });
-      if (parent.slug) {
-        const parentSlugToReplace = parent.slug.replace(sanitisedHierarchicalSegment, "");
-        candidateValue = candidateValue?.replace(parentSlugToReplace, "/");
-      }
     }
-    candidateValue = candidateValue.replace(/^\/+/, "");
     let slug = `${sanitisedHierarchicalSegment}${parentSlug}${candidateValue}`;
     if (slug.endsWith("/") && slug !== "/") {
       slug = slug.replace(/\/+$/, "");
