@@ -2,9 +2,13 @@ import { type HierarchicalSegmentProps } from "./components/HierarchicalSegment"
 import { crossDocumentValidation } from "./hooks/crossDocumentValidation";
 import { prefixHierarchicalSegments } from "./hooks/prefixHierarchicalSegments";
 
+import type { DocumentCollectionSlug } from "./types";
 import type { Field } from "payload";
 
-export const slug = (hierarchicalSegment: string = ""): Field => {
+export const slug = (
+  collection: DocumentCollectionSlug,
+  hierarchicalSegment: string = "",
+): Field => {
   let sanitisedHierarchicalSegment = hierarchicalSegment;
   if (!sanitisedHierarchicalSegment.startsWith("/")) {
     sanitisedHierarchicalSegment = "/" + sanitisedHierarchicalSegment;
@@ -31,7 +35,7 @@ export const slug = (hierarchicalSegment: string = ""): Field => {
     unique: true,
     hooks: {
       beforeChange: [
-        prefixHierarchicalSegments(sanitisedHierarchicalSegment),
+        prefixHierarchicalSegments(sanitisedHierarchicalSegment, collection),
         crossDocumentValidation,
       ],
     },

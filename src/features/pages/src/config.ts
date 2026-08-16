@@ -35,7 +35,7 @@ export const pages: CollectionConfig = {
       fields: [
         {
           type: "row",
-          fields: [parent, slug("/")],
+          fields: [parent, slug("pages", "/")],
         },
       ],
     },

@@ -1,3 +1,4 @@
+import type { DocumentCollectionSlug } from "../types";
 import type { FieldHook, PayloadRequest, TypeWithID } from "payload";
 
 type WithParentDoc = TypeWithID & {
@@ -7,10 +8,11 @@ type WithParentDoc = TypeWithID & {
 async function getParentSlug(
   id: string | number,
   sanitisedHierarchicalSegment: string,
+  collection: DocumentCollectionSlug,
   req: PayloadRequest,
 ) {
   const parent = await req.payload.findByID({
-    collection: "pages",
+    collection,
     id,
   });
   let parentSlug = "";
@@ -29,12 +31,18 @@ async function getParentSlug(
 async function deconstructSlug(
   slug: string,
   sanitisedHierarchicalSegment: string,
+  collection: DocumentCollectionSlug,
   originalDoc: WithParentDoc | undefined,
   req: PayloadRequest,
 ) {
   let parentSlug = "";
   if (originalDoc?.parent) {
-    parentSlug = await getParentSlug(originalDoc.parent, sanitisedHierarchicalSegment, req);
+    parentSlug = await getParentSlug(
+      originalDoc.parent,
+      sanitisedHierarchicalSegment,
+      collection,
+      req,
+    );
   }
   let candidateValue = slug?.replace(sanitisedHierarchicalSegment, "/") ?? "";
   if (parentSlug !== "") {
@@ -67,18 +75,20 @@ function constructSlug(
  */
 export function prefixHierarchicalSegments(
   sanitisedHierarchicalSegment: string,
+  collection: DocumentCollectionSlug,
 ): FieldHook<WithParentDoc, string> {
   return async ({ value, req, data, originalDoc }) => {
     const [currentParentSlug, candidateValue] = await deconstructSlug(
       value ?? "",
       sanitisedHierarchicalSegment,
+      collection,
       originalDoc,
       req,
     );
     // eslint-disable-next-line no-useless-assignment
     let parentSlug = currentParentSlug;
     if (data?.parent) {
-      parentSlug = await getParentSlug(data.parent, sanitisedHierarchicalSegment, req);
+      parentSlug = await getParentSlug(data.parent, sanitisedHierarchicalSegment, collection, req);
     } else {
       parentSlug = "";
     }
