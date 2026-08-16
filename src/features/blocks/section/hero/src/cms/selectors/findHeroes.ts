@@ -1,21 +1,11 @@
 import { type Heading, HeadingSchema } from "@allondeveen-portfolio/heading-block/cms";
-import { type Hero, HeroSchema } from "@allondeveen-portfolio/hero-block/cms";
 import { getLexicalText } from "@allondeveen-portfolio/lexical-text/cms";
 import { type RichText, RichTextSchema } from "@allondeveen-portfolio/rich-text-block/cms";
 import * as z from "zod";
 
-import { DocumentSchema } from "../data";
+import { type Hero, HeroSchema } from "../data";
 
 import type { JsonObject } from "payload";
-
-const LenientDocumentSchema = DocumentSchema.pick({
-  slug: true,
-  title: true,
-}).and(
-  z.object({
-    blocks: z.array(z.unknown()).nullish(),
-  }),
-);
 
 const LenientHeroSchema = HeroSchema.omit({
   blocks: true,
@@ -45,17 +35,11 @@ export type HeroSearchResults = HeroResult & {
   position: number;
 };
 
-export function findHero(document: JsonObject): HeroSearchResults[] {
+export function findHeroes(blocks: JsonObject[]): HeroSearchResults[] {
   let heroes: HeroSearchResults[] = [];
 
-  const documentResult = LenientDocumentSchema.safeParse(document);
-
-  if (!documentResult.success) {
-    return heroes;
-  }
-
   let position = 0;
-  for (const candidateHero of documentResult.data.blocks ?? []) {
+  for (const candidateHero of blocks) {
     const hero = LenientHeroSchema.safeParse(candidateHero);
 
     if (!hero.success) {

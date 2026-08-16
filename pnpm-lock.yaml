@@ -344,6 +344,9 @@ importers:
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:^
         version: link:../../textual/heading
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:^
+        version: link:../../../../shared/lexical-text
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:^
         version: link:../../textual/rich-text
@@ -490,9 +493,6 @@ importers:
       '@allondeveen-portfolio/hero-block':
         specifier: workspace:*
         version: link:../../blocks/section/hero
-      '@allondeveen-portfolio/public-documents':
-        specifier: workspace:*
-        version: link:../../public-documents
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../../blocks/textual/rich-text
@@ -631,15 +631,15 @@ importers:
 
   src/features/sync-hero-metadata:
     dependencies:
+      '@allondeveen-portfolio/hero-block':
+        specifier: workspace:*
+        version: link:../blocks/section/hero
       '@allondeveen-portfolio/leaf-slug':
         specifier: workspace:*
         version: link:../../shared/leaf-slug
       '@allondeveen-portfolio/lexical-text':
         specifier: workspace:*
         version: link:../../shared/lexical-text
-      '@allondeveen-portfolio/public-documents':
-        specifier: workspace:*
-        version: link:../public-documents
       '@payloadcms/ui':
         specifier: 3.87.0
         version: 3.87.0(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)

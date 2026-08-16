@@ -1,9 +1,9 @@
-import { findHero } from "./findHero";
+import { findHeroes } from "./findHeroes";
 
 import type { JsonObject } from "payload";
 
-export function getTitle(document: JsonObject): string {
-  const hero = findHero(document).at(0);
+export function getTitle(blocks: JsonObject[]): string {
+  const hero = findHeroes(blocks).at(0);
 
   if (!hero) {
     return "Allon de Veen";

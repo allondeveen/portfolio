@@ -37,7 +37,6 @@
   "dependencies": {
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
-    "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
     "zod": "4.4.3"
   }

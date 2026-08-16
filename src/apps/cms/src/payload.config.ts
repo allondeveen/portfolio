@@ -3,8 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
+import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
 import { pages } from "@allondeveen-portfolio/pages/config";
-import { getDescription, getTitle } from "@allondeveen-portfolio/public-documents/cms";
 import {
   singleLineAdminSettings,
   SingleLineFeature,

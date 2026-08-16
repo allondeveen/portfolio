@@ -1,9 +1,14 @@
 import {
-  findHero,
+  findHeroes,
   type HeadingResult,
   type HeroSearchResults,
-} from "@allondeveen-portfolio/public-documents/cms";
+} from "@allondeveen-portfolio/hero-block/cms";
 import { type FieldHook, type JsonObject, type TypeWithID, ValidationError } from "payload";
+import z from "zod";
+
+export const LenientDocument = z.object({
+  blocks: z.array(z.record(z.string(), z.any())).min(1),
+});
 
 export const validateBlocks: FieldHook<TypeWithID & JsonObject> = ({ value, data }) => {
   if (!data) {
@@ -17,7 +22,19 @@ export const validateBlocks: FieldHook<TypeWithID & JsonObject> = ({ value, data
     });
   }
 
-  const heroes = findHero(data);
+  const documentResult = LenientDocument.safeParse(data);
+  if (!documentResult.success) {
+    throw new ValidationError({
+      errors: [
+        {
+          path: "blocks",
+          message: "Must have at least one block.",
+        },
+      ],
+    });
+  }
+
+  const heroes = findHeroes(documentResult.data.blocks);
 
   if (heroes.length < 1) {
     throw new ValidationError({

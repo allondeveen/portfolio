@@ -11,9 +11,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/leaf-slug": "workspace:*",
     "@allondeveen-portfolio/lexical-text": "workspace:*",
-    "@allondeveen-portfolio/public-documents": "workspace:*",
     "zod": "^4.4.3"
   },
   "devDependencies": {
