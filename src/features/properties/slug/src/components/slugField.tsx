@@ -31,6 +31,8 @@ export function SlugField({ path, hierarchicalSegment, field }: SlugFieldClientP
           type="text"
           value={valueWithoutHierarchicalSegment}
           onChange={onChange}
+          data-lpignore="true"
+          autoComplete="off"
         />
       </div>
     </div>
