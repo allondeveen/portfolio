@@ -62,3 +62,8 @@ pre {
   font-family: var(--font-code);
   font-variant-ligatures: normal;
 }
+
+p {
+  max-width: 65ch;
+  line-height: 1.6;
+}
