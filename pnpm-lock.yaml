@@ -82,7 +82,7 @@ importers:
         version: link:../../features/properties/slug
       '@allondeveen-portfolio/sync-hero-metadata':
         specifier: workspace:*
-        version: link:../../features/sync-hero-metadata
+        version: link:../../shared/sync-hero-metadata
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../shared/trpc
@@ -655,40 +655,6 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
-  src/features/sync-hero-metadata:
-    dependencies:
-      '@allondeveen-portfolio/hero-block':
-        specifier: workspace:*
-        version: link:../blocks/section/hero
-      '@allondeveen-portfolio/leaf-slug':
-        specifier: workspace:*
-        version: link:../../shared/leaf-slug
-      '@allondeveen-portfolio/lexical-text':
-        specifier: workspace:*
-        version: link:../../shared/lexical-text
-      '@payloadcms/ui':
-        specifier: 3.87.0
-        version: 3.87.0(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)
-      payload:
-        specifier: 3.87.0
-        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
-      react:
-        specifier: 19.2.6
-        version: 19.2.6
-      react-dom:
-        specifier: 19.2.6
-        version: 19.2.6(react@19.2.6)
-      zod:
-        specifier: ^4.4.3
-        version: 4.4.3
-    devDependencies:
-      '@types/react':
-        specifier: 19.2.14
-        version: 19.2.14
-      typescript:
-        specifier: 5.7.3
-        version: 5.7.3
-
   src/shared/adapter:
     dependencies:
       zod:
@@ -782,6 +748,40 @@ importers:
       react-dom:
         specifier: 19.2.6
         version: 19.2.6(react@19.2.6)
+    devDependencies:
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/shared/sync-hero-metadata:
+    dependencies:
+      '@allondeveen-portfolio/hero-block':
+        specifier: workspace:*
+        version: link:../../features/blocks/section/hero
+      '@allondeveen-portfolio/leaf-slug':
+        specifier: workspace:*
+        version: link:../leaf-slug
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:*
+        version: link:../lexical-text
+      '@payloadcms/ui':
+        specifier: 3.87.0
+        version: 3.87.0(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      react:
+        specifier: 19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: 19.2.6
+        version: 19.2.6(react@19.2.6)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@types/react':
         specifier: 19.2.14
