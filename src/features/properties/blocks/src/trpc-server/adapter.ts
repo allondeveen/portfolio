@@ -3,10 +3,10 @@ import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
 import { mapRichText } from "@allondeveen-portfolio/rich-text-block/trpc-server";
 
 import type { Block as CMSBlock } from "../cms";
-import type { Block } from "../website";
+import type { Block } from "../website/data";
 import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
 import type { Hero as CMSHero } from "@allondeveen-portfolio/hero-block/cms";
-import type { Hero } from "@allondeveen-portfolio/hero-block/website";
+import type { Hero } from "@allondeveen-portfolio/hero-block/website/data";
 
 export async function mapBlock(
   block: CMSHero["blocks"][number],

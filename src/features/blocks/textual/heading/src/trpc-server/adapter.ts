@@ -1,7 +1,7 @@
 import { mapLexicalText } from "@allondeveen-portfolio/lexical-text/trpc-server";
 
 import type { Heading as CMSHeading } from "../cms/data";
-import type { Heading } from "../website";
+import type { Heading } from "../website/data";
 import type { Adapter } from "@allondeveen-portfolio/adapter/trpc-server";
 
 export const mapHeading: Adapter<CMSHeading, Heading> = async (heading, context) => {

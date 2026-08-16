@@ -1,5 +1,5 @@
-import { HeadingSchema } from "@allondeveen-portfolio/heading-block/website";
-import { RichTextSchema } from "@allondeveen-portfolio/rich-text-block/website";
+import { HeadingSchema } from "@allondeveen-portfolio/heading-block/website/data";
+import { RichTextSchema } from "@allondeveen-portfolio/rich-text-block/website/data";
 import * as z from "zod";
 
 const HeroChildBlockSchema = z.discriminatedUnion("kind", [HeadingSchema, RichTextSchema]);

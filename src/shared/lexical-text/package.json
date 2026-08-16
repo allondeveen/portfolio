@@ -12,6 +12,10 @@
       "types": "./src/trpc-server.ts",
       "import": "./src/trpc-server.ts"
     },
+    "./website/data": {
+      "types": "./src/website/data.ts",
+      "import": "./src/website/data.ts"
+    },
     "./website": {
       "types": "./src/website.ts",
       "import": "./src/website.ts"

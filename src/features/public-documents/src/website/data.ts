@@ -1,4 +1,4 @@
-import { BlockSchema } from "@allondeveen-portfolio/blocks-property/website";
+import { BlockSchema } from "@allondeveen-portfolio/blocks-property/website/data";
 import z from "zod";
 
 export const DocumentSchema = z.object({
