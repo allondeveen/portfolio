@@ -1,6 +1,6 @@
-import type { CollectionSlug, JsonObject, Payload, TypeWithID } from "payload";
+import { publicCollections, publicCollectionSlugToSingular } from "../collections";
 
-const publicCollections: CollectionSlug[] = ["pages"];
+import type { JsonObject, Payload, TypeWithID } from "payload";
 
 export type FindByIDParams = {
   payload: Payload;
@@ -25,7 +25,10 @@ export async function findByID({
       });
       return {
         ...results,
-        docs: results.docs.map((doc) => ({ collection, ...doc })),
+        docs: results.docs.map((doc) => ({
+          collection: publicCollectionSlugToSingular(collection),
+          ...doc,
+        })),
       };
     }),
   );
