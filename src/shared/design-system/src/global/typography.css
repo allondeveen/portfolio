@@ -63,6 +63,10 @@ pre {
   font-variant-ligatures: normal;
 }
 
+pre {
+  max-width: 100ch;
+}
+
 p {
   max-width: 65ch;
   line-height: 1.6;
