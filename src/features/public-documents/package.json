@@ -39,6 +39,7 @@
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "^11.18.0",
+    "clsx": "^2.1.1",
     "zod": "^4.4.3"
   }
 }
