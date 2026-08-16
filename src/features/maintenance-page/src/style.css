@@ -14,6 +14,8 @@
 
 .maintenance-page__description {
   font-size: var(--font-size-l);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .maintenance-page__links {
