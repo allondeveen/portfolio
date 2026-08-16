@@ -6,7 +6,7 @@ import "./document.css";
 export function Document({ blocks, meta: { title, description } }: Document) {
   return (
     <main className="document">
-      <meta name="title" content={title} />
+      <title>{title}</title>
       <meta name="description" content={description} />
       <section className="document__content">
         <BlocksComponent blocks={blocks} />
