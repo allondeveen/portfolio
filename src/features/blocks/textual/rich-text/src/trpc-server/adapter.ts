@@ -2,10 +2,11 @@ import { mapLexicalText } from "@allondeveen-portfolio/lexical-text/trpc-server"
 
 import type { RichText as CMSRichText } from "../cms/data";
 import type { RichText } from "../website";
+import type { Adapter } from "@allondeveen-portfolio/adapter/trpc-server";
 
-export function mapRichText(richText: CMSRichText): RichText {
+export const mapRichText: Adapter<CMSRichText, RichText> = async (richText, context) => {
   return {
     kind: richText.blockType,
-    text: mapLexicalText(richText.text),
+    text: await mapLexicalText(richText.text, context),
   };
-}
+};

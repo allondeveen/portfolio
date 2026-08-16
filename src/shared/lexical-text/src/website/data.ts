@@ -17,12 +17,6 @@ export const TextLinkSchema = z.object({
   type: z.enum(["internal", "custom"]),
   url: z.string().optional(),
   newTab: z.boolean().optional(),
-  reference: z
-    .object({
-      collection: z.string(),
-      id: z.union([z.string(), z.number()]),
-    })
-    .optional(),
 });
 
 export type TextLink = z.infer<typeof TextLinkSchema>;

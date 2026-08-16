@@ -341,6 +341,9 @@ importers:
 
   src/features/blocks/section/hero:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:^
         version: link:../../textual/heading
@@ -363,6 +366,9 @@ importers:
 
   src/features/blocks/textual/heading:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
       '@allondeveen-portfolio/lexical-text':
         specifier: workspace:*
         version: link:../../../../shared/lexical-text
@@ -394,6 +400,9 @@ importers:
 
   src/features/blocks/textual/rich-text:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
       '@allondeveen-portfolio/lexical-text':
         specifier: workspace:*
         version: link:../../../../shared/lexical-text
@@ -487,6 +496,9 @@ importers:
 
   src/features/properties/blocks:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../shared/adapter
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:*
         version: link:../../blocks/textual/heading
@@ -560,6 +572,9 @@ importers:
 
   src/features/public-documents:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../shared/adapter
       '@allondeveen-portfolio/blocks-property':
         specifier: workspace:*
         version: link:../properties/blocks
@@ -663,6 +678,16 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
+  src/shared/adapter:
+    dependencies:
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
   src/shared/client-credentials-flow:
     dependencies:
       jose:
@@ -700,6 +725,9 @@ importers:
 
   src/shared/lexical-text:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../adapter
       zod:
         specifier: ^4.4.3
         version: 4.4.3

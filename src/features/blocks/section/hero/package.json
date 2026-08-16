@@ -31,6 +31,7 @@
     "payload": "3.87.0"
   },
   "dependencies": {
+    "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:^",
     "@allondeveen-portfolio/lexical-text": "workspace:^",
     "@allondeveen-portfolio/rich-text-block": "workspace:^",

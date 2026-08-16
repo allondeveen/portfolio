@@ -3,6 +3,8 @@ import * as z from "zod";
 
 import { DocumentSchema as CMSDocumentSchema, findBySlug } from "../cms";
 import { mapDocument } from "./adapter";
+import { createDependencies } from "./dependencies";
+import { createMappingContext } from "./mappingContext";
 
 export const DocumentResponseSchema = z.object({
   hello: z.string(),
@@ -16,7 +18,8 @@ export const contentProcedure = protectedProcedure
   .query(async ({ input, ctx }) => {
     const document = await findBySlug({ payload: ctx.payload, slug: input });
     const validatedDocument = CMSDocumentSchema.parse(document);
-    const mappedDocument = await mapDocument(validatedDocument);
+    const dependencies = createDependencies(ctx.payload);
+    const mappedDocument = await mapDocument(validatedDocument, createMappingContext(dependencies));
     console.log("mapped document: " + JSON.stringify(mappedDocument, null, 2));
     return {
       hello: "Hello from tRPC!",

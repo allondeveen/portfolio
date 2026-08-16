@@ -4,18 +4,22 @@ import { mapRichText } from "@allondeveen-portfolio/rich-text-block/trpc-server"
 
 import type { Block as CMSBlock } from "../cms";
 import type { Block } from "../website";
+import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
 import type { Hero as CMSHero } from "@allondeveen-portfolio/hero-block/cms";
 import type { Hero } from "@allondeveen-portfolio/hero-block/website";
 
-export async function mapBlock(block: CMSHero["blocks"][number]): Promise<Hero["blocks"][number]>;
-export async function mapBlock(block: CMSBlock): Promise<Block>;
-export async function mapBlock(block: CMSBlock): Promise<Block> {
+export async function mapBlock(
+  block: CMSHero["blocks"][number],
+  context: MappingContext,
+): Promise<Hero["blocks"][number]>;
+export async function mapBlock(block: CMSBlock, context: MappingContext): Promise<Block>;
+export async function mapBlock(block: CMSBlock, context: MappingContext): Promise<Block> {
   switch (block.blockType) {
     case "heading":
-      return mapHeading(block);
+      return mapHeading(block, context);
     case "richText":
-      return mapRichText(block);
+      return mapRichText(block, context);
     case "hero":
-      return await mapHero(block, mapBlock);
+      return await mapHero(block, context, mapBlock);
   }
 }

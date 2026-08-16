@@ -2,12 +2,13 @@ import { mapLexicalText } from "@allondeveen-portfolio/lexical-text/trpc-server"
 
 import type { Heading as CMSHeading } from "../cms/data";
 import type { Heading } from "../website";
+import type { Adapter } from "@allondeveen-portfolio/adapter/trpc-server";
 
-export function mapHeading(heading: CMSHeading): Heading {
+export const mapHeading: Adapter<CMSHeading, Heading> = async (heading, context) => {
   return {
     kind: heading.blockType,
     size: heading.size,
-    text: mapLexicalText(heading.headingText),
+    text: await mapLexicalText(heading.headingText, context),
     variant: heading.variant,
   };
-}
+};

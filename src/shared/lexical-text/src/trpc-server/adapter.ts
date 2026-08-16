@@ -1,3 +1,6 @@
+import { type Adapter, type MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
+import z from "zod";
+
 import { type LexicalEditorState, type LexicalNode } from "../cms/data";
 
 import type { LexicalText, TextFormat, TextLink, TextParagraph } from "../website/data";
@@ -21,7 +24,10 @@ const getFormats = (format: LexicalNode["format"]): TextFormat[] => {
   return FORMAT_FLAGS.filter(([flag]) => (format & flag) !== 0).map(([, name]) => name);
 };
 
-const getLink = (node: LexicalNode): TextLink | undefined => {
+const getLink = async (
+  node: LexicalNode,
+  context: MappingContext,
+): Promise<TextLink | undefined> => {
   if (node.type !== "link" || !node.fields) {
     return undefined;
   }
@@ -48,22 +54,32 @@ const getLink = (node: LexicalNode): TextLink | undefined => {
   if (typeof doc === "object" && doc !== null) {
     const candidate = doc as Record<string, unknown>;
 
-    if (
-      typeof candidate.relationTo === "string" &&
-      (typeof candidate.value === "string" || typeof candidate.value === "number")
-    ) {
-      link.reference = {
+    if (typeof candidate.relationTo === "string" && typeof candidate.value === "string") {
+      const reference = {
         collection: candidate.relationTo,
         id: candidate.value,
       };
+      const url = await context.resolvePublic(
+        reference,
+        z.object({
+          slug: z.string(),
+        }),
+      );
+      if (url.status === "resolved") {
+        link.url = url.source.slug;
+      }
     }
   }
 
   return link;
 };
 
-const getElements = (node: LexicalNode, inheritedLink?: TextLink): TextParagraph["elements"] => {
-  const link = getLink(node) ?? inheritedLink;
+const getElements = async (
+  node: LexicalNode,
+  context: MappingContext,
+  inheritedLink?: TextLink,
+): Promise<TextParagraph["elements"]> => {
+  const link = (await getLink(node, context)) ?? inheritedLink;
 
   if (node.type === "linebreak") {
     return [{ kind: "linebreak" }];
@@ -81,15 +97,20 @@ const getElements = (node: LexicalNode, inheritedLink?: TextLink): TextParagraph
     ];
   }
 
-  return node.children?.flatMap((child) => getElements(child, link)) ?? [];
+  const result = await Promise.all(
+    node.children?.map(async (child) => await getElements(child, context, link)) ?? [],
+  );
+  return result.reduce((prev, cur) => [...prev, ...cur]);
 };
 
-export const mapLexicalText = (value: LexicalEditorState): LexicalText => {
+export const mapLexicalText: Adapter<LexicalEditorState, LexicalText> = async (value, context) => {
   return {
     kind: "lexicalText",
-    paragraphs: value.root.children.map((node) => ({
-      kind: "paragraph",
-      elements: getElements(node),
-    })),
+    paragraphs: await Promise.all(
+      value.root.children.map(async (node) => ({
+        kind: "paragraph",
+        elements: await getElements(node, context),
+      })),
+    ),
   };
 };
