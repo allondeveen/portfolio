@@ -1,12 +1,15 @@
-import type { DocumentResponse } from "../trpc-server";
+import { BlocksComponent } from "@allondeveen-portfolio/blocks-property/website";
 
+import type { Document } from "./data";
 import "./document.css";
 
-export function Document(props: DocumentResponse) {
+export function Document({ blocks, meta: { title, description } }: Document) {
   return (
-    <main className="document container center vertical">
+    <main className="document">
+      <meta name="title" content={title} />
+      <meta name="description" content={description} />
       <section className="document__content">
-        <h1 className="document__title">{props.hello}</h1>
+        <BlocksComponent blocks={blocks} />
       </section>
     </main>
   );

@@ -1,11 +1,19 @@
 :root {
+  --font-body: "Metrophobic", sans-serif;
+  --font-heading: "Google Sans", sans-serif;
+  --font-code: "JetBrains mono", monospace;
   --font-size-m: 1rem;
   --font-size-l: 1.25rem;
   --font-size-h1: clamp(3rem, 12vw, 4.5rem);
+  --font-size-h2: clamp(2.5rem, 10vw, 3.75rem);
+  --font-size-h3: clamp(2rem, 8vw, 3rem);
+  --font-size-h4: clamp(1.5rem, 6vw, 2.25rem);
+  --font-size-h5: clamp(1.25rem, 5vw, 1.5rem);
+  --font-size-h6: clamp(1rem, 4vw, 1.25rem);
 }
 
 body {
-  font-family: "Metrophobic", sans-serif;
+  font-family: var(--font-body);
   font-size: var(--font-size-m);
   line-height: 1.5;
 }
@@ -16,10 +24,41 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Google Sans", sans-serif;
+  font-family: var(--font-heading);
   line-height: 1.2;
 }
 
 h1 {
   font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+code,
+pre {
+  font-family: var(--font-code);
+  font-variant-ligatures: normal;
 }

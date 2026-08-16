@@ -38,6 +38,8 @@ export const InlineTextElementSchema = z.discriminatedUnion("kind", [
   LineBreakElementSchema,
 ]);
 
+export type InlineTextElement = z.infer<typeof InlineTextElementSchema>;
+
 export const TextParagraphSchema = z.object({
   kind: z.literal("paragraph"),
   elements: z.array(InlineTextElementSchema),
