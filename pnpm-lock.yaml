@@ -76,7 +76,7 @@ importers:
         version: link:../../features/public-documents
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
-        version: link:../../features/single-line-lexical
+        version: link:../../shared/single-line-lexical
       '@allondeveen-portfolio/slug-property':
         specifier: workspace:*
         version: link:../../features/properties/slug
@@ -392,7 +392,7 @@ importers:
         version: link:../../../../shared/lexical-text
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
-        version: link:../../../single-line-lexical
+        version: link:../../../../shared/single-line-lexical
       '@payloadcms/richtext-lexical':
         specifier: 3.87.0
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)(yjs@13.6.32)
@@ -432,7 +432,7 @@ importers:
         version: link:../../../../shared/lexical-text
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
-        version: link:../../../single-line-lexical
+        version: link:../../../../shared/single-line-lexical
       '@payloadcms/richtext-lexical':
         specifier: 3.87.0
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)(yjs@13.6.32)
@@ -655,31 +655,6 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
-  src/features/single-line-lexical:
-    dependencies:
-      '@allondeveen-portfolio/lexical-text':
-        specifier: workspace:*
-        version: link:../../shared/lexical-text
-      '@payloadcms/richtext-lexical':
-        specifier: 3.87.0
-        version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)(yjs@13.6.32)
-      payload:
-        specifier: 3.87.0
-        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
-      react:
-        specifier: 19.2.6
-        version: 19.2.6
-      react-dom:
-        specifier: 19.2.6
-        version: 19.2.6(react@19.2.6)
-    devDependencies:
-      '@types/react':
-        specifier: 19.2.14
-        version: 19.2.14
-      typescript:
-        specifier: 5.7.3
-        version: 5.7.3
-
   src/features/sync-hero-metadata:
     dependencies:
       '@allondeveen-portfolio/hero-block':
@@ -786,6 +761,31 @@ importers:
       react-router:
         specifier: ^8
         version: 8.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/shared/single-line-lexical:
+    dependencies:
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:*
+        version: link:../lexical-text
+      '@payloadcms/richtext-lexical':
+        specifier: 3.87.0
+        version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)(yjs@13.6.32)
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      react:
+        specifier: 19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: 19.2.6
+        version: 19.2.6(react@19.2.6)
+    devDependencies:
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
       typescript:
         specifier: 5.7.3
         version: 5.7.3
