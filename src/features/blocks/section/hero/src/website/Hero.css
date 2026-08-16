@@ -5,9 +5,12 @@
 .hero__content {
   width: 100%;
   padding: 2rem;
-  text-align: center;
 }
 
 .hero__content h1.heading {
   margin-top: 0;
+}
+
+.hero__content p.rich-text {
+  font-size: var(--font-size-l);
 }
