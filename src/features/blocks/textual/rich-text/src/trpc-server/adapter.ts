@@ -6,6 +6,7 @@ import type { Adapter } from "@allondeveen-portfolio/adapter/trpc-server";
 
 export const mapRichText: Adapter<CMSRichText, RichText> = async (richText, context) => {
   return {
+    id: richText.id,
     kind: richText.blockType,
     text: await mapLexicalText(richText.text, context),
   };

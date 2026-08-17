@@ -2,6 +2,7 @@ import { LexicalEditorStateSchema } from "@allondeveen-portfolio/lexical-text/cm
 import * as z from "zod";
 
 export const RichTextSchema = z.object({
+  id: z.string(),
   blockType: z.literal("richText"),
   text: LexicalEditorStateSchema,
 });

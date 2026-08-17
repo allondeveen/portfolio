@@ -5,6 +5,7 @@ import * as z from "zod";
 const HeroChildBlockSchema = z.discriminatedUnion("blockType", [HeadingSchema, RichTextSchema]);
 
 export const HeroSchema = z.object({
+  id: z.string(),
   blockType: z.literal("hero"),
   blocks: z.array(HeroChildBlockSchema).min(1),
 });

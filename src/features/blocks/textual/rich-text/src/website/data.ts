@@ -2,6 +2,7 @@ import { LexicalTextSchema } from "@allondeveen-portfolio/lexical-text/website/d
 import * as z from "zod";
 
 export const RichTextSchema = z.object({
+  id: z.string(),
   kind: z.literal("richText"),
   text: LexicalTextSchema,
 });

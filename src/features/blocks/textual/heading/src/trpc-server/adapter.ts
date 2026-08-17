@@ -6,6 +6,7 @@ import type { Adapter } from "@allondeveen-portfolio/adapter/trpc-server";
 
 export const mapHeading: Adapter<CMSHeading, Heading> = async (heading, context) => {
   return {
+    id: heading.id,
     kind: heading.blockType,
     size: heading.size,
     text: await mapLexicalText(heading.headingText, context),

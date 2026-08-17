@@ -14,6 +14,7 @@ export const mapHero: RecursiveAdapter<CMSHero, Hero, RecurseFunction> = async (
   recurse: RecurseFunction,
 ) => {
   return {
+    id: hero.id,
     kind: hero.blockType,
     blocks: await Promise.all(hero.blocks.filter(Boolean).map((value) => recurse(value, context))),
   };

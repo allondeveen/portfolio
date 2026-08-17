@@ -22,5 +22,11 @@ export type BlocksComponentProps = {
   blocks: Block[];
 };
 export function BlocksComponent({ blocks }: BlocksComponentProps) {
-  return <>{blocks.map(BlockComponent)}</>;
+  return (
+    <>
+      {blocks.map((block) => (
+        <BlockComponent key={block.id} {...block} />
+      ))}
+    </>
+  );
 }

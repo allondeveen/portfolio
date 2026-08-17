@@ -2,6 +2,7 @@ import { LexicalEditorStateSchema } from "@allondeveen-portfolio/lexical-text/cm
 import * as z from "zod";
 
 export const HeadingSchema = z.object({
+  id: z.string(),
   blockType: z.literal("heading"),
   size: z.number(),
   headingText: LexicalEditorStateSchema,
