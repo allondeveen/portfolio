@@ -1,14 +1,17 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload";
 
 export const Media: CollectionConfig = {
-  slug: 'media',
+  slug: "media",
   access: {
     read: () => true,
   },
+  admin: {
+    group: "Supporting",
+  },
   fields: [
     {
-      name: 'alt',
-      type: 'text',
+      name: "alt",
+      type: "text",
       required: true,
     },
   ],
@@ -17,4 +20,4 @@ export const Media: CollectionConfig = {
     crop: false,
     focalPoint: false,
   },
-}
+};
