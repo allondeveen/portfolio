@@ -86,6 +86,9 @@ importers:
       '@allondeveen-portfolio/sync-hero-metadata':
         specifier: workspace:*
         version: link:../../shared/sync-hero-metadata
+      '@allondeveen-portfolio/templates':
+        specifier: workspace:*
+        version: link:../../features/collections/templates
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../shared/trpc
@@ -486,6 +489,22 @@ importers:
       '@allondeveen-portfolio/title-property':
         specifier: workspace:*
         version: link:../../properties/title
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+    devDependencies:
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/features/collections/templates:
+    dependencies:
+      '@allondeveen-portfolio/blocks-property':
+        specifier: workspace:*
+        version: link:../../properties/blocks
+      '@allondeveen-portfolio/id-property':
+        specifier: workspace:*
+        version: link:../../properties/id
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)

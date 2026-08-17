@@ -1,6 +1,7 @@
 import * as migration_20260817_185021_setup_base_payload from "./20260817_185021_setup_base_payload";
 import * as migration_20260817_185329_add_pages_collection from "./20260817_185329_add_pages_collection";
 import * as migration_20260817_185408_add_menu_collection from "./20260817_185408_add_menu_collection";
+import * as migration_20260817_191327_add_templates_collection from "./20260817_191327_add_templates_collection";
 
 export const migrations = [
   {
@@ -17,5 +18,10 @@ export const migrations = [
     up: migration_20260817_185408_add_menu_collection.up,
     down: migration_20260817_185408_add_menu_collection.down,
     name: "20260817_185408_add_menu_collection",
+  },
+  {
+    up: migration_20260817_191327_add_templates_collection.up,
+    down: migration_20260817_191327_add_templates_collection.down,
+    name: "20260817_191327_add_templates_collection",
   },
 ];

@@ -75,6 +75,7 @@ export interface Config {
     media: Media;
     pages: Page;
     menu: Menu;
+    templates: Template;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -87,6 +88,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
+    templates: TemplatesSelect<false> | TemplatesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -280,6 +282,17 @@ export interface Menu {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "templates".
+ */
+export interface Template {
+  id: string;
+  location: string;
+  blocks?: Hero[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -409,6 +422,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'menu';
         value: string | Menu;
+      } | null)
+    | ({
+        relationTo: 'templates';
+        value: string | Template;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -528,6 +545,17 @@ export interface MenuSelect<T extends boolean = true> {
         internal?: T;
         order?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "templates_select".
+ */
+export interface TemplatesSelect<T extends boolean = true> {
+  id?: T;
+  location?: T;
+  blocks?: T | {};
   updatedAt?: T;
   createdAt?: T;
 }

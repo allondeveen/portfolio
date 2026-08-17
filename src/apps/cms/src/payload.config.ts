@@ -10,6 +10,7 @@ import {
   singleLineAdminSettings,
   SingleLineFeature,
 } from "@allondeveen-portfolio/single-line-lexical";
+import { templates } from "@allondeveen-portfolio/templates/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
 import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
 import { seoPlugin } from "@payloadcms/plugin-seo";
@@ -83,7 +84,7 @@ export default buildConfig({
     },
   },
   blocks: allBlocks,
-  collections: [Users, Media, pages, menu],
+  collections: [Users, Media, pages, menu, templates],
   editor: lexicalEditor({
     admin: {
       ...singleLineAdminSettings,

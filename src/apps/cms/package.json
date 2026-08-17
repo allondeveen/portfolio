@@ -34,6 +34,7 @@
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",
     "@allondeveen-portfolio/slug-property": "workspace:*",
     "@allondeveen-portfolio/sync-hero-metadata": "workspace:*",
+    "@allondeveen-portfolio/templates": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@opennextjs/cloudflare": "1.20.1",
     "@payloadcms/db-d1-sqlite": "3.87.0",
