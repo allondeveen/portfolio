@@ -6,6 +6,7 @@ import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
 import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
+import { onInit } from "@allondeveen-portfolio/seed/config";
 import {
   singleLineAdminSettings,
   SingleLineFeature,
@@ -136,6 +137,7 @@ export default buildConfig({
       generateDescription: ({ doc }) => getDescription(doc),
     }),
   ],
+  onInit,
 });
 
 // Adapted from https://github.com/opennextjs/opennextjs-cloudflare/blob/d00b3a13e42e65aad76fba41774815726422cc39/packages/cloudflare/src/api/cloudflare-context.ts#L328C36-L328C46

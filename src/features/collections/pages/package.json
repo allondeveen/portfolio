@@ -7,6 +7,10 @@
     "./config": {
       "types": "./src/config.ts",
       "import": "./src/config.ts"
+    },
+    "./seed": {
+      "types": "./src/seed.ts",
+      "import": "./src/seed.ts"
     }
   },
   "scripts": {
@@ -15,6 +19,7 @@
   "dependencies": {
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*",
+    "@allondeveen-portfolio/seed-function": "workspace:*",
     "@allondeveen-portfolio/slug-property": "workspace:*",
     "@allondeveen-portfolio/title-property": "workspace:*"
   },
