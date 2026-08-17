@@ -68,6 +68,9 @@ importers:
       '@allondeveen-portfolio/client-credentials-flow':
         specifier: workspace:*
         version: link:../../shared/client-credentials-flow
+      '@allondeveen-portfolio/menu':
+        specifier: workspace:*
+        version: link:../../features/collections/menu
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/collections/pages
@@ -452,6 +455,19 @@ importers:
       '@types/react':
         specifier: 19.2.14
         version: 19.2.14
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/features/collections/menu:
+    dependencies:
+      '@allondeveen-portfolio/id-property':
+        specifier: workspace:*
+        version: link:../../properties/id
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+    devDependencies:
       typescript:
         specifier: 5.7.3
         version: 5.7.3

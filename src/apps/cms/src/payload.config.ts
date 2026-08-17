@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
+import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
 import {
   singleLineAdminSettings,
@@ -82,7 +83,7 @@ export default buildConfig({
     },
   },
   blocks: allBlocks,
-  collections: [Users, Media, pages],
+  collections: [Users, Media, pages, menu],
   editor: lexicalEditor({
     admin: {
       ...singleLineAdminSettings,

@@ -1,0 +1,32 @@
+{
+  "name": "@allondeveen-portfolio/menu",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/id-property": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "payload": "3.87.0"
+  }
+}
