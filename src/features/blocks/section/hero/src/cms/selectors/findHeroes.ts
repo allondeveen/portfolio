@@ -8,6 +8,7 @@ import { type Hero, HeroSchema } from "../data";
 import type { JsonObject } from "payload";
 
 const LenientHeroSchema = HeroSchema.omit({
+  id: true,
   blocks: true,
 }).and(
   z.object({
@@ -15,19 +16,27 @@ const LenientHeroSchema = HeroSchema.omit({
   }),
 );
 
-export type HeadingResult = Omit<Heading, "headingText"> & {
+const LenientHeadingSchema = HeadingSchema.omit({
+  id: true,
+});
+
+const LenientRichTextSchema = RichTextSchema.omit({
+  id: true,
+});
+
+export type HeadingResult = Omit<Heading, "headingText" | "id"> & {
   headingText: string | null;
   position: number;
 };
 
-export type RichTextResult = Omit<RichText, "text"> & {
+export type RichTextResult = Omit<RichText, "text" | "id"> & {
   text: string | null;
   position: number;
 };
 
 export type HeroBlocksBlockResult = HeadingResult | RichTextResult;
 
-export type HeroResult = Omit<Hero, "blocks"> & {
+export type HeroResult = Omit<Hero, "blocks" | "id"> & {
   blocks: HeroBlocksBlockResult[];
 };
 
@@ -51,7 +60,7 @@ export function findHeroes(blocks: JsonObject[]): HeroSearchResults[] {
 
     let headingPosition = 0;
     for (const candidateHeading of hero.data.blocks ?? []) {
-      const heading = HeadingSchema.safeParse(candidateHeading);
+      const heading = LenientHeadingSchema.safeParse(candidateHeading);
 
       if (!heading.success) {
         headingPosition++;
@@ -72,7 +81,7 @@ export function findHeroes(blocks: JsonObject[]): HeroSearchResults[] {
 
     let richTextPosition = 0;
     for (const candidateRichText of hero.data.blocks ?? []) {
-      const richText = RichTextSchema.safeParse(candidateRichText);
+      const richText = LenientRichTextSchema.safeParse(candidateRichText);
 
       if (!richText.success) {
         richTextPosition++;
