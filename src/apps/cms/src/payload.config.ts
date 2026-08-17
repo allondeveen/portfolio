@@ -84,7 +84,22 @@ export default buildConfig({
     },
   },
   blocks: allBlocks,
-  collections: [Users, Media, pages, menu, templates],
+  collections: [
+    // collections
+    pages,
+
+    // taxonomy
+
+    // supporting
+    menu,
+    templates,
+    Users,
+    Media,
+
+    // fixed template
+
+    // globals
+  ],
   editor: lexicalEditor({
     admin: {
       ...singleLineAdminSettings,
