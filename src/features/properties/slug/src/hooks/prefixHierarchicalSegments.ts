@@ -16,7 +16,7 @@ async function getParentSlug(
     id,
   });
   let parentSlug = "";
-  if (parent.slug) {
+  if ("slug" in parent && parent.slug) {
     parentSlug = parent.slug;
     parentSlug = parentSlug.replace(sanitisedHierarchicalSegment, "");
     parentSlug = parentSlug.replace(/^\/+/, "");
