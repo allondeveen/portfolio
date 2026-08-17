@@ -12,7 +12,11 @@ export function BlockComponent(block: Block): JSX.Element {
     case "richText":
       return <RichTextComponent {...block} />;
     case "hero":
-      return <HeroComponent {...block} renderBlocks={BlockComponent} />;
+      return (
+        <HeroComponent {...block}>
+          <BlocksComponent blocks={block.blocks} />
+        </HeroComponent>
+      );
     default:
       return <></>;
   }

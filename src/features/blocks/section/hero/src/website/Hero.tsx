@@ -3,16 +3,14 @@ import clsx from "clsx";
 import "./Hero.css";
 
 import type { Hero } from "./data";
-import type { JSX } from "react";
+import type { PropsWithChildren } from "react";
 
-export type HeroComponentProps = Hero & {
-  renderBlocks(block: Hero["blocks"][number]): JSX.Element;
-};
+export type HeroComponentProps = PropsWithChildren<Hero>;
 
-export function HeroComponent({ kind, blocks, renderBlocks }: HeroComponentProps) {
+export function HeroComponent({ kind, children }: HeroComponentProps) {
   return (
     <article className={clsx(kind, "container", "center", "vertical")}>
-      <div className={`${kind}__content`}>{blocks.map(renderBlocks)}</div>
+      <div className={`${kind}__content`}>{children}</div>
     </article>
   );
 }
