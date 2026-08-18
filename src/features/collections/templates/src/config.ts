@@ -1,6 +1,6 @@
-import { blocks } from "@allondeveen-portfolio/blocks-property/config";
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { blocks } from "./cms/properties/blocks";
 import { location } from "./cms/properties/location";
 
 import type { CollectionConfig } from "payload";

@@ -262,7 +262,7 @@ export interface Menu {
 export interface Template {
   id: string;
   location: string;
-  blocks?: Hero[] | null;
+  blocks?: (Heading | RichText | Hero)[] | null;
   updatedAt: string;
   createdAt: string;
 }
