@@ -35,10 +35,21 @@ function seedCollection(payload: Payload) {
   };
 }
 
-export async function onInit(payload: Payload) {
-  console.log("Seeding..");
-  const seed = seedCollection(payload);
+export function onInit(seedEmail: string = "", seedPass: string = "") {
+  return async function (payload: Payload) {
+    console.log("Seeding..");
+    const seed = seedCollection(payload);
 
-  await seed("pages", pageSeeds(payload));
-  console.log("Seeding finished");
+    if (seedEmail.length > 0 && seedPass.length > 0) {
+      await seed("users", [
+        {
+          email: seedEmail,
+          password: seedPass,
+        },
+      ]);
+    }
+
+    await seed("pages", pageSeeds(payload));
+    console.log("Seeding finished");
+  };
 }

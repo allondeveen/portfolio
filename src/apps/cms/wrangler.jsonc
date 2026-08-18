@@ -29,7 +29,7 @@
     "CMS_ORIGIN": "https://cms-dev.allondeveen.com"
   },
   "secrets": {
-    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY"]
+    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "SEED_EMAIL", "SEED_PASS"]
   },
 	// Here's how to configure an additional environment
 	// It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
