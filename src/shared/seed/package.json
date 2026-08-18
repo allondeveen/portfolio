@@ -19,6 +19,7 @@
     "payload": "3.87.0"
   },
   "dependencies": {
+    "@allondeveen-portfolio/menu": "workspace:*",
     "@allondeveen-portfolio/pages": "workspace:*"
   }
 }

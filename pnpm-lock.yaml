@@ -470,6 +470,9 @@ importers:
       '@allondeveen-portfolio/id-property':
         specifier: workspace:*
         version: link:../../properties/id
+      '@allondeveen-portfolio/seed-function':
+        specifier: workspace:*
+        version: link:../../../shared/seed-function
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
@@ -774,6 +777,9 @@ importers:
 
   src/shared/seed:
     dependencies:
+      '@allondeveen-portfolio/menu':
+        specifier: workspace:*
+        version: link:../../features/collections/menu
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/collections/pages

@@ -1,3 +1,4 @@
+import { menuSeeds } from "@allondeveen-portfolio/menu/seed";
 import { pageSeeds } from "@allondeveen-portfolio/pages/seed";
 import {
   type CollectionSlug,
@@ -50,6 +51,9 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
     }
 
     await seed("pages", pageSeeds(payload));
+
+    await seed("menu", menuSeeds(payload));
+
     console.log("Seeding finished");
   };
 }
