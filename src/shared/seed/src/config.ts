@@ -38,6 +38,7 @@ export async function onInit(payload: Payload) {
 
   const pages = await pageSeeds(payload);
   for (const page of pages) {
-    seed("pages", page);
+    await seed("pages", page);
   }
+  console.log("Seeding finished");
 }
