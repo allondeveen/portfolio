@@ -9,16 +9,19 @@ import {
 function seedCollection(payload: Payload) {
   return async function <
     Slug extends CollectionSlug,
-    Data extends RequiredDataFromCollectionSlug<Slug>,
-  >(collection: CollectionSlug, data: Data) {
+    Data extends RequiredDataFromCollectionSlug<Slug>[],
+  >(collection: CollectionSlug, data: Data | Promise<Data>) {
     const docsCount = await payload.count({ collection });
     if (docsCount.totalDocs === 0) {
       try {
-        await payload.create({
-          collection,
-          data,
-          draft: false,
-        });
+        const seedData = await data;
+        for (const data of seedData) {
+          await payload.create({
+            collection,
+            data: data,
+            draft: false,
+          });
+        }
       } catch (e) {
         if (e instanceof ValidationError) {
           for (const error of e.data.errors) {
@@ -36,9 +39,6 @@ export async function onInit(payload: Payload) {
   console.log("Seeding..");
   const seed = seedCollection(payload);
 
-  const pages = await pageSeeds(payload);
-  for (const page of pages) {
-    await seed("pages", page);
-  }
+  await seed("pages", pageSeeds(payload));
   console.log("Seeding finished");
 }
