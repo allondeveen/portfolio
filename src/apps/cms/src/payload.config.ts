@@ -78,6 +78,9 @@ const cloudflare =
     : await getCloudflareContext({ async: true });
 
 export default buildConfig({
+  graphQL: {
+    disable: true,
+  },
   admin: {
     user: Users.slug,
     importMap: {

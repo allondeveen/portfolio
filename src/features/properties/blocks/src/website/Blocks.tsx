@@ -1,3 +1,5 @@
+import { GridBlock } from "@allondeveen-portfolio/grid-block/website";
+import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
 import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
@@ -16,6 +18,18 @@ export function BlockComponent(block: Block): JSX.Element {
         <HeroComponent {...block}>
           <BlocksComponent blocks={block.blocks} />
         </HeroComponent>
+      );
+    case "grid-item":
+      return (
+        <GridItemBlock {...block}>
+          <BlocksComponent blocks={block.blocks} />
+        </GridItemBlock>
+      );
+    case "grid":
+      return (
+        <GridBlock {...block}>
+          <BlocksComponent blocks={block.blocks} />
+        </GridBlock>
       );
     default:
       return <></>;
