@@ -4,7 +4,7 @@
 
 .hero__content {
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .hero__content h1.heading {
