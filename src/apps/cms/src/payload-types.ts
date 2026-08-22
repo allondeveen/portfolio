@@ -71,6 +71,7 @@ export interface Config {
     hero: Hero;
     'grid-item': GridItem;
     grid: Grid;
+    stack: Stack;
   };
   collections: {
     pages: Page;
@@ -202,11 +203,21 @@ export interface Hero {
  * via the `definition` "grid-item".
  */
 export interface GridItem {
-  blocks: (Heading | RichText)[];
+  blocks: (Heading | RichText | Stack)[];
   size: number;
   id?: string | null;
   blockName?: string | null;
   blockType: 'grid-item';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stack".
+ */
+export interface Stack {
+  blocks?: (Heading | RichText)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stack';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -285,7 +296,7 @@ export interface Menu {
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack)[] | null;
   updatedAt: string;
   createdAt: string;
 }

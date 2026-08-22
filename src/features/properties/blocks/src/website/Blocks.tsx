@@ -3,6 +3,7 @@ import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
 import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
+import { StackBlock } from "@allondeveen-portfolio/stack-block/website";
 
 import type { Block } from "./data";
 import type { JSX } from "react";
@@ -30,6 +31,12 @@ export function BlockComponent(block: Block): JSX.Element {
         <GridBlock {...block}>
           <BlocksComponent blocks={block.blocks} />
         </GridBlock>
+      );
+    case "stack":
+      return (
+        <StackBlock {...block}>
+          <BlocksComponent blocks={block.blocks} />
+        </StackBlock>
       );
     default:
       return <></>;

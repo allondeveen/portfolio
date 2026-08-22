@@ -41,6 +41,7 @@
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:^",
     "@allondeveen-portfolio/rich-text-block": "workspace:^",
+    "@allondeveen-portfolio/stack-block": "workspace:^",
     "clsx": "^2.1.1",
     "@vanilla-extract/css": "^1.21.2",
     "zod": "^4.4.3"

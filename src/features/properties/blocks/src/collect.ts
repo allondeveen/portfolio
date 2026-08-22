@@ -3,6 +3,7 @@ import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
 import { headingBlock } from "@allondeveen-portfolio/heading-block/config";
 import { heroBlock } from "@allondeveen-portfolio/hero-block/config";
 import { richTextblock } from "@allondeveen-portfolio/rich-text-block/config";
+import { stackBlock } from "@allondeveen-portfolio/stack-block/config";
 
 import type { Block, BlockSlug } from "payload";
 
@@ -13,5 +14,6 @@ export const allBlocks: Block[] = [
   heroBlock,
   gridItemBlock,
   gridBlock,
+  stackBlock,
 ];
 export const allBlockTypes: BlockSlug[] = allBlocks.map((block) => block.slug) as BlockSlug[];
