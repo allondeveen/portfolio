@@ -3,7 +3,7 @@ import type { Block } from "payload";
 export const gridItemBlock: Block = {
   slug: "grid-item",
   admin: {
-    group: "Section",
+    group: "Layout",
   },
   fields: [
     {

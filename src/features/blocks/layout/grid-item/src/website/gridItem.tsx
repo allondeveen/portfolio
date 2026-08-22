@@ -16,7 +16,6 @@ function validateSize(size: number): size is 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 
 export function GridItemBlock({ kind, children, size }: GridItemBlockProps) {
   const validatedSize = validateSize(size);
-  console.log(size);
   let sizeStyle = "";
   if (validatedSize) {
     sizeStyle = gridItemSizes[size];
