@@ -224,6 +224,7 @@ export interface Stack {
  * via the `definition` "grid".
  */
 export interface Grid {
+  verticalAlign?: boolean | null;
   blocks?: GridItem[] | null;
   id?: string | null;
   blockName?: string | null;

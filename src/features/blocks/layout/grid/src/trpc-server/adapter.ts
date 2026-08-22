@@ -15,6 +15,7 @@ export const mapGrid: RecursiveAdapter<CMSGrid, Grid, RecurseFunction> = async (
   return {
     id: grid.id,
     kind: grid.blockType,
+    verticalAlign: grid.verticalAlign,
     blocks: await Promise.all(grid.blocks.filter(Boolean).map((value) => recurse(value, context))),
   };
 };

@@ -7,6 +7,11 @@ export const gridBlock: Block = {
   },
   fields: [
     {
+      type: "checkbox",
+      name: "verticalAlign",
+      defaultValue: false,
+    },
+    {
       type: "blocks",
       name: "blocks",
       blocks: [],
