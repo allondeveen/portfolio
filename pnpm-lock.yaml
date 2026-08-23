@@ -70,10 +70,10 @@ importers:
         version: link:../../shared/client-credentials-flow
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
-        version: link:../../features/collections/menu
+        version: link:../../features/entities/menu
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
-        version: link:../../features/collections/pages
+        version: link:../../features/entities/pages
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../features/public-documents
@@ -91,7 +91,7 @@ importers:
         version: link:../../shared/sync-hero-metadata
       '@allondeveen-portfolio/templates':
         specifier: workspace:*
-        version: link:../../features/collections/templates
+        version: link:../../features/entities/templates
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../shared/trpc
@@ -469,7 +469,7 @@ importers:
         version: link:../../../../shared/design-system
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
-        version: link:../../../collections/menu
+        version: link:../../../entities/menu
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../../shared/ui
@@ -616,7 +616,7 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
-  src/features/collections/menu:
+  src/features/entities/menu:
     dependencies:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
@@ -638,7 +638,7 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
-  src/features/collections/pages:
+  src/features/entities/pages:
     dependencies:
       '@allondeveen-portfolio/blocks-property':
         specifier: workspace:*
@@ -663,7 +663,7 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
-  src/features/collections/templates:
+  src/features/entities/templates:
     dependencies:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
@@ -695,7 +695,7 @@ importers:
         version: link:../properties/blocks
       '@allondeveen-portfolio/templates':
         specifier: workspace:*
-        version: link:../collections/templates
+        version: link:../entities/templates
       '@payloadcms/ui':
         specifier: 3.87.0
         version: 3.87.0(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)
@@ -881,7 +881,7 @@ importers:
         version: link:../blocks/textual/rich-text
       '@allondeveen-portfolio/templates':
         specifier: workspace:*
-        version: link:../collections/templates
+        version: link:../entities/templates
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../shared/trpc
@@ -994,13 +994,13 @@ importers:
     dependencies:
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
-        version: link:../../features/collections/menu
+        version: link:../../features/entities/menu
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
-        version: link:../../features/collections/pages
+        version: link:../../features/entities/pages
       '@allondeveen-portfolio/templates':
         specifier: workspace:*
-        version: link:../../features/collections/templates
+        version: link:../../features/entities/templates
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
