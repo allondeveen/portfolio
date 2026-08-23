@@ -10,7 +10,7 @@ export const gridItemBlock: Block = {
       type: "blocks",
       name: "blocks",
       blocks: [],
-      blockReferences: ["heading", "richText", "stack"],
+      blockReferences: ["heading", "richText", "stack", "menu"],
       required: true,
     },
     {

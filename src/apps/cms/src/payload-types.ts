@@ -72,6 +72,7 @@ export interface Config {
     'grid-item': GridItem;
     grid: Grid;
     stack: Stack;
+    menu: Menu;
   };
   collections: {
     pages: Page;
@@ -203,7 +204,7 @@ export interface Hero {
  * via the `definition` "grid-item".
  */
 export interface GridItem {
-  blocks: (Heading | RichText | Stack)[];
+  blocks: (Heading | RichText | Stack | Menu)[];
   size: number;
   id?: string | null;
   blockName?: string | null;
@@ -218,6 +219,16 @@ export interface Stack {
   id?: string | null;
   blockName?: string | null;
   blockType: 'stack';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "menu".
+ */
+export interface Menu {
+  menu?: (string | null) | Menu;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'menu';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -271,33 +282,12 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "menu".
- */
-export interface Menu {
-  id: string;
-  location: string;
-  items: {
-    id: string;
-    label: string;
-    externality: 'external' | 'internal';
-    external?: string | null;
-    internal?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
-    order?: number | null;
-  }[];
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | Menu)[] | null;
   updatedAt: string;
   createdAt: string;
 }

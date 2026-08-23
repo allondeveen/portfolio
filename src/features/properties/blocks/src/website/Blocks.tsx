@@ -2,6 +2,7 @@ import { GridBlock } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
 import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
+import { Menu } from "@allondeveen-portfolio/menu-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
 import { StackBlock } from "@allondeveen-portfolio/stack-block/website";
 
@@ -38,6 +39,8 @@ export function BlockComponent(block: Block): JSX.Element {
           <BlocksComponent blocks={block.blocks} />
         </StackBlock>
       );
+    case "menu":
+      return <Menu {...block} />;
     default:
       return <></>;
   }
