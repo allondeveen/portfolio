@@ -12,6 +12,10 @@
       "types": "./src/trpc-server.ts",
       "import": "./src/trpc-server.ts"
     },
+    "./website/data": {
+      "types": "./src/website/data.ts",
+      "import": "./src/website/data.ts"
+    },
     "./website": {
       "types": "./src/website.ts",
       "import": "./src/website.ts"
@@ -33,10 +37,12 @@
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/header": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/lexical-text": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "@allondeveen-portfolio/templates": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "^11.18.0",
     "clsx": "^2.1.1",

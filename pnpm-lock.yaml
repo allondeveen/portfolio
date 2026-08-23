@@ -665,16 +665,56 @@ importers:
 
   src/features/collections/templates:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../shared/adapter
       '@allondeveen-portfolio/blocks-property':
         specifier: workspace:*
         version: link:../../properties/blocks
       '@allondeveen-portfolio/id-property':
         specifier: workspace:*
         version: link:../../properties/id
+      '@allondeveen-portfolio/seed-function':
+        specifier: workspace:*
+        version: link:../../../shared/seed-function
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/features/header:
+    dependencies:
+      '@allondeveen-portfolio/blocks-property':
+        specifier: workspace:*
+        version: link:../properties/blocks
+      '@allondeveen-portfolio/templates':
+        specifier: workspace:*
+        version: link:../collections/templates
+      '@payloadcms/ui':
+        specifier: 3.87.0
+        version: 3.87.0(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.7.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.7.3)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      react:
+        specifier: 19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: 19.2.6
+        version: 19.2.6(react@19.2.6)
+    devDependencies:
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -824,6 +864,9 @@ importers:
       '@allondeveen-portfolio/blocks-property':
         specifier: workspace:*
         version: link:../properties/blocks
+      '@allondeveen-portfolio/header':
+        specifier: workspace:*
+        version: link:../header
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:*
         version: link:../blocks/textual/heading
@@ -836,6 +879,9 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../blocks/textual/rich-text
+      '@allondeveen-portfolio/templates':
+        specifier: workspace:*
+        version: link:../collections/templates
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../shared/trpc
@@ -952,6 +998,9 @@ importers:
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/collections/pages
+      '@allondeveen-portfolio/templates':
+        specifier: workspace:*
+        version: link:../../features/collections/templates
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)

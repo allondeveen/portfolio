@@ -1,5 +1,6 @@
 import { menuSeeds } from "@allondeveen-portfolio/menu/seed";
 import { pageSeeds } from "@allondeveen-portfolio/pages/seed";
+import { templateSeeds } from "@allondeveen-portfolio/templates/seed";
 import {
   type CollectionSlug,
   type Payload,
@@ -53,6 +54,8 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
     await seed("pages", pageSeeds(payload));
 
     await seed("menu", menuSeeds(payload));
+
+    await seed("templates", templateSeeds(payload));
 
     console.log("Seeding finished");
   };

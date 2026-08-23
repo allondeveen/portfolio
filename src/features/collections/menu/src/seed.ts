@@ -45,7 +45,7 @@ export const menuSeeds: SeedFunction<RequiredDataFromCollectionSlug<"menu">> = a
             relationTo: "pages",
             value: contactPage,
           },
-          order: 1,
+          order: 2,
         },
       ] as RequiredDataFromCollectionSlug<"menu">["items"],
     },

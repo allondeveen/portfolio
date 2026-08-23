@@ -1,0 +1,16 @@
+:root {
+  --header-size: 6rem;
+}
+
+.header {
+  height: var(--header-size);
+  font-size: var(--font-size-l);
+}
+
+.header .container {
+  width: 100%;
+}
+
+.grid-item:first-child .heading {
+  margin: 0;
+}

@@ -1,3 +1,5 @@
+import { findByLocation, TemplateSchema } from "@allondeveen-portfolio/templates/cms";
+import { mapTemplate } from "@allondeveen-portfolio/templates/trpc-server";
 import { protectedProcedure } from "@allondeveen-portfolio/trpc/server";
 import * as z from "zod";
 
@@ -14,5 +16,16 @@ export const contentProcedure = protectedProcedure
     const document = await findBySlug({ payload: ctx.payload, slug: input });
     const validatedDocument = CMSDocumentSchema.parse(document);
     const dependencies = createDependencies(ctx.payload);
-    return await mapDocument(validatedDocument, createMappingContext(dependencies));
+    const context = createMappingContext(dependencies);
+    const headerDoc = await findByLocation({
+      payload: ctx.payload,
+      location: "header",
+    });
+    const validatedHeader = TemplateSchema.parse(headerDoc);
+    const header = await mapTemplate(validatedHeader, context);
+    const mappedDocument = await mapDocument(validatedDocument, context);
+    return {
+      ...mappedDocument,
+      header,
+    };
   });
