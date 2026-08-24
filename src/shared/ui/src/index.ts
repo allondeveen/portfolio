@@ -5,3 +5,5 @@ export type { IconProps } from "./icons/iconProps";
 
 export { GithubIcon } from "./icons/brand/GithubIcon";
 export { LinkedinIcon } from "./icons/brand/LinkedInIcon";
+
+export { Logo } from "./logo/logo";
