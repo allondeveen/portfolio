@@ -17,9 +17,9 @@ var source = "./assets/*";
 var appsDir = "./src/apps";
 
 if (option === "-b") {
-  cpx.copy(source, `${appsDir}/cms/public`);
-  cpx.copy(source, `${appsDir}/maintenance/public`);
-  cpx.copy(source, `${appsDir}/website/public`);
+  cpx.copySync(source, `${appsDir}/cms/public`);
+  cpx.copySync(source, `${appsDir}/maintenance/public`);
+  cpx.copySync(source, `${appsDir}/website/public`);
   console.log("Assets copied.");
 } else {
   cpx.watch(source, `${appsDir}/cms/public`);

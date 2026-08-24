@@ -17,7 +17,7 @@ var source = "./assets/*";
 var destination = "./public";
 
 if (option === "-b") {
-  cpx.copy(source, destination);
+  cpx.copySync(source, destination);
   console.log("Assets copied.");
 } else {
   cpx.watch(source, destination);
