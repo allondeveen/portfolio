@@ -74,6 +74,7 @@ export function headers({ loaderHeaders }: Route.HeadersArgs) {
     "font-src 'self' https://fonts.gstatic.com",
     "frame-src https://youtube-nocookie.com https://*.youtube.com",
     "frame-ancestors 'none'",
+    "worker-src 'self' blob:",
   ];
 
   return {
