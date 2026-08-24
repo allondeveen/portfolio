@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "assets": "node assets.mjs",
     "cms:dev": "pnpm --filter @allondeveen-portfolio/cms dev",
     "cms:build": "pnpm --filter @allondeveen-portfolio/cms build",
     "cms:preview": "pnpm --filter @allondeveen-portfolio/cms preview",

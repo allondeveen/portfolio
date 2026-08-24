@@ -31,7 +31,9 @@ jobs:
         run: pnpm install --frozen-lockfile
         timeout-minutes: 3
       - name: Build
-        run: pnpm --filter @allondeveen-portfolio/cms --filter @allondeveen-portfolio/website build
+        run: |
+          pnpm assets
+          pnpm --filter @allondeveen-portfolio/cms --filter @allondeveen-portfolio/website build
         timeout-minutes: 2
       - name: Activate Maintenance Mode
         run: "pnpm maintenance:${{ env.CLOUDFLARE_ENV }}:on"

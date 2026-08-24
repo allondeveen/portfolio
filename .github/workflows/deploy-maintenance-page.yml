@@ -17,7 +17,9 @@ jobs:
         timeout-minutes: 3
       - name: Build
         id: build
-        run: pnpm --filter @allondeveen-portfolio/maintenance build
+        run: |
+          pnpm assets
+          pnpm --filter @allondeveen-portfolio/maintenance build
         timeout-minutes: 3
       - name: Deploy
         run: "pnpm --filter @allondeveen-portfolio/maintenance run deploy"
