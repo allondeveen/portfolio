@@ -1,5 +1,4 @@
 import { type Adapter, type MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
-import z from "zod";
 
 import { type LexicalEditorState, type LexicalNode } from "../cms/data";
 
@@ -24,18 +23,30 @@ const getFormats = (format: LexicalNode["format"]): TextFormat[] => {
   return FORMAT_FLAGS.filter(([flag]) => (format & flag) !== 0).map(([, name]) => name);
 };
 
-const getLink = async (
-  node: LexicalNode,
-  context: MappingContext,
-): Promise<TextLink | undefined> => {
+function isDoc(value: unknown): value is { value: { slug: string } } {
+  return (
+    value !== null &&
+    typeof value == "object" &&
+    "value" in value &&
+    value.value !== null &&
+    typeof value.value == "object" &&
+    "slug" in value.value
+  );
+}
+
+const getLink = async (node: LexicalNode): Promise<TextLink | undefined> => {
   if (node.type !== "link" || !node.fields) {
     return undefined;
   }
 
   const linkType = node.fields.linkType;
-  const url = node.fields.url;
+  let url = "";
+  if (linkType == "internal" && isDoc(node.fields.doc)) {
+    url = node.fields?.doc.value.slug;
+  } else if (linkType == "custom" && typeof node.fields?.url == "string") {
+    url = node.fields?.url;
+  }
   const newTab = node.fields.newTab;
-  const doc = node.fields.doc;
 
   if (linkType !== "internal" && linkType !== "custom") {
     return undefined;
@@ -51,26 +62,6 @@ const getLink = async (
     link.newTab = newTab;
   }
 
-  if (typeof doc === "object" && doc !== null) {
-    const candidate = doc as Record<string, unknown>;
-
-    if (typeof candidate.relationTo === "string" && typeof candidate.value === "string") {
-      const reference = {
-        collection: candidate.relationTo,
-        id: candidate.value,
-      };
-      const url = await context.resolvePublic(
-        reference,
-        z.object({
-          slug: z.string(),
-        }),
-      );
-      if (url.status === "resolved") {
-        link.url = url.source.slug;
-      }
-    }
-  }
-
   return link;
 };
 
@@ -79,7 +70,7 @@ const getElements = async (
   context: MappingContext,
   inheritedLink?: TextLink,
 ): Promise<TextParagraph["elements"]> => {
-  const link = (await getLink(node, context)) ?? inheritedLink;
+  const link = (await getLink(node)) ?? inheritedLink;
 
   if (node.type === "linebreak") {
     return [{ kind: "linebreak" }];
