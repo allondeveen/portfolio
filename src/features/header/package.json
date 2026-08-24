@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/design-system": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "@vanilla-extract/css": "^1.21.2"
   }
 }

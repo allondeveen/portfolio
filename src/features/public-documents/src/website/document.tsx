@@ -8,13 +8,15 @@ import "./style.css";
 
 export function Document({ kind, meta: { title, description }, blocks, header }: Document) {
   return (
-    <main className={clsx("document", kind)}>
+    <>
       <title>{title}</title>
       <meta name="description" content={description} />
       <Header {...header} />
-      <section className="document__content">
-        <BlocksComponent blocks={blocks} />
-      </section>
-    </main>
+      <main>
+        <article className={clsx("document", kind)}>
+          <BlocksComponent blocks={blocks} />
+        </article>
+      </main>
+    </>
   );
 }

@@ -13,7 +13,17 @@ export const templateSeeds: SeedFunction<RequiredDataFromCollectionSlug<"templat
     },
     limit: 1,
   });
+  const homePageResults = await payload.find({
+    collection: "pages",
+    where: {
+      slug: {
+        equals: "/",
+      },
+    },
+    limit: 1,
+  });
   const mainMenu = mainMenuResults.docs.at(0);
+  const homePage = homePageResults.docs.at(0);
   return [
     {
       location: "header",
@@ -27,10 +37,8 @@ export const templateSeeds: SeedFunction<RequiredDataFromCollectionSlug<"templat
               size: 2,
               blocks: [
                 {
-                  blockType: "heading",
-                  size: 5,
-                  variant: "default",
-                  headingText: {
+                  blockType: "richText",
+                  text: {
                     root: {
                       type: "root",
                       direction: "ltr",
@@ -43,9 +51,27 @@ export const templateSeeds: SeedFunction<RequiredDataFromCollectionSlug<"templat
                           version: 1,
                           children: [
                             {
-                              type: "text",
-                              version: 1,
-                              text: "Allon de Veen",
+                              type: "link",
+                              direction: "ltr",
+                              format: "",
+                              indent: 0,
+                              version: 3,
+                              fields: {
+                                doc: {
+                                  label:
+                                    (<string>homePage?.title).replace(" | Allon de Veen", "") ?? "",
+                                  relationTo: "pages",
+                                  value: homePage,
+                                },
+                                linkType: "internal",
+                              },
+                              children: [
+                                {
+                                  type: "text",
+                                  version: 1,
+                                  text: "Allon de Veen",
+                                },
+                              ],
                             },
                           ],
                         },

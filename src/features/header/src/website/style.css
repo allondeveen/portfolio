@@ -11,6 +11,16 @@
   width: 100%;
 }
 
-.grid-item:first-child .heading {
+.grid-item:first-child .rich-text {
   margin: 0;
+}
+
+.grid-item:first-child .rich-text a {
+  font-size: var(--font-size-h5);
+}
+
+@media (max-width: 1230px) {
+  .header {
+    padding: 0 1rem;
+  }
 }

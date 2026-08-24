@@ -12,7 +12,10 @@ export type MenuBlockProps = Menu;
 
 export function Menu({ location, items, kind }: MenuBlockProps) {
   return (
-    <nav aria-labelledby={`${location}-menu`} className={clsx(kind, location)}>
+    <nav
+      aria-label={`${location[0].toUpperCase()}${location.slice(1)}`}
+      className={clsx(kind, location)}
+    >
       <ul className="inline">
         {items.map((item) => (
           <li key={item.order}>

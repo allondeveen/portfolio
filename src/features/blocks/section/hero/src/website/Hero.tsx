@@ -9,8 +9,8 @@ export type HeroComponentProps = PropsWithChildren<Hero>;
 
 export function HeroComponent({ kind, children }: HeroComponentProps) {
   return (
-    <article className={clsx(kind, "container", "center", "vertical")}>
+    <header className={clsx(kind, "container", "center", "vertical")}>
       <div className={`${kind}__content`}>{children}</div>
-    </article>
+    </header>
   );
 }
