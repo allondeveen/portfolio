@@ -48,6 +48,8 @@ export async function handleMaintenanceRequest(
 ): Promise<Response> {
   const assetResponse = await env.ASSETS.fetch(request);
 
+  console.log("maintenance asset", new URL(request.url).pathname, assetResponse.status);
+
   if (assetResponse.status != 404) {
     return assetResponse;
   }

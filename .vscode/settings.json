@@ -25,10 +25,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": false
   },
   "[jsonc]": {
-    "editor.defaultFormatter": null,
+    "editor.defaultFormatter": "vscode.json-language-features",
     "editor.formatOnSave": false
   },
   "prettier.requireConfig": true,
