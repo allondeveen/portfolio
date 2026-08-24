@@ -138,6 +138,7 @@ export default buildConfig({
       uploadsCollection: "media",
       generateTitle: ({ doc }) => getTitle(doc),
       generateDescription: ({ doc }) => getDescription(doc),
+      generateURL: ({ doc }) => `${cloudflare.env.FRONTEND_URL}${doc.slug}`,
     }),
   ],
   onInit: isProduction ? () => {} : onInit(cloudflare.env.SEED_EMAIL, cloudflare.env.SEED_PASS),
