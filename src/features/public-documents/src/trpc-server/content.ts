@@ -23,9 +23,6 @@ export const contentProcedure = protectedProcedure
     });
     const validatedHeader = TemplateSchema.parse(headerDoc);
     const header = await mapTemplate(validatedHeader, context);
-    const mappedDocument = await mapDocument(validatedDocument, context);
-    return {
-      ...mappedDocument,
-      header,
-    };
+    const mappedDocument = await mapDocument(header)(validatedDocument, context);
+    return mappedDocument;
   });
