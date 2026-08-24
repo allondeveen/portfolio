@@ -13,4 +13,5 @@ export const menuBlock: Block = {
       hasMany: false,
     },
   ],
+  interfaceName: "MenuBlock",
 };

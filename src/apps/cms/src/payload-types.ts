@@ -72,7 +72,7 @@ export interface Config {
     'grid-item': GridItem;
     grid: Grid;
     stack: Stack;
-    menu: Menu;
+    menu: MenuBlock;
   };
   collections: {
     pages: Page;
@@ -204,7 +204,7 @@ export interface Hero {
  * via the `definition` "grid-item".
  */
 export interface GridItem {
-  blocks: (Heading | RichText | Stack | Menu)[];
+  blocks: (Heading | RichText | Stack | MenuBlock)[];
   size: number;
   id?: string | null;
   blockName?: string | null;
@@ -222,9 +222,9 @@ export interface Stack {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "menu".
+ * via the `definition` "MenuBlock".
  */
-export interface Menu {
+export interface MenuBlock {
   menu?: (string | null) | Menu;
   id?: string | null;
   blockName?: string | null;
@@ -232,14 +232,24 @@ export interface Menu {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "grid".
+ * via the `definition` "menu".
  */
-export interface Grid {
-  verticalAlign?: boolean | null;
-  blocks?: GridItem[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'grid';
+export interface Menu {
+  id: string;
+  location: string;
+  items: {
+    id: string;
+    label: string;
+    externality: 'external' | 'internal';
+    external?: string | null;
+    internal?: {
+      relationTo: 'pages';
+      value: string | Page;
+    } | null;
+    order?: number | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -282,12 +292,23 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grid".
+ */
+export interface Grid {
+  verticalAlign?: boolean | null;
+  blocks?: GridItem[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'grid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | Menu)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock)[] | null;
   updatedAt: string;
   createdAt: string;
 }
