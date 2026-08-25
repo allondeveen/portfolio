@@ -267,7 +267,7 @@ export interface Page {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (number | null) | Media;
+    image?: (string | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
@@ -278,8 +278,13 @@ export interface Page {
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
+  id: string;
+  name: string;
   alt: string;
+  type: 'image' | 'download';
+  prefix?: string | null;
+  caption?: string | null;
+  credits?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -471,7 +476,7 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'media';
-        value: number | Media;
+        value: string | Media;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -594,7 +599,13 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  id?: T;
+  name?: T;
   alt?: T;
+  type?: T;
+  prefix?: T;
+  caption?: T;
+  credits?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

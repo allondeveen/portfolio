@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
+import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
 import { onInit } from "@allondeveen-portfolio/seed/config";
@@ -28,7 +29,6 @@ import { r2Storage } from "@payloadcms/storage-r2";
 import { buildConfig } from "payload";
 import { GetPlatformProxyOptions } from "wrangler";
 
-import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
@@ -127,7 +127,7 @@ export default buildConfig({
     menu,
     templates,
     Users,
-    Media,
+    media,
 
     // fixed template
 
@@ -160,7 +160,10 @@ export default buildConfig({
   plugins: [
     r2Storage({
       bucket: cloudflare.env.R2,
-      collections: { media: true },
+      collections: {
+        media: true,
+      },
+      alwaysInsertFields: true,
     }),
     seoPlugin({
       collections: ["pages"],
@@ -180,6 +183,9 @@ function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
       getPlatformProxy({
         environment: process.env.CLOUDFLARE_ENV,
         remoteBindings: isProduction,
+        persist: {
+          path: "../../../.wrangler/state/v3",
+        },
       } satisfies GetPlatformProxyOptions),
   );
 }
