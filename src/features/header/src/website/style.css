@@ -2,12 +2,12 @@
   --header-size: 6rem;
 }
 
-.header {
+.site_header {
   height: var(--header-size);
   font-size: var(--font-size-l);
 }
 
-.header .container {
+.site_header .container {
   width: 100%;
 }
 
@@ -20,7 +20,7 @@
 }
 
 @media (max-width: 1230px) {
-  .header {
+  .site_header {
     padding: 0 1rem;
   }
 }
