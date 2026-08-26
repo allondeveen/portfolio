@@ -48,7 +48,7 @@ export async function handleMaintenanceRequest(
 ): Promise<Response> {
   const assetResponse = await env.ASSETS.fetch(request);
 
-  if (assetResponse.status != 404) {
+  if (assetResponse.status !== 404) {
     return assetResponse;
   }
 
