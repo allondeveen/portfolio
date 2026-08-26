@@ -480,6 +480,37 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
+  src/features/blocks/media/image:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/media':
+        specifier: workspace:^
+        version: link:../../../entities/media
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      react:
+        specifier: 19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: 19.2.6
+        version: 19.2.6(react@19.2.6)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
   src/features/blocks/navigation/menu:
     dependencies:
       '@allondeveen-portfolio/adapter':
@@ -648,10 +679,19 @@ importers:
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      react:
+        specifier: 19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: 19.2.6
+        version: 19.2.6(react@19.2.6)
       zod:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
+      '@opennextjs/cloudflare':
+        specifier: 1.20.1
+        version: 1.20.1(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(wrangler@4.120.0(@cloudflare/workers-types@5.20260804.1))
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -822,6 +862,9 @@ importers:
       '@allondeveen-portfolio/hero-block':
         specifier: workspace:*
         version: link:../../blocks/section/hero
+      '@allondeveen-portfolio/image-block':
+        specifier: workspace:*
+        version: link:../../blocks/media/image
       '@allondeveen-portfolio/menu-block':
         specifier: workspace:*
         version: link:../../blocks/navigation/menu
@@ -9964,6 +10007,24 @@ snapshots:
       next: 16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4)
       ts-tqdm: 0.8.6
       wrangler: 4.119.0(@cloudflare/workers-types@5.20260804.1)
+      yargs: 18.0.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  '@opennextjs/cloudflare@1.20.1(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(wrangler@4.120.0(@cloudflare/workers-types@5.20260804.1))':
+    dependencies:
+      '@ast-grep/napi': 0.40.5
+      '@dotenvx/dotenvx': 1.31.0
+      '@opennextjs/aws': 4.0.2(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))
+      ci-info: 4.4.0
+      cloudflare: 4.5.0
+      comment-json: 4.6.2
+      enquirer: 2.4.1
+      glob: 12.0.0
+      next: 16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4)
+      ts-tqdm: 0.8.6
+      wrangler: 4.120.0(@cloudflare/workers-types@5.20260804.1)
       yargs: 18.0.0
     transitivePeerDependencies:
       - encoding

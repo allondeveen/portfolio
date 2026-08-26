@@ -7,6 +7,8 @@ export const MediaSchema = z.object({
   caption: z.string().optional(),
   credits: z.string().optional(),
   url: z.string().min(1),
+  width: z.number(),
+  height: z.number(),
   sizes: z
     .array(
       z.object({

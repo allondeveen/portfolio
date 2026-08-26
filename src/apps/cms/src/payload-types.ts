@@ -73,6 +73,7 @@ export interface Config {
     grid: Grid;
     stack: Stack;
     menu: MenuBlock;
+    image: Image;
   };
   collections: {
     pages: Page;
@@ -308,12 +309,22 @@ export interface Grid {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "image".
+ */
+export interface Image {
+  image?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
   updatedAt: string;
   createdAt: string;
 }

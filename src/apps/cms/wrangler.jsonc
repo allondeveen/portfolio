@@ -26,7 +26,8 @@
 	],
   "vars": {
     "CMS_ORIGIN": "https://cms-dev.allondeveen.com",
-    "FRONTEND_URL": "https://dev.allondeveen.com"
+    "FRONTEND_URL": "https://dev.allondeveen.com",
+    "MEDIA_URL": "https://media-dev.allondeveen.com"
   },
   "secrets": {
     "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "SEED_EMAIL", "SEED_PASS"]
@@ -38,7 +39,8 @@
 			"name": "portfolio-cms-staging",
       "vars": {
         "CMS_ORIGIN": "https://cms-staging.allondeveen.com",
-        "FRONTEND_URL": "https://staging.allondeveen.com"
+        "FRONTEND_URL": "https://staging.allondeveen.com",
+        "MEDIA_URL": "https://media-staging.allondeveen.com"
       },
       "secrets": {
         "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY"]
@@ -63,7 +65,8 @@
 			"name": "portfolio-cms",
       "vars": {
         "CMS_ORIGIN": "https://cms.allondeveen.com",
-        "FRONTEND_URL": "https://www.allondeveen.com"
+        "FRONTEND_URL": "https://www.allondeveen.com",
+        "MEDIA_URL": "https://media.allondeveen.com"
       },
       "secrets": {
         "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY"]

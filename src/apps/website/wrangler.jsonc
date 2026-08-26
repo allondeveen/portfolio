@@ -40,7 +40,8 @@
     }
   ],
   "vars": {
-    "CMS_URL": "https://cms-dev.allondeveen.com"
+    "CMS_URL": "https://cms-dev.allondeveen.com",
+    "MEDIA_URL": "https://media-dev.allondeveen.com"
   },
   "secrets": {
     "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
@@ -58,7 +59,8 @@
         }
       ],
       "vars": {
-        "CMS_URL": "https://cms-staging.allondeveen.com"
+        "CMS_URL": "https://cms-staging.allondeveen.com",
+        "MEDIA_URL": "https://media-staging.allondeveen.com"
       }
     },
     "production" : {
@@ -73,7 +75,8 @@
         }
       ],
       "vars": {
-        "CMS_URL": "https://cms.allondeveen.com"
+        "CMS_URL": "https://cms.allondeveen.com",
+        "MEDIA_URL": "https://media.allondeveen.com"
       }
     }
   }

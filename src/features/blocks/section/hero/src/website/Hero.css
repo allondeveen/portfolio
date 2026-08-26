@@ -1,5 +1,5 @@
 .hero {
-  height: calc(100dvh - var(--header-size));
+  min-height: calc(100dvh - var(--header-size));
 }
 
 .hero__content {

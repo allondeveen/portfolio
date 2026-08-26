@@ -1,4 +1,5 @@
 import { darkTheme } from "@allondeveen-portfolio/design-system";
+import { env } from "cloudflare:workers";
 import {
   isRouteErrorResponse,
   Links,
@@ -70,6 +71,7 @@ export function headers({ errorHeaders, loaderHeaders }: Route.HeadersArgs) {
   const cspDirectives = [
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline' 'nonce-${nonce}' https://*.youtube.com https://*.ytimg.com`,
+    `img-src 'self' ${env.MEDIA_URL}`,
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "frame-src https://youtube-nocookie.com https://*.youtube.com",

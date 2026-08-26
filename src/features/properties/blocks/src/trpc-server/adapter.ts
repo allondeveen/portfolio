@@ -2,6 +2,7 @@ import { mapGrid } from "@allondeveen-portfolio/grid-block/trpc-server";
 import { mapGridItem } from "@allondeveen-portfolio/grid-item-block/trpc-server";
 import { mapHeading } from "@allondeveen-portfolio/heading-block/trpc-server";
 import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
+import { mapImage } from "@allondeveen-portfolio/image-block/trpc-server";
 import { mapMenu } from "@allondeveen-portfolio/menu-block/trpc-server";
 import { mapRichText } from "@allondeveen-portfolio/rich-text-block/trpc-server";
 import { mapStack } from "@allondeveen-portfolio/stack-block/trpc-server";
@@ -51,5 +52,7 @@ export async function mapBlock(block: CMSBlock, context: MappingContext): Promis
       return await mapStack(block, context, mapBlock);
     case "menu":
       return await mapMenu(block, context);
+    case "image":
+      return mapImage(block, context);
   }
 }

@@ -64,3 +64,4 @@ Thumbs.db
 *.swp
 
 !src/features/entities/media
+!src/features/blocks/media

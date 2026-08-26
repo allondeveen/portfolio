@@ -5,24 +5,24 @@
   "type": "module",
   "exports": {
     "./cms": {
-      "types": "./src/cms.ts",
+      "types": "./dist/cms.d.ts",
       "import": "./src/cms.ts"
     },
     "./trpc-server": {
-      "types": "./src/trpc-server.ts",
+      "types": "./dist/trpc-server.d.ts",
       "import": "./src/trpc-server.ts"
     },
     "./website/data": {
-      "types": "./src/website/data.ts",
+      "types": "./dist/website/data.d.ts",
       "import": "./src/website/data.ts"
     },
     "./website": {
-      "types": "./src/website.ts",
+      "types": "./dist/website.d.ts",
       "import": "./src/website.ts"
     }
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc -p ./tsconfig.json"
   },
   "devDependencies": {
     "@types/react": "19.2.14",
