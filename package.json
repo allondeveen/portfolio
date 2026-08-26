@@ -15,7 +15,7 @@
     "website:build": "pnpm --filter @allondeveen-portfolio/website build",
     "website:preview": "pnpm --filter @allondeveen-portfolio/website preview",
     "payload": "pnpm --filter @allondeveen-portfolio/cms payload",
-    "typecheck": "pnpm --recursive typecheck",
+    "typecheck": "pnpm --recursive --parallel typecheck",
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
