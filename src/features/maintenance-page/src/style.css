@@ -1,5 +1,24 @@
+:root {
+  --header-size: 6rem;
+}
+
+.site_header {
+  height: var(--header-size);
+  font-size: var(--font-size-l);
+}
+
+.site_header.center {
+  align-items: start;
+}
+
+.site_header p.site_title {
+  margin: 0;
+  width: 100%;
+  font-size: var(--font-size-h5);
+}
+
 .maintenance-page {
-  height: 100dvh;
+  height: calc(100dvh - var(--header-size));
 }
 
 .maintenance-page__content {

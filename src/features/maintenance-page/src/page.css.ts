@@ -16,3 +16,16 @@ export const maintenanceLink = style([
     },
   },
 ]);
+
+export const maintenanceLinkIcon = style({
+  fill: vars.colors.textSecondary,
+  transition: "fill 0.2s ease-in-out",
+  selectors: {
+    "a:hover &": {
+      fill: vars.colors.textPrimary,
+    },
+    "a:active &": {
+      fill: vars.colors.textDisabled,
+    },
+  },
+});
