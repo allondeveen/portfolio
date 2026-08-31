@@ -33,9 +33,6 @@
     "ENVIRONMENT": "development",
     "DIRECT_HOST": "maintenance-dev.allondeveen.com"
   },
-  "secrets": {
-    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
-  },
 	"assets": {
     "directory": "./public/",
     "binding": "ASSETS",
@@ -44,9 +41,6 @@
   "env": {
     "staging": {
       "name": "portfolio-maintenance-staging",
-      "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
-      },
       "routes": [
         {
           "pattern": "staging.allondeveen.com",
@@ -66,7 +60,8 @@
       "services": [
         {
           "binding": "CMS",
-          "service": "portfolio-cms-staging"
+          "service": "portfolio-cms-staging",
+          "remote": true
         },
         {
           "binding": "WEBSITE",
@@ -76,14 +71,12 @@
       "vars": {
         "WEBSITE_HOST": "staging.allondeveen.com",
         "CMS_HOST": "cms-staging.allondeveen.com",
-        "ENVIRONMENT": "staging"
+        "ENVIRONMENT": "staging",
+        "DIRECT_HOST": ""
       }
     },
     "production": {
       "name": "portfolio-maintenance",
-      "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
-      },
       "routes": [
         {
           "pattern": "allondeveen.com",
@@ -107,7 +100,8 @@
       "services": [
         {
           "binding": "CMS",
-          "service": "portfolio-cms"
+          "service": "portfolio-cms",
+          "remote": true
         },
         {
           "binding": "WEBSITE",
@@ -117,7 +111,8 @@
       "vars": {
         "WEBSITE_HOST": "www.allondeveen.com",
         "CMS_HOST": "cms.allondeveen.com",
-        "ENVIRONMENT": "production"
+        "ENVIRONMENT": "production",
+        "DIRECT_HOST": ""
       }
     }
   }
