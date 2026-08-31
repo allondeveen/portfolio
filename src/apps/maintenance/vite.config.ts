@@ -1,35 +1,13 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
-import { reactRouter } from "@react-router/dev/vite";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
-import { defineConfig, loadEnv, type Plugin } from "vite";
-
-function removeVanillaExtractExternals(): Plugin {
-  return {
-    name: "remove-vanilla-extract-externals",
-
-    configResolved(config) {
-      const ssrEnvironment = config.environments.ssr;
-
-      if (!ssrEnvironment) {
-        return;
-      }
-
-      ssrEnvironment.resolve.external = [];
-    },
-  };
-}
+import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const port = parseInt(env.PORT) || 5174;
   const inspectorPort = parseInt(env.INSPECTOR_PORT) || 9230;
   return {
-    plugins: [
-      vanillaExtractPlugin(),
-      removeVanillaExtractExternals(),
-      cloudflare({ viteEnvironment: { name: "ssr" }, inspectorPort }),
-      reactRouter(),
-    ],
+    plugins: [vanillaExtractPlugin({ identifiers: "short" }), cloudflare({ inspectorPort })],
     preview: {
       port,
       strictPort: true,
