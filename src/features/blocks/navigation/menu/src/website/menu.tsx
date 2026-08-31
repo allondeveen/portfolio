@@ -1,4 +1,4 @@
-import { ExternalLink } from "@allondeveen-portfolio/ui";
+import { ExternalLink, Icon } from "@allondeveen-portfolio/ui";
 import { clsx } from "clsx";
 import { NavLink } from "react-router";
 
@@ -20,13 +20,19 @@ export function Menu({ location, items, kind }: MenuBlockProps) {
         {items.map((item) => (
           <li key={item.order}>
             {item.externality == "external" ? (
-              <ExternalLink href={item.location}>{item.label}</ExternalLink>
+              <ExternalLink href={item.location} className={item.icon !== undefined ? "icon" : ""}>
+                {item.icon !== undefined && <Icon name={item.icon} />}
+                {item.label}
+              </ExternalLink>
             ) : (
               <NavLink
                 to={item.location}
-                className={({ isActive }) => (isActive ? menuItemActive : "")}
+                className={({ isActive }) =>
+                  isActive ? clsx(item.icon !== undefined ? "icon" : undefined, menuItemActive) : ""
+                }
                 end
               >
+                {item.icon !== undefined && <Icon name={item.icon} />}
                 {item.label}
               </NavLink>
             )}

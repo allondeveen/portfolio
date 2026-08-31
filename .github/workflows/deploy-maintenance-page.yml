@@ -5,6 +5,8 @@ jobs:
   deploy:
     if: github.ref_name == 'main' || github.ref_name == 'staging'
     runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_ENV: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -24,7 +26,6 @@ jobs:
       - name: Deploy
         run: "pnpm --filter @allondeveen-portfolio/maintenance run deploy"
         env:
-          CLOUDFLARE_ENV: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         timeout-minutes: 5

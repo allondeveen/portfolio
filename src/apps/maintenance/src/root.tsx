@@ -45,6 +45,7 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "manifest",
     href: "/site.webmanifest",
+    crossOrigin: "use-credentials",
   },
   {
     rel: "apple-touch-icon",

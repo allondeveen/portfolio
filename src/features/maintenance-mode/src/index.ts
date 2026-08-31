@@ -24,6 +24,12 @@ export async function isMaintenanceEnabled(request: Request, env: MaintenanceEnv
   );
 }
 
+export const isServiceRequest = (request: Request, env: MaintenanceEnv) => {
+  const { hostname } = new URL(request.url);
+
+  return hostname === env.WEBSITE_HOST || (env.CMS !== undefined && hostname === env.CMS_HOST);
+};
+
 export async function dispatchServiceRequest(
   request: Request,
   env: MaintenanceEnv,

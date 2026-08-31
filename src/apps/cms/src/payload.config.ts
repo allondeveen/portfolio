@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
+import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
 import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
@@ -130,8 +131,10 @@ export default buildConfig({
     media,
 
     // fixed template
-
-    // globals
+  ],
+  globals: [
+    //
+    maintenance,
   ],
   editor: lexicalEditor({
     admin: {

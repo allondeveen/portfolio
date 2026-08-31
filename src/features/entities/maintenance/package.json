@@ -1,0 +1,53 @@
+{
+  "name": "@allondeveen-portfolio/maintenance-content",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./cms": {
+      "types": "./dist/cms.d.ts",
+      "import": "./src/cms.ts"
+    },
+    "./trpc-server": {
+      "types": "./dist/trpc-server.d.ts",
+      "import": "./src/trpc-server.ts"
+    },
+    "./website/data": {
+      "types": "./dist/website/data.d.ts",
+      "import": "./src/website/data.ts"
+    },
+    "./website": {
+      "types": "./dist/website.d.ts",
+      "import": "./src/website.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc -p ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "@payloadcms/ui": "3.87.0",
+    "payload": "3.87.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/design-system": "workspace:*",
+    "@allondeveen-portfolio/header": "workspace:*",
+    "@allondeveen-portfolio/public-documents": "workspace:*",
+    "@allondeveen-portfolio/trpc": "workspace:*",
+    "@trpc/client": "^11.18.0",
+    "@vanilla-extract/css": "^1.21.2",
+    "clsx": "^2.1.1",
+    "zod": "^4.4.3"
+  }
+}

@@ -104,8 +104,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    maintenance: Maintenance;
+  };
+  globalsSelect: {
+    maintenance: MaintenanceSelect<false> | MaintenanceSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -699,6 +703,28 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "maintenance".
+ */
+export interface Maintenance {
+  id: number;
+  header?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "maintenance_select".
+ */
+export interface MaintenanceSelect<T extends boolean = true> {
+  header?: T | {};
+  blocks?: T | {};
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -33,21 +33,9 @@
     "ENVIRONMENT": "development",
     "DIRECT_HOST": "maintenance-dev.allondeveen.com"
   },
-	/**
-	 * Smart Placement
-	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
-	 */
-	// "placement": {  "mode": "smart" }
-	/**
-	 * Bindings
-	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
-	 * databases, object storage, AI inference, real-time communication and more.
-	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
-	 */
-	/**
-	 * Static Assets
-	 * https://developers.cloudflare.com/workers/static-assets/binding/
-	 */
+  "secrets": {
+    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
+  },
 	"assets": {
     "directory": "./public/",
     "binding": "ASSETS",
@@ -56,15 +44,18 @@
   "env": {
     "staging": {
       "name": "portfolio-maintenance-staging",
+      "secrets": {
+        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
+      },
       "routes": [
         {
           "pattern": "staging.allondeveen.com",
           "custom_domain": true
+        },
+        {
+          "pattern": "cms-staging.allondeveen.com",
+          "custom_domain": true
         }
-        // {
-        //   "pattern": "cms-staging.allondeveen.com",
-        //   "custom_domain": true
-        // }
       ],
       "kv_namespaces": [
         {
@@ -73,10 +64,10 @@
         }
       ],
       "services": [
-        // {
-        //   "binding": "CMS",
-        //   "service": "portfolio-cms-staging"
-        // },
+        {
+          "binding": "CMS",
+          "service": "portfolio-cms-staging"
+        },
         {
           "binding": "WEBSITE",
           "service": "portfolio-website-staging"
@@ -90,6 +81,9 @@
     },
     "production": {
       "name": "portfolio-maintenance",
+      "secrets": {
+        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
+      },
       "routes": [
         {
           "pattern": "allondeveen.com",
@@ -98,11 +92,11 @@
         {
           "pattern": "www.allondeveen.com",
           "custom_domain": true
+        },
+        {
+          "pattern": "cms.allondeveen.com",
+          "custom_domain": true
         }
-        // {
-        //   "pattern": "cms.allondeveen.com",
-        //   "custom_domain": true
-        // }
       ],
       "kv_namespaces": [
         {
@@ -111,10 +105,10 @@
         }
       ],
       "services": [
-        // {
-        //   "binding": "CMS",
-        //   "service": "portfolio-cms"
-        // },
+        {
+          "binding": "CMS",
+          "service": "portfolio-cms"
+        },
         {
           "binding": "WEBSITE",
           "service": "portfolio-website"

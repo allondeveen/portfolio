@@ -1,0 +1,63 @@
+:root {
+  --header-size: 6rem;
+}
+
+.site_header {
+  height: var(--header-size);
+  font-size: var(--font-size-l);
+}
+
+.site_header.center {
+  align-items: start;
+}
+
+.site_header p.rich-text {
+  margin: 0;
+  width: 100%;
+  font-size: var(--font-size-h5);
+}
+
+.maintenance-page {
+  height: calc(100dvh - var(--header-size));
+}
+
+.maintenance-page__content {
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.maintenance-page__content h1.heading {
+  margin: 0 0 2rem;
+}
+
+.maintenance-page__content p.rich-text {
+  font-size: var(--font-size-l);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.maintenance-page__content nav.maintenance {
+  margin-top: 3rem;
+}
+
+.maintenance-page__content nav.maintenance ul {
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.maintenance-page__content nav.maintenance ul li {
+  font-size: var(--font-size-l);
+}
+
+.maintenance-page__content nav.maintenance ul li a {
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.maintenance-page__content nav.maintenance ul li a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}

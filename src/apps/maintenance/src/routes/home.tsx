@@ -1,4 +1,11 @@
-import { MaintenancePage } from "@allondeveen-portfolio/maintenance-page";
+import {
+  maintenanceContentLoader,
+  MaintenancePage,
+} from "@allondeveen-portfolio/maintenance-content/website";
+
+import { cmsContext } from "../cmsContext";
+
+import type { Route } from "./+types/home";
 
 export function meta() {
   return [
@@ -7,6 +14,10 @@ export function meta() {
   ];
 }
 
-export default function Home() {
-  return <MaintenancePage />;
+export function loader({ context }: Route.LoaderArgs) {
+  return maintenanceContentLoader(context.get(cmsContext));
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
+  return <MaintenancePage {...loaderData} />;
 }
