@@ -1,3 +1,4 @@
+/* global process */
 import { spawnSync } from "node:child_process";
 
 const port = process.env.PORT ?? "3000";
@@ -11,7 +12,7 @@ let previewArgs = ["-e", ".dev.vars", "opennextjs-cloudflare", "preview"];
 if (env !== "development") {
   previewArgs = [...previewArgs, `--env=${env}`];
 }
-previewArgs = [...previewArgs, "--", `--port=${port}`];
+previewArgs = [...previewArgs, "--", `--port=${port}`, "--persist-to=../../../.wrangler/state"];
 
 spawnSync("dotenv", previewArgs, {
   stdio: "inherit",
