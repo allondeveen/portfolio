@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
+    environment:
+      name: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}
     if: github.ref_name == 'main' || github.ref_name == 'staging'
     runs-on: ubuntu-latest
     env:
@@ -22,6 +24,9 @@ jobs:
         run: |
           pnpm assets
           pnpm --filter @allondeveen-portfolio/maintenance build
+        env:
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
         timeout-minutes: 3
       - name: Deploy
         run: "pnpm --filter @allondeveen-portfolio/maintenance run deploy"
