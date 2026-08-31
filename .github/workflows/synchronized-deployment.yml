@@ -105,12 +105,12 @@ jobs:
             steps.migration.outcome == 'success'
           )
         run: |
-          secrets_file="$RUNNER_TEMP/website-secrets.env"
+          secrets_file="$RUNNER_TEMP/cms-secrets.env"
           umask 077
           printf 'OAUTH_CLIENT_ID=%s\n' "$OAUTH_CLIENT_ID" > "$secrets_file"
           printf 'OAUTH_CLIENT_SECRET=%s\n' "$OAUTH_CLIENT_SECRET" >> "$secrets_file"
           printf 'OAUTH_JWT_SIGNING_KEY=%s\n' "$OAUTH_JWT_SIGNING_KEY" >> "$secrets_file"
-          pnpm --filter @allondeveen-portfolio/cms exec wrangler secret bulk "$secrets_file" -e $CLOUDFLARE_ENV
+          pnpm --filter @allondeveen-portfolio/cms exec wrangler versions secret bulk "$secrets_file" -e $CLOUDFLARE_ENV
           pnpm --filter @allondeveen-portfolio/cms run deploy:app
         continue-on-error: true
         env:
@@ -133,7 +133,7 @@ jobs:
           umask 077
           printf 'OAUTH_CLIENT_ID=%s\n' "$OAUTH_CLIENT_ID" > "$secrets_file"
           printf 'OAUTH_CLIENT_SECRET=%s\n' "$OAUTH_CLIENT_SECRET" >> "$secrets_file"
-          pnpm --filter @allondeveen-portfolio/website exec wrangler secret bulk "$secrets_file" -e $CLOUDFLARE_ENV
+          pnpm --filter @allondeveen-portfolio/website exec wrangler versions secret bulk "$secrets_file" -e $CLOUDFLARE_ENV
           pnpm --filter @allondeveen-portfolio/website run deploy
         continue-on-error: true
         env:
