@@ -241,6 +241,7 @@ export interface Menu {
   items: {
     id: string;
     label: string;
+    icon?: ('linkedin' | 'github' | 'logo') | null;
     externality: 'external' | 'internal';
     external?: string | null;
     internal?: {
@@ -564,6 +565,7 @@ export interface MenuSelect<T extends boolean = true> {
     | {
         id?: T;
         label?: T;
+        icon?: T;
         externality?: T;
         external?: T;
         internal?: T;

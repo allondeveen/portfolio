@@ -32,6 +32,7 @@
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*",
     "@allondeveen-portfolio/seed-function": "workspace:*",
+    "@allondeveen-portfolio/ui": "workspace:*",
     "zod": "^4.4.3"
   },
   "devDependencies": {

@@ -1,7 +1,11 @@
+import { allIcons } from "@allondeveen-portfolio/ui";
 import * as z from "zod";
+
+import type { IconName } from "@allondeveen-portfolio/ui";
 
 const MenuItemInternalSchema = z.object({
   label: z.string().min(1),
+  icon: z.union(allIcons.map((name) => z.literal<IconName>(name))).nullable(),
   externality: z.literal("internal"),
   internal: z.object({
     value: z.object({
@@ -13,6 +17,7 @@ const MenuItemInternalSchema = z.object({
 
 const MenuItemExternalSchema = z.object({
   label: z.string().min(1),
+  icon: z.union(allIcons.map((name) => z.literal<IconName>(name))).nullable(),
   externality: z.literal("external"),
   external: z.string().min(1),
   order: z.number(),

@@ -11,6 +11,14 @@ globalStyle("a", {
   color: vars.colors.textSecondary,
 });
 
+globalStyle("a svg", {
+  fill: vars.colors.textSecondary,
+});
+
 globalStyle("a:hover", {
   color: vars.colors.textPrimary,
+});
+
+globalStyle("a:hover svg", {
+  fill: vars.colors.textPrimary,
 });

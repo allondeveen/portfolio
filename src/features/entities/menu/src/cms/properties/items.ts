@@ -2,6 +2,7 @@ import { id } from "@allondeveen-portfolio/id-property/config";
 
 import { external } from "./items/external";
 import { externality } from "./items/externality";
+import { icon } from "./items/icon";
 import { internal } from "./items/internal";
 import { label } from "./items/label";
 import { order } from "./items/order";
@@ -15,6 +16,7 @@ export const items: Field = {
     // prevent collapse
     id,
     label,
+    icon,
     externality,
     external,
     internal,

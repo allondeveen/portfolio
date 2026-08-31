@@ -7,9 +7,14 @@ export const mapMenu: Adapter<CMSMenu, Menu> = (menu) => ({
   location: menu.location,
   items: menu.items
     .map((item) => {
+      let icon: Menu["items"][number]["icon"];
+      if (item.icon !== null) {
+        icon = item.icon;
+      }
       if (item.externality == "external") {
         return {
           label: item.label,
+          icon,
           externality: item.externality,
           location: item.external,
           order: item.order,
@@ -17,6 +22,7 @@ export const mapMenu: Adapter<CMSMenu, Menu> = (menu) => ({
       }
       return {
         label: item.label,
+        icon,
         externality: item.externality,
         location: item.internal.value.slug,
         order: item.order,

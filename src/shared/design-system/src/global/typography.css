@@ -57,6 +57,10 @@ a {
   transition: color 0.2s ease-in-out;
 }
 
+a svg {
+  transition: fill 0.2s ease-in-out;
+}
+
 code,
 pre {
   font-family: var(--font-code);
