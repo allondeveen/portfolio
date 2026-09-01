@@ -3,7 +3,7 @@ import { triggerMaintenanceBuild as internalTrigger } from "@allondeveen-portfol
 import type { CollectionAfterChangeHook } from "payload";
 
 export const triggerMaintenanceBuild: CollectionAfterChangeHook = async (args) => {
-  const { req, doc } = args;
-  if (doc?.location !== "maintenance") return;
-  await internalTrigger(req);
+  const { req, doc, previousDoc } = args;
+  if (doc?.location === "maintenance" || previousDoc?.location === "maintenance")
+    await internalTrigger(req);
 };
