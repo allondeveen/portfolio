@@ -43,6 +43,7 @@
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/design-system": "workspace:*",
     "@allondeveen-portfolio/header": "workspace:*",
+    "@allondeveen-portfolio/maintenance-build": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "^11.18.0",
