@@ -1,5 +1,6 @@
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { triggerMaintenanceBuild } from "./cms/hooks/triggerMaintenanceBuild";
 import { items } from "./cms/properties/items";
 import { location } from "./cms/properties/location";
 
@@ -17,4 +18,7 @@ export const menu: CollectionConfig = {
     location,
     items,
   ],
+  hooks: {
+    afterChange: [triggerMaintenanceBuild],
+  },
 };
