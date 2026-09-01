@@ -54,11 +54,14 @@ export async function handleMaintenanceRequest(
 ): Promise<Response> {
   const assetResponse = await env.ASSETS.fetch(request);
 
-  if (assetResponse.status !== 404) {
+  if (
+    assetResponse.status !== 404 &&
+    !assetResponse.headers.get("Content-Type")?.startsWith("text/html")
+  ) {
     return assetResponse;
   }
 
-  const response = await requestHandler(request);
+  const response = assetResponse.status === 404 ? await requestHandler(request) : assetResponse;
 
   if (isMaintenanceAccessedDirectly(request, env)) {
     return response;
@@ -67,6 +70,10 @@ export async function handleMaintenanceRequest(
   const headers = new Headers(response.headers);
 
   headers.set("Cache-Control", "no-store");
+  headers.set(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://youtube-nocookie.com https://*.youtube.com; frame-ancestors 'none'; worker-src 'self' blob:",
+  );
   headers.set("Retry-After", "300");
   headers.set("X-Robots-Tag", "noindex");
 

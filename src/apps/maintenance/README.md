@@ -1,79 +1,55 @@
-# Welcome to React Router!
+# Maintenance page
 
-A modern, production-ready template for building full-stack React applications using React Router.
+The maintenance page uses one typed tRPC content source for development and production builds.
+During a build, React prerenders the retrieved content into `index.html` and embeds both the content
+and the SSR stylesheet. Hydration is optional for the initial render and the deployed page never
+fetches content from the CMS.
 
-## Features
+## Build order
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+1. Provide `OAUTH_CLIENT_ID` and `OAUTH_CLIENT_SECRET`.
+2. Optionally set `CLOUDFLARE_ENV` (`development`, `staging`, or `production`).
+3. Run `pnpm build` while the corresponding CMS Worker is deployed and reachable through its
+   service binding.
+4. Deploy the generated maintenance Worker.
+5. Enable maintenance mode only after the deployment succeeds.
 
-## Getting Started
+Every environment uses the `CMS` service binding and constructs its OAuth and tRPC request URLs from
+the bound `CMS_HOST` variable. Development connects the binding to the locally running
+`portfolio-cms-proxy`; staging and production connect to their deployed CMS Worker through a remote
+binding. This bypasses the public CMS hostname, so an already-active maintenance route or Cloudflare Access setups cannot block
+content retrieval. Remote builds also need `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`. Local
+values can be placed in `.build.vars`; Cloudflare does not copy that file into its generated Worker
+output. A development build waits up to 90 seconds for the local CMS binding to become available.
 
-### Installation
+## Development
 
-Install the dependencies:
-
-```bash
-npm install
+```sh
+pnpm dev
 ```
 
-### Development
+The development command obtains the local `CMS` service binding and waits up to 90 seconds for the
+CMS proxy and CMS to become available, then starts Vite with locally rendered CMS content. After the
+maintenance global is saved, its Payload hook notifies the maintenance development server. The
+server then retrieves the new content through the service binding, rebuilds the page, and reloads
+connected browsers. Component and stylesheet changes continue to use the Vite development loop.
+The application is available at `http://localhost:5174`.
 
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Previewing the Production Build
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
+The hook defaults to `http://localhost:5174/__maintenance/rebuild` outside production. For staging
+and production, set `MAINTENANCE_BUILD_HOOK_URL` on the CMS Worker to
+`https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches`,
+set `MAINTENANCE_BUILD_REF` to `staging` or `main`, and store a fine-grained GitHub token with Actions
+write access as `MAINTENANCE_BUILD_HOOK_TOKEN`. The same Payload hook will then dispatch
+`.github/workflows/deploy-maintenance-page.yml`, whose existing build retrieves content from the
+matching CMS service binding before deploying.
 
 ## Deployment
 
-Deployment is done using the Wrangler CLI.
-
-To build and deploy directly to production:
+Build first, then deploy the already-generated output:
 
 ```sh
-npm run deploy
+pnpm build
+pnpm deploy
 ```
 
-To deploy a preview URL:
-
-```sh
-npx wrangler versions upload
-```
-
-You can then promote a version to production after verification or roll it out progressively.
-
-```sh
-npx wrangler versions deploy
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+The build fails rather than publishing stale or empty content when the CMS request fails.
