@@ -40,10 +40,12 @@
       "vars": {
         "CMS_ORIGIN": "https://cms-staging.allondeveen.com",
         "FRONTEND_URL": "https://staging.allondeveen.com",
-        "MEDIA_URL": "https://media-staging.allondeveen.com"
+        "MEDIA_URL": "https://media-staging.allondeveen.com",
+        "MAINTENANCE_BUILD_HOOK_URL": "https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches",
+        "MAINTENANCE_BUILD_REF": "staging"
       },
       "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET"]
+        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
       },
 			"d1_databases": [
 				{
@@ -66,10 +68,12 @@
       "vars": {
         "CMS_ORIGIN": "https://cms.allondeveen.com",
         "FRONTEND_URL": "https://www.allondeveen.com",
-        "MEDIA_URL": "https://media.allondeveen.com"
+        "MEDIA_URL": "https://media.allondeveen.com",
+        "MAINTENANCE_BUILD_HOOK_URL": "https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches",
+        "MAINTENANCE_BUILD_REF": "main"
       },
       "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET"]
+        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
       },
 			"d1_databases": [
 				{
