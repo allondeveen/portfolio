@@ -7,11 +7,8 @@ import type { GlobalConfig } from "payload";
 
 export const maintenance: GlobalConfig = {
   slug: "maintenance",
-  hooks: {
-    afterChange: [triggerMaintenanceBuild],
-  },
   admin: {
-    group: "Supporting",
+    group: "Fixed template",
   },
   fields: [
     {
@@ -27,4 +24,7 @@ export const maintenance: GlobalConfig = {
       blockReferences: allBlockTypes,
     },
   ],
+  hooks: {
+    afterChange: [triggerMaintenanceBuild],
+  },
 };
