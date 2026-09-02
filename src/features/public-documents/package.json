@@ -42,6 +42,7 @@
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/lexical-text": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "^11.18.0",

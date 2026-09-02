@@ -1,0 +1,39 @@
+{
+  "name": "@allondeveen-portfolio/site-settings",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
+    },
+    "./website/data": {
+      "types": "./src/website/data.ts",
+      "import": "./src/website/data.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/media": "workspace:*",
+    "@allondeveen-portfolio/validate-email": "workspace:*",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "payload": "3.87.0"
+  }
+}

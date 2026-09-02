@@ -35,6 +35,7 @@
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/seed": "workspace:*",
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",
+    "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/slug-property": "workspace:*",
     "@allondeveen-portfolio/sync-hero-metadata": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",

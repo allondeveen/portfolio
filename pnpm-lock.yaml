@@ -107,6 +107,9 @@ importers:
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
         version: link:../../shared/single-line-lexical
+      '@allondeveen-portfolio/site-settings':
+        specifier: workspace:*
+        version: link:../../features/entities/site-settings
       '@allondeveen-portfolio/slug-property':
         specifier: workspace:*
         version: link:../../features/properties/slug
@@ -804,6 +807,28 @@ importers:
         specifier: 5.7.3
         version: 5.7.3
 
+  src/features/entities/site-settings:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../shared/adapter
+      '@allondeveen-portfolio/media':
+        specifier: workspace:*
+        version: link:../media
+      '@allondeveen-portfolio/validate-email':
+        specifier: workspace:*
+        version: link:../../../shared/validate-email
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
   src/features/entities/templates:
     dependencies:
       '@allondeveen-portfolio/adapter':
@@ -1029,6 +1054,9 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../blocks/textual/rich-text
+      '@allondeveen-portfolio/site-settings':
+        specifier: workspace:*
+        version: link:../entities/site-settings
       '@allondeveen-portfolio/templates':
         specifier: workspace:*
         version: link:../entities/templates
@@ -1268,6 +1296,15 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+
+  src/shared/validate-email:
+    dependencies:
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
 
 packages:
 

@@ -106,9 +106,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     maintenance: Maintenance;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     maintenance: MaintenanceSelect<false> | MaintenanceSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -717,11 +719,35 @@ export interface Maintenance {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteTitle: string;
+  supportEmail: string;
+  socialImage: string | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "maintenance_select".
  */
 export interface MaintenanceSelect<T extends boolean = true> {
   header?: T | {};
   blocks?: T | {};
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteTitle?: T;
+  supportEmail?: T;
+  socialImage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

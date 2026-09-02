@@ -13,6 +13,8 @@ import {
   singleLineAdminSettings,
   SingleLineFeature,
 } from "@allondeveen-portfolio/single-line-lexical";
+import { getSocialImage } from "@allondeveen-portfolio/site-settings/cms";
+import { siteSettings } from "@allondeveen-portfolio/site-settings/config";
 import { templates } from "@allondeveen-portfolio/templates/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
 import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
@@ -135,6 +137,7 @@ export default buildConfig({
   globals: [
     //
     maintenance,
+    siteSettings,
   ],
   editor: lexicalEditor({
     admin: {
@@ -174,6 +177,7 @@ export default buildConfig({
       generateTitle: ({ doc }) => getTitle(doc),
       generateDescription: ({ doc }) => getDescription(doc),
       generateURL: ({ doc }) => `${cloudflare.env.FRONTEND_URL}${doc.slug}`,
+      generateImage: async ({ req }) => await getSocialImage(req.payload),
     }),
   ],
   onInit: isProduction ? () => {} : onInit(cloudflare.env.SEED_EMAIL, cloudflare.env.SEED_PASS),
