@@ -5,6 +5,10 @@ import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
 import { mapImage } from "@allondeveen-portfolio/image-block/trpc-server";
 import { mapMenu } from "@allondeveen-portfolio/menu-block/trpc-server";
 import { mapRichText } from "@allondeveen-portfolio/rich-text-block/trpc-server";
+import {
+  mapSiteTitle,
+  type SiteTitleAdapterOptions,
+} from "@allondeveen-portfolio/site-title-block/trpc-server";
 import { mapStack } from "@allondeveen-portfolio/stack-block/trpc-server";
 
 import type { Block as CMSBlock } from "../cms";
@@ -19,40 +23,44 @@ import type { Hero } from "@allondeveen-portfolio/hero-block/website/data";
 import type { Stack as CMSStack } from "@allondeveen-portfolio/stack-block/cms";
 import type { Stack } from "@allondeveen-portfolio/stack-block/website/data";
 
-export async function mapBlock(
-  block: CMSHero["blocks"][number],
-  context: MappingContext,
-): Promise<Hero["blocks"][number]>;
-export async function mapBlock(
-  block: CMSGrid["blocks"][number],
-  context: MappingContext,
-): Promise<Grid["blocks"][number]>;
-export async function mapBlock(
-  block: CMSGridItem["blocks"][number],
-  context: MappingContext,
-): Promise<GridItem["blocks"][number]>;
-export async function mapBlock(
-  block: CMSStack["blocks"][number],
-  context: MappingContext,
-): Promise<Stack["blocks"][number]>;
-export async function mapBlock(block: CMSBlock, context: MappingContext): Promise<Block>;
-export async function mapBlock(block: CMSBlock, context: MappingContext): Promise<Block> {
-  switch (block.blockType) {
-    case "heading":
-      return mapHeading(block, context);
-    case "richText":
-      return mapRichText(block, context);
-    case "hero":
-      return await mapHero(block, context, mapBlock);
-    case "grid":
-      return await mapGrid(block, context, mapBlock);
-    case "grid-item":
-      return await mapGridItem(block, context, mapBlock);
-    case "stack":
-      return await mapStack(block, context, mapBlock);
-    case "menu":
-      return await mapMenu(block, context);
-    case "image":
-      return mapImage(block, context);
-  }
+type BlockMapper = {
+  (block: CMSHero["blocks"][number], context: MappingContext): Promise<Hero["blocks"][number]>;
+  (block: CMSGrid["blocks"][number], context: MappingContext): Promise<Grid["blocks"][number]>;
+  (
+    block: CMSGridItem["blocks"][number],
+    context: MappingContext,
+  ): Promise<GridItem["blocks"][number]>;
+  (block: CMSStack["blocks"][number], context: MappingContext): Promise<Stack["blocks"][number]>;
+  (block: CMSBlock, context: MappingContext): Promise<Block>;
+};
+
+export type MapBlockOptions = {
+  siteTitle: SiteTitleAdapterOptions;
+};
+
+export function mapBlock(options: MapBlockOptions): BlockMapper {
+  const { siteTitle } = options;
+  const mapper = async (block: CMSBlock, context: MappingContext): Promise<Block> => {
+    switch (block.blockType) {
+      case "heading":
+        return mapHeading(block, context);
+      case "richText":
+        return mapRichText(block, context);
+      case "hero":
+        return await mapHero(block, context, mapBlock(options));
+      case "grid":
+        return await mapGrid(block, context, mapBlock(options));
+      case "grid-item":
+        return await mapGridItem(block, context, mapBlock(options));
+      case "stack":
+        return await mapStack(block, context, mapBlock(options));
+      case "menu":
+        return await mapMenu(block, context);
+      case "image":
+        return mapImage(block, context);
+      case "siteTitle":
+        return await mapSiteTitle(siteTitle)(block, context);
+    }
+  };
+  return mapper as BlockMapper;
 }

@@ -5,6 +5,7 @@ import { HeroSchema } from "@allondeveen-portfolio/hero-block/cms";
 import { ImageSchema } from "@allondeveen-portfolio/image-block/cms";
 import { MenuSchema } from "@allondeveen-portfolio/menu-block/cms";
 import { RichTextSchema } from "@allondeveen-portfolio/rich-text-block/cms";
+import { SiteTitleSchema } from "@allondeveen-portfolio/site-title-block/cms";
 import { StackSchema } from "@allondeveen-portfolio/stack-block/cms";
 import * as z from "zod";
 
@@ -17,6 +18,7 @@ export const BlockSchema = z.discriminatedUnion("blockType", [
   StackSchema,
   MenuSchema,
   ImageSchema,
+  SiteTitleSchema,
 ]);
 
 export type Block = z.infer<typeof BlockSchema>;

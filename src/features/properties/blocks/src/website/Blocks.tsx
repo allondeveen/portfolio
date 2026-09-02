@@ -5,6 +5,7 @@ import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
 import { Image } from "@allondeveen-portfolio/image-block/website";
 import { Menu } from "@allondeveen-portfolio/menu-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
+import { SiteTitle } from "@allondeveen-portfolio/site-title-block/website";
 import { StackBlock } from "@allondeveen-portfolio/stack-block/website";
 
 import type { Block } from "./data";
@@ -44,6 +45,8 @@ export function BlockComponent(block: Block): JSX.Element {
       return <Menu {...block} />;
     case "image":
       return <Image {...block} />;
+    case "siteTitle":
+      return <SiteTitle {...block} />;
     default:
       return <></>;
   }

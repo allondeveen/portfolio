@@ -1,1 +1,1 @@
-export { mapBlock } from "./trpc-server/adapter";
+export { mapBlock, type MapBlockOptions } from "./trpc-server/adapter";

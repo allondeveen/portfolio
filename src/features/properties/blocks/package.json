@@ -50,6 +50,7 @@
     "@allondeveen-portfolio/image-block": "workspace:*",
     "@allondeveen-portfolio/menu-block": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "@allondeveen-portfolio/site-title-block": "workspace:*",
     "@allondeveen-portfolio/stack-block": "workspace:*",
     "zod": "4.4.3"
   }

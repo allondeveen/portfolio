@@ -9,6 +9,8 @@ import { createDependencies } from "./dependencies";
 import { createMappingContext } from "./mappingContext";
 import { DocumentSchema } from "../website/data";
 
+import type { MapBlockOptions } from "../../../properties/blocks/src/trpc-server/adapter";
+
 export const contentProcedure = protectedProcedure
   .input(z.string().min(1))
   .output(DocumentSchema)
@@ -17,8 +19,17 @@ export const contentProcedure = protectedProcedure
     const validatedDocument = CMSDocumentSchema.parse(document);
     const dependencies = createDependencies(ctx.payload);
     const context = createMappingContext(dependencies);
-    const header = await getHeader(ctx.payload, context);
     const siteSettings = await getSiteSettings(ctx.payload, context);
-    const mappedDocument = await mapDocument(header, siteSettings)(validatedDocument, context);
+    const mapBlockOptions: MapBlockOptions = {
+      siteTitle: {
+        siteSettings,
+      },
+    };
+    const header = await getHeader(ctx.payload, context, mapBlockOptions);
+    const mappedDocument = await mapDocument(
+      header,
+      siteSettings,
+      mapBlockOptions,
+    )(validatedDocument, context);
     return mappedDocument;
   });

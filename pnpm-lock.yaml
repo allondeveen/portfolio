@@ -420,6 +420,9 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:^
         version: link:../../textual/rich-text
+      '@allondeveen-portfolio/site-title-block':
+        specifier: workspace:^
+        version: link:../../navigation/site-title
       '@allondeveen-portfolio/stack-block':
         specifier: workspace:^
         version: link:../stack
@@ -525,6 +528,52 @@ importers:
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
         version: link:../../../entities/menu
+      '@allondeveen-portfolio/ui':
+        specifier: workspace:*
+        version: link:../../../../shared/ui
+      '@vanilla-extract/css':
+        specifier: ^1.21.2
+        version: 1.21.2(babel-plugin-macros@3.1.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      payload:
+        specifier: 3.87.0
+        version: 3.87.0(graphql@16.14.2)(typescript@5.7.3)
+      react:
+        specifier: 19.2.6
+        version: 19.2.6
+      react-dom:
+        specifier: 19.2.6
+        version: 19.2.6(react@19.2.6)
+      react-router:
+        specifier: ^8
+        version: 8.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 19.2.14
+        version: 19.2.14
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
+  src/features/blocks/navigation/site-title:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/design-system':
+        specifier: workspace:*
+        version: link:../../../../shared/design-system
+      '@allondeveen-portfolio/menu':
+        specifier: workspace:*
+        version: link:../../../entities/menu
+      '@allondeveen-portfolio/site-settings':
+        specifier: workspace:*
+        version: link:../../../entities/site-settings
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../../shared/ui
@@ -691,6 +740,9 @@ importers:
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../public-documents
+      '@allondeveen-portfolio/site-settings':
+        specifier: workspace:*
+        version: link:../site-settings
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../../shared/trpc
@@ -960,6 +1012,9 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../../blocks/textual/rich-text
+      '@allondeveen-portfolio/site-title-block':
+        specifier: workspace:*
+        version: link:../../blocks/navigation/site-title
       '@allondeveen-portfolio/stack-block':
         specifier: workspace:*
         version: link:../../blocks/layout/stack

@@ -1,8 +1,6 @@
 import { BlocksComponent } from "@allondeveen-portfolio/blocks-property/website";
 import clsx from "clsx";
 
-import "./header.css";
-
 import type { Template } from "@allondeveen-portfolio/templates/website/data";
 
 import "./style.css";

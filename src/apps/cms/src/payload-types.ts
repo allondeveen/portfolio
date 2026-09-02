@@ -74,6 +74,7 @@ export interface Config {
     stack: Stack;
     menu: MenuBlock;
     image: Image;
+    siteTitle: SiteTitleBlock;
   };
   collections: {
     pages: Page;
@@ -211,7 +212,7 @@ export interface Hero {
  * via the `definition` "grid-item".
  */
 export interface GridItem {
-  blocks: (Heading | RichText | Stack | MenuBlock)[];
+  blocks: (Heading | RichText | Stack | MenuBlock | SiteTitleBlock)[];
   size: number;
   id?: string | null;
   blockName?: string | null;
@@ -305,6 +306,15 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SiteTitleBlock".
+ */
+export interface SiteTitleBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'siteTitle';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "grid".
  */
 export interface Grid {
@@ -331,7 +341,7 @@ export interface Image {
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -712,8 +722,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Maintenance {
   id: number;
-  header?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
+  header?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
+  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

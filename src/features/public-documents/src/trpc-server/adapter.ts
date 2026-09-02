@@ -1,4 +1,4 @@
-import { mapBlock } from "@allondeveen-portfolio/blocks-property/trpc-server";
+import { mapBlock, type MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
 
 import type { Document as CMSDocument } from "../cms";
 import type { Document } from "../website/data";
@@ -7,7 +7,11 @@ import type { SiteSettings } from "@allondeveen-portfolio/site-settings/website/
 import type { Template } from "@allondeveen-portfolio/templates/website/data";
 
 export const mapDocument =
-  (header: Template, siteSettings: SiteSettings): Adapter<CMSDocument, Document> =>
+  (
+    header: Template,
+    siteSettings: SiteSettings,
+    mapBlockOptions: MapBlockOptions,
+  ): Adapter<CMSDocument, Document> =>
   async (document, context) => {
     return {
       id: document.id,
@@ -16,6 +20,8 @@ export const mapDocument =
       slug: document.slug,
       header,
       siteSettings,
-      blocks: await Promise.all(document.blocks.map((value) => mapBlock(value, context))),
+      blocks: await Promise.all(
+        document.blocks.map((value) => mapBlock(mapBlockOptions)(value, context)),
+      ),
     };
   };
