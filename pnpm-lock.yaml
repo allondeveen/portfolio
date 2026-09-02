@@ -856,6 +856,9 @@ importers:
 
   src/features/header:
     dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../shared/adapter
       '@allondeveen-portfolio/blocks-property':
         specifier: workspace:*
         version: link:../properties/blocks

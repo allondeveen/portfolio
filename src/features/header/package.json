@@ -7,6 +7,10 @@
     "./website": {
       "types": "./src/website.ts",
       "import": "./src/website.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
     }
   },
   "scripts": {
@@ -23,6 +27,7 @@
     "react-dom": "19.2.6"
   },
   "dependencies": {
+    "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/design-system": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
