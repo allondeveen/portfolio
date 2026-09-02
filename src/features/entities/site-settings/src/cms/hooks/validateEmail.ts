@@ -4,7 +4,7 @@ import type { FieldHook } from "payload";
 
 export const validateEmail: FieldHook = ({ value }) => {
   const validationResult = validateEmailInternal(value);
-  if (!validationResult.success) {
+  if (validationResult.success === false) {
     throw new Error(validationResult.error);
   }
   return value;
