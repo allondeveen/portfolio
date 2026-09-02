@@ -45,6 +45,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "manifest",
+    crossOrigin: "use-credentials",
     href: "/site.webmanifest",
   },
   {
