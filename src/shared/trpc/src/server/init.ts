@@ -6,7 +6,6 @@ import type { TRPCContext } from "./context";
 
 export const t = initTRPC.context<TRPCContext>().create({
   errorFormatter({ error, shape }) {
-    console.log(error);
     return {
       ...shape,
       data: {
