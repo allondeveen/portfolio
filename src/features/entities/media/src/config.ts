@@ -1,5 +1,7 @@
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { preventUsedMediaDelete } from "./cms/hooks/preventUsedMediaDelete";
+
 import type { CollectionConfig } from "payload";
 
 export const media: CollectionConfig = {
@@ -65,6 +67,7 @@ export const media: CollectionConfig = {
         }
       },
     ],
+    beforeDelete: [preventUsedMediaDelete],
   },
   upload: {
     // These (crop and focalPoint) are not supported on Workers yet due to lack of sharp
