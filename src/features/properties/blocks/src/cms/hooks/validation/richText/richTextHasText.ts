@@ -5,13 +5,15 @@ import { childBlockValidationError } from "../errors";
 
 import type { ValidationError } from "payload";
 
-export function richTextHasText(result: Either<ValidationError, RichTextResult | undefined>) {
-  return flatMap((data: RichTextResult | undefined) => {
-    if (data !== undefined && !data.text?.trim()) {
-      return left(
-        childBlockValidationError("text", "Is required.", ["blocks", "hero", "richText"]),
-      );
-    }
-    return right(data);
-  })(result);
+export function baseRichTextHasText(parents: string[] = []) {
+  return (result: Either<ValidationError, RichTextResult | undefined>) => {
+    return flatMap((data: RichTextResult | undefined) => {
+      if (data !== undefined && !data.text?.trim()) {
+        return left(childBlockValidationError("text", "Is required.", [...parents, "richText"]));
+      }
+      return right(data);
+    })(result);
+  };
 }
+
+export const richTextHasText = baseRichTextHasText();

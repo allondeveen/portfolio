@@ -5,13 +5,17 @@ import { childBlockValidationError } from "../errors";
 
 import type { ValidationError } from "payload";
 
-export function headingHasHeadingText(result: Either<ValidationError, HeadingResult>) {
-  return flatMap((data: HeadingResult) => {
-    if (data.headingText && !data.headingText?.trim()) {
-      return left(
-        childBlockValidationError("headingText", "Is required.", ["blocks", "hero", "heading"]),
-      );
-    }
-    return right(data);
-  })(result);
+export function baseHeadingHasHeadingText(parents: string[] = []) {
+  return (result: Either<ValidationError, HeadingResult>) => {
+    return flatMap((data: HeadingResult) => {
+      if (data.headingText && !data.headingText?.trim()) {
+        return left(
+          childBlockValidationError("headingText", "Is required.", [...parents, "heading"]),
+        );
+      }
+      return right(data);
+    })(result);
+  };
 }
+
+export const headingHasHeadingText = baseHeadingHasHeadingText([]);

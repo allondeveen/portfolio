@@ -5,8 +5,8 @@ import { heroHasAtLeastOneRichText } from "./heroHasAtLeastOneRichText";
 import { heroHasExactlyOneHeading } from "./heroHasExactlyOneHeading";
 import { heroHeadingHasSizeOne } from "./heroHeadingHasSizeOne";
 import { minimumHeroValidation } from "./minimumHeroValidation";
-import { headingHasHeadingText } from "../heading/headingHasHeadingText";
-import { richTextHasText } from "../richText/richTextHasText";
+import { baseHeadingHasHeadingText } from "../heading/headingHasHeadingText";
+import { baseRichTextHasText } from "../richText/richTextHasText";
 
 import type { DocumentWithBlocks } from "../atLeastOneBlock";
 import type { ValidationError } from "payload";
@@ -19,13 +19,13 @@ export function heroValidation(richTextRequired: boolean = true) {
       minimumHeroValidationResult,
       heroHasExactlyOneHeading,
       heroHeadingHasSizeOne,
-      headingHasHeadingText,
+      baseHeadingHasHeadingText(["blocks", "hero"]),
     );
 
     const heroRichtTextValidationResult = pipe(
       minimumHeroValidationResult,
       heroHasAtLeastOneRichText(richTextRequired),
-      richTextHasText,
+      baseRichTextHasText(["blocks", "hero"]),
     );
 
     return pipe(heroHeadingValidationResult, apSecond(heroRichtTextValidationResult));
