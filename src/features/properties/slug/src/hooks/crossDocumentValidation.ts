@@ -11,11 +11,13 @@ export const crossDocumentValidation: FieldHook<WithSlug> = async ({ value, req,
     slug: value,
   });
   if (conflict && conflict.id !== originalDoc?.id) {
+    const error = `The slug ${value} is already in use.`;
     throw new ValidationError({
       errors: [
         {
           path: "slug",
-          message: `The slug ${value} is already in use.`,
+          label: error,
+          message: error,
         },
       ],
     });

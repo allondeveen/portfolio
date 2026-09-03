@@ -10,6 +10,26 @@ export const LenientDocument = z.object({
   blocks: z.array(z.record(z.string(), z.any())).min(1),
 });
 
+function validationError(path: string, message: string) {
+  return new ValidationError({
+    errors: [
+      {
+        path: path,
+        label: message,
+        message: message,
+      },
+    ],
+  });
+}
+
+function blocksValidationError(message: string) {
+  return validationError("blocks", message);
+}
+
+function childBlockValidationError(path: string, message: string, parents: string[] = []) {
+  return validationError([...parents, path].join("."), message);
+}
+
 export const validateBlocks: FieldHook<TypeWithID & JsonObject> = ({ value, data }) => {
   if (!data) {
     throw new ValidationError({
@@ -24,38 +44,17 @@ export const validateBlocks: FieldHook<TypeWithID & JsonObject> = ({ value, data
 
   const documentResult = LenientDocument.safeParse(data);
   if (!documentResult.success) {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "blocks",
-          message: "Must have at least one block.",
-        },
-      ],
-    });
+    throw blocksValidationError("Must have at least one block.");
   }
 
   const heroes = findHeroes(documentResult.data.blocks);
 
   if (heroes.length < 1) {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "blocks",
-          message: "Must have exactly 1 hero block.",
-        },
-      ],
-    });
+    throw blocksValidationError("Must have exactly 1 hero block.");
   }
 
   if (heroes.length > 1) {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "blocks",
-          message: "Can't have more than 1 hero block.",
-        },
-      ],
-    });
+    throw blocksValidationError("Can't have more than 1 hero block.");
   }
 
   const hero = heroes.at(0) as HeroSearchResults;
@@ -63,38 +62,26 @@ export const validateBlocks: FieldHook<TypeWithID & JsonObject> = ({ value, data
   const headingCount = headings.length;
 
   if (headingCount < 1) {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "heading",
-          message: "Must have exactly 1 heading block.",
-        },
-      ],
-    });
+    throw childBlockValidationError("heading", "Must have exactly 1 heading block.", [
+      "blocks",
+      "hero",
+    ]);
   }
 
   if (headingCount > 1) {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "heading",
-          message: "Can't have more than 1 heading block.",
-        },
-      ],
-    });
+    throw childBlockValidationError("heading", "Can't have more than 1 heading block.", [
+      "blocks",
+      "hero",
+    ]);
   }
 
   const heading = headings.at(0) as HeadingResult;
 
   if (heading.size !== 1) {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "heading",
-          message: "Hero heading must have size 1.",
-        },
-      ],
-    });
+    throw childBlockValidationError("heading", "Hero heading must have size 1.", [
+      "blocks",
+      "hero",
+    ]);
   }
 
   const richTextCount = hero.blocks.filter((block) => block.blockType === "richText").length;
@@ -102,14 +89,10 @@ export const validateBlocks: FieldHook<TypeWithID & JsonObject> = ({ value, data
   const slug = (<string>data.slug).startsWith("/") ? `${data.slug}` : `/${data.slug}`;
 
   if (richTextCount < 1 && slug != "/contact") {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "richText",
-          message: "Must at least 1 richText block.",
-        },
-      ],
-    });
+    throw childBlockValidationError("richText", "Must at least 1 richText block.", [
+      "blocks",
+      "hero",
+    ]);
   }
 
   return value;

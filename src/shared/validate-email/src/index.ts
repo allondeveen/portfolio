@@ -15,6 +15,6 @@ export function validateEmail(email: string): EmailValidationResult {
   if (result.success) {
     return { success: true };
   } else {
-    return { success: false, error: result.error.message };
+    return { success: false, error: result.error.issues.at(0)?.message ?? "Invalid email address" };
   }
 }
