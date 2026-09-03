@@ -52,6 +52,7 @@
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
     "@allondeveen-portfolio/site-title-block": "workspace:*",
     "@allondeveen-portfolio/stack-block": "workspace:*",
+    "fp-ts": "catalog:",
     "zod": "catalog:"
   }
 }

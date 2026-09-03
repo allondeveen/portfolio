@@ -1,11 +1,11 @@
 import { getDescription as blockGetDescription } from "@allondeveen-portfolio/hero-block/cms";
 
-import { LenientDocument } from "../hooks/validateBlocks";
+import { DocumentWithBlocksSchema } from "../hooks/validation/atLeastOneBlock";
 
 import type { JsonObject } from "payload";
 
 export function getDescription(document: JsonObject): string {
-  const documentResult = LenientDocument.safeParse(document);
+  const documentResult = DocumentWithBlocksSchema.safeParse(document);
   if (!documentResult.success) {
     return "";
   }

@@ -33,6 +33,9 @@ catalogs:
     clsx:
       specifier: 2.1.1
       version: 2.1.1
+    fp-ts:
+      specifier: ^2.16.11
+      version: 2.16.11
     graphql:
       specifier: 16.14.2
       version: 16.14.2
@@ -1069,6 +1072,9 @@ importers:
       '@allondeveen-portfolio/stack-block':
         specifier: workspace:*
         version: link:../../blocks/layout/stack
+      fp-ts:
+        specifier: 'catalog:'
+        version: 2.16.11
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
@@ -5613,6 +5619,9 @@ packages:
   forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
+
+  fp-ts@2.16.11:
+    resolution: {integrity: sha512-LaI+KaX2NFkfn1ZGHoKCmcfv7yrZsC3b8NtWsTVQeHkq4F27vI5igUuO53sxqDEa2gNQMHFPmpojDw/1zmUK7w==}
 
   fragment-cache@0.2.1:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
@@ -12968,6 +12977,8 @@ snapshots:
       web-streams-polyfill: 4.0.0-beta.3
 
   forwarded@0.2.0: {}
+
+  fp-ts@2.16.11: {}
 
   fragment-cache@0.2.1:
     dependencies:

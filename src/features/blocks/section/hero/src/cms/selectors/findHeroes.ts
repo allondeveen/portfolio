@@ -18,11 +18,19 @@ const LenientHeroSchema = HeroSchema.omit({
 
 const LenientHeadingSchema = HeadingSchema.omit({
   id: true,
-});
+})
+  .partial()
+  .required({
+    blockType: true,
+  });
 
 const LenientRichTextSchema = RichTextSchema.omit({
   id: true,
-});
+})
+  .partial()
+  .required({
+    blockType: true,
+  });
 
 export type HeadingResult = Omit<Heading, "headingText" | "id"> & {
   headingText: string | null;
@@ -71,9 +79,11 @@ export function findHeroes(blocks: JsonObject[]): HeroSearchResults[] {
         ...blocks,
         {
           ...heading.data,
-          headingText: getLexicalText(heading.data.headingText),
+          headingText: getLexicalText(heading.data?.headingText),
           position: headingPosition,
-        },
+          size: heading.data.size || 2,
+          variant: heading.data.variant || "default",
+        } as HeadingResult,
       ];
 
       headingPosition++;
@@ -94,7 +104,7 @@ export function findHeroes(blocks: JsonObject[]): HeroSearchResults[] {
           ...richText.data,
           text: getLexicalText(richText.data.text),
           position: richTextPosition,
-        },
+        } as RichTextResult,
       ];
 
       richTextPosition++;

@@ -1,11 +1,11 @@
 import { getTitle as blockGetTitle } from "@allondeveen-portfolio/hero-block/cms";
 
-import { LenientDocument } from "../hooks/validateBlocks";
+import { DocumentWithBlocksSchema } from "../hooks/validation/atLeastOneBlock";
 
 import type { JsonObject } from "payload";
 
 export function getTitle(document: JsonObject): string {
-  const documentResult = LenientDocument.safeParse(document);
+  const documentResult = DocumentWithBlocksSchema.safeParse(document);
   if (!documentResult.success) {
     return "";
   }
