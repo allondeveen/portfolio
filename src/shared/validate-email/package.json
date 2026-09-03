@@ -13,9 +13,9 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "payload": "3.87.0"
+    "payload": "catalog:"
   },
   "dependencies": {
-    "zod": "^4.4.3"
+    "zod": "catalog:"
   }
 }

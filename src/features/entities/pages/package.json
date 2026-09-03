@@ -24,9 +24,9 @@
     "@allondeveen-portfolio/title-property": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "5.7.3"
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "3.87.0"
+    "payload": "catalog:"
   }
 }

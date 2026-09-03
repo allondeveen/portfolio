@@ -18,11 +18,11 @@
     "@vanilla-extract/css": "^1.21.2"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14",
-    "typescript": "^5.9.3"
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   }
 }

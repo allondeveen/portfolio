@@ -29,13 +29,13 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/react": "19.2.14",
-    "typescript": "5.7.3"
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "3.87.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "react-router": "^8"
   },
   "dependencies": {
@@ -44,8 +44,8 @@
     "@allondeveen-portfolio/menu": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/ui": "workspace:*",
-    "clsx": "^2.1.1",
+    "clsx": "catalog:",
     "@vanilla-extract/css": "^1.21.2",
-    "zod": "^4.4.3"
+    "zod": "catalog:"
   }
 }

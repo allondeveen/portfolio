@@ -26,17 +26,17 @@
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "1.20.1",
-    "typescript": "5.7.3"
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "@opennextjs/cloudflare": "1.20.1",
-    "payload": "3.87.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*",
-    "zod": "^4.4.3"
+    "zod": "catalog:"
   }
 }

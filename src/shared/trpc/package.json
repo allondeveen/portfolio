@@ -21,10 +21,10 @@
     "@trpc/server": "^11.18.0"
   },
   "devDependencies": {
-    "payload": "3.87.0",
-    "typescript": "5.7.3"
+    "payload": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "3.87.0"
+    "payload": "catalog:"
   }
 }

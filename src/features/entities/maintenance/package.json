@@ -29,14 +29,14 @@
     "typecheck": "tsc -p ./tsconfig.json"
   },
   "devDependencies": {
-    "@types/react": "19.2.14",
-    "typescript": "5.7.3"
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@payloadcms/ui": "3.87.0",
-    "payload": "3.87.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "@payloadcms/ui": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
@@ -49,7 +49,7 @@
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "^11.18.0",
     "@vanilla-extract/css": "^1.21.2",
-    "clsx": "^2.1.1",
-    "zod": "^4.4.3"
+    "clsx": "catalog:",
+    "zod": "catalog:"
   }
 }
