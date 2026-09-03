@@ -7,7 +7,7 @@ export {
   childBlockValidationError,
   validationError,
 } from "./cms/hooks/validation/errors";
-export { dataIsDefined } from "./cms/hooks/validation/dataIsDefined";
+export { type Data, dataIsDefined } from "./cms/hooks/validation/dataIsDefined";
 export { atLeastOneBlock, type DocumentWithBlocks } from "./cms/hooks/validation/atLeastOneBlock";
 export { documentValidation } from "./cms/hooks/validation/documentValidation";
 

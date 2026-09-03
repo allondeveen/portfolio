@@ -19,6 +19,7 @@
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "^11.18.0",
     "@vanilla-extract/css": "^1.21.2",
+    "fp-ts": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
