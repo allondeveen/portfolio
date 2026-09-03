@@ -33,7 +33,7 @@
     "payload": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "^8"
+    "react-router": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
@@ -47,7 +47,7 @@
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
-    "@trpc/client": "^11.18.0",
+    "@trpc/client": "catalog:",
     "clsx": "catalog:",
     "zod": "catalog:"
   }

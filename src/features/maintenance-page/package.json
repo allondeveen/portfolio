@@ -23,7 +23,7 @@
   "dependencies": {
     "@allondeveen-portfolio/design-system": "workspace:*",
     "@allondeveen-portfolio/ui": "workspace:*",
-    "@vanilla-extract/css": "^1.21.2",
+    "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:"
   }
 }

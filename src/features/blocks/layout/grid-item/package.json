@@ -45,7 +45,7 @@
     "@allondeveen-portfolio/site-title-block": "workspace:^",
     "@allondeveen-portfolio/stack-block": "workspace:^",
     "clsx": "catalog:",
-    "@vanilla-extract/css": "^1.21.2",
+    "@vanilla-extract/css": "catalog:",
     "zod": "catalog:"
   }
 }

@@ -17,21 +17,21 @@
     "@allondeveen-portfolio/maintenance-content": "workspace:*",
     "@allondeveen-portfolio/maintenance-mode": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
-    "@trpc/client": "^11.18.0",
-    "@vanilla-extract/css": "^1.21.2",
+    "@trpc/client": "catalog:",
+    "@vanilla-extract/css": "catalog:",
     "fp-ts": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.50.0",
-    "@types/node": "^22.20.1",
+    "@cloudflare/vite-plugin": "catalog:",
+    "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vanilla-extract/vite-plugin": "^5.2.6",
-    "tsx": "^4.22.4",
+    "@vanilla-extract/vite-plugin": "catalog:",
+    "tsx": "catalog:",
     "typescript": "catalog:",
-    "vite": "^8.0.3",
-    "wrangler": "^4.118.0"
+    "vite": "catalog:",
+    "wrangler": "catalog:"
   }
 }

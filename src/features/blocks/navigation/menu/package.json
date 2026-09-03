@@ -36,7 +36,7 @@
     "payload": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router": "^8"
+    "react-router": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
@@ -44,7 +44,7 @@
     "@allondeveen-portfolio/menu": "workspace:*",
     "@allondeveen-portfolio/ui": "workspace:*",
     "clsx": "catalog:",
-    "@vanilla-extract/css": "^1.21.2",
+    "@vanilla-extract/css": "catalog:",
     "zod": "catalog:"
   }
 }

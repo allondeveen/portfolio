@@ -47,8 +47,8 @@
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
-    "@trpc/client": "^11.18.0",
-    "@vanilla-extract/css": "^1.21.2",
+    "@trpc/client": "catalog:",
+    "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",
     "zod": "catalog:"
   }

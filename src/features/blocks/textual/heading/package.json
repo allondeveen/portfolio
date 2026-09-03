@@ -44,7 +44,7 @@
     "@allondeveen-portfolio/lexical-text": "workspace:*",
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",
     "clsx": "catalog:",
-    "@vanilla-extract/css": "^1.21.2",
+    "@vanilla-extract/css": "catalog:",
     "zod": "catalog:"
   }
 }

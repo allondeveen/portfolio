@@ -42,9 +42,9 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "babel-plugin-macros": "3.1.0",
-    "concurrently": "^10.0.4",
-    "cpx": "^1.5.0",
-    "eslint": "^9.39.5",
+    "concurrently": "catalog:",
+    "cpx": "catalog:",
+    "eslint": "catalog:",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import-x": "^4.17.1",
@@ -54,7 +54,7 @@
     "globals": "^17.9.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
-    "prettier": "^3.9.6",
+    "prettier": "catalog:",
     "typescript": "catalog:",
     "typescript-eslint": "^8.66.0"
   }
