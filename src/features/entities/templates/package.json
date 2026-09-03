@@ -39,6 +39,7 @@
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*",
     "@allondeveen-portfolio/seed-function": "workspace:*",
+    "fp-ts": "catalog:",
     "zod": "catalog:"
   }
 }

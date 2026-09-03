@@ -952,6 +952,9 @@ importers:
       '@allondeveen-portfolio/seed-function':
         specifier: workspace:*
         version: link:../../../shared/seed-function
+      fp-ts:
+        specifier: 'catalog:'
+        version: 2.16.11
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)

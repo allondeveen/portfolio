@@ -341,7 +341,7 @@ export interface Image {
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
+  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[];
   updatedAt: string;
   createdAt: string;
 }
