@@ -12,6 +12,7 @@ export const DocumentSchema = z.object({
   }),
   slug: z.string(),
   header: TemplateSchema,
+  footer: TemplateSchema,
   siteSettings: SiteSettingsSchema,
   blocks: z.array(BlockSchema).min(1),
 });

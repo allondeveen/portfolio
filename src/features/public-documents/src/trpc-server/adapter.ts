@@ -9,6 +9,7 @@ import type { Template } from "@allondeveen-portfolio/templates/website/data";
 export const mapDocument =
   (
     header: Template,
+    footer: Template,
     siteSettings: SiteSettings,
     mapBlockOptions: MapBlockOptions,
   ): Adapter<CMSDocument, Document> =>
@@ -19,6 +20,7 @@ export const mapDocument =
       meta: document.meta,
       slug: document.slug,
       header,
+      footer,
       siteSettings,
       blocks: await Promise.all(
         document.blocks.map((value) => mapBlock(mapBlockOptions)(value, context)),

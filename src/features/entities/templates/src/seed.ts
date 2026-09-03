@@ -45,5 +45,13 @@ export const templateSeeds: SeedFunction<RequiredDataFromCollectionSlug<"templat
         },
       ] as RequiredDataFromCollectionSlug<"templates">["blocks"],
     },
+    {
+      location: "footer",
+      blocks: [
+        {
+          blockType: "copyright",
+        },
+      ] as RequiredDataFromCollectionSlug<"templates">["blocks"],
+    },
   ];
 };

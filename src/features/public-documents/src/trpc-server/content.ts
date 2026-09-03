@@ -1,3 +1,4 @@
+import { getFooter } from "@allondeveen-portfolio/footer/trpc-server";
 import { getHeader } from "@allondeveen-portfolio/header/trpc-server";
 import { ProcedureResultSchema } from "@allondeveen-portfolio/procedure-result";
 import { getSiteSettings } from "@allondeveen-portfolio/site-settings/trpc-server";
@@ -64,9 +65,23 @@ export const contentProcedure = protectedProcedure
         throw error;
       }
     }
+    let footer: Awaited<ReturnType<typeof getFooter>>;
+    try {
+      footer = await getFooter(ctx.payload, context, mapBlockOptions);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return {
+          status: "error",
+          error: `Footer parse failed: ${error.message}`,
+        };
+      } else {
+        throw error;
+      }
+    }
     try {
       const mappedDocument = await mapDocument(
         header,
+        footer,
         siteSettings,
         mapBlockOptions,
       )(validatedDocument.data, context);

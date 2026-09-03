@@ -1,0 +1,17 @@
+:root {
+  --header-size: 6rem;
+}
+
+.site_footer {
+  height: var(--header-size);
+}
+
+.site_footer .container {
+  width: 100%;
+}
+
+@media (max-width: 1230px) {
+  .site_footer {
+    padding: 0 1rem;
+  }
+}
