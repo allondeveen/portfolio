@@ -11,7 +11,14 @@ export async function publicDocumentLoader(
   try {
     contentProcedureResult = await client.content.query(slug);
   } catch (error) {
-    throw data(error, {
+    let errorResponse: string = "Internal server error";
+    if (error instanceof Error) {
+      errorResponse = error.message;
+    }
+    if (process.env.ENVIRONMENT === "production") {
+      errorResponse = "Internal server error";
+    }
+    throw data(errorResponse, {
       status: 503,
       statusText: "Service Unavailable",
       headers: {

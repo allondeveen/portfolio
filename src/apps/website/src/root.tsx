@@ -123,7 +123,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     details =
       error.status === 404
         ? "The requested page could not be found."
-        : "data" in error
+        : "data" in error && typeof error.data === "string"
           ? error.data
           : details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {

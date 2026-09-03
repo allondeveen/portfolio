@@ -25,11 +25,17 @@ export const contentProcedure = protectedProcedure
         status: "not-found",
       };
     }
+    let errorMessage = "Something went wrong";
     const validatedDocument = CMSDocumentSchema.safeParse(document);
     if (!validatedDocument.success) {
+      if (process.env.ENVIRONMENT !== "production") {
+        errorMessage = `CMS Document invalid: ${validatedDocument.error.issues.at(0)?.message}`;
+      } else {
+        // track errors
+      }
       return {
         status: "error",
-        error: `CMS Document invalid: ${validatedDocument.error.issues.at(0)?.message}`,
+        error: errorMessage,
       };
     }
     const dependencies = createDependencies(ctx.payload);
@@ -39,9 +45,14 @@ export const contentProcedure = protectedProcedure
       siteSettings = await getSiteSettings(ctx.payload, context);
     } catch (error) {
       if (error instanceof z.ZodError) {
+        if (process.env.ENVIRONMENT !== "production") {
+          errorMessage = `Site settings parse failed: ${error.issues.at(0)?.message}`;
+        } else {
+          // track errors
+        }
         return {
           status: "error",
-          error: `Site settings parse failed: ${error.issues.at(0)?.message}`,
+          error: errorMessage,
         };
       } else {
         throw error;
@@ -57,9 +68,14 @@ export const contentProcedure = protectedProcedure
       header = await getHeader(ctx.payload, context, mapBlockOptions);
     } catch (error) {
       if (error instanceof z.ZodError) {
+        if (process.env.ENVIRONMENT !== "production") {
+          errorMessage = `Header parse failed: ${error.issues.at(0)?.message}`;
+        } else {
+          // track errors
+        }
         return {
           status: "error",
-          error: `Header parse failed: ${error.issues.at(0)?.message}`,
+          error: errorMessage,
         };
       } else {
         throw error;
@@ -70,9 +86,14 @@ export const contentProcedure = protectedProcedure
       footer = await getFooter(ctx.payload, context, mapBlockOptions);
     } catch (error) {
       if (error instanceof z.ZodError) {
+        if (process.env.ENVIRONMENT !== "production") {
+          errorMessage = `Footer parse failed: ${error.issues.at(0)?.message}`;
+        } else {
+          // track errors
+        }
         return {
           status: "error",
-          error: `Footer parse failed: ${error.issues.at(0)?.message}`,
+          error: errorMessage,
         };
       } else {
         throw error;
@@ -91,9 +112,14 @@ export const contentProcedure = protectedProcedure
       };
     } catch (error) {
       if (error instanceof z.ZodError) {
+        if (process.env.ENVIRONMENT !== "production") {
+          errorMessage = `Document parse failed: ${error.issues.at(0)?.message}`;
+        } else {
+          // track errors
+        }
         return {
           status: "error",
-          error: `Document parse failed: ${error.issues.at(0)?.message}`,
+          error: errorMessage,
         };
       } else {
         throw error;
