@@ -1,3 +1,4 @@
+import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapGrid } from "@allondeveen-portfolio/grid-block/trpc-server";
 import { mapGridItem } from "@allondeveen-portfolio/grid-item-block/trpc-server";
 import { mapHeading } from "@allondeveen-portfolio/heading-block/trpc-server";
@@ -60,6 +61,8 @@ export function mapBlock(options: MapBlockOptions): BlockMapper {
         return mapImage(block, context);
       case "siteTitle":
         return await mapSiteTitle(siteTitle)(block, context);
+      case "copyright":
+        return await mapCopyright(siteTitle)(block, context);
     }
   };
   return mapper as BlockMapper;

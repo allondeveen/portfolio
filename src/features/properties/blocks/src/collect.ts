@@ -1,3 +1,4 @@
+import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
 import { gridBlock } from "@allondeveen-portfolio/grid-block/config";
 import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
 import { headingBlock } from "@allondeveen-portfolio/heading-block/config";
@@ -21,5 +22,6 @@ export const allBlocks: Block[] = [
   menuBlock,
   imageBlock,
   siteTitleBlock,
+  copyrightBlock,
 ];
 export const allBlockTypes: BlockSlug[] = allBlocks.map((block) => block.slug) as BlockSlug[];

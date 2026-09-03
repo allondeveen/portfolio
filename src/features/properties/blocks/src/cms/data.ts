@@ -1,3 +1,4 @@
+import { CopyrightSchema } from "@allondeveen-portfolio/copyright-block/cms";
 import { GridSchema } from "@allondeveen-portfolio/grid-block/cms";
 import { GridItemSchema } from "@allondeveen-portfolio/grid-item-block/cms";
 import { HeadingSchema } from "@allondeveen-portfolio/heading-block/cms";
@@ -19,6 +20,7 @@ export const BlockSchema = z.discriminatedUnion("blockType", [
   MenuSchema,
   ImageSchema,
   SiteTitleSchema,
+  CopyrightSchema,
 ]);
 
 export type Block = z.infer<typeof BlockSchema>;

@@ -625,6 +625,52 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
+  src/features/blocks/navigation/copyright:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/design-system':
+        specifier: workspace:*
+        version: link:../../../../shared/design-system
+      '@allondeveen-portfolio/menu':
+        specifier: workspace:*
+        version: link:../../../entities/menu
+      '@allondeveen-portfolio/site-settings':
+        specifier: workspace:*
+        version: link:../../../entities/site-settings
+      '@allondeveen-portfolio/ui':
+        specifier: workspace:*
+        version: link:../../../../shared/ui
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.21.2(babel-plugin-macros@3.1.0)
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.6(react@19.2.6)
+      react-router:
+        specifier: 'catalog:'
+        version: 8.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
   src/features/blocks/navigation/menu:
     dependencies:
       '@allondeveen-portfolio/adapter':
@@ -1102,6 +1148,9 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../shared/adapter
+      '@allondeveen-portfolio/copyright-block':
+        specifier: workspace:*
+        version: link:../../blocks/navigation/copyright
       '@allondeveen-portfolio/grid-block':
         specifier: workspace:*
         version: link:../../blocks/layout/grid

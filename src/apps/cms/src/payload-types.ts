@@ -75,6 +75,7 @@ export interface Config {
     menu: MenuBlock;
     image: Image;
     siteTitle: SiteTitleBlock;
+    copyright: Copyright;
   };
   collections: {
     pages: Page;
@@ -336,12 +337,21 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "copyright".
+ */
+export interface Copyright {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'copyright';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
   id: string;
   location: string;
-  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[];
+  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -722,8 +732,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Maintenance {
   id: number;
-  header?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
-  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[];
+  header?:
+    (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[] | null;
+  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

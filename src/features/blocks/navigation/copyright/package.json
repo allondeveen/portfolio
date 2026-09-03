@@ -1,5 +1,5 @@
 {
-  "name": "@allondeveen-portfolio/blocks-property",
+  "name": "@allondeveen-portfolio/copyright-block",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -7,10 +7,6 @@
     "./config": {
       "types": "./src/config.ts",
       "import": "./src/config.ts"
-    },
-    "./all": {
-      "types": "./src/collect.ts",
-      "import": "./src/collect.ts"
     },
     "./cms": {
       "types": "./src/cms.ts",
@@ -39,21 +35,17 @@
   "peerDependencies": {
     "payload": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:"
+    "react-dom": "catalog:",
+    "react-router": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
-    "@allondeveen-portfolio/copyright-block": "workspace:*",
-    "@allondeveen-portfolio/grid-block": "workspace:*",
-    "@allondeveen-portfolio/grid-item-block": "workspace:*",
-    "@allondeveen-portfolio/heading-block": "workspace:*",
-    "@allondeveen-portfolio/hero-block": "workspace:*",
-    "@allondeveen-portfolio/image-block": "workspace:*",
-    "@allondeveen-portfolio/menu-block": "workspace:*",
-    "@allondeveen-portfolio/rich-text-block": "workspace:*",
-    "@allondeveen-portfolio/site-title-block": "workspace:*",
-    "@allondeveen-portfolio/stack-block": "workspace:*",
-    "fp-ts": "catalog:",
+    "@allondeveen-portfolio/design-system": "workspace:*",
+    "@allondeveen-portfolio/menu": "workspace:*",
+    "@allondeveen-portfolio/site-settings": "workspace:*",
+    "@allondeveen-portfolio/ui": "workspace:*",
+    "clsx": "catalog:",
+    "@vanilla-extract/css": "catalog:",
     "zod": "catalog:"
   }
 }

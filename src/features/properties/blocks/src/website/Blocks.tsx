@@ -1,3 +1,4 @@
+import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { GridBlock } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
@@ -47,6 +48,8 @@ export function BlockComponent(block: Block): JSX.Element {
       return <Image {...block} />;
     case "siteTitle":
       return <SiteTitle {...block} />;
+    case "copyright":
+      return <Copyright {...block} />;
     default:
       return <></>;
   }
