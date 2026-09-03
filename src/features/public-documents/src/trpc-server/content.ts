@@ -29,7 +29,7 @@ export const contentProcedure = protectedProcedure
     if (!validatedDocument.success) {
       return {
         status: "error",
-        error: "CMS Document invalid",
+        error: `CMS Document invalid: ${validatedDocument.error.issues.at(0)?.message}`,
       };
     }
     const dependencies = createDependencies(ctx.payload);
@@ -41,7 +41,7 @@ export const contentProcedure = protectedProcedure
       if (error instanceof z.ZodError) {
         return {
           status: "error",
-          error: `Site settings parse failed: ${error.message}`,
+          error: `Site settings parse failed: ${error.issues.at(0)?.message}`,
         };
       } else {
         throw error;
@@ -59,7 +59,7 @@ export const contentProcedure = protectedProcedure
       if (error instanceof z.ZodError) {
         return {
           status: "error",
-          error: `Header parse failed: ${error.message}`,
+          error: `Header parse failed: ${error.issues.at(0)?.message}`,
         };
       } else {
         throw error;
@@ -72,7 +72,7 @@ export const contentProcedure = protectedProcedure
       if (error instanceof z.ZodError) {
         return {
           status: "error",
-          error: `Footer parse failed: ${error.message}`,
+          error: `Footer parse failed: ${error.issues.at(0)?.message}`,
         };
       } else {
         throw error;
@@ -93,7 +93,7 @@ export const contentProcedure = protectedProcedure
       if (error instanceof z.ZodError) {
         return {
           status: "error",
-          error: `Document parse failed: ${error.message}`,
+          error: `Document parse failed: ${error.issues.at(0)?.message}`,
         };
       } else {
         throw error;
