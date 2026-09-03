@@ -9,7 +9,7 @@ import { createDependencies } from "./dependencies";
 import { createMappingContext } from "./mappingContext";
 import { DocumentSchema } from "../website/data";
 
-import type { MapBlockOptions } from "../../../properties/blocks/src/trpc-server/adapter";
+import type { MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
 
 export const contentProcedure = protectedProcedure
   .input(z.string().min(1))

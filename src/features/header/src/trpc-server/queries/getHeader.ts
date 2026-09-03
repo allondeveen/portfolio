@@ -1,8 +1,8 @@
 import { findByLocation, TemplateSchema } from "@allondeveen-portfolio/templates/cms";
 import { mapTemplate } from "@allondeveen-portfolio/templates/trpc-server";
 
-import type { MapBlockOptions } from "../../../../properties/blocks/src/trpc-server/adapter";
 import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
+import type { MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
 import type { Template } from "@allondeveen-portfolio/templates/website/data";
 import type { Payload } from "payload";
 
