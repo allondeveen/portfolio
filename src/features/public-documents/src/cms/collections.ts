@@ -1,6 +1,6 @@
 import type { CollectionSlug } from "payload";
 
-export const publicCollections: CollectionSlug[] = ["pages"];
+export const publicCollections: CollectionSlug[] = ["pages", "projects"];
 
 function regularPluralToSingular(plural: string) {
   return plural.slice(0, -1);

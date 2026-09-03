@@ -32,6 +32,7 @@
     "@allondeveen-portfolio/media": "workspace:*",
     "@allondeveen-portfolio/menu": "workspace:*",
     "@allondeveen-portfolio/pages": "workspace:*",
+    "@allondeveen-portfolio/projects": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/seed": "workspace:*",
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",

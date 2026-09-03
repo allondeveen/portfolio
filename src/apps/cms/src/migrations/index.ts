@@ -6,6 +6,7 @@ import * as migration_20260831_154407_record_progress from "./20260831_154407_re
 import * as migration_20260902_151326_add_site_settings from "./20260902_151326_add_site_settings";
 import * as migration_20260902_181503_add_site_title_block from "./20260902_181503_add_site_title_block";
 import * as migration_20260903_205023_add_copyright_block from "./20260903_205023_add_copyright_block";
+import * as migration_20260903_231614_add_projects_collection from "./20260903_231614_add_projects_collection";
 
 export const migrations = [
   {
@@ -47,5 +48,10 @@ export const migrations = [
     up: migration_20260903_205023_add_copyright_block.up,
     down: migration_20260903_205023_add_copyright_block.down,
     name: "20260903_205023_add_copyright_block",
+  },
+  {
+    up: migration_20260903_231614_add_projects_collection.up,
+    down: migration_20260903_231614_add_projects_collection.down,
+    name: "20260903_231614_add_projects_collection",
   },
 ];

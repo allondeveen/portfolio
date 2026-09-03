@@ -8,6 +8,7 @@ import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
 import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
+import { projects } from "@allondeveen-portfolio/projects/config";
 import { onInit } from "@allondeveen-portfolio/seed/config";
 import {
   singleLineAdminSettings,
@@ -123,6 +124,7 @@ export default buildConfig({
   collections: [
     // collections
     pages,
+    projects,
 
     // taxonomy
 
@@ -172,7 +174,7 @@ export default buildConfig({
       alwaysInsertFields: true,
     }),
     seoPlugin({
-      collections: ["pages"],
+      collections: [pages.slug, projects.slug],
       uploadsCollection: "media",
       generateTitle: ({ doc }) => getTitle(doc),
       generateDescription: ({ doc }) => getDescription(doc),

@@ -3,7 +3,7 @@ import * as z from "zod";
 
 export const DocumentSchema = z.object({
   id: z.string(),
-  collection: z.literal("page"),
+  collection: z.literal("page").or(z.literal("project")),
   meta: z.object({
     title: z.string().min(1),
     description: z.string().min(1),

@@ -203,6 +203,9 @@ importers:
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/entities/pages
+      '@allondeveen-portfolio/projects':
+        specifier: workspace:*
+        version: link:../../features/entities/projects
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../features/public-documents
@@ -999,6 +1002,28 @@ importers:
       '@allondeveen-portfolio/seed-function':
         specifier: workspace:*
         version: link:../../../shared/seed-function
+      '@allondeveen-portfolio/slug-property':
+        specifier: workspace:*
+        version: link:../../properties/slug
+      '@allondeveen-portfolio/title-property':
+        specifier: workspace:*
+        version: link:../../properties/title
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/features/entities/projects:
+    dependencies:
+      '@allondeveen-portfolio/blocks-property':
+        specifier: workspace:*
+        version: link:../../properties/blocks
+      '@allondeveen-portfolio/id-property':
+        specifier: workspace:*
+        version: link:../../properties/id
       '@allondeveen-portfolio/slug-property':
         specifier: workspace:*
         version: link:../../properties/slug

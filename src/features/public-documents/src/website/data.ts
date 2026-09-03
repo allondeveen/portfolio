@@ -5,7 +5,7 @@ import z from "zod";
 
 export const DocumentSchema = z.object({
   id: z.string(),
-  kind: z.literal("page"),
+  kind: z.literal("page").or(z.literal("project")),
   meta: z.object({
     title: z.string().min(1),
     description: z.string().min(1),
