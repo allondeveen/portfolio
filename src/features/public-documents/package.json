@@ -32,7 +32,8 @@
     "@payloadcms/ui": "3.87.0",
     "payload": "3.87.0",
     "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react-dom": "19.2.6",
+    "react-router": "^8"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
@@ -41,6 +42,7 @@
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/lexical-text": "workspace:*",
+    "@allondeveen-portfolio/procedure-result": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",

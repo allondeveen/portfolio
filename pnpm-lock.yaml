@@ -1109,6 +1109,9 @@ importers:
       '@allondeveen-portfolio/lexical-text':
         specifier: workspace:*
         version: link:../../shared/lexical-text
+      '@allondeveen-portfolio/procedure-result':
+        specifier: workspace:*
+        version: link:../../shared/procedure-result
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../blocks/textual/rich-text
@@ -1139,6 +1142,9 @@ importers:
       react-dom:
         specifier: 19.2.6
         version: 19.2.6(react@19.2.6)
+      react-router:
+        specifier: ^8
+        version: 8.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -1231,6 +1237,19 @@ importers:
       payload:
         specifier: 3.87.0
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+
+  src/shared/procedure-result:
+    dependencies:
+      '@allondeveen-portfolio/templates':
+        specifier: workspace:*
+        version: link:../../features/entities/templates
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
 
   src/shared/seed:
     dependencies:
