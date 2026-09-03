@@ -21,6 +21,7 @@ export const blocks: BlocksField = {
       ],
     },
   ],
+  required: true,
   hooks: {
     beforeValidate: [validateBlocks],
   },

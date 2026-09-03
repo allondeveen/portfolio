@@ -269,7 +269,7 @@ export interface Page {
   parent?: (string | null) | Page;
   slug: string;
   title: string;
-  blocks?: Hero[] | null;
+  blocks: Hero[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -723,7 +723,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Maintenance {
   id: number;
   header?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[] | null;
+  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
