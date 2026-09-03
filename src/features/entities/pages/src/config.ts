@@ -15,7 +15,8 @@ export const pages: CollectionConfig = {
     useAsTitle: "title",
   },
   labels: {
-    singular: "page",
+    singular: "Page",
+    plural: "Pages",
   },
   versions: {
     drafts: {
