@@ -41,3 +41,5 @@ export const slug = (
     },
   };
 };
+
+export { syncSlugFromHero } from "./properties/syncSlugFromHero";

@@ -1,12 +1,10 @@
 import { blocks } from "@allondeveen-portfolio/blocks-property/config";
 import { id } from "@allondeveen-portfolio/id-property/config";
-import { slug } from "@allondeveen-portfolio/slug-property/config";
-import { title } from "@allondeveen-portfolio/title-property/config";
+import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
+import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
 import { preventHomepageDelete } from "./hooks/preventHomepageDelete";
 import { parent } from "./properties/parent";
-import { syncSlugFromHero } from "./properties/syncSlugFromHero";
-import { syncTitleFromHero } from "./properties/syncTitleFromHero";
 
 import type { CollectionConfig } from "payload";
 
