@@ -36,6 +36,7 @@
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
+    "@allondeveen-portfolio/templates": "workspace:*",
     "clsx": "catalog:"
   }
 }

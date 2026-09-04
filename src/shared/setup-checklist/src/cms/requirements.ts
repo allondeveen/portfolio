@@ -2,6 +2,7 @@ import { maintenanceRequirements } from "@allondeveen-portfolio/maintenance-cont
 import { menuRequirements } from "@allondeveen-portfolio/menu/cms";
 import { publicDocumentsRequirements } from "@allondeveen-portfolio/public-documents/cms";
 import { siteSettingsRequirements } from "@allondeveen-portfolio/site-settings/cms";
+import { templateRequirements } from "@allondeveen-portfolio/templates/cms";
 
 import type { SetupRequirementResult } from "@allondeveen-portfolio/setup-requirements";
 import type {
@@ -49,6 +50,7 @@ async function getResults(req: PayloadRequest): Promise<CMSPackagesRequirementsR
     siteSettingsRequirements,
     publicDocumentsRequirements,
     menuRequirements,
+    templateRequirements,
     maintenanceRequirements,
   ];
   let results: CMSPackageRequirements[] = [];
