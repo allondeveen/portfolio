@@ -3,6 +3,8 @@ import { id } from "@allondeveen-portfolio/id-property/config";
 import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
 import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
+import { subjects } from "./cms/properties/subjects";
+
 import type { CollectionConfig } from "payload";
 
 // TODO: add Topics, Series and Clients
@@ -34,6 +36,7 @@ export const articles: CollectionConfig = {
           type: "row",
           fields: [slug("articles", "/articles")],
         },
+        subjects,
       ],
     },
     title,

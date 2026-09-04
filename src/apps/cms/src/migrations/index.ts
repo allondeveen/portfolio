@@ -10,6 +10,7 @@ import * as migration_20260903_231614_add_projects_collection from "./20260903_2
 import * as migration_20260904_010738_add_articles_collection from "./20260904_010738_add_articles_collection";
 import * as migration_20260904_112037_add_topics_taxonomy from "./20260904_112037_add_topics_taxonomy";
 import * as migration_20260904_113756_add_topics_to_project_through_technologies_property from "./20260904_113756_add_topics_to_project_through_technologies_property";
+import * as migration_20260904_114304_add_topics_to_articles_through_subjects_property from "./20260904_114304_add_topics_to_articles_through_subjects_property";
 
 export const migrations = [
   {
@@ -71,5 +72,10 @@ export const migrations = [
     up: migration_20260904_113756_add_topics_to_project_through_technologies_property.up,
     down: migration_20260904_113756_add_topics_to_project_through_technologies_property.down,
     name: "20260904_113756_add_topics_to_project_through_technologies_property",
+  },
+  {
+    up: migration_20260904_114304_add_topics_to_articles_through_subjects_property.up,
+    down: migration_20260904_114304_add_topics_to_articles_through_subjects_property.down,
+    name: "20260904_114304_add_topics_to_articles_through_subjects_property",
   },
 ];

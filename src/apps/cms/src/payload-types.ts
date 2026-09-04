@@ -392,6 +392,7 @@ export interface Topic {
 export interface Article {
   id: string;
   slug: string;
+  subjects: (string | Topic)[];
   title: string;
   blocks: Hero[];
   meta?: {
@@ -681,6 +682,7 @@ export interface ProjectsSelect<T extends boolean = true> {
 export interface ArticlesSelect<T extends boolean = true> {
   id?: T;
   slug?: T;
+  subjects?: T;
   title?: T;
   blocks?: T | {};
   meta?:
