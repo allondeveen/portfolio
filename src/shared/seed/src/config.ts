@@ -100,9 +100,9 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
 
     await seed("menu", menuSeeds(payload));
 
-    await seed("templates", templateSeeds(payload));
-
     await globalSeed("site-settings", siteSettingsIsInitialised, siteSettingsSeeds(payload));
+
+    await seed("templates", templateSeeds(payload));
 
     await globalSeed("maintenance", maintenanceIsInitialised, maintenanceSeeds(payload));
 
