@@ -25,6 +25,7 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
     "@payloadcms/ui": "catalog:",
     "payload": "catalog:",
     "react": "catalog:",
@@ -37,6 +38,7 @@
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
-    "clsx": "catalog:"
+    "clsx": "catalog:",
+    "zod": "catalog:"
   }
 }

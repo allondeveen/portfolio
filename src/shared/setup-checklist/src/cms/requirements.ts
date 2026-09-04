@@ -4,6 +4,8 @@ import { publicDocumentsRequirements } from "@allondeveen-portfolio/public-docum
 import { siteSettingsRequirements } from "@allondeveen-portfolio/site-settings/cms";
 import { templateRequirements } from "@allondeveen-portfolio/templates/cms";
 
+import { environmentRequirements } from "./requirements/environmentRequirements";
+
 import type { SetupRequirementResult } from "@allondeveen-portfolio/setup-requirements";
 import type {
   CMSSetupRequirement,
@@ -46,6 +48,7 @@ type CheckCMSPackageRequirementsServerFunctionArgs = {
 
 async function getResults(req: PayloadRequest): Promise<CMSPackagesRequirementsResult> {
   const allPackageRequirements = [
+    environmentRequirements,
     siteSettingsRequirements,
     publicDocumentsRequirements,
     menuRequirements,
