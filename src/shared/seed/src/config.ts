@@ -96,11 +96,11 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
       ]);
     }
 
+    await globalSeed("site-settings", siteSettingsIsInitialised, siteSettingsSeeds(payload));
+
     await seed("pages", pageSeeds(payload));
 
     await seed("menu", menuSeeds(payload));
-
-    await globalSeed("site-settings", siteSettingsIsInitialised, siteSettingsSeeds(payload));
 
     await seed("templates", templateSeeds(payload));
 
