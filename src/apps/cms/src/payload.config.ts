@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { articles } from "@allondeveen-portfolio/articles/config";
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
 import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
@@ -125,6 +126,7 @@ export default buildConfig({
     // collections
     pages,
     projects,
+    articles,
 
     // taxonomy
 
@@ -174,7 +176,7 @@ export default buildConfig({
       alwaysInsertFields: true,
     }),
     seoPlugin({
-      collections: [pages.slug, projects.slug],
+      collections: [pages.slug, projects.slug, articles.slug],
       uploadsCollection: "media",
       generateTitle: ({ doc }) => getTitle(doc),
       generateDescription: ({ doc }) => getDescription(doc),

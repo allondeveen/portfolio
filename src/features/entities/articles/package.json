@@ -1,0 +1,27 @@
+{
+  "name": "@allondeveen-portfolio/articles",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/id-property": "workspace:*",
+    "@allondeveen-portfolio/slug-property": "workspace:*",
+    "@allondeveen-portfolio/title-property": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "payload": "catalog:"
+  }
+}

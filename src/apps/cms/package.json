@@ -26,6 +26,7 @@
     "wrangler": "cross-env NODE_OPTIONS=--no-deprecation wrangler"
   },
   "dependencies": {
+    "@allondeveen-portfolio/articles": "workspace:*",
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/client-credentials-flow": "workspace:*",
     "@allondeveen-portfolio/maintenance-content": "workspace:*",
