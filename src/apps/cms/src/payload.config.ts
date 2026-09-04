@@ -18,6 +18,7 @@ import {
 import { getSocialImage } from "@allondeveen-portfolio/site-settings/cms";
 import { siteSettings } from "@allondeveen-portfolio/site-settings/config";
 import { templates } from "@allondeveen-portfolio/templates/config";
+import { topics } from "@allondeveen-portfolio/topics/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
 import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
 import { seoPlugin } from "@payloadcms/plugin-seo";
@@ -129,6 +130,7 @@ export default buildConfig({
     articles,
 
     // taxonomy
+    topics,
 
     // supporting
     menu,

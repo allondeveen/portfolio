@@ -41,6 +41,7 @@
     "@allondeveen-portfolio/slug-property": "workspace:*",
     "@allondeveen-portfolio/sync-hero-metadata": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
+    "@allondeveen-portfolio/topics": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@opennextjs/cloudflare": "catalog:",
     "@payloadcms/db-d1-sqlite": "catalog:",

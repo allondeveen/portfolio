@@ -81,6 +81,7 @@ export interface Config {
     pages: Page;
     projects: Project;
     articles: Article;
+    topics: Topic;
     menu: Menu;
     templates: Template;
     users: User;
@@ -96,6 +97,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    topics: TopicsSelect<false> | TopicsSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
     templates: TemplatesSelect<false> | TemplatesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -392,6 +394,19 @@ export interface Article {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topics".
+ */
+export interface Topic {
+  id: string;
+  name: string;
+  slug: string;
+  parent?: (string | null) | Topic;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
@@ -555,6 +570,10 @@ export interface PayloadLockedDocument {
         value: string | Article;
       } | null)
     | ({
+        relationTo: 'topics';
+        value: string | Topic;
+      } | null)
+    | ({
         relationTo: 'menu';
         value: string | Menu;
       } | null)
@@ -669,6 +688,19 @@ export interface ArticlesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topics_select".
+ */
+export interface TopicsSelect<T extends boolean = true> {
+  id?: T;
+  name?: T;
+  slug?: T;
+  parent?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -897,6 +929,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'articles';
           value: string | Article;
+        } | null)
+      | ({
+          relationTo: 'topics';
+          value: string | Topic;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
