@@ -357,27 +357,7 @@ export interface Copyright {
 export interface Project {
   id: string;
   slug: string;
-  title: string;
-  blocks: Hero[];
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "articles".
- */
-export interface Article {
-  id: string;
-  slug: string;
+  technologies: (string | Topic)[];
   title: string;
   blocks: Hero[];
   meta?: {
@@ -401,6 +381,27 @@ export interface Topic {
   name: string;
   slug: string;
   parent?: (string | null) | Topic;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  blocks: Hero[];
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -659,6 +660,7 @@ export interface PagesSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
   id?: T;
   slug?: T;
+  technologies?: T;
   title?: T;
   blocks?: T | {};
   meta?:
