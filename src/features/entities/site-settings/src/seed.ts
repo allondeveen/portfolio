@@ -28,8 +28,8 @@ async function getOrCreateSocialImage(payload: Payload) {
   return await payload.create({
     collection: "media",
     data: {
-      alt: "Allon de Veen logo",
-      name: "Allon de Veen logo",
+      alt: "Allon de Veen: TypeScript-first full-stack engineer",
+      name: "Allon de Veen - Logo",
       type: "image",
     },
     file: {
