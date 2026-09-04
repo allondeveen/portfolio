@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "ts-essentials": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {
@@ -21,6 +22,7 @@
   "dependencies": {
     "@allondeveen-portfolio/menu": "workspace:*",
     "@allondeveen-portfolio/pages": "workspace:*",
+    "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*"
   }
 }

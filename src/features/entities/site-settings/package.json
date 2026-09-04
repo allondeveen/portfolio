@@ -8,6 +8,10 @@
       "types": "./src/config.ts",
       "import": "./src/config.ts"
     },
+    "./seed": {
+      "types": "./src/seed.ts",
+      "import": "./src/seed.ts"
+    },
     "./cms": {
       "types": "./src/cms.ts",
       "import": "./src/cms.ts"
@@ -27,6 +31,7 @@
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/media": "workspace:*",
+    "@allondeveen-portfolio/seed-function": "workspace:*",
     "@allondeveen-portfolio/validate-email": "workspace:*",
     "zod": "catalog:"
   },

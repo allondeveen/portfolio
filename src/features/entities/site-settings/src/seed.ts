@@ -1,0 +1,65 @@
+import { Buffer } from "node:buffer";
+
+import type { GlobalSeedFunction } from "@allondeveen-portfolio/seed-function";
+import type { DataFromGlobalSlug, JsonObject, Payload } from "payload";
+
+const socialImageFilename = "allon-de-veen-logo.svg";
+const socialImage =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><path fill="#0d0f12" d="M0 0h500v500H0z"/><path fill="#fff" d="m305.51 394.031-36.166 10.934a1569 1569 0 0 0-9.672-48.574q-5.046-23.334-10.934-45.205-39.53 1.262-69.808 1.682-30.279.421-45.418.421-37.427 0-37.427-25.653c0-8.41 2.663-15.767 7.99-22.081 5.327-6.302 12.756-12.823 22.288-19.552q20.185-13.877 40.999-28.175a2263 2263 0 0 1 42.687-28.597 939 939 0 0 0-15.139-39.109 4009 4009 0 0 0-16.401-39.11l33.643-15.98a4044 4044 0 0 1 15.773 36.166 684 684 0 0 1 14.505 36.586 2984 2984 0 0 1 43.736-27.755 1772 1772 0 0 1 45.417-27.335l15.14 30.699a2380 2380 0 0 0-47.521 27.756 3224 3224 0 0 0-45.417 27.755 919 919 0 0 1 13.457 39.109 1057 1057 0 0 1 11.775 39.53 4382 4382 0 0 0 60.557-2.943 37844 37844 0 0 0 59.715-3.365l4.626 33.223a9045 9045 0 0 1-59.295 3.151 2911 2911 0 0 1-56.772 2.315 689 689 0 0 1 9.672 41.633 1899 1899 0 0 1 7.99 42.474M135.194 279.646l.841 2.103a3240 3240 0 0 0 52.147-1.262q26.073-.841 51.725-1.261a670 670 0 0 0-9.044-29.858 1404 1404 0 0 0-9.88-29.017q-44.155 29.016-85.789 59.295"/></svg>';
+
+async function getOrCreateSocialImage(payload: Payload) {
+  const existingMedia = await payload.find({
+    collection: "media",
+    limit: 1,
+    where: {
+      filename: {
+        equals: socialImageFilename,
+      },
+    },
+  });
+  const existingSocialImage = existingMedia.docs.at(0);
+
+  if (existingSocialImage) {
+    return existingSocialImage;
+  }
+
+  const data = Buffer.from(socialImage, "utf8");
+
+  return await payload.create({
+    collection: "media",
+    data: {
+      alt: "Allon de Veen logo",
+      name: "Allon de Veen logo",
+      type: "image",
+    },
+    file: {
+      data,
+      mimetype: "image/svg+xml",
+      name: socialImageFilename,
+      size: data.byteLength,
+    },
+  });
+}
+
+export const siteSettingsSeeds: GlobalSeedFunction<
+  Omit<DataFromGlobalSlug<"site-settings">, "id">
+> = async (payload) => {
+  const seededSocialImage = await getOrCreateSocialImage(payload);
+
+  return {
+    siteTitle: "Allon de Veen",
+    supportEmail: "support@allondeveen.com",
+    socialImage: seededSocialImage.id,
+  };
+};
+
+export function siteSettingsIsInitialised(data: JsonObject) {
+  return (
+    typeof data.siteTitle === "string" &&
+    data.siteTitle.length > 0 &&
+    typeof data.supportEmail === "string" &&
+    data.supportEmail.length > 0 &&
+    data.socialImage !== undefined &&
+    data.socialImage !== null
+  );
+}

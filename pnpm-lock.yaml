@@ -93,6 +93,9 @@ catalogs:
     react-router:
       specifier: ^8
       version: 8.3.0
+    ts-essentials:
+      specifier: ^10.0.3
+      version: 10.0.3
     tsx:
       specifier: 4.22.4
       version: 4.22.4
@@ -1046,6 +1049,9 @@ importers:
       '@allondeveen-portfolio/media':
         specifier: workspace:*
         version: link:../media
+      '@allondeveen-portfolio/seed-function':
+        specifier: workspace:*
+        version: link:../../../shared/seed-function
       '@allondeveen-portfolio/validate-email':
         specifier: workspace:*
         version: link:../../../shared/validate-email
@@ -1490,6 +1496,9 @@ importers:
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/entities/pages
+      '@allondeveen-portfolio/site-settings':
+        specifier: workspace:*
+        version: link:../../features/entities/site-settings
       '@allondeveen-portfolio/templates':
         specifier: workspace:*
         version: link:../../features/entities/templates
@@ -1497,6 +1506,9 @@ importers:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
     devDependencies:
+      ts-essentials:
+        specifier: 'catalog:'
+        version: 10.0.3(typescript@5.9.3)
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
