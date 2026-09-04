@@ -10,7 +10,7 @@ export async function getSiteSettingsWithoutParse(payload: Payload): Promise<Jso
 }
 
 export async function getSiteSettings(payload: Payload): Promise<SiteSettings> {
-  const siteSettings = getSiteSettingsWithoutParse(payload);
+  const siteSettings = await getSiteSettingsWithoutParse(payload);
 
   const validatedSiteSettings = SiteSettingsSchema.parse(siteSettings);
 
