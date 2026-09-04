@@ -82,6 +82,7 @@ export interface Config {
     projects: Project;
     articles: Article;
     topics: Topic;
+    series: Series;
     menu: Menu;
     templates: Template;
     users: User;
@@ -92,12 +93,17 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    series: {
+      articles: 'articles';
+    };
+  };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     topics: TopicsSelect<false> | TopicsSelect<true>;
+    series: SeriesSelect<false> | SeriesSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
     templates: TemplatesSelect<false> | TemplatesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -390,9 +396,11 @@ export interface Topic {
  * via the `definition` "articles".
  */
 export interface Article {
+  _articles_articles_order?: string | null;
   id: string;
   slug: string;
   subjects: (string | Topic)[];
+  series?: (string | null) | Series;
   title: string;
   blocks: Hero[];
   meta?: {
@@ -406,6 +414,21 @@ export interface Article {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "series".
+ */
+export interface Series {
+  id: string;
+  title: string;
+  articles?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -576,6 +599,10 @@ export interface PayloadLockedDocument {
         value: string | Topic;
       } | null)
     | ({
+        relationTo: 'series';
+        value: string | Series;
+      } | null)
+    | ({
         relationTo: 'menu';
         value: string | Menu;
       } | null)
@@ -680,9 +707,11 @@ export interface ProjectsSelect<T extends boolean = true> {
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
+  _articles_articles_order?: T;
   id?: T;
   slug?: T;
   subjects?: T;
+  series?: T;
   title?: T;
   blocks?: T | {};
   meta?:
@@ -708,6 +737,17 @@ export interface TopicsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "series_select".
+ */
+export interface SeriesSelect<T extends boolean = true> {
+  id?: T;
+  title?: T;
+  articles?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

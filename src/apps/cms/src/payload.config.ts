@@ -11,6 +11,7 @@ import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
 import { projects } from "@allondeveen-portfolio/projects/config";
 import { onInit } from "@allondeveen-portfolio/seed/config";
+import { series } from "@allondeveen-portfolio/series/config";
 import {
   singleLineAdminSettings,
   SingleLineFeature,
@@ -131,6 +132,7 @@ export default buildConfig({
 
     // taxonomy
     topics,
+    series,
 
     // supporting
     menu,

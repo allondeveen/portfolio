@@ -218,6 +218,9 @@ importers:
       '@allondeveen-portfolio/seed':
         specifier: workspace:*
         version: link:../../shared/seed
+      '@allondeveen-portfolio/series':
+        specifier: workspace:*
+        version: link:../../features/entities/series
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
         version: link:../../shared/single-line-lexical
@@ -1064,6 +1067,19 @@ importers:
       '@allondeveen-portfolio/title-property':
         specifier: workspace:*
         version: link:../../properties/title
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/features/entities/series:
+    dependencies:
+      '@allondeveen-portfolio/id-property':
+        specifier: workspace:*
+        version: link:../../properties/id
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
