@@ -32,6 +32,7 @@
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/media": "workspace:*",
     "@allondeveen-portfolio/seed-function": "workspace:*",
+    "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/validate-email": "workspace:*",
     "zod": "catalog:"
   },

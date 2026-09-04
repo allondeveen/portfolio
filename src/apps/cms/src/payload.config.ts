@@ -12,6 +12,7 @@ import { pages } from "@allondeveen-portfolio/pages/config";
 import { projects } from "@allondeveen-portfolio/projects/config";
 import { onInit } from "@allondeveen-portfolio/seed/config";
 import { series } from "@allondeveen-portfolio/series/config";
+import { setupChecklist } from "@allondeveen-portfolio/setup-checklist/cms";
 import {
   singleLineAdminSettings,
   SingleLineFeature,
@@ -119,6 +120,19 @@ export default buildConfig({
         {
           rel: "apple-touch-icon",
           url: "/apple-touch-icon.png",
+        },
+      ],
+    },
+    dashboard: {
+      widgets: [setupChecklist],
+      defaultLayout: [
+        {
+          widgetSlug: "setup-checklist",
+          width: "full",
+        },
+        {
+          widgetSlug: "collections",
+          width: "full",
         },
       ],
     },

@@ -37,6 +37,7 @@
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/seed": "workspace:*",
     "@allondeveen-portfolio/series": "workspace:*",
+    "@allondeveen-portfolio/setup-checklist": "workspace:*",
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/slug-property": "workspace:*",

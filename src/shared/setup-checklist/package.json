@@ -1,0 +1,38 @@
+{
+  "name": "@allondeveen-portfolio/setup-checklist",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    },
+    "./components/setupChecklist": {
+      "types": "./src/cms/components/setupChecklist/index.ts",
+      "import": "./src/cms/components/setupChecklist/index.ts"
+    },
+    "./style.css": {
+      "types": "./src/cms/components/setupChecklist/style.css",
+      "import": "./src/cms/components/setupChecklist/style.css"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@payloadcms/ui": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/setup-requirements": "workspace:*",
+    "@allondeveen-portfolio/site-settings": "workspace:*",
+    "clsx": "catalog:"
+  }
+}

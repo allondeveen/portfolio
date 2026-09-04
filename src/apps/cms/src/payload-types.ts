@@ -128,6 +128,7 @@ export interface Config {
   };
   locale: null;
   widgets: {
+    'setup-checklist': SetupChecklistWidget;
     collections: CollectionsWidget;
   };
   user: User;
@@ -940,6 +941,16 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "setup-checklist_widget".
+ */
+export interface SetupChecklistWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
