@@ -1,3 +1,7 @@
+import {
+  maintenanceIsInitialised,
+  maintenanceSeeds,
+} from "@allondeveen-portfolio/maintenance-content/seed";
 import { menuSeeds } from "@allondeveen-portfolio/menu/seed";
 import { pageSeeds } from "@allondeveen-portfolio/pages/seed";
 import {
@@ -99,6 +103,8 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
     await seed("templates", templateSeeds(payload));
 
     await globalSeed("site-settings", siteSettingsIsInitialised, siteSettingsSeeds(payload));
+
+    await globalSeed("maintenance", maintenanceIsInitialised, maintenanceSeeds(payload));
 
     console.log("Seeding finished");
   };

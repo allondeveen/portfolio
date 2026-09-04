@@ -900,6 +900,9 @@ importers:
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../public-documents
+      '@allondeveen-portfolio/seed-function':
+        specifier: workspace:*
+        version: link:../../../shared/seed-function
       '@allondeveen-portfolio/site-settings':
         specifier: workspace:*
         version: link:../site-settings
@@ -1490,6 +1493,9 @@ importers:
 
   src/shared/seed:
     dependencies:
+      '@allondeveen-portfolio/maintenance-content':
+        specifier: workspace:*
+        version: link:../../features/entities/maintenance
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
         version: link:../../features/entities/menu

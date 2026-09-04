@@ -20,6 +20,7 @@
     "payload": "catalog:"
   },
   "dependencies": {
+    "@allondeveen-portfolio/maintenance-content": "workspace:*",
     "@allondeveen-portfolio/menu": "workspace:*",
     "@allondeveen-portfolio/pages": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",

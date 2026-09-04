@@ -8,6 +8,10 @@
       "types": "./src/config.ts",
       "import": "./src/config.ts"
     },
+    "./seed": {
+      "types": "./src/seed.ts",
+      "import": "./src/seed.ts"
+    },
     "./cms": {
       "types": "./dist/cms.d.ts",
       "import": "./src/cms.ts"
@@ -45,6 +49,7 @@
     "@allondeveen-portfolio/header": "workspace:*",
     "@allondeveen-portfolio/maintenance-build": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
+    "@allondeveen-portfolio/seed-function": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "catalog:",
