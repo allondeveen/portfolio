@@ -50,6 +50,7 @@
     "@allondeveen-portfolio/maintenance-build": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/seed-function": "workspace:*",
+    "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "catalog:",

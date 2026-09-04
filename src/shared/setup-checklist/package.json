@@ -31,6 +31,7 @@
     "react-dom": "catalog:"
   },
   "dependencies": {
+    "@allondeveen-portfolio/maintenance-content": "workspace:*",
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "clsx": "catalog:"

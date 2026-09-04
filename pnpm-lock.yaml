@@ -937,6 +937,9 @@ importers:
       '@allondeveen-portfolio/seed-function':
         specifier: workspace:*
         version: link:../../../shared/seed-function
+      '@allondeveen-portfolio/setup-requirements':
+        specifier: workspace:*
+        version: link:../../../shared/setup-requirements
       '@allondeveen-portfolio/site-settings':
         specifier: workspace:*
         version: link:../site-settings
@@ -1603,6 +1606,9 @@ importers:
 
   src/shared/setup-checklist:
     dependencies:
+      '@allondeveen-portfolio/maintenance-content':
+        specifier: workspace:*
+        version: link:../../features/entities/maintenance
       '@allondeveen-portfolio/setup-requirements':
         specifier: workspace:*
         version: link:../setup-requirements
