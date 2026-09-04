@@ -1020,6 +1020,9 @@ importers:
       '@allondeveen-portfolio/seed-function':
         specifier: workspace:*
         version: link:../../../shared/seed-function
+      '@allondeveen-portfolio/setup-requirements':
+        specifier: workspace:*
+        version: link:../../../shared/setup-requirements
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../shared/ui
@@ -1609,6 +1612,9 @@ importers:
       '@allondeveen-portfolio/maintenance-content':
         specifier: workspace:*
         version: link:../../features/entities/maintenance
+      '@allondeveen-portfolio/menu':
+        specifier: workspace:*
+        version: link:../../features/entities/menu
       '@allondeveen-portfolio/setup-requirements':
         specifier: workspace:*
         version: link:../setup-requirements
