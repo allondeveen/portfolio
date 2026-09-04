@@ -29,6 +29,7 @@
     "typescript": "catalog:"
   },
   "peerDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
     "@payloadcms/ui": "catalog:",
     "payload": "catalog:",
     "react": "catalog:",
