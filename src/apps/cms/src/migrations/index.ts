@@ -12,6 +12,7 @@ import * as migration_20260904_112037_add_topics_taxonomy from "./20260904_11203
 import * as migration_20260904_113756_add_topics_to_project_through_technologies_property from "./20260904_113756_add_topics_to_project_through_technologies_property";
 import * as migration_20260904_114304_add_topics_to_articles_through_subjects_property from "./20260904_114304_add_topics_to_articles_through_subjects_property";
 import * as migration_20260904_122329_add_series_taxonomy from "./20260904_122329_add_series_taxonomy";
+import * as migration_20260904_122852_remove_topics_from_revisions from "./20260904_122852_remove_topics_from_revisions";
 
 export const migrations = [
   {
@@ -83,5 +84,10 @@ export const migrations = [
     up: migration_20260904_122329_add_series_taxonomy.up,
     down: migration_20260904_122329_add_series_taxonomy.down,
     name: "20260904_122329_add_series_taxonomy",
+  },
+  {
+    up: migration_20260904_122852_remove_topics_from_revisions.up,
+    down: migration_20260904_122852_remove_topics_from_revisions.down,
+    name: "20260904_122852_remove_topics_from_revisions",
   },
 ];

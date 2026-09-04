@@ -18,11 +18,5 @@ export const topics: CollectionConfig = {
     singular: "Topic",
     plural: "Topics",
   },
-  versions: {
-    drafts: {
-      schedulePublish: true,
-      validate: true,
-    },
-  },
   fields: [id, name, slug, parent, syncSlugFromName],
 };

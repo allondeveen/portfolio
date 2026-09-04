@@ -389,7 +389,6 @@ export interface Topic {
   parent?: (string | null) | Topic;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -736,7 +735,6 @@ export interface TopicsSelect<T extends boolean = true> {
   parent?: T;
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -973,10 +971,6 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'articles';
           value: string | Article;
-        } | null)
-      | ({
-          relationTo: 'topics';
-          value: string | Topic;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
