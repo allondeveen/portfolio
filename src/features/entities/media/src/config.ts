@@ -56,6 +56,18 @@ export const media: CollectionConfig = {
       name: "credits",
       type: "text",
     },
+    {
+      type: "ui",
+      name: "syncNameFromFileName",
+      admin: {
+        components: {
+          Field: {
+            path: "@allondeveen-portfolio/media/components/syncNameFromFileName",
+            exportName: "SyncNameFromFileName",
+          },
+        },
+      },
+    },
   ],
   hooks: {
     beforeOperation: [

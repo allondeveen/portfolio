@@ -12,6 +12,10 @@
       "types": "./src/cms.ts",
       "import": "./src/cms.ts"
     },
+    "./components/syncNameFromFileName": {
+      "types": "./src/cms/components/syncNameFromFileName.tsx",
+      "import": "./src/cms/components/syncNameFromFileName.tsx"
+    },
     "./trpc-server": {
       "types": "./src/trpc-server.ts",
       "import": "./src/trpc-server.ts"
@@ -25,11 +29,13 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/react": "catalog:",
     "@opennextjs/cloudflare": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {
     "@opennextjs/cloudflare": "catalog:",
+    "@payloadcms/ui": "catalog:",
     "payload": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
