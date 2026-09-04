@@ -11,12 +11,15 @@ export function PackageRequirement({ label, instruction, result }: PackageRequir
   return (
     <li aria-label="Site title" className={clsx("requirement", result, slug)}>
       <p className="requirement__label">
-        {label}
-        {result === "complete" && <SuccessIcon />}
+        {result === "complete" ? (
+          <>
+            {label}
+            {result === "complete" && <SuccessIcon />}
+          </>
+        ) : (
+          instruction
+        )}
       </p>
-      {instruction && result === "incomplete" && (
-        <p className="requirement--instruction">{instruction}</p>
-      )}
     </li>
   );
 }

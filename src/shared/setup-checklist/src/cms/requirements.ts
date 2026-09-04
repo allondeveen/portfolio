@@ -13,8 +13,7 @@ import type { PayloadRequest, ServerFunction } from "payload";
 
 export const checkCMSPackageRequirementsServerFunctionName = "check-cms-package-requirements";
 
-export type CMSPackageRequirement = Omit<CMSSetupRequirement, "check" | "instruction"> & {
-  instruction?: CMSSetupRequirement["instruction"];
+export type CMSPackageRequirement = Omit<CMSSetupRequirement, "check"> & {
   result: Exclude<SetupRequirementResult["status"], "error">;
 };
 
