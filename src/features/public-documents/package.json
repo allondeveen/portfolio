@@ -45,6 +45,7 @@
     "@allondeveen-portfolio/lexical-text": "workspace:*",
     "@allondeveen-portfolio/procedure-result": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",

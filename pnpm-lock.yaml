@@ -1433,6 +1433,9 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../blocks/textual/rich-text
+      '@allondeveen-portfolio/setup-requirements':
+        specifier: workspace:*
+        version: link:../../shared/setup-requirements
       '@allondeveen-portfolio/site-settings':
         specifier: workspace:*
         version: link:../entities/site-settings
@@ -1615,6 +1618,9 @@ importers:
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
         version: link:../../features/entities/menu
+      '@allondeveen-portfolio/public-documents':
+        specifier: workspace:*
+        version: link:../../features/public-documents
       '@allondeveen-portfolio/setup-requirements':
         specifier: workspace:*
         version: link:../setup-requirements
