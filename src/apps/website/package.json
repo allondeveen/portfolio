@@ -17,6 +17,7 @@
     "@allondeveen-portfolio/design-system": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
+    "@allondeveen-portfolio/website-environment-validation": "workspace:*",
     "@trpc/client": "catalog:",
     "@vanilla-extract/css": "catalog:",
     "isbot": "^5.1.36",

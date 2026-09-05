@@ -442,6 +442,9 @@ importers:
       '@allondeveen-portfolio/trpc':
         specifier: workspace:*
         version: link:../../shared/trpc
+      '@allondeveen-portfolio/website-environment-validation':
+        specifier: workspace:*
+        version: link:../../shared/website-environment-validation
       '@trpc/client':
         specifier: 'catalog:'
         version: 11.18.0(@trpc/server@11.18.0(typescript@5.9.3))(typescript@5.9.3)
@@ -1783,6 +1786,22 @@ importers:
       zod:
         specifier: 'catalog:'
         version: 4.4.3
+
+  src/shared/website-environment-validation:
+    dependencies:
+      '@allondeveen-portfolio/setup-requirements':
+        specifier: workspace:*
+        version: link:../setup-requirements
+      react-router:
+        specifier: 'catalog:'
+        version: 8.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
 
 packages:
 

@@ -24,7 +24,7 @@ export function createCMSClient(env: Env, signal: AbortSignal): CMSClient {
 
   function getToken() {
     tokenPromise ??= requestAccessToken({
-      tokenEndpoint: new URL("/oauth/token/", env.CMS_URL).toString(),
+      tokenEndpoint: new URL("/oauth/token/", env.CMS_URL ?? "https://example.com").toString(),
       clientId: env.OAUTH_CLIENT_ID,
       clientSecret: env.OAUTH_CLIENT_SECRET,
       scope: CMS_SCOPE,
@@ -67,7 +67,7 @@ export function createCMSClient(env: Env, signal: AbortSignal): CMSClient {
         },
       }),
       httpLink({
-        url: new URL("/trpc", env.CMS_URL),
+        url: new URL("/trpc", env.CMS_URL ?? "https://example.com"),
         async headers({ op }: { op: Operation }) {
           const currentTokenPromise = getToken();
           op.context[TOKEN_PROMISE_CONTEXT_KEY] = currentTokenPromise;
