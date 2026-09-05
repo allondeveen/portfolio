@@ -422,6 +422,7 @@ export interface Article {
 export interface Series {
   id: string;
   title: string;
+  slug: string;
   articles?: {
     docs?: (string | Article)[];
     hasNextPage?: boolean;
@@ -744,6 +745,7 @@ export interface TopicsSelect<T extends boolean = true> {
 export interface SeriesSelect<T extends boolean = true> {
   id?: T;
   title?: T;
+  slug?: T;
   articles?: T;
   updatedAt?: T;
   createdAt?: T;

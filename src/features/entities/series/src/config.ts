@@ -1,6 +1,8 @@
 import { id } from "@allondeveen-portfolio/id-property/config";
 
 import { articles } from "./cms/properties/articles";
+import { slug } from "./cms/properties/slug";
+import { syncSlugFromTitle } from "./cms/properties/syncSlugFromTitle";
 import { title } from "./cms/properties/title";
 
 import type { CollectionConfig } from "payload";
@@ -16,5 +18,5 @@ export const series: CollectionConfig = {
     singular: "Series",
     plural: "Series",
   },
-  fields: [id, title, articles],
+  fields: [id, title, slug, articles, syncSlugFromTitle],
 };

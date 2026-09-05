@@ -7,6 +7,10 @@
     "./config": {
       "types": "./src/config.ts",
       "import": "./src/config.ts"
+    },
+    "./components/syncSlugFromTitle": {
+      "types": "./src/cms/components/syncSlugFromTitle.tsx",
+      "import": "./src/cms/components/syncSlugFromTitle.tsx"
     }
   },
   "scripts": {
@@ -16,9 +20,12 @@
     "@allondeveen-portfolio/id-property": "workspace:*"
   },
   "devDependencies": {
+    "@types/react": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "catalog:"
+    "@payloadcms/ui": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:"
   }
 }
