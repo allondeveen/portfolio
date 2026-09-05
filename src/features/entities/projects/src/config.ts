@@ -3,6 +3,7 @@ import { id } from "@allondeveen-portfolio/id-property/config";
 import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
 import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
+import { clients } from "./cms/properties/clients";
 import { technologies } from "./cms/properties/technologies";
 
 import type { CollectionConfig } from "payload";
@@ -37,6 +38,7 @@ export const projects: CollectionConfig = {
           fields: [slug("projects", "/projects")],
         },
         technologies,
+        clients,
       ],
     },
     title,

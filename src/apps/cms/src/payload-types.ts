@@ -367,6 +367,7 @@ export interface Project {
   id: string;
   slug: string;
   technologies: (string | Topic)[];
+  clients: (string | Client)[];
   title: string;
   blocks: Hero[];
   meta?: {
@@ -390,6 +391,17 @@ export interface Topic {
   name: string;
   slug: string;
   parent?: (string | null) | Topic;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: string;
+  name: string;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -430,17 +442,6 @@ export interface Series {
     hasNextPage?: boolean;
     totalDocs?: number;
   };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "clients".
- */
-export interface Client {
-  id: string;
-  name: string;
-  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -707,6 +708,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   id?: T;
   slug?: T;
   technologies?: T;
+  clients?: T;
   title?: T;
   blocks?: T | {};
   meta?:
