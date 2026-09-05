@@ -197,6 +197,9 @@ importers:
       '@allondeveen-portfolio/client-credentials-flow':
         specifier: workspace:*
         version: link:../../shared/client-credentials-flow
+      '@allondeveen-portfolio/clients':
+        specifier: workspace:*
+        version: link:../../features/entities/clients
       '@allondeveen-portfolio/maintenance-content':
         specifier: workspace:*
         version: link:../../features/entities/maintenance
@@ -909,6 +912,19 @@ importers:
       '@allondeveen-portfolio/title-property':
         specifier: workspace:*
         version: link:../../properties/title
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/features/entities/clients:
+    dependencies:
+      '@allondeveen-portfolio/id-property':
+        specifier: workspace:*
+        version: link:../../properties/id
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)

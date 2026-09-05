@@ -83,6 +83,7 @@ export interface Config {
     articles: Article;
     topics: Topic;
     series: Series;
+    clients: Client;
     menu: Menu;
     templates: Template;
     users: User;
@@ -104,6 +105,7 @@ export interface Config {
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     topics: TopicsSelect<false> | TopicsSelect<true>;
     series: SeriesSelect<false> | SeriesSelect<true>;
+    clients: ClientsSelect<false> | ClientsSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
     templates: TemplatesSelect<false> | TemplatesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -433,6 +435,17 @@ export interface Series {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: string;
+  name: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
@@ -604,6 +617,10 @@ export interface PayloadLockedDocument {
         value: string | Series;
       } | null)
     | ({
+        relationTo: 'clients';
+        value: string | Client;
+      } | null)
+    | ({
         relationTo: 'menu';
         value: string | Menu;
       } | null)
@@ -747,6 +764,17 @@ export interface SeriesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   articles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  id?: T;
+  name?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }

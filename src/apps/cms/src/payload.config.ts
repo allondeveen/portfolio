@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { articles } from "@allondeveen-portfolio/articles/config";
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
+import { clients } from "@allondeveen-portfolio/clients/config";
 import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
 import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
@@ -147,6 +148,7 @@ export default buildConfig({
     // taxonomy
     topics,
     series,
+    clients,
 
     // supporting
     menu,
