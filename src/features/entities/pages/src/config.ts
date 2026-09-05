@@ -4,6 +4,7 @@ import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/con
 import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
 import { preventHomepageDelete } from "./hooks/preventHomepageDelete";
+import { validateSEO } from "./hooks/validateSEO";
 import { parent } from "./properties/parent";
 
 import type { CollectionConfig } from "payload";
@@ -45,5 +46,6 @@ export const pages: CollectionConfig = {
   ],
   hooks: {
     beforeDelete: [preventHomepageDelete],
+    beforeChange: [validateSEO],
   },
 };

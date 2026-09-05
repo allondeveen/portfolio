@@ -1073,6 +1073,9 @@ importers:
       '@allondeveen-portfolio/seed-function':
         specifier: workspace:*
         version: link:../../../shared/seed-function
+      '@allondeveen-portfolio/seo-validation':
+        specifier: workspace:*
+        version: link:../../../shared/seo-validation
       '@allondeveen-portfolio/slug-property':
         specifier: workspace:*
         version: link:../../properties/slug
@@ -1082,6 +1085,9 @@ importers:
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       typescript:
         specifier: 'catalog:'
@@ -1645,6 +1651,19 @@ importers:
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/shared/seo-validation:
+    dependencies:
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       typescript:
         specifier: 'catalog:'
