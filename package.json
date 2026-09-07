@@ -33,7 +33,8 @@
     "maintenance:production:off": "pnpm --filter @allondeveen-portfolio/maintenance exec wrangler kv key put --env production --binding RUNTIME_CONFIG maintenance-mode disabled --remote",
     "release_checks:production": "echo \"No release check setup yet\"",
     "release_checks:staging": "echo \"No release check setup yet\"",
-    "pnpm:clean": "git clean -dfx -e \".env\" -e \".dev.vars\" -e \".wrangler\""
+    "pnpm:clean": "git clean -dfx -e \".env\" -e \".dev.vars\" -e \".wrangler\"",
+    "database:clean": "rm -rf .wrangler && rm -rf src/apps/cms/.wrangler && rm -rf src/apps/assets-proxy/.wrangler"
   },
   "keywords": [],
   "author": "",
