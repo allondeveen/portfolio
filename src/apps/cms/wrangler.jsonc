@@ -11,13 +11,6 @@
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
 	},
-	"d1_databases": [
-		{
-			"binding": "D1",
-			"database_name": "portfolio-cms-dev",
-			"database_id": "DATABASE_ID"
-		}
-	],
 	"r2_buckets": [
 		{
 			"bucket_name": "portfolio-assets-dev",
@@ -31,7 +24,7 @@
     "ENVIRONMENT": "development"
   },
   "secrets": {
-    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "SEED_EMAIL", "SEED_PASS"]
+    "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "SEED_EMAIL", "SEED_PASS"]
   },
 	// Here's how to configure an additional environment
 	// It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
@@ -47,16 +40,8 @@
         "ENVIRONMENT": "staging"
       },
       "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
+        "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
       },
-			"d1_databases": [
-				{
-					"binding": "D1",
-					"database_id": "fe1310f3-b1d1-40b7-973d-46abf7772f72",
-					"database_name": "portfolio-cms-staging",
-					"remote": true
-				}
-			],
 			"r2_buckets": [
 				{
 					"binding": "R2",
@@ -76,16 +61,8 @@
         "ENVIRONMENT": "production"
       },
       "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
+        "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
       },
-			"d1_databases": [
-				{
-					"binding": "D1",
-					"database_id": "41ebaab8-e581-48b0-9626-2db1b1679111",
-					"database_name": "portfolio-cms",
-					"remote": true
-				}
-			],
 			"r2_buckets": [
 				{
 					"binding": "R2",

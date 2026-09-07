@@ -23,7 +23,7 @@ import { siteSettings } from "@allondeveen-portfolio/site-settings/config";
 import { templates } from "@allondeveen-portfolio/templates/config";
 import { topics } from "@allondeveen-portfolio/topics/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
-import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
+import { postgresAdapter } from "@payloadcms/db-postgres";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import {
   BoldFeature,
@@ -183,8 +183,10 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  db: sqliteD1Adapter({
-    binding: cloudflare.env.D1,
+  db: postgresAdapter({
+    pool: {
+      connectionString: cloudflare.env.DATABASE_CONNECTIONSTRING,
+    },
   }),
   logger: isProduction ? cloudflareLogger : undefined,
   plugins: [

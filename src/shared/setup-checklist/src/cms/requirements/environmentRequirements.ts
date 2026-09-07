@@ -6,6 +6,7 @@ import type { CMSSetupRequirements } from "@allondeveen-portfolio/setup-requirem
 import type { JsonObject } from "payload";
 
 const EnvironmentSchema = z.object({
+  DATABASE_CONNECTIONSTRING: z.string().min(1),
   OAUTH_CLIENT_ID: z.string().min(1),
   OAUTH_CLIENT_SECRET: z.string().min(1),
   OAUTH_JWT_SIGNING_KEY: z.string().min(1),
@@ -68,6 +69,11 @@ function isNotDevelopment(env: JsonObject) {
 export const environmentRequirements: CMSSetupRequirements = {
   label: "Configuration",
   requirements: [
+    {
+      label: "DATABASE_CONNECTIONSTRING",
+      instruction: "Add DATABASE_CONNECTIONSTRING to the environment secrets.",
+      check: checkAttribute("DATABASE_CONNECTIONSTRING", "DATABASE_CONNECTIONSTRING"),
+    },
     {
       label: "OAUTH_CLIENT_ID",
       instruction: "Add OAUTH_CLIENT_ID to the environment secrets.",
