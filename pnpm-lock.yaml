@@ -168,24 +168,6 @@ importers:
         specifier: ^8.66.0
         version: 8.66.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3)
 
-  src/apps/assets-proxy:
-    devDependencies:
-      '@types/node':
-        specifier: 'catalog:'
-        version: 26.2.0
-      dotenv-cli:
-        specifier: 'catalog:'
-        version: 11.0.0
-      itty-router:
-        specifier: 'catalog:'
-        version: 3.0.12
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
-      wrangler:
-        specifier: 'catalog:'
-        version: 4.120.0(@cloudflare/workers-types@5.20260804.1)
-
   src/apps/cms:
     dependencies:
       '@allondeveen-portfolio/articles':
