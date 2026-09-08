@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/caching": "workspace:*",
     "@allondeveen-portfolio/media": "workspace:*",
     "@allondeveen-portfolio/seed-function": "workspace:*",
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
@@ -37,9 +38,11 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
     "payload": "catalog:"
   }
 }

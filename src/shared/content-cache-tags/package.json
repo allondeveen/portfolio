@@ -1,5 +1,5 @@
 {
-  "name": "@allondeveen-portfolio/maintenance-mode",
+  "name": "@allondeveen-portfolio/content-cache-tags",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -13,12 +13,6 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "catalog:",
-    "@types/react": "catalog:",
-    "react": "catalog:",
     "typescript": "catalog:"
-  },
-  "peerDependencies": {
-    "react": "catalog:"
   }
 }

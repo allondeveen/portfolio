@@ -2,6 +2,7 @@ import { allBlockTypes } from "@allondeveen-portfolio/blocks-property/all";
 import { blocks } from "@allondeveen-portfolio/blocks-property/config";
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { invalidateCache } from "./cms/hooks/invalidateCache";
 import { validateBlocks } from "./cms/hooks/validateBlocks";
 import { location } from "./cms/properties/location";
 
@@ -25,4 +26,7 @@ export const templates: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [invalidateCache],
+  },
 };

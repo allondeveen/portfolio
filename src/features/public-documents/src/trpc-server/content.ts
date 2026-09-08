@@ -1,3 +1,5 @@
+import { getVersions } from "@allondeveen-portfolio/caching";
+import { type CacheTagInput, getCacheTags } from "@allondeveen-portfolio/content-cache-tags";
 import { getFooter } from "@allondeveen-portfolio/footer/trpc-server";
 import { getHeader } from "@allondeveen-portfolio/header/trpc-server";
 import { ProcedureResultSchema } from "@allondeveen-portfolio/procedure-result";
@@ -10,7 +12,7 @@ import { DocumentSchema as CMSDocumentSchema, findBySlug } from "../cms";
 import { mapDocument } from "./adapter";
 import { createDependencies } from "./dependencies";
 import { createMappingContext } from "./mappingContext";
-import { DocumentSchema } from "../website/data";
+import { type Document, DocumentSchema } from "../website/data";
 
 import type { MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
 
@@ -108,6 +110,14 @@ export const contentProcedure = protectedProcedure
         siteSettings,
         mapBlockOptions,
       )(validatedDocument.data, context);
+      const tags = getCacheTags({
+        slug: input,
+        ...getBlockNamesAndData(mappedDocument.blocks),
+      });
+      mappedDocument.tags = await getVersions({
+        cache: env.CACHE,
+        tags,
+      });
       return {
         status: "success",
         data: mappedDocument,
@@ -128,3 +138,37 @@ export const contentProcedure = protectedProcedure
       }
     }
   });
+
+function getBlockNamesAndData(
+  blocks: Document["blocks"],
+): Pick<CacheTagInput, "blockData" | "blockNames"> {
+  let blockNames: string[] = [];
+  const blockData: CacheTagInput["blockData"] = {};
+  for (const block of blocks) {
+    blockNames = [...blockNames, block.kind];
+    switch (block.kind) {
+      case "image":
+        if (block.image) {
+          blockData.image = [...(blockData.image ?? []), block.image.id];
+        }
+        break;
+      case "menu":
+        blockData.menu = [...(blockData.menu ?? []), block.location];
+        break;
+    }
+    if ("blocks" in block) {
+      const childData = getBlockNamesAndData(block.blocks);
+      blockNames = [...blockNames, ...childData.blockNames];
+      if (childData.blockData.image) {
+        blockData.image = [...(blockData.image ?? []), ...childData.blockData.image];
+      }
+      if (childData.blockData.menu) {
+        blockData.menu = [...(blockData.menu ?? []), ...childData.blockData.menu];
+      }
+    }
+  }
+  return {
+    blockData,
+    blockNames,
+  };
+}

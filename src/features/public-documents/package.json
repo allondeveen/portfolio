@@ -39,6 +39,8 @@
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/caching": "workspace:*",
+    "@allondeveen-portfolio/content-cache-tags": "workspace:*",
     "@allondeveen-portfolio/footer": "workspace:*",
     "@allondeveen-portfolio/header": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:*",

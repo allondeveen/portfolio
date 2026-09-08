@@ -1,5 +1,5 @@
 {
-  "name": "@allondeveen-portfolio/maintenance-mode",
+  "name": "@allondeveen-portfolio/caching",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -14,11 +14,9 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "catalog:",
-    "@types/react": "catalog:",
-    "react": "catalog:",
     "typescript": "catalog:"
   },
-  "peerDependencies": {
-    "react": "catalog:"
+  "dependencies": {
+    "zod": "catalog:"
   }
 }

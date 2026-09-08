@@ -10,7 +10,7 @@ export function loader({ context, params }: Route.LoaderArgs) {
   loaderValidateWebsiteEnvironment(env);
   const { "*": slug } = params;
 
-  return publicDocumentLoader(context.get(cmsContext), `/${slug}`);
+  return publicDocumentLoader(context.get(cmsContext), env.CACHE, `/${slug}`);
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

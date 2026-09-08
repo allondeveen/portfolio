@@ -3,6 +3,7 @@ import { id } from "@allondeveen-portfolio/id-property/config";
 import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
 import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
+import { invalidateCache } from "./cms/hooks/invalidateCache";
 import { clients } from "./cms/properties/clients";
 import { technologies } from "./cms/properties/technologies";
 
@@ -46,4 +47,7 @@ export const projects: CollectionConfig = {
     syncSlugFromHero,
     syncTitleFromHero,
   ],
+  hooks: {
+    afterChange: [invalidateCache],
+  },
 };

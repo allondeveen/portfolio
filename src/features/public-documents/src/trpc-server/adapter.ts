@@ -25,5 +25,6 @@ export const mapDocument =
       blocks: await Promise.all(
         document.blocks.map((value) => mapBlock(mapBlockOptions)(value, context)),
       ),
+      tags: {},
     };
   };

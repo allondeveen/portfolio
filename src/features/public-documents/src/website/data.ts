@@ -15,6 +15,7 @@ export const DocumentSchema = z.object({
   footer: TemplateSchema,
   siteSettings: SiteSettingsSchema,
   blocks: z.array(BlockSchema).min(1),
+  tags: z.record(z.string().min(1), z.string().nullable()),
 });
 
 export type Document = z.infer<typeof DocumentSchema>;

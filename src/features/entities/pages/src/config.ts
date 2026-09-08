@@ -3,6 +3,7 @@ import { id } from "@allondeveen-portfolio/id-property/config";
 import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
 import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
+import { invalidateCache } from "./hooks/invalidateCache";
 import { preventHomepageDelete } from "./hooks/preventHomepageDelete";
 import { validateSEO } from "./hooks/validateSEO";
 import { parent } from "./properties/parent";
@@ -47,5 +48,6 @@ export const pages: CollectionConfig = {
   hooks: {
     beforeDelete: [preventHomepageDelete],
     beforeChange: [validateSEO],
+    afterChange: [invalidateCache],
   },
 };

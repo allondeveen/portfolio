@@ -7,6 +7,13 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "9f36b6314d634c2794e25c7f6e8adebd",
+      "remote": true
+    }
+  ],
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
@@ -32,6 +39,19 @@
 	"env": {
 		"staging": {
 			"name": "portfolio-cms-staging",
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "0ea599ac72c84139875748a01e7b35f7"
+        }
+      ],
+			"r2_buckets": [
+				{
+					"binding": "R2",
+					"bucket_name": "portfolio-assets-staging",
+			    "remote": true
+				}
+			],
       "vars": {
         "CMS_ORIGIN": "https://cms-staging.allondeveen.com",
         "FRONTEND_URL": "https://staging.allondeveen.com",
@@ -42,17 +62,23 @@
       },
       "secrets": {
         "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
-      },
-			"r2_buckets": [
-				{
-					"binding": "R2",
-					"bucket_name": "portfolio-assets-staging",
-			    "remote": true
-				}
-			]
+      }
 		},
 		"production": {
 			"name": "portfolio-cms",
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "e5e97de323504b98ad986a5528367378"
+        }
+      ],
+			"r2_buckets": [
+				{
+					"binding": "R2",
+					"bucket_name": "portfolio-assets",
+			    "remote": true
+				}
+			],
       "vars": {
         "CMS_ORIGIN": "https://cms.allondeveen.com",
         "FRONTEND_URL": "https://www.allondeveen.com",
@@ -63,14 +89,7 @@
       },
       "secrets": {
         "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
-      },
-			"r2_buckets": [
-				{
-					"binding": "R2",
-					"bucket_name": "portfolio-assets",
-			    "remote": true
-				}
-			]
+      }
 		}
 	}
 }

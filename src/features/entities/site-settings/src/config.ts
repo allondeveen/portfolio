@@ -1,3 +1,4 @@
+import { invalidateCache } from "./cms/hooks/invalidateCache";
 import { validateEmail } from "./cms/hooks/validateEmail";
 
 import type { GlobalConfig } from "payload";
@@ -29,4 +30,7 @@ export const siteSettings: GlobalConfig = {
       required: true,
     },
   ],
+  hooks: {
+    afterChange: [invalidateCache],
+  },
 };

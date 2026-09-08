@@ -8,7 +8,7 @@ import type { Route } from "./+types/home";
 
 export function loader({ context }: Route.LoaderArgs) {
   loaderValidateWebsiteEnvironment(env);
-  return publicDocumentLoader(context.get(cmsContext), "/");
+  return publicDocumentLoader(context.get(cmsContext), env.CACHE, "/");
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {

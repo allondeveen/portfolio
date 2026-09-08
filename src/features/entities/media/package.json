@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/caching": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*",
     "zod": "catalog:"
   }
