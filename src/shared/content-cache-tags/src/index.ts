@@ -10,9 +10,10 @@ export type CacheTagInput = {
   slug: string;
   blockNames: readonly string[];
   blockData: BlockData;
+  series?: string | null | undefined;
 };
 
-export function getCacheTags({ slug, blockNames, blockData }: CacheTagInput): string[] {
+export function getCacheTags({ slug, blockNames, blockData, series }: CacheTagInput): string[] {
   let tags = [`route:${slug}`, "header", "footer"];
   if (
     blockNames.includes("menu") &&
@@ -32,6 +33,9 @@ export function getCacheTags({ slug, blockNames, blockData }: CacheTagInput): st
     Array.isArray(blockData.image)
   ) {
     tags = [...tags, ...blockData.image.map((image) => `image:${image}`)];
+  }
+  if (series) {
+    tags = [...tags, `series:${series}`];
   }
   return tags;
 }

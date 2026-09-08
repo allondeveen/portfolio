@@ -17,13 +17,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@allondeveen-portfolio/caching": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
     "@types/react": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
     "@payloadcms/ui": "catalog:",
     "payload": "catalog:",
     "react": "catalog:"

@@ -1,5 +1,6 @@
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { invalidateCache } from "./cms/hooks/invalidateCache";
 import { articles } from "./cms/properties/articles";
 import { slug } from "./cms/properties/slug";
 import { syncSlugFromTitle } from "./cms/properties/syncSlugFromTitle";
@@ -19,4 +20,7 @@ export const series: CollectionConfig = {
     plural: "Series",
   },
   fields: [id, title, slug, articles, syncSlugFromTitle],
+  hooks: {
+    afterChange: [invalidateCache],
+  },
 };

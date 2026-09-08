@@ -113,6 +113,7 @@ export const contentProcedure = protectedProcedure
       const tags = getCacheTags({
         slug: input,
         ...getBlockNamesAndData(mappedDocument.blocks),
+        series: validatedDocument.data.series,
       });
       mappedDocument.tags = await getVersions({
         cache: env.CACHE,
