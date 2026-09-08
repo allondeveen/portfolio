@@ -11,7 +11,7 @@ export const invalidateCache: CollectionAfterChangeHook = async ({ doc, previous
   }
   const logoName = "Allon de Veen - Logo";
   if (doc.name === logoName || previousDoc.name === logoName) {
-    tags = [...tags, "site-settings"];
+    tags = [...tags, "site-settings", "header", "footer"];
   }
   await deleteTags({
     cache: env.CACHE,
