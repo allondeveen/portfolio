@@ -14,7 +14,6 @@ jobs:
     timeout-minutes: 60
     env:
       CLOUDFLARE_ENV: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
-      D1_DATABASE_NAME: ${{ github.ref_name == 'main' && 'portfolio-cms' || 'portfolio-cms-staging' }}
       CMS_WORKER_NAME: ${{ github.ref_name == 'main' && 'portfolio-cms' || 'portfolio-cms-staging' }}
       WEBSITE_WORKER_NAME: ${{ github.ref_name == 'main' && 'portfolio-website' || 'portfolio-website-staging' }}
       DNS_ZONE_ID: ${{ secrets.DNS_ZONE_ID }}
