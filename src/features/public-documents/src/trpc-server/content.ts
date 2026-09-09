@@ -3,26 +3,44 @@ import { type CacheTagInput, getCacheTags } from "@allondeveen-portfolio/content
 import { getFooter } from "@allondeveen-portfolio/footer/trpc-server";
 import { getHeader } from "@allondeveen-portfolio/header/trpc-server";
 import { ProcedureResultSchema } from "@allondeveen-portfolio/procedure-result";
+import { findBySlug } from "@allondeveen-portfolio/public-documents-queries/cms";
+import { findBySource } from "@allondeveen-portfolio/redirects/cms";
 import { getSiteSettings } from "@allondeveen-portfolio/site-settings/trpc-server";
 import { protectedProcedure } from "@allondeveen-portfolio/trpc/server";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import * as z from "zod";
 
-import { DocumentSchema as CMSDocumentSchema, findBySlug } from "../cms";
+import { DocumentSchema as CMSDocumentSchema } from "../cms";
 import { mapDocument } from "./adapter";
 import { createDependencies } from "./dependencies";
 import { createMappingContext } from "./mappingContext";
-import { type Document, DocumentSchema } from "../website/data";
+import { type Document, DocumentResponseSchema } from "../website/data";
 
 import type { MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
 
-const ContentProcedureResult = ProcedureResultSchema(DocumentSchema, z.string().min(1));
+const ContentProcedureResult = ProcedureResultSchema(DocumentResponseSchema, z.string().min(1));
 
 export const contentProcedure = protectedProcedure
   .input(z.string().min(1))
   .output(ContentProcedureResult)
   .query(async ({ input, ctx }) => {
     const { env } = getCloudflareContext();
+    const redirect = await findBySource(ctx.payload, input);
+    if (redirect !== undefined) {
+      const tags = [`route:${input}`];
+      const versionedTags = await getVersions({
+        cache: env.CACHE,
+        tags,
+      });
+      return {
+        status: "success",
+        data: {
+          kind: "redirect",
+          data: redirect,
+          tags: versionedTags,
+        },
+      };
+    }
     const document = await findBySlug({ payload: ctx.payload, slug: input });
     if (!document) {
       return {
@@ -115,13 +133,17 @@ export const contentProcedure = protectedProcedure
         ...getBlockNamesAndData(mappedDocument.blocks),
         series: validatedDocument.data.series,
       });
-      mappedDocument.tags = await getVersions({
+      const versionedTags = await getVersions({
         cache: env.CACHE,
         tags,
       });
       return {
         status: "success",
-        data: mappedDocument,
+        data: {
+          kind: "document",
+          data: mappedDocument,
+          tags: versionedTags,
+        },
       };
     } catch (error) {
       if (error instanceof z.ZodError) {

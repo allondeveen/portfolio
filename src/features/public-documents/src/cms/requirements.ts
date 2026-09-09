@@ -1,4 +1,6 @@
-import { DocumentSchema, findBySlug } from "../cms";
+import { findBySlug } from "@allondeveen-portfolio/public-documents-queries/cms";
+
+import { DocumentSchema } from "../cms";
 
 import type { CMSSetupRequirements } from "@allondeveen-portfolio/setup-requirements/cms";
 

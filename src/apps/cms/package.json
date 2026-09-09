@@ -36,6 +36,7 @@
     "@allondeveen-portfolio/pages": "workspace:*",
     "@allondeveen-portfolio/projects": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
+    "@allondeveen-portfolio/redirects": "workspace:*",
     "@allondeveen-portfolio/seed": "workspace:*",
     "@allondeveen-portfolio/series": "workspace:*",
     "@allondeveen-portfolio/setup-checklist": "workspace:*",

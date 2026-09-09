@@ -1,4 +1,7 @@
-import { publicCollections, publicCollectionSlugToSingular } from "../collections";
+import {
+  publicCollections,
+  publicCollectionSlugToSingular,
+} from "@allondeveen-portfolio/public-documents-queries/cms";
 
 import type { JsonObject, Payload, TypeWithID } from "payload";
 

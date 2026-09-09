@@ -11,6 +11,7 @@ import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
 import { projects } from "@allondeveen-portfolio/projects/config";
+import { redirects } from "@allondeveen-portfolio/redirects/config";
 import { onInit } from "@allondeveen-portfolio/seed/config";
 import { series } from "@allondeveen-portfolio/series/config";
 import { setupChecklist } from "@allondeveen-portfolio/setup-checklist/cms";
@@ -155,6 +156,7 @@ export default buildConfig({
     templates,
     Users,
     media,
+    redirects,
 
     // fixed template
   ],

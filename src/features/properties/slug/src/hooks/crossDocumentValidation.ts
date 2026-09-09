@@ -1,4 +1,4 @@
-import { findBySlug } from "@allondeveen-portfolio/public-documents/cms";
+import { findBySlug } from "@allondeveen-portfolio/public-documents-queries/cms";
 import { type FieldHook, type TypeWithID, ValidationError } from "payload";
 
 type WithSlug = TypeWithID & {

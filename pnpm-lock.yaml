@@ -203,6 +203,9 @@ importers:
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../features/public-documents
+      '@allondeveen-portfolio/redirects':
+        specifier: workspace:*
+        version: link:../../features/entities/redirects
       '@allondeveen-portfolio/seed':
         specifier: workspace:*
         version: link:../../shared/seed
@@ -894,6 +897,9 @@ importers:
       '@allondeveen-portfolio/id-property':
         specifier: workspace:*
         version: link:../../properties/id
+      '@allondeveen-portfolio/redirects':
+        specifier: workspace:*
+        version: link:../redirects
       '@allondeveen-portfolio/slug-property':
         specifier: workspace:*
         version: link:../../properties/slug
@@ -1073,6 +1079,9 @@ importers:
       '@allondeveen-portfolio/id-property':
         specifier: workspace:*
         version: link:../../properties/id
+      '@allondeveen-portfolio/redirects':
+        specifier: workspace:*
+        version: link:../redirects
       '@allondeveen-portfolio/seed-function':
         specifier: workspace:*
         version: link:../../../shared/seed-function
@@ -1110,6 +1119,9 @@ importers:
       '@allondeveen-portfolio/id-property':
         specifier: workspace:*
         version: link:../../properties/id
+      '@allondeveen-portfolio/redirects':
+        specifier: workspace:*
+        version: link:../redirects
       '@allondeveen-portfolio/slug-property':
         specifier: workspace:*
         version: link:../../properties/slug
@@ -1123,6 +1135,25 @@ importers:
       '@opennextjs/cloudflare':
         specifier: 'catalog:'
         version: 1.20.1(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(wrangler@4.130.0)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/features/entities/redirects:
+    dependencies:
+      '@allondeveen-portfolio/id-property':
+        specifier: workspace:*
+        version: link:../../properties/id
+      '@allondeveen-portfolio/public-documents-queries':
+        specifier: workspace:*
+        version: link:../../../shared/public-documents-queries
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -1425,6 +1456,9 @@ importers:
       '@allondeveen-portfolio/public-documents':
         specifier: workspace:*
         version: link:../../public-documents
+      '@allondeveen-portfolio/public-documents-queries':
+        specifier: workspace:*
+        version: link:../../../shared/public-documents-queries
       '@payloadcms/ui':
         specifier: 'catalog:'
         version: 3.87.0(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3)
@@ -1490,6 +1524,12 @@ importers:
       '@allondeveen-portfolio/procedure-result':
         specifier: workspace:*
         version: link:../../shared/procedure-result
+      '@allondeveen-portfolio/public-documents-queries':
+        specifier: workspace:*
+        version: link:../../shared/public-documents-queries
+      '@allondeveen-portfolio/redirects':
+        specifier: workspace:*
+        version: link:../entities/redirects
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:*
         version: link:../blocks/textual/rich-text
@@ -1649,6 +1689,16 @@ importers:
       zod:
         specifier: 'catalog:'
         version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/shared/public-documents-queries:
+    dependencies:
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
     devDependencies:
       typescript:
         specifier: 'catalog:'

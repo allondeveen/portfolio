@@ -20,6 +20,7 @@
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/caching": "workspace:*",
     "@allondeveen-portfolio/id-property": "workspace:*",
+    "@allondeveen-portfolio/redirects": "workspace:*",
     "@allondeveen-portfolio/seed-function": "workspace:*",
     "@allondeveen-portfolio/seo-validation": "workspace:*",
     "@allondeveen-portfolio/slug-property": "workspace:*",

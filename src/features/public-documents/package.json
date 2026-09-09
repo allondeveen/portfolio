@@ -47,6 +47,8 @@
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/lexical-text": "workspace:*",
     "@allondeveen-portfolio/procedure-result": "workspace:*",
+    "@allondeveen-portfolio/public-documents-queries": "workspace:*",
+    "@allondeveen-portfolio/redirects": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",

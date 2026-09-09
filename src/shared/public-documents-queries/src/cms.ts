@@ -1,14 +1,16 @@
-import { publicCollections, publicCollectionSlugToSingular } from "../collections";
+import { publicCollections, publicCollectionSlugToSingular } from "./collections";
 
-import type { JsonObject, Payload, TypeWithID } from "payload";
+import type { JsonObject, Payload, PayloadRequest, TypeWithID } from "payload";
 
 export type FindBySlugParams = {
   payload: Payload;
   slug: string;
+  req?: PayloadRequest;
 };
 export async function findBySlug({
   payload,
   slug,
+  req,
 }: FindBySlugParams): Promise<(JsonObject & TypeWithID) | undefined> {
   const paginatedResults = await Promise.all(
     publicCollections.map(async (collection) => {
@@ -18,10 +20,14 @@ export async function findBySlug({
           slug: {
             equals: slug,
           },
+          _status: {
+            equals: "published",
+          },
         },
         limit: 1,
         depth: 0,
         pagination: false,
+        req,
       });
       return {
         ...results,
@@ -37,3 +43,5 @@ export async function findBySlug({
     .reduce((prev, cur) => [...prev, ...cur])
     .at(0);
 }
+
+export { publicCollections, publicCollectionSlugToSingular };

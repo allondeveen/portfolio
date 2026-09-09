@@ -1,5 +1,6 @@
 import { blocks } from "@allondeveen-portfolio/blocks-property/config";
 import { id } from "@allondeveen-portfolio/id-property/config";
+import { autoCreateRedirects } from "@allondeveen-portfolio/redirects/cms";
 import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
 import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
@@ -48,6 +49,6 @@ export const pages: CollectionConfig = {
   hooks: {
     beforeDelete: [preventHomepageDelete],
     beforeChange: [validateSEO],
-    afterChange: [invalidateCache],
+    afterChange: [autoCreateRedirects, invalidateCache],
   },
 };
