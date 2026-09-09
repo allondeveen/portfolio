@@ -57,14 +57,10 @@ jobs:
       - name: Inspect migration
         id: should_migrate
         run: |
-          status="$(pnpm --filter @allondeveen-portfolio/cms payload migrate:status 2>&1)"
-
-          echo "$status"
-
-          if echo "$status" | grep -Eq '│[[:space:]]*No[[:space:]]*│'; then
-            echo "should_migrate=true" >> "$GITHUB_OUTPUT"
-          else
+          if pnpm --filter @allondeveen-portfolio/cms payload migrate:status; then
             echo "should_migrate=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_migrate=true" >> "$GITHUB_OUTPUT"
           fi
         env:
           NODE_ENV: production
