@@ -180,12 +180,7 @@ jobs:
           steps.migration.outcome == 'success' &&
           steps.deploy_cms.outcome == 'success' &&
           steps.deploy_website.outcome == 'success'
-        run: |
-          if pnpm --filter @allondeveen-portfolio/cms payload migrate:status | grep -iq "pending"; then
-            exit 1
-          else
-            exit 0
-          fi
+        run: pnpm --filter @allondeveen-portfolio/cms run migration:status
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
