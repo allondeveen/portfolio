@@ -296,7 +296,7 @@ jobs:
         if: |
           always() &&
           steps.bookmark.outputs.id != ''
-        run: pnpm exec neon snapshots restore "${{steps.bookmark.outputs.name}}" --project-id "$NEON_PROJECT_ID"
+        run: pnpm exec neon snapshots delete "${{steps.bookmark.outputs.name}}" --project-id "$NEON_PROJECT_ID"
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
