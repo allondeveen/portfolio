@@ -78,7 +78,7 @@ jobs:
         run: |
           name=pre-deploy-${{ github.sha }}
 
-          pnpm exec neon snapshots create --branch ${{ env.BRANCH }} --name $name --project-id "$NEON_PROJECT_ID"
+          id=$(pnpm exec neon snapshots create --branch ${{ env.BRANCH }} --name $name --project-id "$NEON_PROJECT_ID" -o json | jq -r '.id')
 
           if [[ -z "$name" ]]; then
             echo "Neon returned an empty pre-migration snapshot name" >&2
@@ -86,6 +86,7 @@ jobs:
           fi
 
           echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
         timeout-minutes: 1
       - name: Migrate
         id: migration
@@ -292,6 +293,14 @@ jobs:
           else
             exit 1
           fi
+      - name: Delete Snapshot
+        if: |
+          always() &&
+          steps.bookmark.outputs.id != ''
+        run: pnpm exec neon snapshots restore "${{steps.bookmark.outputs.name}}" --project-id "$NEON_PROJECT_ID"
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
       - name: Disable Maintenance Mode
         run: "pnpm maintenance:${{ env.CLOUDFLARE_ENV }}:off"
         env:
