@@ -7,7 +7,7 @@ export type RenderedMaintenancePage = {
   html: string;
 };
 
-const ROOT = '<div id="root"></div>';
+const ROOT = '<body id="root"></body>';
 
 function serializeContent(content: MaintenanceContent) {
   return JSON.stringify(content)
@@ -29,16 +29,20 @@ export function injectMaintenancePage(
     throw new Error("The maintenance stylesheet cannot safely be embedded in HTML");
   }
 
-  if (!document.includes(ROOT) || !document.includes("<body>") || !document.includes("</head>")) {
+  if (!document.includes(ROOT) || !document.includes("</head>")) {
     throw new Error("The maintenance HTML template does not contain its render targets");
   }
 
   const contentTemplate = `<template id="maintenance-content">${serializeContent(content)}</template>`;
 
   return document
-    .replace("</head>", `<style data-maintenance-ssr>${page.css}</style>\n  </head>`)
-    .replace("<body>", `<body class="${page.bodyClass}">`)
-    .replace(ROOT, `<div id="root">${page.html}</div>\n    ${contentTemplate}`);
+    .replace(
+      "</head>",
+      `<style data-maintenance-ssr>${page.css}</style>
+      ${contentTemplate}
+    </head>`,
+    )
+    .replace(ROOT, `<body class="${page.bodyClass}" id="root">${page.html}</body>`);
 }
 
 export function createBuildPagePlugin(

@@ -18,14 +18,8 @@ contentTemplate.remove();
 
 document.body.classList.add(darkTheme);
 
-const root = document.getElementById("root");
-
-if (!root) {
-  throw new Error("The maintenance page root element is missing");
-}
-
 hydrateRoot(
-  root,
+  document.body,
   <StrictMode>
     <MaintenancePage {...content} />
   </StrictMode>,
