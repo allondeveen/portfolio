@@ -155,23 +155,22 @@ jobs:
           OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
           OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
         timeout-minutes: 5
-      - name: Clear Cache
+      - name: Purge Website Cache
         id: cache_clear
         if: steps.deploy_cms.outcome == 'success' && steps.deploy_website.outcome == 'success'
         run: |
+          purge_payload=$(jq -cn --arg host "$CACHE_PURGE_HOSTNAME" '{hosts: [$host]}')
           curl --fail-with-body \
             --request POST \
-            "https://api.cloudflare.com/client/v4/zones/${{ env.DNS_ZONE_ID }}/purge_cache" \
+            "https://api.cloudflare.com/client/v4/zones/${DNS_ZONE_ID}/purge_cache" \
             --header "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             --header "Content-Type: application/json" \
-            --data '{
-              "purge_everything": true
-            }'
+            --data "$purge_payload"
         continue-on-error: true
         env:
+          CACHE_PURGE_HOSTNAME: ${{ github.ref_name == 'main' && 'www.allondeveen.com' || 'staging.allondeveen.com' }}
           DNS_ZONE_ID: ${{ secrets.DNS_ZONE_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         timeout-minutes: 1
       - name: Verify migration
         id: verify_migration
