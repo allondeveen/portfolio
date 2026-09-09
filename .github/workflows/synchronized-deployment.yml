@@ -74,6 +74,7 @@ jobs:
         env:
           BRANCH: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ env.NEON_PROJECT_ID }}
         run: |
           name=pre-deploy-${{ github.sha }}
 
@@ -226,6 +227,7 @@ jobs:
         run: pnpm exec neon snapshots restore "${{steps.bookmark.outputs.name}}" --finalize
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          NEON_PROJECT_ID: ${{ env.NEON_PROJECT_ID }}
         timeout-minutes: 1
       - name: Rollback cms
         id: rollback_cms
