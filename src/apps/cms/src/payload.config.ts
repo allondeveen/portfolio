@@ -188,6 +188,8 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: cloudflare.env.DATABASE_CONNECTIONSTRING,
+      maxUses: 1,
+      connectionTimeoutMillis: 10_000,
     },
   }),
   logger: isProduction ? cloudflareLogger : undefined,
