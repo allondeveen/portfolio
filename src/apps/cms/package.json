@@ -61,6 +61,7 @@
     "graphql": "catalog:",
     "next": "catalog:",
     "payload": "catalog:",
+    "pg-cloudflare": "^1.4.0",
     "react": "catalog:",
     "react-dom": "catalog:"
   },

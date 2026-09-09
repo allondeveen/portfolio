@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
   },
   // Packages with Cloudflare Workers (workerd) specific code
   // Read more: https://opennext.js.org/cloudflare/howtos/workerd
+  // Keep pg-cloudflare as a direct dependency so Next.js can externalize it.
+  // Otherwise it bundles the empty Node.js entry instead of CloudflareSocket.
   serverExternalPackages: ["jose", "pg-cloudflare"],
 
   // Your Next.js config here
