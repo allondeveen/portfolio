@@ -39,6 +39,9 @@
 	"env": {
 		"staging": {
 			"name": "portfolio-cms-staging",
+      "placement": {
+        "host": "ep-little-block-ag7lemua-pooler.c-2.eu-central-1.aws.neon.tech:5432"
+      },
       "kv_namespaces": [
         {
           "binding": "CACHE",
@@ -66,6 +69,9 @@
 		},
 		"production": {
 			"name": "portfolio-cms",
+      "placement": {
+        "host": "ep-polished-bird-agwzzkf7-pooler.c-2.eu-central-1.aws.neon.tech:5432"
+      },
       "kv_namespaces": [
         {
           "binding": "CACHE",
