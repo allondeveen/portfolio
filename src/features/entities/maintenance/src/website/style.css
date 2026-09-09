@@ -4,7 +4,7 @@
 
 .site_header {
   height: var(--header-size);
-  font-size: var(--font-size-l);
+  font-family: var(--font-heading);
 }
 
 .site_header.center {
