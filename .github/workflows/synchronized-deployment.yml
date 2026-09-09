@@ -78,7 +78,7 @@ jobs:
         run: |
           name=pre-deploy-${{ github.sha }}
 
-          pnpm exec neon snapshots create --branch ${{ env.BRANCH }} --name $name
+          pnpm exec neon snapshots create --branch ${{ env.BRANCH }} --name $name --project-id "$NEON_PROJECT_ID"
 
           if [[ -z "$name" ]]; then
             echo "Neon returned an empty pre-migration snapshot name" >&2
@@ -224,7 +224,7 @@ jobs:
             steps.verify_migration.outcome == 'failure' ||
             steps.release_checks.outcome == 'failure'
           )
-        run: pnpm exec neon snapshots restore "${{steps.bookmark.outputs.name}}" --finalize
+        run: pnpm exec neon snapshots restore "${{steps.bookmark.outputs.name}}" --project-id "$NEON_PROJECT_ID" --finalize
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
