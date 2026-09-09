@@ -57,7 +57,7 @@ jobs:
       - name: Inspect migration
         id: should_migrate
         run: |
-          if pnpm --filter @allondeveen-portfolio/cms payload migrate:status; then
+          if pnpm --filter @allondeveen-portfolio/cms run check:migrations; then
             echo "should_migrate=false" >> "$GITHUB_OUTPUT"
           else
             echo "should_migrate=true" >> "$GITHUB_OUTPUT"

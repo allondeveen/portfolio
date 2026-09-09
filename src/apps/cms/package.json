@@ -23,7 +23,8 @@
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
     "typecheck": "cross-env NODE_OPTIONS=--no-deprecation tsc --noEmit",
-    "wrangler": "cross-env NODE_OPTIONS=--no-deprecation wrangler"
+    "wrangler": "cross-env NODE_OPTIONS=--no-deprecation wrangler",
+    "migration:status": "node scripts/checkMigrations.mjs"
   },
   "dependencies": {
     "@allondeveen-portfolio/articles": "workspace:*",
@@ -77,6 +78,7 @@
     "eslint": "catalog:",
     "eslint-config-next": "16.2.6",
     "jsdom": "28.0.0",
+    "pg": "^8.23.0",
     "prettier": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
