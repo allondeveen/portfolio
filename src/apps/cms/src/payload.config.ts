@@ -188,8 +188,10 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: cloudflare.env.DATABASE_CONNECTIONSTRING,
-      maxUses: cloudflare.env.ENVIRONMENT === "development" ? undefined : 1,
-      connectionTimeoutMillis: cloudflare.env.ENVIRONMENT === "development" ? undefined : 10_000,
+      // Preview uses a production build in workerd, even with development bindings.
+      // Only the Node.js development server should reuse pooled connections.
+      maxUses: isProduction ? 1 : undefined,
+      connectionTimeoutMillis: isProduction ? 10_000 : undefined,
     },
   }),
   logger: isProduction ? cloudflareLogger : undefined,
