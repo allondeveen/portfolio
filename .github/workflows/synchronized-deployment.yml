@@ -57,7 +57,7 @@ jobs:
       - name: Inspect migration
         id: should_migrate
         run: |
-          status="$(pnpm --filter @allondeveen-portfolio/cms payload migrate:status)"
+          status="$(pnpm --filter @allondeveen-portfolio/cms payload migrate:status 2>&1)"
 
           echo "$status"
 
