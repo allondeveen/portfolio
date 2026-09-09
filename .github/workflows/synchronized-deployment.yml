@@ -120,8 +120,7 @@ jobs:
           printf 'PAYLOAD_SECRET=%s\n' "$PAYLOAD_SECRET" >> "$secrets_file"
           printf 'MAINTENANCE_BUILD_HOOK_TOKEN=%s\n' "$MAINTENANCE_BUILD_HOOK_TOKEN" >> "$secrets_file"
           printf 'DATABASE_CONNECTIONSTRING=%s\n' "$DATABASE_CONNECTIONSTRING" >> "$secrets_file"
-          pnpm --filter @allondeveen-portfolio/cms exec wrangler versions secret bulk "$secrets_file" -e $CLOUDFLARE_ENV
-          pnpm --filter @allondeveen-portfolio/cms run deploy:app
+          pnpm --filter @allondeveen-portfolio/cms run deploy:app --secrets-file "$secrets_file"
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -146,8 +145,7 @@ jobs:
           umask 077
           printf 'OAUTH_CLIENT_ID=%s\n' "$OAUTH_CLIENT_ID" > "$secrets_file"
           printf 'OAUTH_CLIENT_SECRET=%s\n' "$OAUTH_CLIENT_SECRET" >> "$secrets_file"
-          pnpm --filter @allondeveen-portfolio/website exec wrangler versions secret bulk "$secrets_file" -e $CLOUDFLARE_ENV
-          pnpm --filter @allondeveen-portfolio/website run deploy
+          pnpm --filter @allondeveen-portfolio/website run deploy --env "$CLOUDFLARE_ENV" --secrets-file "$secrets_file"
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
