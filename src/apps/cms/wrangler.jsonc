@@ -40,7 +40,7 @@
 		"staging": {
 			"name": "portfolio-cms-staging",
       "placement": {
-        "host": "ep-little-block-ag7lemua-pooler.c-2.eu-central-1.aws.neon.tech:5432"
+        "region": "aws:eu-central-1"
       },
       "kv_namespaces": [
         {
@@ -70,7 +70,7 @@
 		"production": {
 			"name": "portfolio-cms",
       "placement": {
-        "host": "ep-polished-bird-agwzzkf7-pooler.c-2.eu-central-1.aws.neon.tech:5432"
+        "region": "aws:eu-central-1"
       },
       "kv_namespaces": [
         {
