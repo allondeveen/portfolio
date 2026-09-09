@@ -67,29 +67,20 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
           DATABASE_CONNECTIONSTRING: ${{ secrets.DATABASE_CONNECTIONSTRING }}
-      - name: Create Neon Snapshot
-        id: bookmark
+      - name: Record Neon Restore Point
+        id: restore_point
         if: steps.should_migrate.outputs.should_migrate == 'true'
         env:
           BRANCH: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
         run: |
-          name=pre-deploy-${{ github.sha }}
-
-          id=$(pnpm exec neon snapshots create --branch ${{ env.BRANCH }} --name $name --project-id "$NEON_PROJECT_ID" -o json | jq -r '.id')
-
-          if [[ -z "$name" ]]; then
-            echo "Neon returned an empty pre-migration snapshot name" >&2
-            exit 1
-          fi
-
-          echo "name=$name" >> "$GITHUB_OUTPUT"
-          echo "id=$id" >> "$GITHUB_OUTPUT"
+          timestamp="$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")"
+          echo "timestamp=$timestamp" >> "$GITHUB_OUTPUT"
         timeout-minutes: 1
       - name: Migrate
         id: migration
-        if: steps.should_migrate.outputs.should_migrate == 'true' && steps.bookmark.outputs.name != ''
+        if: steps.should_migrate.outputs.should_migrate == 'true' && steps.restore_point.outputs.timestamp != ''
         run: |
           echo "started=true" >> "$GITHUB_OUTPUT"
           pnpm --filter @allondeveen-portfolio/cms run deploy:database
@@ -213,7 +204,7 @@ jobs:
         run: "pnpm release_checks:${{ env.CLOUDFLARE_ENV }}"
         continue-on-error: true
       - name: Restore Snapshot
-        id: restore_bookmark
+        id: restore_database
         if: |
           always() &&
           steps.migration.outputs.started == 'true' &&
@@ -224,10 +215,14 @@ jobs:
             steps.verify_migration.outcome == 'failure' ||
             steps.release_checks.outcome == 'failure'
           )
-        run: pnpm exec neon snapshots restore "${{steps.bookmark.outputs.name}}" --project-id "$NEON_PROJECT_ID" --finalize
+        run: |
+          pnpm exec neon branches restore "$BRANCH" --project-id "$NEON_PROJECT_ID" --timestamp "${{steps.restore_point.outputs.timestamp}}" --preserve-under-name "$OLD_BRANCH"
+          pnpm exec neon branches delete "$OLD_BRANCH" --project-id "$NEON_PROJECT_ID"
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
+          BRANCH: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+          OLD_BRANCH: ${{ github.ref_name == 'main' && 'production' || 'staging' }}-old
         timeout-minutes: 1
       - name: Rollback cms
         id: rollback_cms
@@ -279,7 +274,7 @@ jobs:
               [[ "${{ steps.should_migrate.outputs.should_migrate }}" == "false" ]] ||
               [[ "${{ steps.migration.outcome }}" == "success" ]]
             ) &&
-            [[ "${{ steps.restore_bookmark.outcome }}" == "skipped" ]] &&
+            [[ "${{ steps.restore_database.outcome }}" == "skipped" ]] &&
             [[ "${{ steps.rollback_cms.outcome }}" == "skipped" ]] &&
             [[ "${{ steps.rollback_website.outcome }}" == "skipped" ]] &&
             (
@@ -292,14 +287,6 @@ jobs:
           else
             exit 1
           fi
-      - name: Delete Snapshot
-        if: |
-          always() &&
-          steps.bookmark.outputs.id != ''
-        run: pnpm exec neon snapshots delete "${{steps.bookmark.outputs.name}}" --project-id "$NEON_PROJECT_ID"
-        env:
-          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
-          NEON_PROJECT_ID: ${{ vars.NEON_PROJECT_ID }}
       - name: Disable Maintenance Mode
         run: "pnpm maintenance:${{ env.CLOUDFLARE_ENV }}:off"
         env:
