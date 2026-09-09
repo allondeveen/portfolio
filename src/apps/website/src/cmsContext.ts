@@ -4,7 +4,7 @@ import {
   createTRPCClient,
   type TRPCClient,
 } from "@allondeveen-portfolio/trpc/client";
-import { httpLink, retryLink } from "@trpc/client";
+import { httpLink, type Operation, retryLink } from "@trpc/client";
 import { createContext } from "react-router";
 
 import type { PublicDocumentsRouter } from "@allondeveen-portfolio/public-documents/trpc-server";
@@ -24,7 +24,7 @@ export function createCMSClient(env: Env, signal: AbortSignal): CMSClient {
 
   function getToken() {
     tokenPromise ??= requestAccessToken({
-      tokenEndpoint: new URL("/oauth/token/", env.CMS_URL).toString(),
+      tokenEndpoint: new URL("/oauth/token/", env.CMS_URL ?? "https://example.com").toString(),
       clientId: env.OAUTH_CLIENT_ID,
       clientSecret: env.OAUTH_CLIENT_SECRET,
       scope: CMS_SCOPE,
@@ -67,8 +67,8 @@ export function createCMSClient(env: Env, signal: AbortSignal): CMSClient {
         },
       }),
       httpLink({
-        url: new URL("/trpc", env.CMS_URL),
-        async headers({ op }) {
+        url: new URL("/trpc", env.CMS_URL ?? "https://example.com"),
+        async headers({ op }: { op: Operation }) {
           const currentTokenPromise = getToken();
           op.context[TOKEN_PROMISE_CONTEXT_KEY] = currentTokenPromise;
 
@@ -76,7 +76,7 @@ export function createCMSClient(env: Env, signal: AbortSignal): CMSClient {
             Authorization: `Bearer ${await currentTokenPromise}`,
           };
         },
-        fetch(input, init) {
+        fetch(input: URL | RequestInfo, init: RequestInit) {
           return env.CMS.fetch(new Request(input, init));
         },
       }),

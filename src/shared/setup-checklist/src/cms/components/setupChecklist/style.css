@@ -1,0 +1,78 @@
+.setup-checklist {
+  padding: 2rem 4rem;
+  border-radius: 4px;
+}
+
+.setup-checklist .setup-checklist__label {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.setup-checklist .setup-checklist__label:last-child {
+  margin-bottom: 0;
+}
+
+.setup-checklist .package-requirements .package-requirements__label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.setup-checklist .package-requirements .requirement .requirement__label {
+  font-weight: 600;
+}
+
+.setup-checklist .package-requirements {
+  margin: 1rem 0;
+}
+
+.setup-checklist .setup-checklist__loader {
+  margin: 1rem 0;
+}
+
+.setup-checklist .setup-checklist__loader:last-child {
+  margin-bottom: 0;
+}
+
+.setup-checklist .setup-checklist__loader .btn {
+  margin: 0;
+}
+
+.setup-checklist .setup-checklist__load-error {
+  color: var(--theme-error-600);
+  margin: 0.5rem 1rem;
+}
+
+.setup-checklist .package-requirements .requirement {
+  margin: 0.5rem 0;
+}
+
+.setup-checklist .package-requirements.complete .package-requirements__label svg,
+.setup-checklist .package-requirements .requirement.complete .requirement__label svg {
+  margin-top: -0.1rem;
+}
+
+.setup-checklist.error,
+.setup-checklist.incomplete {
+  background-color: var(--theme-error-50);
+}
+
+.setup-checklist.incomplete .setup-checklist__label,
+.setup-checklist.error .setup-checklist__label,
+.setup-checklist .package-requirements.incomplete .package-requirements__label,
+.setup-checklist .package-requirements .requirement.incomplete,
+.setup-checklist .package-requirements .requirement.incomplete .requirement__label {
+  color: var(--theme-error-600);
+}
+
+.setup-checklist.complete {
+  background-color: var(--theme-success-50);
+}
+
+.setup-checklist.complete .setup-checklist__label,
+.setup-checklist .package-requirements.complete .package-requirements__label,
+.setup-checklist .package-requirements .requirement.complete,
+.setup-checklist .package-requirements .requirement.complete .requirement__label {
+  color: var(--theme-success-500);
+}

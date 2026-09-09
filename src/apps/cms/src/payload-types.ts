@@ -74,26 +74,44 @@ export interface Config {
     stack: Stack;
     menu: MenuBlock;
     image: Image;
+    siteTitle: SiteTitleBlock;
+    copyright: Copyright;
   };
   collections: {
     pages: Page;
+    projects: Project;
+    articles: Article;
+    topics: Topic;
+    series: Series;
+    clients: Client;
     menu: Menu;
     templates: Template;
     users: User;
     media: Media;
+    redirects: Redirect;
     'payload-kv': PayloadKv;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    series: {
+      articles: 'articles';
+    };
+  };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    topics: TopicsSelect<false> | TopicsSelect<true>;
+    series: SeriesSelect<false> | SeriesSelect<true>;
+    clients: ClientsSelect<false> | ClientsSelect<true>;
     menu: MenuSelect<false> | MenuSelect<true>;
     templates: TemplatesSelect<false> | TemplatesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -106,12 +124,15 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     maintenance: Maintenance;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     maintenance: MaintenanceSelect<false> | MaintenanceSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
+    'setup-checklist': SetupChecklistWidget;
     collections: CollectionsWidget;
   };
   user: User;
@@ -209,7 +230,7 @@ export interface Hero {
  * via the `definition` "grid-item".
  */
 export interface GridItem {
-  blocks: (Heading | RichText | Stack | MenuBlock)[];
+  blocks: (Heading | RichText | Stack | MenuBlock | SiteTitleBlock)[];
   size: number;
   id?: string | null;
   blockName?: string | null;
@@ -266,7 +287,7 @@ export interface Page {
   parent?: (string | null) | Page;
   slug: string;
   title: string;
-  blocks?: Hero[] | null;
+  blocks: Hero[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -303,6 +324,15 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SiteTitleBlock".
+ */
+export interface SiteTitleBlock {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'siteTitle';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "grid".
  */
 export interface Grid {
@@ -324,12 +354,107 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "copyright".
+ */
+export interface Copyright {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'copyright';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  slug: string;
+  technologies: (string | Topic)[];
+  clients: (string | Client)[];
+  title: string;
+  blocks: Hero[];
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topics".
+ */
+export interface Topic {
+  id: string;
+  name: string;
+  slug: string;
+  parent?: (string | null) | Topic;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: string;
+  name: string;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  _articles_articles_order?: string | null;
+  id: string;
+  slug: string;
+  subjects: (string | Topic)[];
+  series?: (string | null) | Series;
+  title: string;
+  blocks: Hero[];
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "series".
+ */
+export interface Series {
+  id: string;
+  title: string;
+  slug: string;
+  articles?: {
+    docs?: (string | Article)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
   id: string;
   location: string;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
+  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[];
   updatedAt: string;
   createdAt: string;
 }
@@ -357,6 +482,19 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: string;
+  source: string;
+  destination: string;
+  active?: boolean | null;
+  queryString?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -479,6 +617,26 @@ export interface PayloadLockedDocument {
         value: string | Page;
       } | null)
     | ({
+        relationTo: 'projects';
+        value: string | Project;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: string | Article;
+      } | null)
+    | ({
+        relationTo: 'topics';
+        value: string | Topic;
+      } | null)
+    | ({
+        relationTo: 'series';
+        value: string | Series;
+      } | null)
+    | ({
+        relationTo: 'clients';
+        value: string | Client;
+      } | null)
+    | ({
         relationTo: 'menu';
         value: string | Menu;
       } | null)
@@ -493,6 +651,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: string | Redirect;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -556,6 +718,86 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  id?: T;
+  slug?: T;
+  technologies?: T;
+  clients?: T;
+  title?: T;
+  blocks?: T | {};
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  _articles_articles_order?: T;
+  id?: T;
+  slug?: T;
+  subjects?: T;
+  series?: T;
+  title?: T;
+  blocks?: T | {};
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "topics_select".
+ */
+export interface TopicsSelect<T extends boolean = true> {
+  id?: T;
+  name?: T;
+  slug?: T;
+  parent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "series_select".
+ */
+export interface SeriesSelect<T extends boolean = true> {
+  id?: T;
+  title?: T;
+  slug?: T;
+  articles?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  id?: T;
+  name?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -635,6 +877,19 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  id?: T;
+  source?: T;
+  destination?: T;
+  active?: T;
+  queryString?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -710,8 +965,21 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Maintenance {
   id: number;
-  header?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
-  blocks?: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image)[] | null;
+  header?:
+    (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[] | null;
+  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteTitle: string;
+  supportEmail: string;
+  socialImage: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -725,6 +993,28 @@ export interface MaintenanceSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteTitle?: T;
+  supportEmail?: T;
+  socialImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "setup-checklist_widget".
+ */
+export interface SetupChecklistWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -744,10 +1034,19 @@ export interface TaskSchedulePublish {
   input: {
     type?: ('publish' | 'unpublish') | null;
     locale?: string | null;
-    doc?: {
-      relationTo: 'pages';
-      value: string | Page;
-    } | null;
+    doc?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'projects';
+          value: string | Project;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null);
     global?: string | null;
     user?: (number | null) | User;
   };

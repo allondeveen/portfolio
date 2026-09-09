@@ -1,5 +1,8 @@
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { invalidateCache } from "./cms/hooks/invalidateCache";
+import { preventUsedMediaDelete } from "./cms/hooks/preventUsedMediaDelete";
+
 import type { CollectionConfig } from "payload";
 
 export const media: CollectionConfig = {
@@ -54,6 +57,18 @@ export const media: CollectionConfig = {
       name: "credits",
       type: "text",
     },
+    {
+      type: "ui",
+      name: "syncNameFromFileName",
+      admin: {
+        components: {
+          Field: {
+            path: "@allondeveen-portfolio/media/components/syncNameFromFileName",
+            exportName: "SyncNameFromFileName",
+          },
+        },
+      },
+    },
   ],
   hooks: {
     beforeOperation: [
@@ -65,6 +80,8 @@ export const media: CollectionConfig = {
         }
       },
     ],
+    beforeDelete: [preventUsedMediaDelete],
+    afterChange: [invalidateCache],
   },
   upload: {
     // These (crop and focalPoint) are not supported on Workers yet due to lack of sharp

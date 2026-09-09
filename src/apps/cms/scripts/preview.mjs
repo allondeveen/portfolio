@@ -13,13 +13,7 @@ let previewArgs = ["-e", ".dev.vars", "opennextjs-cloudflare", "preview"];
 if (env !== "development") {
   previewArgs = [...previewArgs, `--env=${env}`];
 }
-previewArgs = [
-  ...previewArgs,
-  "--",
-  `--port=${port}`,
-  `--inspector-port=${inspectorPort}`,
-  "--persist-to=../../../.wrangler/state",
-];
+previewArgs = [...previewArgs, "--", `--port=${port}`, `--inspector-port=${inspectorPort}`];
 
 spawnSync("dotenv", previewArgs, {
   stdio: "inherit",

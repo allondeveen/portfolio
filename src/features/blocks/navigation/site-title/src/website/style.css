@@ -1,0 +1,8 @@
+.siteTitle {
+  font-size: var(--font-size-h5);
+}
+
+.siteTitle a {
+  color: inherit;
+  font-size: inherit;
+}

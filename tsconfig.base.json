@@ -9,6 +9,8 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "noEmitOnError": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "ESNext.Iterator"]
   }
 }

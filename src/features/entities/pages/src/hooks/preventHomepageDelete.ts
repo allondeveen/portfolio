@@ -1,4 +1,4 @@
-import { type CollectionBeforeDeleteHook, ValidationError } from "payload";
+import { APIError, type CollectionBeforeDeleteHook } from "payload";
 
 export const preventHomepageDelete: CollectionBeforeDeleteHook = async ({ id, req }) => {
   const page = await req.payload.findByID({
@@ -8,13 +8,6 @@ export const preventHomepageDelete: CollectionBeforeDeleteHook = async ({ id, re
   });
 
   if (page.slug === "/") {
-    throw new ValidationError({
-      errors: [
-        {
-          path: "homepage",
-          message: "The homepage cannot be deleted.",
-        },
-      ],
-    });
+    throw new APIError("The homepage cannot be deleted.", 400);
   }
 };

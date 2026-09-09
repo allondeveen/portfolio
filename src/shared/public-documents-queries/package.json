@@ -1,0 +1,21 @@
+{
+  "name": "@allondeveen-portfolio/public-documents-queries",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "payload": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

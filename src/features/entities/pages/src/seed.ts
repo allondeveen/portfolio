@@ -6,6 +6,7 @@ function pageSeed(
   slug: string,
   title: string,
   description: string,
+  imageId: string | undefined,
   extraDescription: string = "",
   variant: Extract<Block, { blockType: "heading" }>["variant"] = "default",
 ): RequiredDataFromCollectionSlug<"pages"> {
@@ -17,6 +18,7 @@ function pageSeed(
     meta: {
       title: `${title} | Allon de Veen`,
       description,
+      image: imageId,
     },
     blocks: [
       {
@@ -80,18 +82,29 @@ function pageSeed(
   };
 }
 
-export const pageSeeds: SeedFunction<ReturnType<typeof pageSeed>> = () => {
+export const pageSeeds: SeedFunction<ReturnType<typeof pageSeed>> = async (payload) => {
+  const socialImageResults = await payload.find({
+    collection: "media",
+    where: {
+      name: {
+        equals: "Allon de Veen - Logo",
+      },
+    },
+  });
+  const socialImage = socialImageResults.docs.at(0);
   return [
     pageSeed(
       "/",
       "TypeScript-first full-stack engineer",
       "I build scalable web applications with 100% end-to-end type-safety and a focus on user interaction, state management and React architecture.",
+      socialImage?.id.toString() ?? "",
       "Using tools like Zod and tRPC, I catch runtime-errors before they happen. I also build AI integrations using modern database layers like Turso, Drizzle ORM and D1, or whatever technology the use case requires.",
     ),
     pageSeed(
       "/contact",
       "Work together on your next project",
       "If you need a TypeScript first architect or full-stack engineer for you next project, get in touch with me.",
+      socialImage?.id.toString() ?? "",
     ),
   ];
 };

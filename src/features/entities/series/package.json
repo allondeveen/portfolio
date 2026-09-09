@@ -1,0 +1,34 @@
+{
+  "name": "@allondeveen-portfolio/series",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./components/syncSlugFromTitle": {
+      "types": "./src/cms/components/syncSlugFromTitle.tsx",
+      "import": "./src/cms/components/syncSlugFromTitle.tsx"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/caching": "workspace:*",
+    "@allondeveen-portfolio/id-property": "workspace:*"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@opennextjs/cloudflare": "catalog:",
+    "@payloadcms/ui": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:"
+  }
+}

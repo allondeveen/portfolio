@@ -3,12 +3,16 @@ import * as z from "zod";
 
 export const DocumentSchema = z.object({
   id: z.string(),
-  collection: z.literal("page"),
+  collection: z.literal("page").or(z.literal("project")).or(z.literal("article")),
   meta: z.object({
     title: z.string().min(1),
     description: z.string().min(1),
   }),
   parent: z.string().nullish(),
+  subjects: z.array(z.string()).nullish(),
+  technologies: z.array(z.string()).nullish(),
+  clients: z.array(z.string()).nullish(),
+  series: z.string().nullish(),
   slug: z.string(),
   title: z.string(),
   blocks: z.array(BlockSchema).min(1),
