@@ -57,7 +57,11 @@ jobs:
       - name: Inspect migration
         id: should_migrate
         run: |
-          if pnpm --filter @allondeveen-portfolio/cms payload migrate:status | grep -iq "pending"; then
+          status="$(pnpm --filter @allondeveen-portfolio/cms payload migrate:status)"
+
+          echo "$status"
+
+          if echo "$status" | grep -Eq '│[[:space:]]*No[[:space:]]*│'; then
             echo "should_migrate=true" >> "$GITHUB_OUTPUT"
           else
             echo "should_migrate=false" >> "$GITHUB_OUTPUT"
