@@ -210,7 +210,7 @@ jobs:
             steps.release_checks.outcome == 'failure'
           )
         run: |
-          pnpm exec neon branches restore "$BRANCH" --project-id "$NEON_PROJECT_ID" --timestamp "${{steps.restore_point.outputs.timestamp}}" --preserve-under-name "$OLD_BRANCH"
+          pnpm exec neon branches restore "$BRANCH" --project-id "$NEON_PROJECT_ID" "^self@${{ steps.restore_point.outputs.timestamp }}" --preserve-under-name "$OLD_BRANCH"
           pnpm exec neon branches delete "$OLD_BRANCH" --project-id "$NEON_PROJECT_ID"
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
