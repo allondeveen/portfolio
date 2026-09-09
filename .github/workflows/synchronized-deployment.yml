@@ -45,6 +45,8 @@ jobs:
           OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
           OAUTH_JWT_SIGNING_KEY: ${{ secrets.OAUTH_JWT_SIGNING_KEY }}
           PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          MAINTENANCE_BUILD_HOOK_TOKEN: ${{ secrets.MAINTENANCE_BUILD_HOOK_TOKEN }}
+          DATABASE_CONNECTIONSTRING: ${{ secrets.DATABASE_CONNECTIONSTRING }}
         timeout-minutes: 2
       - name: Activate Maintenance Mode
         run: "pnpm maintenance:${{ env.CLOUDFLARE_ENV }}:on"
