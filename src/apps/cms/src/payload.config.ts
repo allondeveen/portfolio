@@ -181,7 +181,7 @@ export default buildConfig({
       SingleLineFeature(),
     ],
   }),
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: cloudflare.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
