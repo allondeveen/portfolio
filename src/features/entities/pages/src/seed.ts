@@ -79,6 +79,7 @@ function pageSeed(
         ],
       },
     ],
+    _status: "published",
   };
 }
 
