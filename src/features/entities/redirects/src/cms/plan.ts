@@ -162,6 +162,11 @@ function createRedirectPlan(req: PayloadRequest, redirects: Redirect[]) {
           data: redirect,
           req,
         });
+        const contextIntermediates =
+          req.context["intermediates"] && Array.isArray(req.context["intermediates"])
+            ? req.context["intermediates"]
+            : [];
+        req.context["intermediates"] = [...contextIntermediates, redirect.source];
       }
       for (const redirect of updates
         .values()
