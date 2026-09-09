@@ -1,5 +1,6 @@
 import { id } from "@allondeveen-portfolio/id-property/config";
 
+import { invalidateCache } from "./cms/hooks/invalidateCache";
 import { triggerMaintenanceBuild } from "./cms/hooks/triggerMaintenanceBuild";
 import { items } from "./cms/properties/items";
 import { location } from "./cms/properties/location";
@@ -19,6 +20,6 @@ export const menu: CollectionConfig = {
     items,
   ],
   hooks: {
-    afterChange: [triggerMaintenanceBuild],
+    afterChange: [triggerMaintenanceBuild, invalidateCache],
   },
 };

@@ -16,6 +16,7 @@
     "website:preview": "pnpm --filter @allondeveen-portfolio/website preview",
     "payload": "pnpm --filter @allondeveen-portfolio/cms payload",
     "typecheck": "pnpm --recursive --parallel typecheck",
+    "typecheck:watch": "pnpm --recursive --parallel typecheck --watch --preserveWatchOutput",
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -32,7 +33,9 @@
     "maintenance:production:on": "pnpm --filter @allondeveen-portfolio/maintenance exec wrangler kv key put --env production --binding RUNTIME_CONFIG maintenance-mode enabled --remote",
     "maintenance:production:off": "pnpm --filter @allondeveen-portfolio/maintenance exec wrangler kv key put --env production --binding RUNTIME_CONFIG maintenance-mode disabled --remote",
     "release_checks:production": "echo \"No release check setup yet\"",
-    "release_checks:staging": "echo \"No release check setup yet\""
+    "release_checks:staging": "echo \"No release check setup yet\"",
+    "pnpm:clean": "git clean -dfx -e \".env\" -e \".dev.vars\" -e \".wrangler\"",
+    "database:clean": "pnpm --filter @allondeveen-portfolio/cms payload migrate:fresh"
   },
   "keywords": [],
   "author": "",
@@ -42,9 +45,10 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "babel-plugin-macros": "3.1.0",
-    "concurrently": "^10.0.4",
-    "cpx": "^1.5.0",
-    "eslint": "^9.39.5",
+    "concurrently": "catalog:",
+    "cpx": "catalog:",
+    "dotenv-cli": "catalog:",
+    "eslint": "catalog:",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import-x": "^4.17.1",
@@ -54,8 +58,9 @@
     "globals": "^17.9.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
-    "prettier": "^3.9.6",
-    "typescript": "^5.9.3",
+    "neon": "^4.14.2",
+    "prettier": "catalog:",
+    "typescript": "catalog:",
     "typescript-eslint": "^8.66.0"
   }
 }

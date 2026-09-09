@@ -1,0 +1,54 @@
+import { blocks } from "@allondeveen-portfolio/blocks-property/config";
+import { id } from "@allondeveen-portfolio/id-property/config";
+import { autoCreateRedirects } from "@allondeveen-portfolio/redirects/cms";
+import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
+import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
+
+import { invalidateCache } from "./cms/hooks/invalidateCache";
+import { series } from "./cms/properties/series";
+import { subjects } from "./cms/properties/subjects";
+
+import type { CollectionConfig } from "payload";
+
+// TODO: add Topics, Series and Clients
+export const articles: CollectionConfig = {
+  slug: "articles",
+  admin: {
+    group: "Collection",
+    useAsTitle: "title",
+  },
+  labels: {
+    singular: "Article",
+    plural: "Articles",
+  },
+  versions: {
+    drafts: {
+      schedulePublish: true,
+      validate: true,
+    },
+  },
+  fields: [
+    id,
+    {
+      type: "group",
+      admin: {
+        position: "sidebar",
+      },
+      fields: [
+        {
+          type: "row",
+          fields: [slug("articles", "/articles")],
+        },
+        subjects,
+        series,
+      ],
+    },
+    title,
+    blocks,
+    syncSlugFromHero,
+    syncTitleFromHero,
+  ],
+  hooks: {
+    afterChange: [autoCreateRedirects, invalidateCache],
+  },
+};

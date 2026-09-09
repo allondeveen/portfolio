@@ -33,16 +33,17 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/react": "19.2.14",
-    "typescript": "5.7.3"
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "3.87.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/copyright-block": "workspace:*",
     "@allondeveen-portfolio/grid-block": "workspace:*",
     "@allondeveen-portfolio/grid-item-block": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:*",
@@ -50,7 +51,9 @@
     "@allondeveen-portfolio/image-block": "workspace:*",
     "@allondeveen-portfolio/menu-block": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "@allondeveen-portfolio/site-title-block": "workspace:*",
     "@allondeveen-portfolio/stack-block": "workspace:*",
-    "zod": "4.4.3"
+    "fp-ts": "catalog:",
+    "zod": "catalog:"
   }
 }

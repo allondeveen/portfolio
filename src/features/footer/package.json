@@ -1,0 +1,37 @@
+{
+  "name": "@allondeveen-portfolio/footer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./website": {
+      "types": "./src/website.ts",
+      "import": "./src/website.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@payloadcms/ui": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/design-system": "workspace:*",
+    "@allondeveen-portfolio/templates": "workspace:*",
+    "clsx": "catalog:",
+    "@vanilla-extract/css": "catalog:"
+  }
+}

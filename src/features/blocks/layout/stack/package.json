@@ -29,19 +29,19 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/react": "19.2.14",
-    "typescript": "5.7.3"
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "3.87.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:^",
     "@allondeveen-portfolio/rich-text-block": "workspace:^",
-    "clsx": "^2.1.1",
-    "zod": "^4.4.3"
+    "clsx": "catalog:",
+    "zod": "catalog:"
   }
 }

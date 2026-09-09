@@ -2,20 +2,29 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { articles } from "@allondeveen-portfolio/articles/config";
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
+import { clients } from "@allondeveen-portfolio/clients/config";
 import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
 import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
+import { projects } from "@allondeveen-portfolio/projects/config";
+import { redirects } from "@allondeveen-portfolio/redirects/config";
 import { onInit } from "@allondeveen-portfolio/seed/config";
+import { series } from "@allondeveen-portfolio/series/config";
+import { setupChecklist } from "@allondeveen-portfolio/setup-checklist/cms";
 import {
   singleLineAdminSettings,
   SingleLineFeature,
 } from "@allondeveen-portfolio/single-line-lexical";
+import { getSocialImage } from "@allondeveen-portfolio/site-settings/cms";
+import { siteSettings } from "@allondeveen-portfolio/site-settings/config";
 import { templates } from "@allondeveen-portfolio/templates/config";
+import { topics } from "@allondeveen-portfolio/topics/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
-import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
+import { postgresAdapter } from "@payloadcms/db-postgres";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import {
   BoldFeature,
@@ -116,25 +125,45 @@ export default buildConfig({
         },
       ],
     },
+    dashboard: {
+      widgets: [setupChecklist],
+      defaultLayout: [
+        {
+          widgetSlug: "setup-checklist",
+          width: "full",
+        },
+        {
+          widgetSlug: "collections",
+          width: "full",
+        },
+      ],
+    },
   },
   blocks: allBlocks,
   collections: [
     // collections
     pages,
+    projects,
+    articles,
 
     // taxonomy
+    topics,
+    series,
+    clients,
 
     // supporting
     menu,
     templates,
     Users,
     media,
+    redirects,
 
     // fixed template
   ],
   globals: [
     //
     maintenance,
+    siteSettings,
   ],
   editor: lexicalEditor({
     admin: {
@@ -152,12 +181,18 @@ export default buildConfig({
       SingleLineFeature(),
     ],
   }),
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: cloudflare.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  db: sqliteD1Adapter({
-    binding: cloudflare.env.D1,
+  db: postgresAdapter({
+    pool: {
+      connectionString: cloudflare.env.DATABASE_CONNECTIONSTRING,
+      // Preview uses a production build in workerd, even with development bindings.
+      // Only the Node.js development server should reuse pooled connections.
+      maxUses: isProduction ? 1 : undefined,
+      connectionTimeoutMillis: isProduction ? 10_000 : undefined,
+    },
   }),
   logger: isProduction ? cloudflareLogger : undefined,
   plugins: [
@@ -169,11 +204,12 @@ export default buildConfig({
       alwaysInsertFields: true,
     }),
     seoPlugin({
-      collections: ["pages"],
+      collections: [pages.slug, projects.slug, articles.slug],
       uploadsCollection: "media",
       generateTitle: ({ doc }) => getTitle(doc),
       generateDescription: ({ doc }) => getDescription(doc),
       generateURL: ({ doc }) => `${cloudflare.env.FRONTEND_URL}${doc.slug}`,
+      generateImage: async ({ req }) => await getSocialImage(req.payload),
     }),
   ],
   onInit: isProduction ? () => {} : onInit(cloudflare.env.SEED_EMAIL, cloudflare.env.SEED_PASS),
@@ -185,10 +221,7 @@ function getCloudflareContextFromWrangler(): Promise<CloudflareContext> {
     ({ getPlatformProxy }) =>
       getPlatformProxy({
         environment: process.env.CLOUDFLARE_ENV,
-        remoteBindings: isProduction,
-        persist: {
-          path: "../../../.wrangler/state/v3",
-        },
+        remoteBindings: true,
       } satisfies GetPlatformProxyOptions),
   );
 }

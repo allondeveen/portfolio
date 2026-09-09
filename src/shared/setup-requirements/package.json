@@ -1,0 +1,25 @@
+{
+  "name": "@allondeveen-portfolio/setup-requirements",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "payload": "catalog:"
+  }
+}

@@ -7,89 +7,95 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "9f36b6314d634c2794e25c7f6e8adebd",
+      "remote": true
+    }
+  ],
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
 	},
-	"d1_databases": [
-		{
-			"binding": "D1",
-			"database_name": "portfolio-cms-dev",
-			"database_id": "DATABASE_ID"
-		}
-	],
 	"r2_buckets": [
 		{
 			"bucket_name": "portfolio-assets-dev",
-			"binding": "R2"
+			"binding": "R2",
+      "remote": true
 		}
 	],
   "vars": {
     "CMS_ORIGIN": "https://cms-dev.allondeveen.com",
     "FRONTEND_URL": "https://dev.allondeveen.com",
-    "MEDIA_URL": "https://media-dev.allondeveen.com"
+    "MEDIA_URL": "https://media-dev.allondeveen.com",
+    "ENVIRONMENT": "development"
   },
   "secrets": {
-    "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "SEED_EMAIL", "SEED_PASS"]
+    "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "SEED_EMAIL", "SEED_PASS"]
   },
 	// Here's how to configure an additional environment
 	// It can be deployed with `CLOUDFLARE_ENV=staging pnpm run deploy`
 	"env": {
 		"staging": {
 			"name": "portfolio-cms-staging",
-      "vars": {
-        "CMS_ORIGIN": "https://cms-staging.allondeveen.com",
-        "FRONTEND_URL": "https://staging.allondeveen.com",
-        "MEDIA_URL": "https://media-staging.allondeveen.com",
-        "MAINTENANCE_BUILD_HOOK_URL": "https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches",
-        "MAINTENANCE_BUILD_REF": "staging"
+      "placement": {
+        "region": "aws:eu-central-1"
       },
-      "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
-      },
-			"d1_databases": [
-				{
-					"binding": "D1",
-					"database_id": "fe1310f3-b1d1-40b7-973d-46abf7772f72",
-					"database_name": "portfolio-cms-staging",
-					"remote": true
-				}
-			],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "0ea599ac72c84139875748a01e7b35f7"
+        }
+      ],
 			"r2_buckets": [
 				{
 					"binding": "R2",
 					"bucket_name": "portfolio-assets-staging",
 			    "remote": true
 				}
-			]
+			],
+      "vars": {
+        "CMS_ORIGIN": "https://cms-staging.allondeveen.com",
+        "FRONTEND_URL": "https://staging.allondeveen.com",
+        "MEDIA_URL": "https://media-staging.allondeveen.com",
+        "MAINTENANCE_BUILD_HOOK_URL": "https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches",
+        "MAINTENANCE_BUILD_REF": "staging",
+        "ENVIRONMENT": "staging"
+      },
+      "secrets": {
+        "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
+      }
 		},
 		"production": {
 			"name": "portfolio-cms",
-      "vars": {
-        "CMS_ORIGIN": "https://cms.allondeveen.com",
-        "FRONTEND_URL": "https://www.allondeveen.com",
-        "MEDIA_URL": "https://media.allondeveen.com",
-        "MAINTENANCE_BUILD_HOOK_URL": "https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches",
-        "MAINTENANCE_BUILD_REF": "main"
+      "placement": {
+        "region": "aws:eu-central-1"
       },
-      "secrets": {
-        "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
-      },
-			"d1_databases": [
-				{
-					"binding": "D1",
-					"database_id": "41ebaab8-e581-48b0-9626-2db1b1679111",
-					"database_name": "portfolio-cms",
-					"remote": true
-				}
-			],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "e5e97de323504b98ad986a5528367378"
+        }
+      ],
 			"r2_buckets": [
 				{
 					"binding": "R2",
 					"bucket_name": "portfolio-assets",
 			    "remote": true
 				}
-			]
+			],
+      "vars": {
+        "CMS_ORIGIN": "https://cms.allondeveen.com",
+        "FRONTEND_URL": "https://www.allondeveen.com",
+        "MEDIA_URL": "https://media.allondeveen.com",
+        "MAINTENANCE_BUILD_HOOK_URL": "https://api.github.com/repos/allondeveen/portfolio/actions/workflows/deploy-maintenance-page.yml/dispatches",
+        "MAINTENANCE_BUILD_REF": "main",
+        "ENVIRONMENT": "production"
+      },
+      "secrets": {
+        "required": ["DATABASE_CONNECTIONSTRING", "OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET", "OAUTH_JWT_SIGNING_KEY", "PAYLOAD_SECRET", "MAINTENANCE_BUILD_HOOK_TOKEN"]
+      }
 		}
 	}
 }

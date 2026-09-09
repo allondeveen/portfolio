@@ -1,12 +1,13 @@
 import { blocks } from "@allondeveen-portfolio/blocks-property/config";
 import { id } from "@allondeveen-portfolio/id-property/config";
-import { slug } from "@allondeveen-portfolio/slug-property/config";
-import { title } from "@allondeveen-portfolio/title-property/config";
+import { autoCreateRedirects } from "@allondeveen-portfolio/redirects/cms";
+import { slug, syncSlugFromHero } from "@allondeveen-portfolio/slug-property/config";
+import { syncTitleFromHero, title } from "@allondeveen-portfolio/title-property/config";
 
+import { invalidateCache } from "./hooks/invalidateCache";
 import { preventHomepageDelete } from "./hooks/preventHomepageDelete";
+import { validateSEO } from "./hooks/validateSEO";
 import { parent } from "./properties/parent";
-import { syncSlugFromHero } from "./properties/syncSlugFromHero";
-import { syncTitleFromHero } from "./properties/syncTitleFromHero";
 
 import type { CollectionConfig } from "payload";
 
@@ -17,7 +18,8 @@ export const pages: CollectionConfig = {
     useAsTitle: "title",
   },
   labels: {
-    singular: "page",
+    singular: "Page",
+    plural: "Pages",
   },
   versions: {
     drafts: {
@@ -46,5 +48,7 @@ export const pages: CollectionConfig = {
   ],
   hooks: {
     beforeDelete: [preventHomepageDelete],
+    beforeChange: [validateSEO],
+    afterChange: [autoCreateRedirects, invalidateCache],
   },
 };

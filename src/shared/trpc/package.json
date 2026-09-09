@@ -17,14 +17,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@trpc/client": "^11.18.0",
-    "@trpc/server": "^11.18.0"
+    "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:"
   },
   "devDependencies": {
-    "payload": "3.87.0",
-    "typescript": "5.7.3"
+    "payload": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "payload": "3.87.0"
+    "payload": "catalog:"
   }
 }

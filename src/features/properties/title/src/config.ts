@@ -9,3 +9,5 @@ export const title: Field = {
   defaultValue: "",
   required: true,
 };
+
+export { syncTitleFromHero } from "./properties/syncTitleFromHero";

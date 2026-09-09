@@ -29,6 +29,13 @@
 	 * Static Assets
 	 * https://developers.cloudflare.com/workers/static-assets/binding/
 	 */
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "9f36b6314d634c2794e25c7f6e8adebd",
+      "remote": true
+    }
+  ],
 	"assets": {
     "directory": "./public/",
     "binding": "ASSETS"
@@ -41,7 +48,8 @@
   ],
   "vars": {
     "CMS_URL": "https://cms-dev.allondeveen.com",
-    "MEDIA_URL": "https://media-dev.allondeveen.com"
+    "MEDIA_URL": "https://media-dev.allondeveen.com",
+    "ENVIRONMENT": "development"
   },
   "secrets": {
     "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
@@ -52,6 +60,12 @@
       "secrets": {
         "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
       },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "0ea599ac72c84139875748a01e7b35f7"
+        }
+      ],
       "services": [
         {
           "binding": "CMS",
@@ -60,7 +74,8 @@
       ],
       "vars": {
         "CMS_URL": "https://cms-staging.allondeveen.com",
-        "MEDIA_URL": "https://media-staging.allondeveen.com"
+        "MEDIA_URL": "https://media-staging.allondeveen.com",
+        "ENVIRONMENT": "staging"
       }
     },
     "production" : {
@@ -68,6 +83,12 @@
       "secrets": {
         "required": ["OAUTH_CLIENT_ID", "OAUTH_CLIENT_SECRET"]
       },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "e5e97de323504b98ad986a5528367378"
+        }
+      ],
       "services": [
         {
           "binding": "CMS",
@@ -76,7 +97,8 @@
       ],
       "vars": {
         "CMS_URL": "https://cms.allondeveen.com",
-        "MEDIA_URL": "https://media.allondeveen.com"
+        "MEDIA_URL": "https://media.allondeveen.com",
+        "ENVIRONMENT": "production"
       }
     }
   }
