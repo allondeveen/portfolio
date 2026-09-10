@@ -55,10 +55,7 @@ const realpath = (value: string) => {
 const isCLI = process.argv.some((value) => {
   const resolved = realpath(value);
   if (!resolved) return false;
-  return (
-    resolved.endsWith(path.join("payload", "bin.js")) ||
-    resolved.endsWith(path.join("next", "dist", "bin", "next"))
-  );
+  return resolved.endsWith(path.join("payload", "bin.js"));
 });
 const isProduction = process.env.NODE_ENV === "production";
 
