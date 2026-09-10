@@ -25,6 +25,7 @@ import { templates } from "@allondeveen-portfolio/templates/config";
 import { topics } from "@allondeveen-portfolio/topics/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { formBuilderPlugin } from "@payloadcms/plugin-form-builder";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import {
   BoldFeature,
@@ -54,10 +55,7 @@ const realpath = (value: string) => {
 const isCLI = process.argv.some((value) => {
   const resolved = realpath(value);
   if (!resolved) return false;
-  return (
-    resolved.endsWith(path.join("payload", "bin.js")) ||
-    resolved.endsWith(path.join("next", "dist", "bin", "next"))
-  );
+  return resolved.endsWith(path.join("payload", "bin.js"));
 });
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -210,6 +208,34 @@ export default buildConfig({
       generateDescription: ({ doc }) => getDescription(doc),
       generateURL: ({ doc }) => `${cloudflare.env.FRONTEND_URL}${doc.slug}`,
       generateImage: async ({ req }) => await getSocialImage(req.payload),
+    }),
+    formBuilderPlugin({
+      fields: {
+        text: true,
+        textarea: true,
+        select: true,
+        radio: true,
+        email: true,
+        state: true,
+        country: true,
+        checkbox: true,
+        number: true,
+        message: true,
+        date: true,
+        payment: false,
+        upload: false,
+      },
+      redirectRelationships: ["pages"],
+      formOverrides: {
+        admin: {
+          group: "Supporting",
+        },
+      },
+      formSubmissionOverrides: {
+        admin: {
+          group: "Supporting",
+        },
+      },
     }),
   ],
   onInit: isProduction ? () => {} : onInit(cloudflare.env.SEED_EMAIL, cloudflare.env.SEED_PASS),

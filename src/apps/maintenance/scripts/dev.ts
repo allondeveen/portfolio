@@ -4,6 +4,7 @@ import { createServer, type Plugin, type ViteDevServer } from "vite";
 
 import { watchAssets } from "./assets.ts";
 import { createMaintenanceContentSource } from "./content.ts";
+import { createHydrationPlugin } from "./hydration.ts";
 import { injectMaintenancePage } from "./page.ts";
 import { compileRenderer } from "./renderer.ts";
 
@@ -115,7 +116,7 @@ const pagePlugin: Plugin = {
     viteServer = server;
   },
   async transformIndexHtml(document) {
-    return injectMaintenancePage(document, await renderPage(content), content);
+    return injectMaintenancePage(document, await renderPage(content));
   },
   async handleHotUpdate(context) {
     if (
@@ -135,7 +136,7 @@ const pagePlugin: Plugin = {
 const server = await createServer({
   root: appRoot,
   configFile: clientConfig,
-  plugins: [rebuildPlugin, pagePlugin],
+  plugins: [createHydrationPlugin(() => content), rebuildPlugin, pagePlugin],
 });
 
 await server.listen();

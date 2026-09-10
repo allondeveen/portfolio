@@ -4,6 +4,7 @@ import { createBuilder } from "vite";
 
 import { copyAssets } from "./assets.ts";
 import { createMaintenanceContentSource } from "./content.ts";
+import { createHydrationPlugin } from "./hydration.ts";
 import { createBuildPagePlugin } from "./page.ts";
 import { compileRenderer } from "./renderer.ts";
 
@@ -23,7 +24,7 @@ try {
   const builder = await createBuilder({
     root: appRoot,
     configFile: clientConfig,
-    plugins: [createBuildPagePlugin(page, content)],
+    plugins: [createHydrationPlugin(() => content), createBuildPagePlugin(page)],
   });
   await builder.buildApp();
 } finally {

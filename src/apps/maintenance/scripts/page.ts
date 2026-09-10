@@ -1,4 +1,5 @@
-import type { MaintenanceContent } from "@allondeveen-portfolio/maintenance-content/website/data";
+import { load } from "cheerio";
+
 import type { Plugin } from "vite";
 
 export type RenderedMaintenancePage = {
@@ -7,20 +8,9 @@ export type RenderedMaintenancePage = {
   html: string;
 };
 
-const ROOT = '<div id="root"></div>';
+export function injectMaintenancePage(document: string, page: RenderedMaintenancePage) {
+  const dom = load(document);
 
-function serializeContent(content: MaintenanceContent) {
-  return JSON.stringify(content)
-    .replaceAll("&", "\\u0026")
-    .replaceAll("<", "\\u003c")
-    .replaceAll(">", "\\u003e");
-}
-
-export function injectMaintenancePage(
-  document: string,
-  page: RenderedMaintenancePage,
-  content: MaintenanceContent,
-) {
   if (!/^[A-Za-z0-9_ -]+$/.test(page.bodyClass)) {
     throw new Error("The maintenance renderer returned an invalid body class");
   }
@@ -29,27 +19,26 @@ export function injectMaintenancePage(
     throw new Error("The maintenance stylesheet cannot safely be embedded in HTML");
   }
 
-  if (!document.includes(ROOT) || !document.includes("<body>") || !document.includes("</head>")) {
+  const root = dom("#root");
+  const head = dom("head");
+  if (root.length !== 1 || head.length !== 1) {
     throw new Error("The maintenance HTML template does not contain its render targets");
   }
 
-  const contentTemplate = `<template id="maintenance-content">${serializeContent(content)}</template>`;
+  const pageStyleElement = `<style data-maintenance-ssr>${page.css}</style>`;
+  head.append(pageStyleElement);
+  dom("body").addClass(page.bodyClass);
+  root.html(page.html);
 
-  return document
-    .replace("</head>", `<style data-maintenance-ssr>${page.css}</style>\n  </head>`)
-    .replace("<body>", `<body class="${page.bodyClass}">`)
-    .replace(ROOT, `<div id="root">${page.html}</div>\n    ${contentTemplate}`);
+  return dom.html();
 }
 
-export function createBuildPagePlugin(
-  page: RenderedMaintenancePage,
-  content: MaintenanceContent,
-): Plugin {
+export function createBuildPagePlugin(page: RenderedMaintenancePage): Plugin {
   return {
     name: "maintenance-build-page",
     enforce: "post",
     transformIndexHtml(document) {
-      return injectMaintenancePage(document, page, content);
+      return injectMaintenancePage(document, page);
     },
   };
 }

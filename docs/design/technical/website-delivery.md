@@ -324,7 +324,7 @@ This document records only the website-to-CMS submission boundary. Form processi
 
 ### Maintenance mode
 
-While maintenance mode is active, Cloudflare routes all application traffic to a separate Worker that resolves requests to the maintenance page instead of relying on the CMS or website Worker. A successful deployment disables maintenance mode. A failed deployment, rollback, automated recovery workflow, or separately applied long-running migration leaves it active until a later deployment succeeds.
+While maintenance mode is active, Cloudflare routes all application traffic to a separate Worker that resolves requests to the maintenance page instead of relying on the CMS or website Worker. The page is generated through the explicit build-time rendering pipeline defined by [ADR 0012](decisions/0012-use-an-explicit-build-time-renderer-for-the-maintenance-page.md), so serving it does not require CMS or database availability at runtime. A successful deployment disables maintenance mode. A failed deployment, rollback, automated recovery workflow, or separately applied long-running migration leaves it active until a later deployment succeeds.
 
 The maintenance Worker returns HTTP `503 Service Unavailable`. Its responses are excluded from caching so visitors and intermediaries do not retain the maintenance page after maintenance mode is disabled.
 
