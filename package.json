@@ -16,6 +16,8 @@
     "website:preview": "pnpm --filter @allondeveen-portfolio/website preview",
     "payload": "pnpm --filter @allondeveen-portfolio/cms payload",
     "typecheck": "pnpm --recursive --parallel typecheck",
+    "typecheck:clear-cache": "find src -path '*/node_modules' -prune -o -type f -name '*.tsbuildinfo' -delete",
+    "typecheck:fresh": "pnpm run typecheck:clear-cache && pnpm run typecheck",
     "typecheck:watch": "pnpm --recursive --parallel typecheck --watch --preserveWatchOutput",
     "format": "prettier --write .",
     "lint": "eslint .",
