@@ -35,6 +35,7 @@
     "release_checks:production": "echo \"No release check setup yet\"",
     "release_checks:staging": "echo \"No release check setup yet\"",
     "pnpm:clean": "git clean -dfx -e \".env\" -e \".env.*\" -e \".dev.vars\" -e \".build.vars\" -e \".wrangler\" -e \"public\" -e \".next\" -e \".open-next\" -e \".generated\" -e \"dist\" -e \".react-router\" -e \"build\"",
+    "clean": "git clean -dfx -e \".env\" -e \".env.*\" -e \".dev.vars\" -e \".build.vars\"",
     "database:clean": "pnpm --filter @allondeveen-portfolio/cms payload migrate:fresh"
   },
   "keywords": [],
