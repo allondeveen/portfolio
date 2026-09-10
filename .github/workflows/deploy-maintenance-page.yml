@@ -29,6 +29,7 @@ jobs:
           OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          HYDRATE: ${{ vars.MAINTENANCE_HYDRATE }}
         timeout-minutes: 3
       - name: Deploy
         run: "pnpm --filter @allondeveen-portfolio/maintenance run deploy"

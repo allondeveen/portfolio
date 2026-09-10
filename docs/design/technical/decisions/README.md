@@ -2,7 +2,7 @@
 
 This directory contains architecture decision records (ADRs) for consequential technical choices.
 
-ADRs 0001 through 0010 record accepted, written decisions.
+ADRs 0001 through 0012 record accepted, written decisions.
 
 ## Contents
 
@@ -18,6 +18,8 @@ ADRs 0001 through 0010 record accepted, written decisions.
 | [0008 — Use Cloudflare CDN caching with targeted publication invalidation](0008-use-cloudflare-cdn-caching-with-targeted-publication-invalidation.md) | Accepted       | Written             |
 | [0009 — Use Turso-backed RAG for AI search](0009-use-turso-backed-rag-for-ai-search.md)                                                               | Accepted       | Written             |
 | [0010 — Use single-use tokens for shared previews](0010-use-single-use-tokens-for-shared-previews.md)                                                 | Accepted       | Written             |
+| [0011 — Use Neon with a caching layer between the website and CMS](0011-use-neon-with-caching-layer-between-website-and-cms.md)                       | Accepted       | Written             |
+| [0012 — Use an explicit build-time renderer for the maintenance page](0012-use-an-explicit-build-time-renderer-for-the-maintenance-page.md)           | Accepted       | Written             |
 
 ## When to use an ADR
 

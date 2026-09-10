@@ -1,23 +1,16 @@
 import { fileURLToPath } from "node:url";
 
 import { requestAccessToken } from "@allondeveen-portfolio/client-credentials-flow/client";
-import { createTRPCClient, type TRPCClient } from "@allondeveen-portfolio/trpc/client";
+import { createTRPCClient } from "@allondeveen-portfolio/trpc/client";
 import { httpLink } from "@trpc/client";
 import { getPlatformProxy } from "wrangler";
 
 import type { MaintenanceContentRouter } from "@allondeveen-portfolio/maintenance-content/trpc-server";
-import type { MaintenanceContent } from "@allondeveen-portfolio/maintenance-content/website/data";
 
 type Environment = "development" | "staging" | "production";
 
 type LoadOptions = {
   waitForCMS?: boolean;
-};
-
-type MaintenanceCMSClient = {
-  maintenance: {
-    query(): Promise<MaintenanceContent>;
-  };
 };
 
 type CMSPlatformEnv = {
@@ -87,14 +80,6 @@ async function createCMSTransport() {
   };
 }
 
-function validateContent(content: MaintenanceContent) {
-  if (!Array.isArray(content.blocks) || content.blocks.length === 0) {
-    throw new PermanentCMSError("The CMS returned invalid or empty maintenance content");
-  }
-
-  return content;
-}
-
 export async function createMaintenanceContentSource() {
   const clientId = process.env.OAUTH_CLIENT_ID;
   const clientSecret = process.env.OAUTH_CLIENT_SECRET;
@@ -144,7 +129,7 @@ export async function createMaintenanceContentSource() {
 
   const cms = createTRPCClient<MaintenanceContentRouter>({
     links: [
-      httpLink<MaintenanceContentRouter>({
+      httpLink({
         url: new URL("/trpc", transport.origin),
         async headers() {
           return { Authorization: `Bearer ${await getAccessToken()}` };
@@ -154,11 +139,11 @@ export async function createMaintenanceContentSource() {
         },
       }),
     ],
-  }) as TRPCClient<MaintenanceContentRouter> & MaintenanceCMSClient;
+  });
 
   async function loadOnce() {
     try {
-      return validateContent(await cms.maintenance.query());
+      return await cms.maintenance.query();
     } catch (error) {
       if (error instanceof PermanentCMSError) {
         throw error;

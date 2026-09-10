@@ -76,7 +76,7 @@ export function createCMSClient(env: Env, signal: AbortSignal): CMSClient {
             Authorization: `Bearer ${await currentTokenPromise}`,
           };
         },
-        fetch(input: URL | RequestInfo, init: RequestInit) {
+        fetch(input: URL | RequestInfo, init: RequestInit | undefined) {
           return env.CMS.fetch(new Request(input, init));
         },
       }),

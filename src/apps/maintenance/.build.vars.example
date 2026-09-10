@@ -1,2 +1,3 @@
 OAUTH_CLIENT_ID=portfolio-website-dev
 OAUTH_CLIENT_SECRET=
+HYDRATE=false

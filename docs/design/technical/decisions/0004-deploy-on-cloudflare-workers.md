@@ -136,5 +136,6 @@ Revisit this decision if:
 - [ADR 0006: Use Cloudflare R2 for object storage](0006-use-cloudflare-r2-for-object-storage.md)
 - [ADR 0007: Use tRPC for website-to-CMS data access](0007-use-trpc-for-website-to-cms-data-access.md)
 - [ADR 0008: Use Cloudflare CDN caching with targeted publication invalidation](0008-use-cloudflare-cdn-caching-with-targeted-publication-invalidation.md)
+- [ADR 0012: Use an explicit build-time renderer for the maintenance page](0012-use-an-explicit-build-time-renderer-for-the-maintenance-page.md)
 
 [Back to architecture decision records](README.md)

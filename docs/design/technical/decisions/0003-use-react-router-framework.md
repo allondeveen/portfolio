@@ -118,5 +118,6 @@ Revisit this decision if:
 - [ADR 0004: Deploy on Cloudflare Workers](0004-deploy-on-cloudflare-workers.md)
 - [ADR 0007: Use tRPC for website-to-CMS data access](0007-use-trpc-for-website-to-cms-data-access.md)
 - [ADR 0009: Use Turso-backed RAG for AI search](0009-use-turso-backed-rag-for-ai-search.md)
+- [ADR 0012: Use an explicit build-time renderer for the maintenance page](0012-use-an-explicit-build-time-renderer-for-the-maintenance-page.md)
 
 [Back to architecture decision records](README.md)
