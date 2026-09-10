@@ -1,3 +1,5 @@
+import { load } from "cheerio";
+
 import type { Plugin } from "vite";
 
 export type RenderedMaintenancePage = {
@@ -6,9 +8,9 @@ export type RenderedMaintenancePage = {
   html: string;
 };
 
-const ROOT = '<body id="root"></body>';
-
 export function injectMaintenancePage(document: string, page: RenderedMaintenancePage) {
+  const dom = load(document);
+
   if (!/^[A-Za-z0-9_ -]+$/.test(page.bodyClass)) {
     throw new Error("The maintenance renderer returned an invalid body class");
   }
@@ -17,17 +19,18 @@ export function injectMaintenancePage(document: string, page: RenderedMaintenanc
     throw new Error("The maintenance stylesheet cannot safely be embedded in HTML");
   }
 
-  if (!document.includes(ROOT) || !document.includes("</head>")) {
+  const root = dom("#root");
+  const head = dom("head");
+  if (root.length !== 1 || head.length !== 1) {
     throw new Error("The maintenance HTML template does not contain its render targets");
   }
 
-  return document
-    .replace(
-      "</head>",
-      `<style data-maintenance-ssr>${page.css}</style>
-    </head>`,
-    )
-    .replace(ROOT, `<body class="${page.bodyClass}" id="root">${page.html}</body>`);
+  const pageStyleElement = `<style data-maintenance-ssr>${page.css}</style>`;
+  head.append(pageStyleElement);
+  dom("body").addClass(page.bodyClass);
+  root.html(page.html);
+
+  return dom.html();
 }
 
 export function createBuildPagePlugin(page: RenderedMaintenancePage): Plugin {

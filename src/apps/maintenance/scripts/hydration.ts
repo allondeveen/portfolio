@@ -1,9 +1,9 @@
+import { load } from "cheerio";
+
 import { isHydrationEnabled } from "./config";
 
 import type { MaintenanceContent } from "@allondeveen-portfolio/maintenance-content/website/data";
 import type { Plugin } from "vite";
-
-const HYDRATION_ENTRY = '\n    <script type="module" src="/src/main.tsx"></script>';
 
 function serializeContent(content: MaintenanceContent) {
   return JSON.stringify(content)
@@ -17,17 +17,19 @@ function injectMaintenanceHydrationContent(
   document: string,
   content: MaintenanceContent,
 ) {
+  const dom = load(document);
   if (!enabled) {
-    return document.replace(HYDRATION_ENTRY, "");
+    dom(`script[type="module"][src="/src/main.tsx"]`).remove();
+    return dom.html();
   }
   const contentTemplate = `<template id="maintenance-content">${serializeContent(content)}</template>`;
+  dom("head").append(contentTemplate);
 
-  return document.replace("</head>", `${contentTemplate}\n    </head>`);
+  return dom.html();
 }
 
 export function createHydrationPlugin(getContent: () => MaintenanceContent): Plugin {
   const enabled = isHydrationEnabled();
-  console.log(enabled);
   return {
     name: "maintenance-hydration",
     transformIndexHtml: {
