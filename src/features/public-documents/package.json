@@ -55,6 +55,7 @@
     "@allondeveen-portfolio/templates": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",
     "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:",
     "clsx": "catalog:",
     "zod": "catalog:"
   }
