@@ -1812,6 +1812,9 @@ importers:
       '@allondeveen-portfolio/menu':
         specifier: workspace:*
         version: link:../../features/entities/menu
+      '@allondeveen-portfolio/not-found':
+        specifier: workspace:*
+        version: link:../../features/entities/not-found
       '@allondeveen-portfolio/pages':
         specifier: workspace:*
         version: link:../../features/entities/pages
