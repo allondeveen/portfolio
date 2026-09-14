@@ -58,6 +58,7 @@
     "@trpc/client": "catalog:",
     "@trpc/server": "catalog:",
     "clsx": "catalog:",
+    "fp-ts": "catalog:",
     "zod": "catalog:"
   }
 }
