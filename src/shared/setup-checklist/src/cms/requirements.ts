@@ -1,5 +1,6 @@
 import { maintenanceRequirements } from "@allondeveen-portfolio/maintenance-content/cms";
 import { menuRequirements } from "@allondeveen-portfolio/menu/cms";
+import { notFoundRequirements } from "@allondeveen-portfolio/not-found/cms";
 import { publicDocumentsRequirements } from "@allondeveen-portfolio/public-documents/cms";
 import { siteSettingsRequirements } from "@allondeveen-portfolio/site-settings/cms";
 import { templateRequirements } from "@allondeveen-portfolio/templates/cms";
@@ -54,6 +55,7 @@ async function getResults(req: PayloadRequest): Promise<CMSPackagesRequirementsR
     menuRequirements,
     templateRequirements,
     maintenanceRequirements,
+    notFoundRequirements,
   ];
   let results: CMSPackageRequirements[] = [];
   let start = 1;

@@ -41,7 +41,7 @@ export async function publicDocumentLoader(
       case "success":
         return contentProcedureResult.data;
       case "not-found":
-        throw data("Couldn't find the page you were looking for", {
+        throw data(contentProcedureResult.template, {
           status: 404,
           statusText: "Not Found",
           headers: {

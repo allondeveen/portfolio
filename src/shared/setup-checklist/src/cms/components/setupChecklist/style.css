@@ -27,6 +27,10 @@
   margin: 1rem 0;
 }
 
+.setup-checklist .package-requirements.not-found {
+  display: block;
+}
+
 .setup-checklist .setup-checklist__loader {
   margin: 1rem 0;
 }

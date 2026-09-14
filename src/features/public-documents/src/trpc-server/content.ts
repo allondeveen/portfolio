@@ -2,6 +2,8 @@ import { getVersions } from "@allondeveen-portfolio/caching";
 import { type CacheTagInput, getCacheTags } from "@allondeveen-portfolio/content-cache-tags";
 import { getFooter } from "@allondeveen-portfolio/footer/trpc-server";
 import { getHeader } from "@allondeveen-portfolio/header/trpc-server";
+import { getNotFound } from "@allondeveen-portfolio/not-found/cms";
+import { mapNotFoundContent } from "@allondeveen-portfolio/not-found/trpc-server";
 import { ProcedureResultSchema } from "@allondeveen-portfolio/procedure-result";
 import { findBySlug } from "@allondeveen-portfolio/public-documents-queries/cms";
 import { findBySource } from "@allondeveen-portfolio/redirects/cms";
@@ -41,25 +43,7 @@ export const contentProcedure = protectedProcedure
         },
       };
     }
-    const document = await findBySlug({ payload: ctx.payload, slug: input });
-    if (!document) {
-      return {
-        status: "not-found",
-      };
-    }
     let errorMessage = "Something went wrong";
-    const validatedDocument = CMSDocumentSchema.safeParse(document);
-    if (!validatedDocument.success) {
-      if (env.ENVIRONMENT !== "production") {
-        errorMessage = `CMS Document invalid: ${validatedDocument.error.issues.at(0)?.message}`;
-      } else {
-        // track errors
-      }
-      return {
-        status: "error",
-        error: errorMessage,
-      };
-    }
     const dependencies = createDependencies(ctx.payload);
     const context = createMappingContext(dependencies);
     let siteSettings: Awaited<ReturnType<typeof getSiteSettings>>;
@@ -120,6 +104,29 @@ export const contentProcedure = protectedProcedure
       } else {
         throw error;
       }
+    }
+    const document = await findBySlug({ payload: ctx.payload, slug: input });
+    if (!document) {
+      const notFoundContent = await getNotFound(ctx.payload);
+      return {
+        status: "not-found",
+        template: await mapNotFoundContent({ header, footer, ...mapBlockOptions })(
+          notFoundContent,
+          context,
+        ),
+      };
+    }
+    const validatedDocument = CMSDocumentSchema.safeParse(document);
+    if (!validatedDocument.success) {
+      if (env.ENVIRONMENT !== "production") {
+        errorMessage = `CMS Document invalid: ${validatedDocument.error.issues.at(0)?.message}`;
+      } else {
+        // track errors
+      }
+      return {
+        status: "error",
+        error: errorMessage,
+      };
     }
     try {
       const mappedDocument = await mapDocument(

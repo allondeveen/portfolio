@@ -9,6 +9,7 @@ import { clients } from "@allondeveen-portfolio/clients/config";
 import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
 import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
+import { notFound } from "@allondeveen-portfolio/not-found/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
 import { projects } from "@allondeveen-portfolio/projects/config";
 import { redirects } from "@allondeveen-portfolio/redirects/config";
@@ -155,13 +156,12 @@ export default buildConfig({
     Users,
     media,
     redirects,
-
-    // fixed template
   ],
   globals: [
     //
     maintenance,
     siteSettings,
+    notFound,
   ],
   editor: lexicalEditor({
     admin: {

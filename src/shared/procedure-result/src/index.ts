@@ -1,3 +1,4 @@
+import { NotFoundContentSchema } from "@allondeveen-portfolio/not-found/website/data";
 import { TemplateSchema } from "@allondeveen-portfolio/templates/website/data";
 import z from "zod";
 
@@ -18,7 +19,7 @@ export function ProcedureResultErrorSchema<E extends z.ZodType>(ErrorSchema: E) 
 
 export const ProcedureResultContentNotFoundSchema = z.object({
   status: z.literal("not-found"),
-  template: TemplateSchema.optional(),
+  template: NotFoundContentSchema,
 });
 
 export function ProcedureResultSchema<T extends z.ZodType, E extends z.ZodType>(

@@ -1,4 +1,6 @@
 import { darkTheme } from "@allondeveen-portfolio/design-system";
+import { NotFoundPage } from "@allondeveen-portfolio/not-found/website";
+import { NotFoundContentSchema } from "@allondeveen-portfolio/not-found/website/data";
 import { env } from "cloudflare:workers";
 import {
   isRouteErrorResponse,
@@ -114,18 +116,18 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
+  const message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : message;
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : "data" in error && typeof error.data === "string"
-          ? error.data
-          : details;
+    if (error.status) {
+      const notFoundData = NotFoundContentSchema.safeParse(error.data);
+      if (notFoundData.success) {
+        return <NotFoundPage {...notFoundData.data} />;
+      }
+    }
+    details = "data" in error && typeof error.data === "string" ? error.data : details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
