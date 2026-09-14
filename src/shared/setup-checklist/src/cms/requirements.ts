@@ -1,3 +1,4 @@
+import { errorPageRequirements } from "@allondeveen-portfolio/error-page/cms";
 import { maintenanceRequirements } from "@allondeveen-portfolio/maintenance-content/cms";
 import { menuRequirements } from "@allondeveen-portfolio/menu/cms";
 import { notFoundRequirements } from "@allondeveen-portfolio/not-found/cms";
@@ -56,6 +57,7 @@ async function getResults(req: PayloadRequest): Promise<CMSPackagesRequirementsR
     templateRequirements,
     maintenanceRequirements,
     notFoundRequirements,
+    errorPageRequirements,
   ];
   let results: CMSPackageRequirements[] = [];
   let start = 1;

@@ -50,7 +50,7 @@ export async function publicDocumentLoader(
         });
       default:
       case "error":
-        throw data(contentProcedureResult.error ?? null, {
+        throw data(contentProcedureResult.template ?? contentProcedureResult.error, {
           status: 500,
           statusText: "Internal Server Error",
           headers: {

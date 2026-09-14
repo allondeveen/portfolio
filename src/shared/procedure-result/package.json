@@ -16,6 +16,7 @@
     "typescript": "catalog:"
   },
   "dependencies": {
+    "@allondeveen-portfolio/error-page": "workspace:*",
     "@allondeveen-portfolio/not-found": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
     "zod": "catalog:"

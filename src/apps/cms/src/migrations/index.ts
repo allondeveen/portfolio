@@ -2,6 +2,7 @@ import * as migration_20260907_183154_migrate_to_postgres from "./20260907_18315
 import * as migration_20260909_011804_add_redirects from "./20260909_011804_add_redirects";
 import * as migration_20260909_171534_add_forms from "./20260909_171534_add_forms";
 import * as migration_20260914_171738_add_not_found from "./20260914_171738_add_not_found";
+import * as migration_20260914_202036_add_error_page_content from "./20260914_202036_add_error_page_content";
 
 export const migrations = [
   {
@@ -23,5 +24,10 @@ export const migrations = [
     up: migration_20260914_171738_add_not_found.up,
     down: migration_20260914_171738_add_not_found.down,
     name: "20260914_171738_add_not_found",
+  },
+  {
+    up: migration_20260914_202036_add_error_page_content.up,
+    down: migration_20260914_202036_add_error_page_content.down,
+    name: "20260914_202036_add_error_page_content",
   },
 ];

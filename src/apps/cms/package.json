@@ -31,6 +31,7 @@
     "@allondeveen-portfolio/blocks-property": "workspace:*",
     "@allondeveen-portfolio/client-credentials-flow": "workspace:*",
     "@allondeveen-portfolio/clients": "workspace:*",
+    "@allondeveen-portfolio/error-page": "workspace:*",
     "@allondeveen-portfolio/maintenance-content": "workspace:*",
     "@allondeveen-portfolio/media": "workspace:*",
     "@allondeveen-portfolio/menu": "workspace:*",

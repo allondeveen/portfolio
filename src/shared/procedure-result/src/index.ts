@@ -1,5 +1,5 @@
+import { ErrorPageSchema } from "@allondeveen-portfolio/error-page/website/data";
 import { NotFoundContentSchema } from "@allondeveen-portfolio/not-found/website/data";
-import { TemplateSchema } from "@allondeveen-portfolio/templates/website/data";
 import z from "zod";
 
 export function ProcedureResultSuccessSchema<T extends z.ZodType>(DataSchema: T) {
@@ -13,7 +13,7 @@ export function ProcedureResultErrorSchema<E extends z.ZodType>(ErrorSchema: E) 
   return z.object({
     status: z.literal("error"),
     error: ErrorSchema,
-    template: TemplateSchema.optional(),
+    template: ErrorPageSchema.optional(),
   });
 }
 

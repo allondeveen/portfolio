@@ -1,5 +1,7 @@
 import { getVersions } from "@allondeveen-portfolio/caching";
 import { type CacheTagInput, getCacheTags } from "@allondeveen-portfolio/content-cache-tags";
+import { getErrorPage } from "@allondeveen-portfolio/error-page/cms";
+import { mapErrorPage } from "@allondeveen-portfolio/error-page/trpc-server";
 import { getFooter } from "@allondeveen-portfolio/footer/trpc-server";
 import { getHeader } from "@allondeveen-portfolio/header/trpc-server";
 import { getNotFound } from "@allondeveen-portfolio/not-found/cms";
@@ -18,7 +20,73 @@ import { createDependencies } from "./dependencies";
 import { createMappingContext } from "./mappingContext";
 import { type Document, DocumentResponseSchema } from "../website/data";
 
+import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
 import type { MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
+import type { ErrorPage } from "@allondeveen-portfolio/error-page/website/data";
+import type { Template } from "@allondeveen-portfolio/templates/website/data";
+import type { Payload } from "payload";
+
+type GetErrorPageTemplateOptions = {
+  env: CloudflareEnv;
+  payload: Payload;
+  header: Template;
+  footer: Template;
+  mapBlockOptions: MapBlockOptions;
+  context: MappingContext;
+  errorMessage: string | undefined | null;
+};
+async function getErrorPageTemplate({
+  env,
+  payload,
+  header,
+  footer,
+  mapBlockOptions,
+  context,
+  errorMessage,
+}: GetErrorPageTemplateOptions): Promise<ErrorPage> {
+  const errorPageContent = await getErrorPage(payload);
+  const errorPage = await mapErrorPage({ header, footer, ...mapBlockOptions })(
+    errorPageContent,
+    context,
+  );
+  if (env.ENVIRONMENT !== "production") {
+    return {
+      ...errorPage,
+      blocks: errorPage.blocks.map((block) => {
+        if (block.kind === "hero" && errorMessage) {
+          return {
+            ...block,
+            blocks: block.blocks.map((block) => {
+              if (block.kind === "heading") {
+                return {
+                  ...block,
+                  text: {
+                    kind: "lexicalText" as const,
+                    paragraphs: [
+                      {
+                        kind: "paragraph" as const,
+                        elements: [
+                          {
+                            kind: "text" as const,
+                            text: errorMessage,
+                            formats: [],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                };
+              }
+              return block;
+            }),
+          };
+        }
+        return block;
+      }),
+    };
+  }
+  return errorPage;
+}
 
 const ContentProcedureResult = ProcedureResultSchema(DocumentResponseSchema, z.string().min(1));
 
@@ -126,6 +194,15 @@ export const contentProcedure = protectedProcedure
       return {
         status: "error",
         error: errorMessage,
+        template: await getErrorPageTemplate({
+          env,
+          payload: ctx.payload,
+          header,
+          footer,
+          mapBlockOptions,
+          context,
+          errorMessage,
+        }),
       };
     }
     try {
@@ -162,9 +239,30 @@ export const contentProcedure = protectedProcedure
         return {
           status: "error",
           error: errorMessage,
+          template: await getErrorPageTemplate({
+            env,
+            payload: ctx.payload,
+            header,
+            footer,
+            mapBlockOptions,
+            context,
+            errorMessage,
+          }),
         };
       } else {
-        throw error;
+        return {
+          status: "error",
+          error: errorMessage,
+          template: await getErrorPageTemplate({
+            env,
+            payload: ctx.payload,
+            header,
+            footer,
+            mapBlockOptions,
+            context,
+            errorMessage,
+          }),
+        };
       }
     }
   });

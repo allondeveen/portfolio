@@ -15,6 +15,7 @@
   "dependencies": {
     "@allondeveen-portfolio/client-credentials-flow": "workspace:*",
     "@allondeveen-portfolio/design-system": "workspace:*",
+    "@allondeveen-portfolio/error-page": "workspace:*",
     "@allondeveen-portfolio/not-found": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/trpc": "workspace:*",

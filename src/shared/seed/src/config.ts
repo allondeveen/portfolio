@@ -1,3 +1,4 @@
+import { errorPageIsInitialised, errorPageSeeds } from "@allondeveen-portfolio/error-page/seed";
 import {
   maintenanceIsInitialised,
   maintenanceSeeds,
@@ -108,6 +109,8 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
     await globalSeed("maintenance", maintenanceIsInitialised, maintenanceSeeds(payload));
 
     await globalSeed("not-found", notFoundIsInitialised, notFoundSeeds(payload));
+
+    await globalSeed("error-page", errorPageIsInitialised, errorPageSeeds(payload));
 
     console.log("Seeding finished");
   };

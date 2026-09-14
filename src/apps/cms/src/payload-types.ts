@@ -130,11 +130,13 @@ export interface Config {
     maintenance: Maintenance;
     'site-settings': SiteSetting;
     'not-found': NotFound;
+    'error-page': ErrorPage;
   };
   globalsSelect: {
     maintenance: MaintenanceSelect<false> | MaintenanceSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'not-found': NotFoundSelect<false> | NotFoundSelect<true>;
+    'error-page': ErrorPageSelect<false> | ErrorPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -1403,6 +1405,16 @@ export interface NotFound {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "error-page".
+ */
+export interface ErrorPage {
+  id: number;
+  blocks: Hero[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "maintenance_select".
  */
 export interface MaintenanceSelect<T extends boolean = true> {
@@ -1429,6 +1441,16 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "not-found_select".
  */
 export interface NotFoundSelect<T extends boolean = true> {
+  blocks?: T | {};
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "error-page_select".
+ */
+export interface ErrorPageSelect<T extends boolean = true> {
   blocks?: T | {};
   updatedAt?: T;
   createdAt?: T;

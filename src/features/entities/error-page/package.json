@@ -1,63 +1,60 @@
 {
-  "name": "@allondeveen-portfolio/public-documents",
+  "name": "@allondeveen-portfolio/error-page",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./seed": {
+      "types": "./src/seed.ts",
+      "import": "./src/seed.ts"
+    },
     "./cms": {
-      "types": "./dist/cms.d.ts",
+      "types": "./src/cms.ts",
       "import": "./src/cms.ts"
     },
     "./trpc-server": {
-      "types": "./dist/trpc-server.d.ts",
+      "types": "./src/trpc-server.ts",
       "import": "./src/trpc-server.ts"
     },
     "./website/data": {
-      "types": "./dist/website/data.d.ts",
+      "types": "./src/website/data.ts",
       "import": "./src/website/data.ts"
     },
     "./website": {
-      "types": "./dist/website.d.ts",
+      "types": "./src/website.ts",
       "import": "./src/website.ts"
     }
   },
   "scripts": {
-    "typecheck": "tsc -p ./tsconfig.json"
+    "typecheck": "tsc -b"
   },
   "devDependencies": {
     "@types/react": "catalog:",
     "typescript": "catalog:"
   },
   "peerDependencies": {
-    "@opennextjs/cloudflare": "catalog:",
     "@payloadcms/ui": "catalog:",
     "payload": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-router": "catalog:"
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/blocks-property": "workspace:*",
-    "@allondeveen-portfolio/caching": "workspace:*",
-    "@allondeveen-portfolio/content-cache-tags": "workspace:*",
-    "@allondeveen-portfolio/error-page": "workspace:*",
+    "@allondeveen-portfolio/design-system": "workspace:*",
     "@allondeveen-portfolio/footer": "workspace:*",
     "@allondeveen-portfolio/header": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
-    "@allondeveen-portfolio/lexical-text": "workspace:*",
-    "@allondeveen-portfolio/not-found": "workspace:*",
-    "@allondeveen-portfolio/procedure-result": "workspace:*",
-    "@allondeveen-portfolio/public-documents-queries": "workspace:*",
-    "@allondeveen-portfolio/redirects": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
+    "@allondeveen-portfolio/seed-function": "workspace:*",
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
-    "@allondeveen-portfolio/site-settings": "workspace:*",
     "@allondeveen-portfolio/templates": "workspace:*",
-    "@allondeveen-portfolio/trpc": "workspace:*",
-    "@trpc/client": "catalog:",
-    "@trpc/server": "catalog:",
+    "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",
     "fp-ts": "catalog:",
     "zod": "catalog:"
