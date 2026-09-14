@@ -5,28 +5,28 @@
   "type": "module",
   "exports": {
     "./config": {
-      "types": "./src/config.ts",
+      "types": "./dist/config.d.ts",
       "import": "./src/config.ts"
     },
     "./cms": {
-      "types": "./src/cms.ts",
+      "types": "./dist/cms.d.ts",
       "import": "./src/cms.ts"
     },
     "./components/syncNameFromFileName": {
-      "types": "./src/cms/components/syncNameFromFileName.tsx",
+      "types": "./dist/cms/components/syncNameFromFileName.d.tsx",
       "import": "./src/cms/components/syncNameFromFileName.tsx"
     },
     "./trpc-server": {
-      "types": "./src/trpc-server.ts",
+      "types": "./dist/trpc-server.d.ts",
       "import": "./src/trpc-server.ts"
     },
     "./website/data": {
-      "types": "./src/website/data.ts",
+      "types": "./dist/website/data.d.ts",
       "import": "./src/website/data.ts"
     }
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc -p ./tsconfig.json"
   },
   "devDependencies": {
     "@types/react": "catalog:",

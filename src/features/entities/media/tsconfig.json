@@ -2,7 +2,8 @@
   "extends": "../../../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "noEmit": true
+    "outDir": "dist",
+    "emitDeclarationOnly": true
   },
   "include": ["src", "../../../apps/cms/cloudflare-env.d.ts"]
 }
