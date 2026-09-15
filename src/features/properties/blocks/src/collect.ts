@@ -1,3 +1,4 @@
+import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
 import { gridBlock } from "@allondeveen-portfolio/grid-block/config";
 import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
@@ -19,6 +20,7 @@ export const allBlocks: Block[] = [
   gridItemBlock(["heading", "richText", "stack", "menu", "siteTitle"]),
   gridBlock(["grid-item"]),
   stackBlock(["heading", "richText"]),
+  containerBlock(["heading", "richText", "stack", "grid", "image"]),
   menuBlock,
   imageBlock,
   siteTitleBlock,

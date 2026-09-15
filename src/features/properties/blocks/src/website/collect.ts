@@ -1,3 +1,4 @@
+import { ContainerSchema } from "@allondeveen-portfolio/container-block/website/data";
 import { CopyrightSchema } from "@allondeveen-portfolio/copyright-block/website/data";
 import { GridSchema } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemSchema } from "@allondeveen-portfolio/grid-item-block/website/data";
@@ -21,6 +22,7 @@ export const AnyBlockSchema = z.discriminatedUnion("kind", [
   ImageSchema,
   SiteTitleSchema,
   CopyrightSchema,
+  ContainerSchema,
 ]);
 
 export type AnyBlock = z.infer<typeof AnyBlockSchema>;

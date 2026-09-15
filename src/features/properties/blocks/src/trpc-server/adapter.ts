@@ -1,3 +1,4 @@
+import { mapContainer } from "@allondeveen-portfolio/container-block/trpc-server";
 import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapGrid } from "@allondeveen-portfolio/grid-block/trpc-server";
 import { mapGridItem } from "@allondeveen-portfolio/grid-item-block/trpc-server";
@@ -50,6 +51,11 @@ export function mapBlock(options: MapBlockOptions) {
       case "stack":
         return {
           block: await mapStack(block, context),
+          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
+        };
+      case "container":
+        return {
+          block: await mapContainer(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
       case "menu":

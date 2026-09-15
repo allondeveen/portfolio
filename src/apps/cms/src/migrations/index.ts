@@ -3,6 +3,7 @@ import * as migration_20260909_011804_add_redirects from "./20260909_011804_add_
 import * as migration_20260909_171534_add_forms from "./20260909_171534_add_forms";
 import * as migration_20260914_171738_add_not_found from "./20260914_171738_add_not_found";
 import * as migration_20260914_202036_add_error_page_content from "./20260914_202036_add_error_page_content";
+import * as migration_20260915_222952_add_container_block from "./20260915_222952_add_container_block";
 
 export const migrations = [
   {
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20260914_202036_add_error_page_content.up,
     down: migration_20260914_202036_add_error_page_content.down,
     name: "20260914_202036_add_error_page_content",
+  },
+  {
+    up: migration_20260915_222952_add_container_block.up,
+    down: migration_20260915_222952_add_container_block.down,
+    name: "20260915_222952_add_container_block",
   },
 ];
