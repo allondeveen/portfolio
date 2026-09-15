@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
-    "@allondeveen-portfolio/grid-item-block": "workspace:^",
     "clsx": "catalog:",
     "zod": "catalog:"
   }

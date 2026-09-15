@@ -65,7 +65,7 @@ export function ErrorPageBackup({ message, details, stack }: ErrorPageBackupProp
       <title>{`Error page`}</title>
       <main>
         <section className="error-page">
-          <HeroComponent id="error-page-hero" kind="hero" blocks={[]}>
+          <HeroComponent id="error-page-hero" kind="hero">
             <HeadingComponent
               id="error-page-heading"
               kind="heading"

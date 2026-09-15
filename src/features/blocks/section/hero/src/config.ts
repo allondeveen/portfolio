@@ -1,6 +1,6 @@
-import type { Block } from "payload";
+import type { Block, BlockSlug } from "payload";
 
-export const heroBlock: Block = {
+export const heroBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
   slug: "hero",
   admin: {
     group: "Section",
@@ -10,7 +10,7 @@ export const heroBlock: Block = {
       type: "blocks",
       name: "blocks",
       blocks: [],
-      blockReferences: ["heading", "richText"],
+      blockReferences: [...allowedBlocks],
     },
   ],
-};
+});

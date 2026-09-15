@@ -533,9 +533,6 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
-      '@allondeveen-portfolio/grid-item-block':
-        specifier: workspace:^
-        version: link:../grid-item
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
@@ -564,21 +561,6 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
-      '@allondeveen-portfolio/heading-block':
-        specifier: workspace:^
-        version: link:../../textual/heading
-      '@allondeveen-portfolio/menu-block':
-        specifier: workspace:^
-        version: link:../../navigation/menu
-      '@allondeveen-portfolio/rich-text-block':
-        specifier: workspace:^
-        version: link:../../textual/rich-text
-      '@allondeveen-portfolio/site-title-block':
-        specifier: workspace:^
-        version: link:../../navigation/site-title
-      '@allondeveen-portfolio/stack-block':
-        specifier: workspace:^
-        version: link:../stack
       '@vanilla-extract/css':
         specifier: 'catalog:'
         version: 1.21.2(babel-plugin-macros@3.1.0)
@@ -610,12 +592,6 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
-      '@allondeveen-portfolio/heading-block':
-        specifier: workspace:^
-        version: link:../../textual/heading
-      '@allondeveen-portfolio/rich-text-block':
-        specifier: workspace:^
-        version: link:../../textual/rich-text
       clsx:
         specifier: 'catalog:'
         version: 2.1.1

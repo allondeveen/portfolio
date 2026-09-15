@@ -12,7 +12,7 @@ import { StackBlock } from "@allondeveen-portfolio/stack-block/website";
 import type { Block } from "./data";
 import type { JSX } from "react";
 
-export function BlockComponent(block: Block): JSX.Element {
+export function BlockComponent({ block, blocks }: Block): JSX.Element {
   switch (block.kind) {
     case "heading":
       return <HeadingComponent {...block} />;
@@ -21,25 +21,25 @@ export function BlockComponent(block: Block): JSX.Element {
     case "hero":
       return (
         <HeroComponent {...block}>
-          <BlocksComponent blocks={block.blocks} />
+          <BlocksComponent blocks={blocks} />
         </HeroComponent>
       );
     case "grid-item":
       return (
         <GridItemBlock {...block}>
-          <BlocksComponent blocks={block.blocks} />
+          <BlocksComponent blocks={blocks} />
         </GridItemBlock>
       );
     case "grid":
       return (
         <GridBlock {...block}>
-          <BlocksComponent blocks={block.blocks} />
+          <BlocksComponent blocks={blocks} />
         </GridBlock>
       );
     case "stack":
       return (
         <StackBlock {...block}>
-          <BlocksComponent blocks={block.blocks} />
+          <BlocksComponent blocks={blocks} />
         </StackBlock>
       );
     case "menu":
@@ -56,13 +56,13 @@ export function BlockComponent(block: Block): JSX.Element {
 }
 
 export type BlocksComponentProps = {
-  blocks: Block[];
+  blocks: Block[] | undefined;
 };
 export function BlocksComponent({ blocks }: BlocksComponentProps) {
   return (
     <>
-      {blocks.map((block) => (
-        <BlockComponent key={block.id} {...block} />
+      {blocks?.map(({ block, blocks }) => (
+        <BlockComponent key={block.id} block={block} blocks={blocks} />
       ))}
     </>
   );

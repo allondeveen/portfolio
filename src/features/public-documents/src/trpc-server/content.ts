@@ -22,6 +22,7 @@ import { type Document, DocumentResponseSchema } from "../website/data";
 
 import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
 import type { MapBlockOptions } from "@allondeveen-portfolio/blocks-property/trpc-server";
+import type { Block } from "@allondeveen-portfolio/blocks-property/website/data";
 import type { ErrorPage } from "@allondeveen-portfolio/error-page/website/data";
 import type { Template } from "@allondeveen-portfolio/templates/website/data";
 import type { Payload } from "payload";
@@ -52,36 +53,45 @@ async function getErrorPageTemplate({
   if (env.ENVIRONMENT !== "production") {
     return {
       ...errorPage,
-      blocks: errorPage.blocks.map((block) => {
+      blocks: errorPage.blocks.map<Block>(({ block, blocks }) => {
         if (block.kind === "hero" && errorMessage) {
           return {
-            ...block,
-            blocks: block.blocks.map((block) => {
+            block,
+            blocks: blocks?.map<Block>(({ block, blocks }) => {
               if (block.kind === "heading") {
                 return {
-                  ...block,
-                  text: {
-                    kind: "lexicalText" as const,
-                    paragraphs: [
-                      {
-                        kind: "paragraph" as const,
-                        elements: [
-                          {
-                            kind: "text" as const,
-                            text: errorMessage,
-                            formats: [],
-                          },
-                        ],
-                      },
-                    ],
+                  block: {
+                    ...block,
+                    text: {
+                      kind: "lexicalText" as const,
+                      paragraphs: [
+                        {
+                          kind: "paragraph" as const,
+                          elements: [
+                            {
+                              kind: "text" as const,
+                              text: errorMessage,
+                              formats: [],
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
+                  blocks,
                 };
               }
-              return block;
+              return {
+                block,
+                blocks,
+              };
             }),
           };
         }
-        return block;
+        return {
+          block,
+          blocks,
+        };
       }),
     };
   }
@@ -272,7 +282,7 @@ function getBlockNamesAndData(
 ): Pick<CacheTagInput, "blockData" | "blockNames"> {
   let blockNames: string[] = [];
   const blockData: CacheTagInput["blockData"] = {};
-  for (const block of blocks) {
+  for (const { block, blocks: childBlocks } of blocks) {
     blockNames = [...blockNames, block.kind];
     switch (block.kind) {
       case "image":
@@ -285,7 +295,7 @@ function getBlockNamesAndData(
         break;
     }
     if ("blocks" in block) {
-      const childData = getBlockNamesAndData(block.blocks);
+      const childData = getBlockNamesAndData(childBlocks ?? []);
       blockNames = [...blockNames, ...childData.blockNames];
       if (childData.blockData.image) {
         blockData.image = [...(blockData.image ?? []), ...childData.blockData.image];

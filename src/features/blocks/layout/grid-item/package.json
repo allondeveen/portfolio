@@ -39,11 +39,6 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
-    "@allondeveen-portfolio/heading-block": "workspace:^",
-    "@allondeveen-portfolio/menu-block": "workspace:^",
-    "@allondeveen-portfolio/rich-text-block": "workspace:^",
-    "@allondeveen-portfolio/site-title-block": "workspace:^",
-    "@allondeveen-portfolio/stack-block": "workspace:^",
     "clsx": "catalog:",
     "@vanilla-extract/css": "catalog:",
     "zod": "catalog:"
