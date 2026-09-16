@@ -2,6 +2,7 @@ import { type Container, ContainerSchema } from "@allondeveen-portfolio/containe
 import { type Copyright, CopyrightSchema } from "@allondeveen-portfolio/copyright-block/cms";
 import { type Grid, GridSchema } from "@allondeveen-portfolio/grid-block/cms";
 import { type GridItem, GridItemSchema } from "@allondeveen-portfolio/grid-item-block/cms";
+import { type Group, GroupSchema } from "@allondeveen-portfolio/group-block/cms";
 import { type Heading, HeadingSchema } from "@allondeveen-portfolio/heading-block/cms";
 import { type Hero, HeroSchema } from "@allondeveen-portfolio/hero-block/cms";
 import { type Image, ImageSchema } from "@allondeveen-portfolio/image-block/cms";
@@ -25,6 +26,7 @@ export type Block =
   | WithBlocks<Grid>
   | WithBlocks<Stack>
   | WithBlocks<Container>
+  | WithBlocks<Group>
   | Menu
   | Image
   | SiteTitle
@@ -46,6 +48,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     withBlocks(GridSchema),
     withBlocks(StackSchema),
     withBlocks(ContainerSchema),
+    withBlocks(GroupSchema),
     MenuSchema,
     ImageSchema,
     SiteTitleSchema,

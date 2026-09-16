@@ -2,6 +2,7 @@ import { mapContainer } from "@allondeveen-portfolio/container-block/trpc-server
 import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapGrid } from "@allondeveen-portfolio/grid-block/trpc-server";
 import { mapGridItem } from "@allondeveen-portfolio/grid-item-block/trpc-server";
+import { mapGroup } from "@allondeveen-portfolio/group-block/trpc-server";
 import { mapHeading } from "@allondeveen-portfolio/heading-block/trpc-server";
 import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
 import { mapImage } from "@allondeveen-portfolio/image-block/trpc-server";
@@ -56,6 +57,11 @@ export function mapBlock(options: MapBlockOptions) {
       case "container":
         return {
           block: await mapContainer(block, context),
+          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
+        };
+      case "group":
+        return {
+          block: await mapGroup(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
       case "menu":

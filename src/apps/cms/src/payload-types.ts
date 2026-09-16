@@ -73,6 +73,7 @@ export interface Config {
     grid: Grid;
     stack: Stack;
     container: Container;
+    group: Group;
     menu: MenuBlock;
     image: Image;
     siteTitle: SiteTitleBlock;
@@ -373,6 +374,16 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "group".
+ */
+export interface Group {
+  blocks?: (Heading | RichText | Image)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'group';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "copyright".
  */
 export interface Copyright {
@@ -474,7 +485,18 @@ export interface Template {
   id: string;
   location: string;
   blocks: (
-    Heading | RichText | Hero | GridItem | Grid | Stack | Container | MenuBlock | Image | SiteTitleBlock | Copyright
+    | Heading
+    | RichText
+    | Hero
+    | GridItem
+    | Grid
+    | Stack
+    | Container
+    | Group
+    | MenuBlock
+    | Image
+    | SiteTitleBlock
+    | Copyright
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1390,11 +1412,33 @@ export interface Maintenance {
   id: number;
   header?:
     | (
-        Heading | RichText | Hero | GridItem | Grid | Stack | Container | MenuBlock | Image | SiteTitleBlock | Copyright
+        | Heading
+        | RichText
+        | Hero
+        | GridItem
+        | Grid
+        | Stack
+        | Container
+        | Group
+        | MenuBlock
+        | Image
+        | SiteTitleBlock
+        | Copyright
       )[]
     | null;
   blocks: (
-    Heading | RichText | Hero | GridItem | Grid | Stack | Container | MenuBlock | Image | SiteTitleBlock | Copyright
+    | Heading
+    | RichText
+    | Hero
+    | GridItem
+    | Grid
+    | Stack
+    | Container
+    | Group
+    | MenuBlock
+    | Image
+    | SiteTitleBlock
+    | Copyright
   )[];
   updatedAt?: string | null;
   createdAt?: string | null;

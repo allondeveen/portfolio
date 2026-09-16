@@ -2,6 +2,7 @@ import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
 import { gridBlock } from "@allondeveen-portfolio/grid-block/config";
 import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
+import { groupBlock } from "@allondeveen-portfolio/group-block/config";
 import { headingBlock } from "@allondeveen-portfolio/heading-block/config";
 import { heroBlock } from "@allondeveen-portfolio/hero-block/config";
 import { imageBlock } from "@allondeveen-portfolio/image-block/config";
@@ -21,6 +22,7 @@ export const allBlocks: Block[] = [
   gridBlock(["grid-item"]),
   stackBlock(["heading", "richText"]),
   containerBlock(["heading", "richText", "stack", "grid", "image"]),
+  groupBlock(["heading", "richText", "image"]),
   menuBlock,
   imageBlock,
   siteTitleBlock,
