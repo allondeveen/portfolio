@@ -10,6 +10,7 @@ import { Menu } from "@allondeveen-portfolio/menu-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
 import { SiteTitle } from "@allondeveen-portfolio/site-title-block/website";
 import { StackBlock } from "@allondeveen-portfolio/stack-block/website";
+import { TextSectionComponent } from "@allondeveen-portfolio/text-section-block/website";
 
 import type { Block } from "./data";
 import type { JSX } from "react";
@@ -63,6 +64,12 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
         <StackBlock {...block}>
           <BlocksComponent blocks={blocks} />
         </StackBlock>
+      );
+    case "textSection":
+      return (
+        <TextSectionComponent {...block}>
+          <BlocksComponent blocks={blocks} />
+        </TextSectionComponent>
       );
     default:
       return <></>;

@@ -13,6 +13,7 @@ import {
   type SiteTitleAdapterOptions,
 } from "@allondeveen-portfolio/site-title-block/trpc-server";
 import { mapStack } from "@allondeveen-portfolio/stack-block/trpc-server";
+import { mapTextSection } from "@allondeveen-portfolio/text-section-block/trpc-server";
 
 import type { Block as CMSBlock } from "../cms";
 import type { Block } from "../website/data";
@@ -78,6 +79,11 @@ export function mapBlock(options: MapBlockOptions) {
       case "stack":
         return {
           block: await mapStack(block, context),
+          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
+        };
+      case "textSection":
+        return {
+          block: await mapTextSection(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
     }

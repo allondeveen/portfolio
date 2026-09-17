@@ -10,6 +10,7 @@ import { type Menu, MenuSchema } from "@allondeveen-portfolio/menu-block/cms";
 import { type RichText, RichTextSchema } from "@allondeveen-portfolio/rich-text-block/cms";
 import { type SiteTitle, SiteTitleSchema } from "@allondeveen-portfolio/site-title-block/cms";
 import { type Stack, StackSchema } from "@allondeveen-portfolio/stack-block/cms";
+import { type TextSection, TextSectionSchema } from "@allondeveen-portfolio/text-section-block/cms";
 import * as z from "zod";
 
 type BlockChildren = {
@@ -30,7 +31,8 @@ export type Block =
   | Menu
   | RichText
   | SiteTitle
-  | WithBlocks<Stack>;
+  | WithBlocks<Stack>
+  | WithBlocks<TextSection>;
 
 export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
   function withBlocks<Type extends z.core.$ZodShape = z.core.$ZodLooseShape>(
@@ -53,5 +55,6 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     RichTextSchema,
     SiteTitleSchema,
     withBlocks(StackSchema),
+    withBlocks(TextSectionSchema),
   ]);
 });

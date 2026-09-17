@@ -10,6 +10,7 @@ import { MenuSchema } from "@allondeveen-portfolio/menu-block/website/data";
 import { RichTextSchema } from "@allondeveen-portfolio/rich-text-block/website/data";
 import { SiteTitleSchema } from "@allondeveen-portfolio/site-title-block/website/data";
 import { StackSchema } from "@allondeveen-portfolio/stack-block/website/data";
+import { TextSectionSchema } from "@allondeveen-portfolio/text-section-block/website/data";
 import * as z from "zod";
 
 export const AnyBlockSchema = z.discriminatedUnion("kind", [
@@ -25,6 +26,7 @@ export const AnyBlockSchema = z.discriminatedUnion("kind", [
   RichTextSchema,
   SiteTitleSchema,
   StackSchema,
+  TextSectionSchema,
 ]);
 
 export type AnyBlock = z.infer<typeof AnyBlockSchema>;

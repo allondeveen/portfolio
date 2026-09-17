@@ -76,6 +76,7 @@ export interface Config {
     menu: MenuBlock;
     siteTitle: SiteTitleBlock;
     hero: Hero;
+    textSection: TextSection;
     heading: Heading;
     richText: RichText;
   };
@@ -350,7 +351,7 @@ export interface Page {
   parent?: (string | null) | Page;
   slug: string;
   title: string;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -372,6 +373,16 @@ export interface Hero {
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "textSection".
+ */
+export interface TextSection {
+  blocks?: (Heading | RichText | Image | Grid | Stack)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -401,7 +412,7 @@ export interface Project {
   technologies: (string | Topic)[];
   clients: (string | Client)[];
   title: string;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -448,7 +459,7 @@ export interface Article {
   subjects: (string | Topic)[];
   series?: (string | null) | Series;
   title: string;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -495,6 +506,7 @@ export interface Template {
     | MenuBlock
     | SiteTitleBlock
     | Hero
+    | TextSection
     | Heading
     | RichText
   )[];
@@ -1422,6 +1434,7 @@ export interface Maintenance {
         | MenuBlock
         | SiteTitleBlock
         | Hero
+        | TextSection
         | Heading
         | RichText
       )[]
@@ -1437,6 +1450,7 @@ export interface Maintenance {
     | MenuBlock
     | SiteTitleBlock
     | Hero
+    | TextSection
     | Heading
     | RichText
   )[];
@@ -1461,7 +1475,7 @@ export interface SiteSetting {
  */
 export interface NotFound {
   id: number;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1471,7 +1485,7 @@ export interface NotFound {
  */
 export interface ErrorPage {
   id: number;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

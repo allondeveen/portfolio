@@ -5,7 +5,7 @@ import type { BlocksField } from "payload";
 export const blocks: BlocksField = {
   name: "blocks",
   type: "blocks",
-  blockReferences: ["hero"],
+  blockReferences: ["hero", "textSection"],
   blocks: [],
   defaultValue: [
     {

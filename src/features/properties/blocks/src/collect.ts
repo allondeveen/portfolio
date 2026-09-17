@@ -10,6 +10,7 @@ import { menuBlock } from "@allondeveen-portfolio/menu-block/config";
 import { richTextblock } from "@allondeveen-portfolio/rich-text-block/config";
 import { siteTitleBlock } from "@allondeveen-portfolio/site-title-block/config";
 import { stackBlock } from "@allondeveen-portfolio/stack-block/config";
+import { textsectionBlock } from "@allondeveen-portfolio/text-section-block/config";
 
 import type { Block, BlockSlug } from "payload";
 
@@ -42,6 +43,7 @@ export const allBlocks: Block[] = [
 
   // Section
   heroBlock(["heading", "richText"]),
+  textsectionBlock(["heading", "richText", "image", "grid", "stack"]),
 
   // Textual
   headingBlock,

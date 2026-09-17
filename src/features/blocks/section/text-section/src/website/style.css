@@ -1,0 +1,5 @@
+.block.text-section {
+  --margin: 2rem;
+  margin-top: var(--margin);
+  margin-bottom: var(--margin);
+}
