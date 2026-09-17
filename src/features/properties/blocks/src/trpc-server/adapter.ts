@@ -26,18 +26,14 @@ export function mapBlock(options: MapBlockOptions) {
   const { siteTitle } = options;
   return async (block: CMSBlock, context: MappingContext): Promise<Block> => {
     switch (block.blockType) {
-      case "heading":
+      case "container":
         return {
-          block: await mapHeading(block, context),
-        };
-      case "richText":
-        return {
-          block: await mapRichText(block, context),
-        };
-      case "hero":
-        return {
-          block: await mapHero(block, context),
+          block: await mapContainer(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
+        };
+      case "copyright":
+        return {
+          block: await mapCopyright(siteTitle)(block, context),
         };
       case "grid":
         return {
@@ -49,36 +45,40 @@ export function mapBlock(options: MapBlockOptions) {
           block: await mapGridItem(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
-      case "stack":
-        return {
-          block: await mapStack(block, context),
-          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
-        };
-      case "container":
-        return {
-          block: await mapContainer(block, context),
-          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
-        };
       case "group":
         return {
           block: await mapGroup(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
-      case "menu":
+      case "heading":
         return {
-          block: await mapMenu(block, context),
+          block: await mapHeading(block, context),
+        };
+      case "hero":
+        return {
+          block: await mapHero(block, context),
+          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
       case "image":
         return {
           block: await mapImage(block, context),
         };
+      case "menu":
+        return {
+          block: await mapMenu(block, context),
+        };
+      case "richText":
+        return {
+          block: await mapRichText(block, context),
+        };
       case "siteTitle":
         return {
           block: await mapSiteTitle(siteTitle)(block, context),
         };
-      case "copyright":
+      case "stack":
         return {
-          block: await mapCopyright(siteTitle)(block, context),
+          block: await mapStack(block, context),
+          blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
     }
   };

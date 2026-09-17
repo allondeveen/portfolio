@@ -19,18 +19,18 @@ type BlockChildren = {
 type WithBlocks<Type> = Type & BlockChildren;
 
 export type Block =
-  | Heading
-  | RichText
-  | WithBlocks<Hero>
-  | WithBlocks<GridItem>
-  | WithBlocks<Grid>
-  | WithBlocks<Stack>
   | WithBlocks<Container>
+  | Copyright
+  | WithBlocks<Grid>
+  | WithBlocks<GridItem>
   | WithBlocks<Group>
-  | Menu
+  | Heading
+  | WithBlocks<Hero>
   | Image
+  | Menu
+  | RichText
   | SiteTitle
-  | Copyright;
+  | WithBlocks<Stack>;
 
 export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
   function withBlocks<Type extends z.core.$ZodShape = z.core.$ZodLooseShape>(
@@ -41,17 +41,17 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     });
   }
   return z.discriminatedUnion("blockType", [
-    HeadingSchema,
-    RichTextSchema,
-    withBlocks(HeroSchema),
-    withBlocks(GridItemSchema),
-    withBlocks(GridSchema),
-    withBlocks(StackSchema),
     withBlocks(ContainerSchema),
-    withBlocks(GroupSchema),
-    MenuSchema,
-    ImageSchema,
-    SiteTitleSchema,
     CopyrightSchema,
+    withBlocks(GridSchema),
+    withBlocks(GridItemSchema),
+    withBlocks(GroupSchema),
+    HeadingSchema,
+    withBlocks(HeroSchema),
+    ImageSchema,
+    MenuSchema,
+    RichTextSchema,
+    SiteTitleSchema,
+    withBlocks(StackSchema),
   ]);
 });

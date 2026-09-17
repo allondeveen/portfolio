@@ -13,18 +13,18 @@ import { StackSchema } from "@allondeveen-portfolio/stack-block/website/data";
 import * as z from "zod";
 
 export const AnyBlockSchema = z.discriminatedUnion("kind", [
-  HeadingSchema,
-  RichTextSchema,
-  HeroSchema,
-  GridItemSchema,
-  GridSchema,
-  StackSchema,
-  MenuSchema,
-  ImageSchema,
-  SiteTitleSchema,
-  CopyrightSchema,
   ContainerSchema,
+  CopyrightSchema,
+  GridSchema,
+  GridItemSchema,
   GroupSchema,
+  HeadingSchema,
+  HeroSchema,
+  ImageSchema,
+  MenuSchema,
+  RichTextSchema,
+  SiteTitleSchema,
+  StackSchema,
 ]);
 
 export type AnyBlock = z.infer<typeof AnyBlockSchema>;
