@@ -31,12 +31,3 @@ export type Adapter<Source, Result, Context extends MappingContext = MappingCont
   source: Source,
   context: Context,
 ) => Result | Promise<Result>;
-
-type AnyAdapter = (...args: never[]) => unknown;
-
-export type RecursiveAdapter<
-  Source,
-  Result,
-  Recurse extends AnyAdapter,
-  Context extends MappingContext = MappingContext,
-> = (source: Source, context: Context, recurse: Recurse) => Result | Promise<Result>;
