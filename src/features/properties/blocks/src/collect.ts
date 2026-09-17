@@ -18,7 +18,16 @@ export const allBlocks: Block[] = [
   groupBlock(["heading", "richText", "image"]),
 
   // Layout
-  containerBlock(["heading", "richText", "stack", "grid", "image"]),
+  containerBlock([
+    "heading",
+    "richText",
+    "stack",
+    "grid",
+    "image",
+    "copyright",
+    "siteTitle",
+    "menu",
+  ]),
   gridBlock(["grid-item"]),
   gridItemBlock(["heading", "richText", "stack", "menu", "siteTitle"]),
   stackBlock(["heading", "richText"]),

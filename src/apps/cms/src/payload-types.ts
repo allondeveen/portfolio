@@ -66,18 +66,18 @@ export interface Config {
     users: UserAuthOperations;
   };
   blocks: {
+    group: Group;
+    container: Container;
+    grid: Grid;
+    'grid-item': GridItem;
+    stack: Stack;
+    image: Image;
+    copyright: Copyright;
+    menu: MenuBlock;
+    siteTitle: SiteTitleBlock;
+    hero: Hero;
     heading: Heading;
     richText: RichText;
-    hero: Hero;
-    'grid-item': GridItem;
-    grid: Grid;
-    stack: Stack;
-    container: Container;
-    group: Group;
-    menu: MenuBlock;
-    image: Image;
-    siteTitle: SiteTitleBlock;
-    copyright: Copyright;
   };
   collections: {
     pages: Page;
@@ -177,6 +177,16 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "group".
+ */
+export interface Group {
+  blocks?: (Heading | RichText | Image)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'group';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "heading".
  */
 export interface Heading {
@@ -227,13 +237,66 @@ export interface RichText {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero".
+ * via the `definition` "image".
  */
-export interface Hero {
+export interface Image {
+  image?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  name: string;
+  alt: string;
+  type: 'image' | 'download';
+  prefix?: string | null;
+  caption?: string | null;
+  credits?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "container".
+ */
+export interface Container {
+  blocks?: (Heading | RichText | Stack | Grid | Image | Copyright | SiteTitleBlock | MenuBlock)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'container';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stack".
+ */
+export interface Stack {
   blocks?: (Heading | RichText)[] | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'hero';
+  blockType: 'stack';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grid".
+ */
+export interface Grid {
+  verticalAlign?: boolean | null;
+  blocks?: GridItem[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'grid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -245,16 +308,6 @@ export interface GridItem {
   id?: string | null;
   blockName?: string | null;
   blockType: 'grid-item';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "stack".
- */
-export interface Stack {
-  blocks?: (Heading | RichText)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'stack';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -312,25 +365,13 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "hero".
  */
-export interface Media {
-  id: string;
-  name: string;
-  alt: string;
-  type: 'image' | 'download';
-  prefix?: string | null;
-  caption?: string | null;
-  credits?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
+export interface Hero {
+  blocks?: (Heading | RichText)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -340,47 +381,6 @@ export interface SiteTitleBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'siteTitle';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "grid".
- */
-export interface Grid {
-  verticalAlign?: boolean | null;
-  blocks?: GridItem[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'grid';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "container".
- */
-export interface Container {
-  blocks?: (Heading | RichText | Stack | Grid | Image)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'container';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "image".
- */
-export interface Image {
-  image?: (string | null) | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'image';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "group".
- */
-export interface Group {
-  blocks?: (Heading | RichText | Image)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'group';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -485,18 +485,18 @@ export interface Template {
   id: string;
   location: string;
   blocks: (
+    | Group
+    | Container
+    | Grid
+    | GridItem
+    | Stack
+    | Image
+    | Copyright
+    | MenuBlock
+    | SiteTitleBlock
+    | Hero
     | Heading
     | RichText
-    | Hero
-    | GridItem
-    | Grid
-    | Stack
-    | Container
-    | Group
-    | MenuBlock
-    | Image
-    | SiteTitleBlock
-    | Copyright
   )[];
   updatedAt: string;
   createdAt: string;
@@ -1412,33 +1412,33 @@ export interface Maintenance {
   id: number;
   header?:
     | (
+        | Group
+        | Container
+        | Grid
+        | GridItem
+        | Stack
+        | Image
+        | Copyright
+        | MenuBlock
+        | SiteTitleBlock
+        | Hero
         | Heading
         | RichText
-        | Hero
-        | GridItem
-        | Grid
-        | Stack
-        | Container
-        | Group
-        | MenuBlock
-        | Image
-        | SiteTitleBlock
-        | Copyright
       )[]
     | null;
   blocks: (
+    | Group
+    | Container
+    | Grid
+    | GridItem
+    | Stack
+    | Image
+    | Copyright
+    | MenuBlock
+    | SiteTitleBlock
+    | Hero
     | Heading
     | RichText
-    | Hero
-    | GridItem
-    | Grid
-    | Stack
-    | Container
-    | Group
-    | MenuBlock
-    | Image
-    | SiteTitleBlock
-    | Copyright
   )[];
   updatedAt?: string | null;
   createdAt?: string | null;

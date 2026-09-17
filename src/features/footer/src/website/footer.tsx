@@ -10,9 +10,7 @@ export type FooterProps = Template;
 export function Footer(footer: FooterProps) {
   return (
     <footer className={clsx("site_footer", "center", "vertical")}>
-      <div className="container">
-        <BlocksComponent blocks={footer.blocks} />
-      </div>
+      <BlocksComponent blocks={footer.blocks} />
     </footer>
   );
 }

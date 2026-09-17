@@ -1,3 +1,4 @@
+import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { GridBlock } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
@@ -41,6 +42,12 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
         <StackBlock {...block}>
           <BlocksComponent blocks={blocks} />
         </StackBlock>
+      );
+    case "container":
+      return (
+        <ContainerBlock {...block}>
+          <BlocksComponent blocks={blocks} />
+        </ContainerBlock>
       );
     case "menu":
       return <Menu {...block} />;
