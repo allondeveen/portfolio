@@ -15,15 +15,19 @@ import type { JSX } from "react";
 
 export function BlockComponent({ block, blocks }: Block): JSX.Element {
   switch (block.kind) {
-    case "heading":
-      return <HeadingComponent {...block} />;
-    case "richText":
-      return <RichTextComponent {...block} />;
-    case "hero":
+    case "container":
       return (
-        <HeroComponent {...block}>
+        <ContainerBlock {...block}>
           <BlocksComponent blocks={blocks} />
-        </HeroComponent>
+        </ContainerBlock>
+      );
+    case "copyright":
+      return <Copyright {...block} />;
+    case "grid":
+      return (
+        <GridBlock {...block}>
+          <BlocksComponent blocks={blocks} />
+        </GridBlock>
       );
     case "grid-item":
       return (
@@ -31,32 +35,28 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
           <BlocksComponent blocks={blocks} />
         </GridItemBlock>
       );
-    case "grid":
+    case "heading":
+      return <HeadingComponent {...block} />;
+    case "hero":
       return (
-        <GridBlock {...block}>
+        <HeroComponent {...block}>
           <BlocksComponent blocks={blocks} />
-        </GridBlock>
+        </HeroComponent>
       );
+    case "image":
+      return <Image {...block} />;
+    case "menu":
+      return <Menu {...block} />;
+    case "richText":
+      return <RichTextComponent {...block} />;
+    case "siteTitle":
+      return <SiteTitle {...block} />;
     case "stack":
       return (
         <StackBlock {...block}>
           <BlocksComponent blocks={blocks} />
         </StackBlock>
       );
-    case "container":
-      return (
-        <ContainerBlock {...block}>
-          <BlocksComponent blocks={blocks} />
-        </ContainerBlock>
-      );
-    case "menu":
-      return <Menu {...block} />;
-    case "image":
-      return <Image {...block} />;
-    case "siteTitle":
-      return <SiteTitle {...block} />;
-    case "copyright":
-      return <Copyright {...block} />;
     default:
       return <></>;
   }
