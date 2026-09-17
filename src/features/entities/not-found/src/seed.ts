@@ -21,6 +21,7 @@ export const notFoundSeeds: GlobalSeedFunction<
     blocks: [
       {
         blockType: "hero",
+        variant: "default",
         blocks: [
           {
             blockType: "heading",

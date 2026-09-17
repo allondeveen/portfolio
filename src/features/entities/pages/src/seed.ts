@@ -23,6 +23,7 @@ function pageSeed(
     blocks: [
       {
         blockType: "hero",
+        variant: "default",
         blocks: [
           {
             blockType: "heading",

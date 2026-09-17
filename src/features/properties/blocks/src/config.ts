@@ -10,6 +10,7 @@ export const blocks: BlocksField = {
   defaultValue: [
     {
       blockType: "hero",
+      variant: "default",
       blocks: [
         {
           blockType: "heading",
