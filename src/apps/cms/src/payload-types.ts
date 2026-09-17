@@ -369,6 +369,7 @@ export interface Page {
  * via the `definition` "hero".
  */
 export interface Hero {
+  variant?: ('default' | 'elevated' | 'overlay') | null;
   blocks?: (Heading | RichText)[] | null;
   id?: string | null;
   blockName?: string | null;

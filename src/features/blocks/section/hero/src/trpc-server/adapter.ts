@@ -6,5 +6,6 @@ export const mapHero: Adapter<CMSHero, Hero> = async (hero) => {
   return {
     id: hero.id,
     kind: hero.blockType,
+    variant: hero.variant,
   };
 };

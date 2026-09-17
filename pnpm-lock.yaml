@@ -842,6 +842,9 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/design-system':
+        specifier: workspace:*
+        version: link:../../../../shared/design-system
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:^
         version: link:../../textual/heading
@@ -851,6 +854,9 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:^
         version: link:../../textual/rich-text
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.21.2(babel-plugin-macros@3.1.0)
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
