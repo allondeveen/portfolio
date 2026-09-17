@@ -1,1 +1,1 @@
-export { HeroComponent, type HeroComponentProps } from "./website/Hero";
+export { HeroComponent, type HeroComponentProps } from "./website/hero";

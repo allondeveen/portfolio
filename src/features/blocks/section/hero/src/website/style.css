@@ -1,0 +1,18 @@
+.block.hero {
+  height: 100dvh;
+  margin-top: calc(0px - var(--header-size));
+  padding-top: var(--header-size);
+}
+
+.block .hero__content {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.block .hero__content h1.heading {
+  margin-top: 0;
+}
+
+.block .hero__content p.rich-text {
+  font-size: var(--font-size-l);
+}
