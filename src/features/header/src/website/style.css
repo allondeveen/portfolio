@@ -11,6 +11,11 @@
   width: 100%;
 }
 
+.site_header .siteTitle a,
+.site_header .menu li a {
+  text-decoration: none;
+}
+
 @media (max-width: 1230px) {
   .site_header {
     padding: 0 1rem;
