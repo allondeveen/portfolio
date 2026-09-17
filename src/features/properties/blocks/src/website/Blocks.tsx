@@ -2,6 +2,7 @@ import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { GridBlock } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
+import { GroupBlock } from "@allondeveen-portfolio/group-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
 import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
 import { Image } from "@allondeveen-portfolio/image-block/website";
@@ -34,6 +35,12 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
         <GridItemBlock {...block}>
           <BlocksComponent blocks={blocks} />
         </GridItemBlock>
+      );
+    case "group":
+      return (
+        <GroupBlock {...block}>
+          <BlocksComponent blocks={blocks} />
+        </GroupBlock>
       );
     case "heading":
       return <HeadingComponent {...block} />;
