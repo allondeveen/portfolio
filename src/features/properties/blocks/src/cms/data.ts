@@ -7,6 +7,7 @@ import { type Heading, HeadingSchema } from "@allondeveen-portfolio/heading-bloc
 import { type Hero, HeroSchema } from "@allondeveen-portfolio/hero-block/cms";
 import { type Image, ImageSchema } from "@allondeveen-portfolio/image-block/cms";
 import { type Menu, MenuSchema } from "@allondeveen-portfolio/menu-block/cms";
+import { type Quote, QuoteSchema } from "@allondeveen-portfolio/quote-block/cms";
 import { type RichText, RichTextSchema } from "@allondeveen-portfolio/rich-text-block/cms";
 import { type SiteTitle, SiteTitleSchema } from "@allondeveen-portfolio/site-title-block/cms";
 import { type Stack, StackSchema } from "@allondeveen-portfolio/stack-block/cms";
@@ -29,6 +30,7 @@ export type Block =
   | WithBlocks<Hero>
   | Image
   | Menu
+  | Quote
   | RichText
   | SiteTitle
   | WithBlocks<Stack>
@@ -52,6 +54,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     withBlocks(HeroSchema),
     ImageSchema,
     MenuSchema,
+    QuoteSchema,
     RichTextSchema,
     SiteTitleSchema,
     withBlocks(StackSchema),

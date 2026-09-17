@@ -1,3 +1,4 @@
+import { textStates } from "@allondeveen-portfolio/text-state-lexical/states";
 import { ExternalLink } from "@allondeveen-portfolio/ui";
 import { type ComponentPropsWithoutRef, type ElementType, Fragment, type ReactNode } from "react";
 import { Link } from "react-router";
@@ -14,7 +15,7 @@ function renderTextElement(element: InlineTextElement): ReactNode {
     return <br />;
   }
 
-  const content = element.formats.reduce<ReactNode>((children, format) => {
+  const formattedContent = element.formats.reduce<ReactNode>((children, format) => {
     switch (format) {
       case "bold":
         return <strong>{children}</strong>;
@@ -41,6 +42,12 @@ function renderTextElement(element: InlineTextElement): ReactNode {
         return <mark>{children}</mark>;
     }
   }, element.text);
+
+  const content = element.textState ? (
+    <span className={textStates[element.textState].className}>{formattedContent}</span>
+  ) : (
+    formattedContent
+  );
 
   if (element.link?.url) {
     if (element.link.type == "custom") {

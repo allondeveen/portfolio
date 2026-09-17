@@ -1,9 +1,13 @@
 {
-  "name": "@allondeveen-portfolio/lexical-text",
+  "name": "@allondeveen-portfolio/quote-block",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
     "./cms": {
       "types": "./src/cms.ts",
       "import": "./src/cms.ts"
@@ -26,18 +30,21 @@
   },
   "devDependencies": {
     "@types/react": "catalog:",
-    "react-router": "catalog:",
     "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@payloadcms/richtext-lexical": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/design-system": "workspace:*",
+    "@allondeveen-portfolio/lexical-text": "workspace:*",
+    "@allondeveen-portfolio/single-line-lexical": "workspace:*",
     "@allondeveen-portfolio/text-state-lexical": "workspace:*",
-    "@allondeveen-portfolio/ui": "workspace:*",
+    "@vanilla-extract/css": "catalog:",
     "zod": "catalog:"
-  },
-  "peerDependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-router": "catalog:"
   }
 }

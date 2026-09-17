@@ -7,6 +7,7 @@ import { mapHeading } from "@allondeveen-portfolio/heading-block/trpc-server";
 import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
 import { mapImage } from "@allondeveen-portfolio/image-block/trpc-server";
 import { mapMenu } from "@allondeveen-portfolio/menu-block/trpc-server";
+import { mapQuote } from "@allondeveen-portfolio/quote-block/trpc-server";
 import { mapRichText } from "@allondeveen-portfolio/rich-text-block/trpc-server";
 import {
   mapSiteTitle,
@@ -67,6 +68,10 @@ export function mapBlock(options: MapBlockOptions) {
       case "menu":
         return {
           block: await mapMenu(block, context),
+        };
+      case "quote":
+        return {
+          block: await mapQuote(block, context),
         };
       case "richText":
         return {

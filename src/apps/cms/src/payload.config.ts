@@ -24,6 +24,7 @@ import {
 import { getSocialImage } from "@allondeveen-portfolio/site-settings/cms";
 import { siteSettings } from "@allondeveen-portfolio/site-settings/config";
 import { templates } from "@allondeveen-portfolio/templates/config";
+import { AllowedTextStateFeature } from "@allondeveen-portfolio/text-state-lexical";
 import { topics } from "@allondeveen-portfolio/topics/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
 import { postgresAdapter } from "@payloadcms/db-postgres";
@@ -176,6 +177,7 @@ export default buildConfig({
       BoldFeature(),
       ItalicFeature(),
       InlineCodeFeature(),
+      AllowedTextStateFeature((allTextStates) => allTextStates),
       InlineToolbarFeature(),
       FixedToolbarFeature(),
       SingleLineFeature(),

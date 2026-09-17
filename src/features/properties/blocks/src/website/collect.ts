@@ -7,6 +7,7 @@ import { HeadingSchema } from "@allondeveen-portfolio/heading-block/website/data
 import { HeroSchema } from "@allondeveen-portfolio/hero-block/website/data";
 import { ImageSchema } from "@allondeveen-portfolio/image-block/website/data";
 import { MenuSchema } from "@allondeveen-portfolio/menu-block/website/data";
+import { QuoteSchema } from "@allondeveen-portfolio/quote-block/website/data";
 import { RichTextSchema } from "@allondeveen-portfolio/rich-text-block/website/data";
 import { SiteTitleSchema } from "@allondeveen-portfolio/site-title-block/website/data";
 import { StackSchema } from "@allondeveen-portfolio/stack-block/website/data";
@@ -23,6 +24,7 @@ export const AnyBlockSchema = z.discriminatedUnion("kind", [
   HeroSchema,
   ImageSchema,
   MenuSchema,
+  QuoteSchema,
   RichTextSchema,
   SiteTitleSchema,
   StackSchema,

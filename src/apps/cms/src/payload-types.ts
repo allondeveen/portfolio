@@ -78,6 +78,7 @@ export interface Config {
     hero: Hero;
     textSection: TextSection;
     heading: Heading;
+    quote: Quote;
     richText: RichText;
   };
   collections: {
@@ -380,10 +381,49 @@ export interface Hero {
  * via the `definition` "textSection".
  */
 export interface TextSection {
-  blocks?: (Heading | RichText | Image | Grid | Stack)[] | null;
+  blocks?: (Heading | RichText | Image | Grid | Stack | Quote)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quote".
+ */
+export interface Quote {
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -509,6 +549,7 @@ export interface Template {
     | Hero
     | TextSection
     | Heading
+    | Quote
     | RichText
   )[];
   updatedAt: string;
@@ -1437,6 +1478,7 @@ export interface Maintenance {
         | Hero
         | TextSection
         | Heading
+        | Quote
         | RichText
       )[]
     | null;
@@ -1453,6 +1495,7 @@ export interface Maintenance {
     | Hero
     | TextSection
     | Heading
+    | Quote
     | RichText
   )[];
   updatedAt?: string | null;

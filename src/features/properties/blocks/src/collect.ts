@@ -7,6 +7,7 @@ import { headingBlock } from "@allondeveen-portfolio/heading-block/config";
 import { heroBlock } from "@allondeveen-portfolio/hero-block/config";
 import { imageBlock } from "@allondeveen-portfolio/image-block/config";
 import { menuBlock } from "@allondeveen-portfolio/menu-block/config";
+import { quoteblock } from "@allondeveen-portfolio/quote-block/config";
 import { richTextblock } from "@allondeveen-portfolio/rich-text-block/config";
 import { siteTitleBlock } from "@allondeveen-portfolio/site-title-block/config";
 import { stackBlock } from "@allondeveen-portfolio/stack-block/config";
@@ -43,10 +44,11 @@ export const allBlocks: Block[] = [
 
   // Section
   heroBlock(["heading", "richText"]),
-  textsectionBlock(["heading", "richText", "image", "grid", "stack"]),
+  textsectionBlock(["heading", "richText", "image", "grid", "stack", "quote"]),
 
   // Textual
   headingBlock,
+  quoteblock,
   richTextblock,
 ];
 export const allBlockTypes: BlockSlug[] = allBlocks.map((block) => block.slug) as BlockSlug[];

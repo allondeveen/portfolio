@@ -1,6 +1,7 @@
 import * as z from "zod";
 
 export type LexicalNode = {
+  $?: Record<string, unknown>;
   children?: LexicalNode[];
   fields?: Record<string, unknown>;
   format?: number | string;
@@ -11,6 +12,7 @@ export type LexicalNode = {
 
 export const LexicalNodeSchema: z.ZodType<LexicalNode> = z.lazy(() =>
   z.object({
+    $: z.record(z.string(), z.unknown()).optional(),
     children: z.array(LexicalNodeSchema).optional(),
     fields: z.record(z.string(), z.unknown()).optional(),
     format: z.union([z.number(), z.string()]).optional(),
