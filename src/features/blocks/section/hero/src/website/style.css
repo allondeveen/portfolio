@@ -1,4 +1,5 @@
-.block.hero {
+.block.hero,
+.block:first-child.hero {
   height: 100dvh;
   margin-top: calc(0px - var(--header-size));
   padding-top: var(--header-size);

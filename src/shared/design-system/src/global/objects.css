@@ -1,0 +1,13 @@
+.block {
+  --margin: 5rem;
+  margin-top: var(--margin);
+  margin-bottom: var(--margin);
+}
+
+.block:first-child {
+  margin-top: 0;
+}
+
+.block:first-child:last-child {
+  margin-bottom: 0;
+}
