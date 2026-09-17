@@ -14,18 +14,28 @@ import { stackBlock } from "@allondeveen-portfolio/stack-block/config";
 import type { Block, BlockSlug } from "payload";
 
 export const allBlocks: Block[] = [
-  // prevent collapse
+  // Group
+  groupBlock(["heading", "richText", "image"]),
+
+  // Layout
+  containerBlock(["heading", "richText", "stack", "grid", "image"]),
+  gridBlock(["grid-item"]),
+  gridItemBlock(["heading", "richText", "stack", "menu", "siteTitle"]),
+  stackBlock(["heading", "richText"]),
+
+  // Media
+  imageBlock,
+
+  // Navigation
+  copyrightBlock,
+  menuBlock,
+  siteTitleBlock,
+
+  // Section
+  heroBlock(["heading", "richText"]),
+
+  // Textual
   headingBlock,
   richTextblock,
-  heroBlock(["heading", "richText"]),
-  gridItemBlock(["heading", "richText", "stack", "menu", "siteTitle"]),
-  gridBlock(["grid-item"]),
-  stackBlock(["heading", "richText"]),
-  containerBlock(["heading", "richText", "stack", "grid", "image"]),
-  groupBlock(["heading", "richText", "image"]),
-  menuBlock,
-  imageBlock,
-  siteTitleBlock,
-  copyrightBlock,
 ];
 export const allBlockTypes: BlockSlug[] = allBlocks.map((block) => block.slug) as BlockSlug[];
