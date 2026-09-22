@@ -78,6 +78,7 @@ export interface Config {
     hero: Hero;
     textSection: TextSection;
     heading: Heading;
+    label: Label;
     list: List;
     quote: Quote;
     richText: RichText;
@@ -372,17 +373,42 @@ export interface Page {
  */
 export interface Hero {
   variant?: ('default' | 'elevated' | 'overlay') | null;
-  blocks?: (Heading | RichText)[] | null;
+  blocks?: (Heading | RichText | Label)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "label".
+ */
+export interface Label {
+  variant: 'default' | 'primary' | 'secondary' | 'disabled';
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'label';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "textSection".
  */
 export interface TextSection {
-  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List)[] | null;
+  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textSection';
@@ -596,6 +622,7 @@ export interface Template {
     | Hero
     | TextSection
     | Heading
+    | Label
     | List
     | Quote
     | RichText
@@ -1526,6 +1553,7 @@ export interface Maintenance {
         | Hero
         | TextSection
         | Heading
+        | Label
         | List
         | Quote
         | RichText
@@ -1544,6 +1572,7 @@ export interface Maintenance {
     | Hero
     | TextSection
     | Heading
+    | Label
     | List
     | Quote
     | RichText

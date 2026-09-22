@@ -51,6 +51,7 @@
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/image-block": "workspace:*",
+    "@allondeveen-portfolio/label-block": "workspace:*",
     "@allondeveen-portfolio/list-block": "workspace:*",
     "@allondeveen-portfolio/menu-block": "workspace:*",
     "@allondeveen-portfolio/quote-block": "workspace:*",

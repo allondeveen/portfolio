@@ -6,6 +6,7 @@ import { type Group, GroupSchema } from "@allondeveen-portfolio/group-block/cms"
 import { type Heading, HeadingSchema } from "@allondeveen-portfolio/heading-block/cms";
 import { type Hero, HeroSchema } from "@allondeveen-portfolio/hero-block/cms";
 import { type Image, ImageSchema } from "@allondeveen-portfolio/image-block/cms";
+import { type Label, LabelSchema } from "@allondeveen-portfolio/label-block/cms";
 import { type List, ListSchema } from "@allondeveen-portfolio/list-block/cms";
 import { type Menu, MenuSchema } from "@allondeveen-portfolio/menu-block/cms";
 import { type Quote, QuoteSchema } from "@allondeveen-portfolio/quote-block/cms";
@@ -30,6 +31,7 @@ export type Block =
   | Heading
   | WithBlocks<Hero>
   | Image
+  | Label
   | List
   | Menu
   | Quote
@@ -55,6 +57,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     HeadingSchema,
     withBlocks(HeroSchema),
     ImageSchema,
+    LabelSchema,
     ListSchema,
     MenuSchema,
     QuoteSchema,

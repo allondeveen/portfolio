@@ -10,7 +10,7 @@
   padding: 2rem 0;
 }
 
-.block .hero__content h1.heading {
+.block .hero__content h1.heading:first-child {
   margin-top: 0;
 }
 
