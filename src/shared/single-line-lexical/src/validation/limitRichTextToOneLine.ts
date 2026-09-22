@@ -2,13 +2,20 @@ import {
   LexicalEditorStateSchema,
   type LexicalNode,
 } from "@allondeveen-portfolio/lexical-text/cms";
+import { richText } from "payload/shared";
 
 import type { RichTextFieldValidation } from "payload";
 
 const containsLineBreak = (node: LexicalNode): boolean =>
   node.type === "linebreak" || node.children?.some(containsLineBreak) === true;
 
-export const limitRichTextToOneLine: RichTextFieldValidation = (value) => {
+export const limitRichTextToOneLine: RichTextFieldValidation = async (value, options) => {
+  const validation = await richText(value, options);
+
+  if (validation !== true) {
+    return validation;
+  }
+
   const result = LexicalEditorStateSchema.safeParse(value);
 
   if (!result.success) {
