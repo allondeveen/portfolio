@@ -1,0 +1,28 @@
+.quote {
+  margin: 3rem 0;
+}
+
+.quote blockquote {
+  margin: 0;
+}
+
+.quote blockquote p {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+.quote blockquote p:before {
+  content: "\201C";
+}
+
+.quote blockquote p:after {
+  content: "\201D";
+}
+
+.quote:has(+ .quote) {
+  margin-bottom: 1rem;
+}
+
+.quote + .quote {
+  margin-top: 1rem;
+}

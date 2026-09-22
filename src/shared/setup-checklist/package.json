@@ -32,8 +32,10 @@
     "react-dom": "catalog:"
   },
   "dependencies": {
+    "@allondeveen-portfolio/error-page": "workspace:*",
     "@allondeveen-portfolio/maintenance-content": "workspace:*",
     "@allondeveen-portfolio/menu": "workspace:*",
+    "@allondeveen-portfolio/not-found": "workspace:*",
     "@allondeveen-portfolio/public-documents": "workspace:*",
     "@allondeveen-portfolio/setup-requirements": "workspace:*",
     "@allondeveen-portfolio/site-settings": "workspace:*",

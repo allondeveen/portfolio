@@ -10,9 +10,7 @@ export type HeaderProps = Template;
 export function Header(header: HeaderProps) {
   return (
     <header className={clsx("site_header", "center", "vertical")}>
-      <div className="container">
-        <BlocksComponent blocks={header.blocks} />
-      </div>
+      <BlocksComponent blocks={header.blocks} />
     </header>
   );
 }

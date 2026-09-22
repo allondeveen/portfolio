@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/text-state-lexical": "workspace:*",
     "@allondeveen-portfolio/ui": "workspace:*",
     "zod": "catalog:"
   },

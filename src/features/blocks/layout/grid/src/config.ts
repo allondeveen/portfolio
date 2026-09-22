@@ -1,6 +1,6 @@
-import type { Block } from "payload";
+import type { Block, BlockSlug } from "payload";
 
-export const gridBlock: Block = {
+export const gridBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
   slug: "grid",
   admin: {
     group: "Layout",
@@ -15,7 +15,7 @@ export const gridBlock: Block = {
       type: "blocks",
       name: "blocks",
       blocks: [],
-      blockReferences: ["grid-item"],
+      blockReferences: [...allowedBlocks],
     },
   ],
-};
+});

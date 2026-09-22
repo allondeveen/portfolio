@@ -1,0 +1,59 @@
+{
+  "name": "@allondeveen-portfolio/not-found",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./src/config.ts"
+    },
+    "./seed": {
+      "types": "./src/seed.ts",
+      "import": "./src/seed.ts"
+    },
+    "./cms": {
+      "types": "./src/cms.ts",
+      "import": "./src/cms.ts"
+    },
+    "./trpc-server": {
+      "types": "./src/trpc-server.ts",
+      "import": "./src/trpc-server.ts"
+    },
+    "./website/data": {
+      "types": "./src/website/data.ts",
+      "import": "./src/website/data.ts"
+    },
+    "./website": {
+      "types": "./src/website.ts",
+      "import": "./src/website.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "@payloadcms/ui": "catalog:",
+    "payload": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "dependencies": {
+    "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/blocks-property": "workspace:*",
+    "@allondeveen-portfolio/design-system": "workspace:*",
+    "@allondeveen-portfolio/footer": "workspace:*",
+    "@allondeveen-portfolio/header": "workspace:*",
+    "@allondeveen-portfolio/seed-function": "workspace:*",
+    "@allondeveen-portfolio/setup-requirements": "workspace:*",
+    "@allondeveen-portfolio/templates": "workspace:*",
+    "@vanilla-extract/css": "catalog:",
+    "clsx": "catalog:",
+    "fp-ts": "catalog:",
+    "zod": "catalog:"
+  }
+}

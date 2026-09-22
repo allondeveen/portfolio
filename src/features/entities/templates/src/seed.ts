@@ -19,25 +19,30 @@ export const templateSeeds: SeedFunction<RequiredDataFromCollectionSlug<"templat
       location: "header",
       blocks: [
         {
-          blockType: "grid",
-          verticalAlign: true,
+          blockType: "container",
           blocks: [
             {
-              blockType: "grid-item",
-              size: 2,
+              blockType: "grid",
+              verticalAlign: true,
               blocks: [
                 {
-                  blockType: "siteTitle",
+                  blockType: "grid-item",
+                  size: 2,
+                  blocks: [
+                    {
+                      blockType: "siteTitle",
+                    },
+                  ],
                 },
-              ],
-            },
-            {
-              blockType: "grid-item",
-              size: 8,
-              blocks: [
                 {
-                  blockType: "menu",
-                  menu: mainMenu,
+                  blockType: "grid-item",
+                  size: 8,
+                  blocks: [
+                    {
+                      blockType: "menu",
+                      menu: mainMenu,
+                    },
+                  ],
                 },
               ],
             },
@@ -49,7 +54,12 @@ export const templateSeeds: SeedFunction<RequiredDataFromCollectionSlug<"templat
       location: "footer",
       blocks: [
         {
-          blockType: "copyright",
+          blockType: "container",
+          blocks: [
+            {
+              blockType: "copyright",
+            },
+          ],
         },
       ] as RequiredDataFromCollectionSlug<"templates">["blocks"],
     },

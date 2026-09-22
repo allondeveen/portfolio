@@ -1,0 +1,51 @@
+ul.list,
+ol.list {
+  --list-marker-width: 1.25rem;
+  --list-marker-gap: 0.5rem;
+
+  padding: 0;
+  margin: 3rem 0;
+  list-style: none;
+  counter-reset: list-entry;
+}
+
+.list > li {
+  position: relative;
+  counter-increment: list-entry;
+  padding-inline-start: calc(var(--list-marker-width) + var(--list-marker-gap));
+}
+
+.list > li::before {
+  content: counter(list-entry, var(--list-marker-type)) var(--list-marker-suffix);
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  inline-size: var(--list-marker-width);
+  text-align: center;
+}
+
+.list[data-style="image"] > li::before {
+  content: "";
+  block-size: 1rem;
+  inset-block-start: 0.2rem;
+  background-image: var(--list-marker-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.list[data-style="none"] > li {
+  padding-inline-start: 0;
+}
+
+.list[data-style="none"] > li::before {
+  content: none;
+}
+
+.list:has(+ .list) {
+  margin-bottom: 1rem;
+}
+
+.list + .list {
+  margin-top: 1rem;
+}

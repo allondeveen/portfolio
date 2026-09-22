@@ -66,16 +66,22 @@ export interface Config {
     users: UserAuthOperations;
   };
   blocks: {
-    heading: Heading;
-    richText: RichText;
-    hero: Hero;
-    'grid-item': GridItem;
+    group: Group;
+    container: Container;
     grid: Grid;
+    'grid-item': GridItem;
     stack: Stack;
-    menu: MenuBlock;
     image: Image;
-    siteTitle: SiteTitleBlock;
     copyright: Copyright;
+    menu: MenuBlock;
+    siteTitle: SiteTitleBlock;
+    hero: Hero;
+    textSection: TextSection;
+    heading: Heading;
+    label: Label;
+    list: List;
+    quote: Quote;
+    richText: RichText;
   };
   collections: {
     pages: Page;
@@ -129,10 +135,14 @@ export interface Config {
   globals: {
     maintenance: Maintenance;
     'site-settings': SiteSetting;
+    'not-found': NotFound;
+    'error-page': ErrorPage;
   };
   globalsSelect: {
     maintenance: MaintenanceSelect<false> | MaintenanceSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'not-found': NotFoundSelect<false> | NotFoundSelect<true>;
+    'error-page': ErrorPageSelect<false> | ErrorPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -168,6 +178,16 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "group".
+ */
+export interface Group {
+  blocks?: (Heading | RichText | Image)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'group';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -221,13 +241,66 @@ export interface RichText {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero".
+ * via the `definition` "image".
  */
-export interface Hero {
+export interface Image {
+  image?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  name: string;
+  alt: string;
+  type: 'image' | 'download';
+  prefix?: string | null;
+  caption?: string | null;
+  credits?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "container".
+ */
+export interface Container {
+  blocks?: (Heading | RichText | Stack | Grid | Image | Copyright | SiteTitleBlock | MenuBlock)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'container';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stack".
+ */
+export interface Stack {
   blocks?: (Heading | RichText)[] | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'hero';
+  blockType: 'stack';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "grid".
+ */
+export interface Grid {
+  verticalAlign?: boolean | null;
+  blocks?: GridItem[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'grid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -239,16 +312,6 @@ export interface GridItem {
   id?: string | null;
   blockName?: string | null;
   blockType: 'grid-item';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "stack".
- */
-export interface Stack {
-  blocks?: (Heading | RichText)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'stack';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -291,7 +354,7 @@ export interface Page {
   parent?: (string | null) | Page;
   slug: string;
   title: string;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -306,25 +369,134 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "hero".
  */
-export interface Media {
-  id: string;
-  name: string;
-  alt: string;
-  type: 'image' | 'download';
-  prefix?: string | null;
-  caption?: string | null;
-  credits?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
+export interface Hero {
+  variant?: ('default' | 'elevated' | 'overlay') | null;
+  blocks?: (Heading | RichText | Label)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "label".
+ */
+export interface Label {
+  variant: 'default' | 'primary' | 'secondary' | 'disabled';
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'label';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "textSection".
+ */
+export interface TextSection {
+  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "quote".
+ */
+export interface Quote {
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "list".
+ */
+export interface List {
+  enumeration: {
+    type: 'ordered' | 'unordered';
+    listStyleType:
+      | 'default'
+      | 'disc'
+      | 'circle'
+      | 'square'
+      | 'decimal-leading-zero'
+      | 'lower-alpha'
+      | 'upper-alpha'
+      | 'hebrew'
+      | 'lower-roman'
+      | 'upper-roman'
+      | 'none'
+      | 'image';
+    defaultImage?: (string | null) | Media;
+  };
+  items: {
+    value: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    image?: (string | null) | Media;
+    order?: number | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'list';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -334,27 +506,6 @@ export interface SiteTitleBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'siteTitle';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "grid".
- */
-export interface Grid {
-  verticalAlign?: boolean | null;
-  blocks?: GridItem[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'grid';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "image".
- */
-export interface Image {
-  image?: (string | null) | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'image';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -375,7 +526,7 @@ export interface Project {
   technologies: (string | Topic)[];
   clients: (string | Client)[];
   title: string;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -422,7 +573,7 @@ export interface Article {
   subjects: (string | Topic)[];
   series?: (string | null) | Series;
   title: string;
-  blocks: Hero[];
+  blocks: (Hero | TextSection)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -458,7 +609,24 @@ export interface Series {
 export interface Template {
   id: string;
   location: string;
-  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[];
+  blocks: (
+    | Group
+    | Container
+    | Grid
+    | GridItem
+    | Stack
+    | Image
+    | Copyright
+    | MenuBlock
+    | SiteTitleBlock
+    | Hero
+    | TextSection
+    | Heading
+    | Label
+    | List
+    | Quote
+    | RichText
+  )[];
   updatedAt: string;
   createdAt: string;
 }
@@ -1372,8 +1540,43 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Maintenance {
   id: number;
   header?:
-    (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[] | null;
-  blocks: (Heading | RichText | Hero | GridItem | Grid | Stack | MenuBlock | Image | SiteTitleBlock | Copyright)[];
+    | (
+        | Group
+        | Container
+        | Grid
+        | GridItem
+        | Stack
+        | Image
+        | Copyright
+        | MenuBlock
+        | SiteTitleBlock
+        | Hero
+        | TextSection
+        | Heading
+        | Label
+        | List
+        | Quote
+        | RichText
+      )[]
+    | null;
+  blocks: (
+    | Group
+    | Container
+    | Grid
+    | GridItem
+    | Stack
+    | Image
+    | Copyright
+    | MenuBlock
+    | SiteTitleBlock
+    | Hero
+    | TextSection
+    | Heading
+    | Label
+    | List
+    | Quote
+    | RichText
+  )[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1386,6 +1589,26 @@ export interface SiteSetting {
   siteTitle: string;
   supportEmail: string;
   socialImage: string | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "not-found".
+ */
+export interface NotFound {
+  id: number;
+  blocks: (Hero | TextSection)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "error-page".
+ */
+export interface ErrorPage {
+  id: number;
+  blocks: (Hero | TextSection)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1408,6 +1631,26 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteTitle?: T;
   supportEmail?: T;
   socialImage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "not-found_select".
+ */
+export interface NotFoundSelect<T extends boolean = true> {
+  blocks?: T | {};
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "error-page_select".
+ */
+export interface ErrorPageSelect<T extends boolean = true> {
+  blocks?: T | {};
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -49,6 +49,7 @@
 }
 
 .maintenance-page__content nav.maintenance ul li {
+  font-family: var(--font-heading);
   font-size: var(--font-size-l);
 }
 

@@ -6,9 +6,11 @@ import { articles } from "@allondeveen-portfolio/articles/config";
 import { allBlocks } from "@allondeveen-portfolio/blocks-property/all";
 import { getDescription, getTitle } from "@allondeveen-portfolio/blocks-property/cms";
 import { clients } from "@allondeveen-portfolio/clients/config";
+import { errorPage } from "@allondeveen-portfolio/error-page/config";
 import { maintenance } from "@allondeveen-portfolio/maintenance-content/config";
 import { media } from "@allondeveen-portfolio/media/config";
 import { menu } from "@allondeveen-portfolio/menu/config";
+import { notFound } from "@allondeveen-portfolio/not-found/config";
 import { pages } from "@allondeveen-portfolio/pages/config";
 import { projects } from "@allondeveen-portfolio/projects/config";
 import { redirects } from "@allondeveen-portfolio/redirects/config";
@@ -22,6 +24,7 @@ import {
 import { getSocialImage } from "@allondeveen-portfolio/site-settings/cms";
 import { siteSettings } from "@allondeveen-portfolio/site-settings/config";
 import { templates } from "@allondeveen-portfolio/templates/config";
+import { AllowedTextStateFeature } from "@allondeveen-portfolio/text-state-lexical";
 import { topics } from "@allondeveen-portfolio/topics/config";
 import { CloudflareContext, getCloudflareContext } from "@opennextjs/cloudflare";
 import { postgresAdapter } from "@payloadcms/db-postgres";
@@ -155,13 +158,13 @@ export default buildConfig({
     Users,
     media,
     redirects,
-
-    // fixed template
   ],
   globals: [
     //
     maintenance,
     siteSettings,
+    notFound,
+    errorPage,
   ],
   editor: lexicalEditor({
     admin: {
@@ -174,6 +177,7 @@ export default buildConfig({
       BoldFeature(),
       ItalicFeature(),
       InlineCodeFeature(),
+      AllowedTextStateFeature((allTextStates) => allTextStates),
       InlineToolbarFeature(),
       FixedToolbarFeature(),
       SingleLineFeature(),

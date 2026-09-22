@@ -1,3 +1,4 @@
+import { isTextState, type TextState } from "@allondeveen-portfolio/text-state-lexical/states";
 import * as z from "zod";
 
 export const TextFormatSchema = z.enum([
@@ -25,6 +26,7 @@ export const TextElementSchema = z.object({
   kind: z.literal("text"),
   text: z.string(),
   formats: z.array(TextFormatSchema),
+  textState: z.custom<TextState>(isTextState).optional(),
   style: z.string().optional(),
   link: TextLinkSchema.optional(),
 });

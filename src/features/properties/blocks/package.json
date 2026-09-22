@@ -43,16 +43,22 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/container-block": "workspace:*",
     "@allondeveen-portfolio/copyright-block": "workspace:*",
     "@allondeveen-portfolio/grid-block": "workspace:*",
     "@allondeveen-portfolio/grid-item-block": "workspace:*",
+    "@allondeveen-portfolio/group-block": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
     "@allondeveen-portfolio/image-block": "workspace:*",
+    "@allondeveen-portfolio/label-block": "workspace:*",
+    "@allondeveen-portfolio/list-block": "workspace:*",
     "@allondeveen-portfolio/menu-block": "workspace:*",
+    "@allondeveen-portfolio/quote-block": "workspace:*",
     "@allondeveen-portfolio/rich-text-block": "workspace:*",
     "@allondeveen-portfolio/site-title-block": "workspace:*",
     "@allondeveen-portfolio/stack-block": "workspace:*",
+    "@allondeveen-portfolio/text-section-block": "workspace:*",
     "fp-ts": "catalog:",
     "zod": "catalog:"
   }

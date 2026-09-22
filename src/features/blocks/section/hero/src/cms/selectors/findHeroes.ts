@@ -9,7 +9,6 @@ import type { JsonObject } from "payload";
 
 const LenientHeroSchema = HeroSchema.omit({
   id: true,
-  blocks: true,
 }).and(
   z.object({
     blocks: z.array(z.unknown()).nullish(),

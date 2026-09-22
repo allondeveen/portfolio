@@ -1,4 +1,5 @@
 import { type Adapter, type MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
+import { isTextState } from "@allondeveen-portfolio/text-state-lexical/states";
 
 import { type LexicalEditorState, type LexicalNode } from "../cms/data";
 
@@ -82,6 +83,7 @@ const getElements = async (
         kind: "text",
         text: node.text,
         formats: getFormats(node.format),
+        ...(isTextState(node.$?.textStyle) ? { textState: node.$.textStyle } : {}),
         ...(node.style ? { style: node.style } : {}),
         ...(link ? { link } : {}),
       },

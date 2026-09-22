@@ -1,6 +1,6 @@
-import type { Block } from "payload";
+import type { Block, BlockSlug } from "payload";
 
-export const stackBlock: Block = {
+export const stackBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
   slug: "stack",
   admin: {
     group: "Layout",
@@ -10,7 +10,7 @@ export const stackBlock: Block = {
       type: "blocks",
       name: "blocks",
       blocks: [],
-      blockReferences: ["heading", "richText"],
+      blockReferences: [...allowedBlocks],
     },
   ],
-};
+});

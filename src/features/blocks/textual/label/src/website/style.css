@@ -1,0 +1,12 @@
+p.label {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  width: fit-content;
+}
+
+.label + .heading {
+  margin-top: 1rem;
+}

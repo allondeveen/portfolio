@@ -1,8 +1,10 @@
+import { errorPageIsInitialised, errorPageSeeds } from "@allondeveen-portfolio/error-page/seed";
 import {
   maintenanceIsInitialised,
   maintenanceSeeds,
 } from "@allondeveen-portfolio/maintenance-content/seed";
 import { menuSeeds } from "@allondeveen-portfolio/menu/seed";
+import { notFoundIsInitialised, notFoundSeeds } from "@allondeveen-portfolio/not-found/seed";
 import { pageSeeds } from "@allondeveen-portfolio/pages/seed";
 import {
   siteSettingsIsInitialised,
@@ -105,6 +107,10 @@ export function onInit(seedEmail: string = "", seedPass: string = "") {
     await seed("templates", templateSeeds(payload));
 
     await globalSeed("maintenance", maintenanceIsInitialised, maintenanceSeeds(payload));
+
+    await globalSeed("not-found", notFoundIsInitialised, notFoundSeeds(payload));
+
+    await globalSeed("error-page", errorPageIsInitialised, errorPageSeeds(payload));
 
     console.log("Seeding finished");
   };
