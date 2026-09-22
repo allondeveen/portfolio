@@ -71,7 +71,8 @@ pre {
   max-width: 100ch;
 }
 
-p {
+p,
+li {
   max-width: 60ch;
   line-height: 1.6;
 }
