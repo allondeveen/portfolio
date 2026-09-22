@@ -1,0 +1,14 @@
+ul.list,
+ol.list {
+  padding: 0;
+  margin: 3rem 0;
+  list-style-position: inside;
+}
+
+.list:has(+ .list) {
+  margin-bottom: 1rem;
+}
+
+.list + .list {
+  margin-top: 1rem;
+}

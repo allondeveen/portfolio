@@ -78,6 +78,7 @@ export interface Config {
     hero: Hero;
     textSection: TextSection;
     heading: Heading;
+    list: List;
     quote: Quote;
     richText: RichText;
   };
@@ -381,7 +382,7 @@ export interface Hero {
  * via the `definition` "textSection".
  */
 export interface TextSection {
-  blocks?: (Heading | RichText | Image | Grid | Stack | Quote)[] | null;
+  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textSection';
@@ -424,6 +425,52 @@ export interface Quote {
   id?: string | null;
   blockName?: string | null;
   blockType: 'quote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "list".
+ */
+export interface List {
+  enumeration: {
+    type: 'ordered' | 'unordered';
+    listStyleType:
+      | 'default'
+      | 'disc'
+      | 'circle'
+      | 'square'
+      | 'decimal-leading-zero'
+      | 'lower-alpha'
+      | 'upper-alpha'
+      | 'hebrew'
+      | 'lower-roman'
+      | 'upper-roman'
+      | 'none'
+      | 'image';
+    defaultImage?: (string | null) | Media;
+  };
+  items: {
+    value: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    image?: (string | null) | Media;
+    order?: number | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'list';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -549,6 +596,7 @@ export interface Template {
     | Hero
     | TextSection
     | Heading
+    | List
     | Quote
     | RichText
   )[];
@@ -1478,6 +1526,7 @@ export interface Maintenance {
         | Hero
         | TextSection
         | Heading
+        | List
         | Quote
         | RichText
       )[]
@@ -1495,6 +1544,7 @@ export interface Maintenance {
     | Hero
     | TextSection
     | Heading
+    | List
     | Quote
     | RichText
   )[];

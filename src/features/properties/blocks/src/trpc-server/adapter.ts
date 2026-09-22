@@ -6,6 +6,7 @@ import { mapGroup } from "@allondeveen-portfolio/group-block/trpc-server";
 import { mapHeading } from "@allondeveen-portfolio/heading-block/trpc-server";
 import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
 import { mapImage } from "@allondeveen-portfolio/image-block/trpc-server";
+import { mapList } from "@allondeveen-portfolio/list-block/trpc-server";
 import { mapMenu } from "@allondeveen-portfolio/menu-block/trpc-server";
 import { mapQuote } from "@allondeveen-portfolio/quote-block/trpc-server";
 import { mapRichText } from "@allondeveen-portfolio/rich-text-block/trpc-server";
@@ -64,6 +65,10 @@ export function mapBlock(options: MapBlockOptions) {
       case "image":
         return {
           block: await mapImage(block, context),
+        };
+      case "list":
+        return {
+          block: await mapList(block, context),
         };
       case "menu":
         return {

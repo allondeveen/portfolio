@@ -6,6 +6,7 @@ import { GroupBlock } from "@allondeveen-portfolio/group-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
 import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
 import { Image } from "@allondeveen-portfolio/image-block/website";
+import { ListComponent } from "@allondeveen-portfolio/list-block/website";
 import { Menu } from "@allondeveen-portfolio/menu-block/website";
 import { QuoteComponent } from "@allondeveen-portfolio/quote-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
@@ -54,6 +55,8 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
       );
     case "image":
       return <Image {...block} />;
+    case "list":
+      return <ListComponent {...block} />;
     case "menu":
       return <Menu {...block} />;
     case "quote":
