@@ -2,7 +2,7 @@ import { LexicalTextComponent } from "@allondeveen-portfolio/lexical-text/websit
 import { type TextParagraph } from "@allondeveen-portfolio/lexical-text/website/data";
 import clsx from "clsx";
 
-import { headingVariant } from "./Heading.css";
+import { headingVariant } from "./heading.css";
 
 import type { Heading } from "./data";
 
