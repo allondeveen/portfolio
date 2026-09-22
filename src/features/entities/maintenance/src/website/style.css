@@ -56,6 +56,7 @@
 .maintenance-page__content nav.maintenance ul li a {
   gap: 1rem;
   padding: 0.5rem 1rem;
+  text-decoration: none;
 }
 
 .maintenance-page__content nav.maintenance ul li a svg {
