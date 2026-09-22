@@ -53,18 +53,18 @@ export const menuSeeds: SeedFunction<RequiredDataFromCollectionSlug<"menu">> = a
       location: "maintenance",
       items: [
         {
-          label: "LinkedIn",
-          externality: "external",
-          external: "https://www.linkedin.com/in/allon-de-veen/",
-          order: 1,
-          icon: "linkedin",
-        },
-        {
           label: "GitHub",
           externality: "external",
           external: "https://github.com/allondeveen/",
-          order: 2,
+          order: 1,
           icon: "github",
+        },
+        {
+          label: "LinkedIn",
+          externality: "external",
+          external: "https://www.linkedin.com/in/allon-de-veen/",
+          order: 2,
+          icon: "linkedin",
         },
       ] as RequiredDataFromCollectionSlug<"menu">["items"],
     },
