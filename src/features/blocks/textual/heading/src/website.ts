@@ -1,1 +1,1 @@
-export { HeadingComponent } from "./website/Heading";
+export { HeadingComponent } from "./website/heading";

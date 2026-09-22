@@ -1,1 +1,1 @@
-export { BlockComponent, BlocksComponent, type BlocksComponentProps } from "./website/Blocks";
+export { BlockComponent, BlocksComponent, type BlocksComponentProps } from "./website/blocks";
