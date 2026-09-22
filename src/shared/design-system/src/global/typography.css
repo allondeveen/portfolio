@@ -1,8 +1,8 @@
 :root {
-  --font-body: "Metrophobic", sans-serif;
+  --font-body: "Source Serif 4", serif;
   --font-heading: "Google Sans", sans-serif;
   --font-code: "JetBrains mono", monospace;
-  --font-size-m: 1rem;
+  --font-size-m: 1.125rem;
   --font-size-l: 1.25rem;
   --font-size-h1: clamp(3rem, 12vw, 4.5rem);
   --font-size-h2: clamp(2.5rem, 10vw, 3.75rem);
@@ -15,7 +15,7 @@
 body {
   font-family: var(--font-body);
   font-size: var(--font-size-m);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 h1,
@@ -72,6 +72,6 @@ pre {
 }
 
 p {
-  max-width: 65ch;
+  max-width: 60ch;
   line-height: 1.6;
 }
