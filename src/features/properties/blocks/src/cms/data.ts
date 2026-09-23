@@ -1,5 +1,9 @@
 import { type Container, ContainerSchema } from "@allondeveen-portfolio/container-block/cms";
 import { type Copyright, CopyrightSchema } from "@allondeveen-portfolio/copyright-block/cms";
+import {
+  type EmbeddedVideo,
+  EmbeddedVideoSchema,
+} from "@allondeveen-portfolio/embedded-video-block/cms";
 import { type Grid, GridSchema } from "@allondeveen-portfolio/grid-block/cms";
 import { type GridItem, GridItemSchema } from "@allondeveen-portfolio/grid-item-block/cms";
 import { type Group, GroupSchema } from "@allondeveen-portfolio/group-block/cms";
@@ -25,6 +29,7 @@ type WithBlocks<Type> = Type & BlockChildren;
 export type Block =
   | WithBlocks<Container>
   | Copyright
+  | EmbeddedVideo
   | WithBlocks<Grid>
   | WithBlocks<GridItem>
   | WithBlocks<Group>
@@ -51,6 +56,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
   return z.discriminatedUnion("blockType", [
     withBlocks(ContainerSchema),
     CopyrightSchema,
+    EmbeddedVideoSchema,
     withBlocks(GridSchema),
     withBlocks(GridItemSchema),
     withBlocks(GroupSchema),

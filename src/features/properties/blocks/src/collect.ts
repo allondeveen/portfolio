@@ -1,5 +1,6 @@
 import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
+import { embeddedvideoBlock } from "@allondeveen-portfolio/embedded-video-block/config";
 import { gridBlock } from "@allondeveen-portfolio/grid-block/config";
 import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
 import { groupBlock } from "@allondeveen-portfolio/group-block/config";
@@ -37,6 +38,7 @@ export const allBlocks: Block[] = [
   stackBlock(["heading", "richText"]),
 
   // Media
+  embeddedvideoBlock,
   imageBlock,
 
   // Navigation
@@ -46,7 +48,17 @@ export const allBlocks: Block[] = [
 
   // Section
   heroBlock(["heading", "richText", "label"]),
-  textsectionBlock(["heading", "richText", "image", "grid", "stack", "quote", "list", "label"]),
+  textsectionBlock([
+    "heading",
+    "richText",
+    "image",
+    "grid",
+    "stack",
+    "quote",
+    "list",
+    "label",
+    "embeddedVideo",
+  ]),
 
   // Textual
   headingBlock,

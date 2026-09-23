@@ -71,6 +71,7 @@ export interface Config {
     grid: Grid;
     'grid-item': GridItem;
     stack: Stack;
+    embeddedVideo: EmbeddedVideo;
     image: Image;
     copyright: Copyright;
     menu: MenuBlock;
@@ -408,7 +409,7 @@ export interface Label {
  * via the `definition` "textSection".
  */
 export interface TextSection {
-  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label)[] | null;
+  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label | EmbeddedVideo)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textSection';
@@ -497,6 +498,17 @@ export interface List {
   id?: string | null;
   blockName?: string | null;
   blockType: 'list';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "embeddedVideo".
+ */
+export interface EmbeddedVideo {
+  coverImage?: (string | null) | Media;
+  videoUrl: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'embeddedVideo';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -615,6 +627,7 @@ export interface Template {
     | Grid
     | GridItem
     | Stack
+    | EmbeddedVideo
     | Image
     | Copyright
     | MenuBlock
@@ -1546,6 +1559,7 @@ export interface Maintenance {
         | Grid
         | GridItem
         | Stack
+        | EmbeddedVideo
         | Image
         | Copyright
         | MenuBlock
@@ -1565,6 +1579,7 @@ export interface Maintenance {
     | Grid
     | GridItem
     | Stack
+    | EmbeddedVideo
     | Image
     | Copyright
     | MenuBlock

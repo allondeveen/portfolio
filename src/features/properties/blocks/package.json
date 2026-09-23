@@ -45,6 +45,7 @@
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@allondeveen-portfolio/container-block": "workspace:*",
     "@allondeveen-portfolio/copyright-block": "workspace:*",
+    "@allondeveen-portfolio/embedded-video-block": "workspace:*",
     "@allondeveen-portfolio/grid-block": "workspace:*",
     "@allondeveen-portfolio/grid-item-block": "workspace:*",
     "@allondeveen-portfolio/group-block": "workspace:*",
