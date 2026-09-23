@@ -2,6 +2,8 @@ import clsx from "clsx";
 
 import type { Image } from "./data";
 
+import "./style.css";
+
 export type ImageProps = Image;
 
 export function Image({ kind, image }: ImageProps) {
