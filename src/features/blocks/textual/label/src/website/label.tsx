@@ -1,8 +1,7 @@
 import { LexicalTextComponent } from "@allondeveen-portfolio/lexical-text/website";
 import { type TextParagraph } from "@allondeveen-portfolio/lexical-text/website/data";
+import { buttonVariants } from "@allondeveen-portfolio/ui";
 import clsx from "clsx";
-
-import { labelClassName } from "./label.css";
 
 import type { Label } from "./data";
 
@@ -17,7 +16,7 @@ export function LabelComponent({ variant, text }: Label) {
     <LexicalTextComponent
       as="p"
       text={renderText}
-      className={clsx("label", labelClassName[variant])}
+      className={clsx("label", buttonVariants[variant])}
     />
   );
 }

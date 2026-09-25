@@ -25,6 +25,8 @@
     "react-dom": "catalog:"
   },
   "dependencies": {
+    "@allondeveen-portfolio/design-system": "workspace:*",
+    "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:"
   }
 }

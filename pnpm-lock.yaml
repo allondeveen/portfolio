@@ -990,21 +990,18 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
-      '@allondeveen-portfolio/design-system':
-        specifier: workspace:*
-        version: link:../../../../shared/design-system
       '@allondeveen-portfolio/lexical-text':
         specifier: workspace:*
         version: link:../../../../shared/lexical-text
       '@allondeveen-portfolio/single-line-lexical':
         specifier: workspace:*
         version: link:../../../../shared/single-line-lexical
+      '@allondeveen-portfolio/ui':
+        specifier: workspace:*
+        version: link:../../../../shared/ui
       '@payloadcms/richtext-lexical':
         specifier: 'catalog:'
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3)(yjs@13.6.32)
-      '@vanilla-extract/css':
-        specifier: 'catalog:'
-        version: 1.21.2(babel-plugin-macros@3.1.0)
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
@@ -2357,6 +2354,12 @@ importers:
 
   src/shared/ui:
     dependencies:
+      '@allondeveen-portfolio/design-system':
+        specifier: workspace:*
+        version: link:../design-system
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.21.2(babel-plugin-macros@3.1.0)
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
