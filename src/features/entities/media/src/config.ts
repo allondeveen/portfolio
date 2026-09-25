@@ -25,6 +25,9 @@ export const media: CollectionConfig = {
       name: "alt",
       type: "text",
       required: true,
+      admin: {
+        condition: (_, siblingData) => siblingData?.type === "image",
+      },
     },
     {
       name: "type",

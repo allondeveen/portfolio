@@ -257,7 +257,7 @@ export interface Image {
 export interface Media {
   id: string;
   name: string;
-  alt: string;
+  alt?: string | null;
   type: 'image' | 'download';
   prefix?: string | null;
   caption?: string | null;
