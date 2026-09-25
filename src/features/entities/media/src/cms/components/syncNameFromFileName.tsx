@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm, useFormFields, useOperation } from "@payloadcms/ui";
-import { slugify } from "payload/shared";
 import React, { useEffect, useRef } from "react";
 
 export type SyncNameFromFileNameProps = {
@@ -39,7 +38,7 @@ export function SyncNameFromFileName({
       return;
     }
 
-    const generatedName = file instanceof File ? slugify(stripExtension(file.name)) : "";
+    const generatedName = file instanceof File ? stripExtension(file.name) : "";
 
     if (typeof generatedName !== "string") {
       return;
