@@ -7,6 +7,10 @@
     ".": {
       "types": "./src/index.ts",
       "import": "./src/index.ts"
+    },
+    "./icons/data": {
+      "types": "./src/icons/collect.ts",
+      "import": "./src/icons/collect.ts"
     }
   },
   "scripts": {

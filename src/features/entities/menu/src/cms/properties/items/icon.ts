@@ -1,4 +1,4 @@
-import { allIcons } from "@allondeveen-portfolio/ui";
+import { allIcons } from "@allondeveen-portfolio/ui/icons/data";
 
 import type { Field } from "payload";
 

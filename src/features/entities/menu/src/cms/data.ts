@@ -1,7 +1,7 @@
-import { allIcons } from "@allondeveen-portfolio/ui";
+import { allIcons } from "@allondeveen-portfolio/ui/icons/data";
 import * as z from "zod";
 
-import type { IconName } from "@allondeveen-portfolio/ui";
+import type { IconName } from "@allondeveen-portfolio/ui/icons/data";
 
 const MenuItemInternalSchema = z.object({
   label: z.string().min(1),
