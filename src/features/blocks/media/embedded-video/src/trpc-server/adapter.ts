@@ -18,17 +18,20 @@ export const mapEmbeddedVideo: Adapter<CMSEmbeddedVideo, EmbeddedVideo> = async 
         MediaSchema,
       )
     : null;
-  if (!resolvedCoverImage || (resolvedCoverImage && resolvedCoverImage?.status !== "resolved")) {
-    return {
-      id: embeddedvideo.id,
-      kind: embeddedvideo.blockType,
-      videoUrl: embeddedvideo.videoUrl,
-    };
-  }
-  return {
+  const base = {
     id: embeddedvideo.id,
     kind: embeddedvideo.blockType,
-    coverImage: await mapMedia(resolvedCoverImage.source, context),
     videoUrl: embeddedvideo.videoUrl,
+  };
+  if (!resolvedCoverImage || (resolvedCoverImage && resolvedCoverImage?.status !== "resolved")) {
+    return base;
+  }
+  const mappedCoverImage = await mapMedia(resolvedCoverImage.source, context);
+  if (mappedCoverImage.kind === "download") {
+    return base;
+  }
+  return {
+    ...base,
+    coverImage: mappedCoverImage,
   };
 };

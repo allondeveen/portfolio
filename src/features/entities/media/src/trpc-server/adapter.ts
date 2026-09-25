@@ -7,13 +7,22 @@ import type { Adapter } from "@allondeveen-portfolio/adapter/trpc-server";
 export const mapMedia: Adapter<CMSMedia, Media> = (media) => {
   const { env } = getCloudflareContext();
   const url = `${env.MEDIA_URL}/${media.prefix}/${media.filename}`;
-  return {
+  const base = {
     id: media.id,
     name: media.name,
-    alt: media.alt,
     caption: media.caption || undefined,
     credits: media.credits || undefined,
     url,
+  };
+  if (media.type === "download") {
+    return {
+      kind: "download",
+      ...base,
+    };
+  }
+  return {
+    kind: "image",
+    alt: media.alt as string,
     width: media.width,
     height: media.height,
     sizes: [
@@ -23,5 +32,6 @@ export const mapMedia: Adapter<CMSMedia, Media> = (media) => {
         height: media.height,
       },
     ],
+    ...base,
   };
 };

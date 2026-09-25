@@ -13,15 +13,19 @@ export const mapImage: Adapter<CMSImage, Image> = async (image, context) => {
     },
     MediaSchema,
   );
-  if (resolvedImage.status !== "resolved") {
-    return {
-      id: image.id,
-      kind: image.blockType,
-    };
-  }
-  return {
+  const base = {
     id: image.id,
     kind: image.blockType,
-    image: await mapMedia(resolvedImage.source, context),
+  };
+  if (resolvedImage.status !== "resolved") {
+    return base;
+  }
+  const mappedImage = await mapMedia(resolvedImage.source, context);
+  if (mappedImage.kind === "download") {
+    return base;
+  }
+  return {
+    ...base,
+    image: mappedImage,
   };
 };
