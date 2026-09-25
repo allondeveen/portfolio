@@ -15,6 +15,7 @@
     "website:build": "pnpm --filter @allondeveen-portfolio/website build",
     "website:preview": "pnpm --filter @allondeveen-portfolio/website preview",
     "payload": "pnpm --filter @allondeveen-portfolio/cms payload",
+    "cache:clear": "pnpm --filter @allondeveen-portfolio/website cache:clear",
     "typecheck": "pnpm --recursive --parallel typecheck",
     "typecheck:clear-cache": "find src -path '*/node_modules' -prune -o -type f -name '*.tsbuildinfo' -delete",
     "typecheck:fresh": "pnpm run typecheck:clear-cache && pnpm run typecheck",

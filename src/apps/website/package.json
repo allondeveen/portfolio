@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "cache:clear": "node scripts/clearCache.mjs",
     "build": "node assets.mjs && react-router build",
     "dev": "concurrently -k -n assets,react-router \"node assets.mjs -w\" \"react-router dev\"",
     "typecheck": "wrangler types && react-router typegen && tsc -b",

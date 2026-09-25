@@ -45,3 +45,27 @@ To enable maintenance mode you have to run the corresponding script in package.j
 - Disabling maintenance mode in development: `pnpm maintenance:development:off` or `pnpm maintenance:off`.
 - Enabling maintenance mode on staging: `pnpm maintenance:staging:on`.
 - Disabling maintenance mode on staging: `pnpm maintenance:staging:off`.
+
+# Clearing cache tags
+
+Run `pnpm cache:clear <tag> [tag...]` to invalidate cached content by its tags:
+
+```sh
+pnpm cache:clear route:/about header
+pnpm cache:clear --env staging site-settings
+pnpm cache:clear --env production route:/ footer
+pnpm cache:clear --env production route:/ --dry-run
+```
+
+The environment defaults to `CLOUDFLARE_ENV`, or `development` when unset. All environments use
+the remote `CACHE` KV namespace from the website Wrangler configuration, including development.
+The command uses your existing Wrangler authentication. `--dry-run` prints the selected environment
+and tags without writing to KV.
+
+Pass exact tag names from `content-cache-tags` or the CMS invalidation hooks, such as `route:/about`,
+`header`, `footer`, `menu-main`, `site-settings`, `image:<id>`, or `series:<id>`. Omit the `tag:v1:`
+storage prefix. Wildcards are not expanded.
+
+Like `deleteTags` in the shared caching package, the script writes a fresh UUID to each `tag:v1:*`
+key using [Wrangler's KV commands](https://developers.cloudflare.com/kv/reference/kv-commands/).
+Cached `data:v1:*` entries refresh on their next read when their saved tag versions no longer match.
