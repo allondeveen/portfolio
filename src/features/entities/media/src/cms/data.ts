@@ -9,8 +9,8 @@ export const MediaSchema = z.object({
   caption: z.string().nullable(),
   credits: z.string().nullable(),
   filename: z.string().min(1),
-  width: z.number(),
-  height: z.number(),
+  width: z.number().nullish(),
+  height: z.number().nullish(),
 });
 
 export type Media = z.infer<typeof MediaSchema>;

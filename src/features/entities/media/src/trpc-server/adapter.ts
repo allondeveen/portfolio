@@ -23,13 +23,13 @@ export const mapMedia: Adapter<CMSMedia, Media> = (media) => {
   return {
     kind: "image",
     alt: media.alt as string,
-    width: media.width,
-    height: media.height,
+    width: media.width as number,
+    height: media.height as number,
     sizes: [
       {
         url,
-        width: media.width,
-        height: media.height,
+        width: media.width as number,
+        height: media.height as number,
       },
     ],
     ...base,
