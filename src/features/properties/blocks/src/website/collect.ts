@@ -1,6 +1,7 @@
 import { ContainerSchema } from "@allondeveen-portfolio/container-block/website/data";
 import { CopyrightSchema } from "@allondeveen-portfolio/copyright-block/website/data";
 import { EmbeddedVideoSchema } from "@allondeveen-portfolio/embedded-video-block/website/data";
+import { FileDownloadSchema } from "@allondeveen-portfolio/file-download-block/website/data";
 import { GridSchema } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemSchema } from "@allondeveen-portfolio/grid-item-block/website/data";
 import { GroupSchema } from "@allondeveen-portfolio/group-block/website/data";
@@ -21,6 +22,7 @@ export const AnyBlockSchema = z.discriminatedUnion("kind", [
   ContainerSchema,
   CopyrightSchema,
   EmbeddedVideoSchema,
+  FileDownloadSchema,
   GridSchema,
   GridItemSchema,
   GroupSchema,

@@ -42,6 +42,7 @@ catalog:
   wrangler: ^4.130.0
   zod: ^4.4.3
   fp-ts: ^2.16.11
+  lucide-react: ^1.48.0
 allowBuilds:
   core-js: true
   esbuild: true

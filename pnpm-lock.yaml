@@ -81,6 +81,9 @@ catalogs:
     itty-router:
       specifier: ^3.0.12
       version: 3.0.12
+    lucide-react:
+      specifier: ^1.48.0
+      version: 1.48.0
     next:
       specifier: 16.2.6
       version: 16.2.6
@@ -657,6 +660,52 @@ importers:
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.6(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  src/features/blocks/media/file-download:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:*
+        version: link:../../../../shared/lexical-text
+      '@allondeveen-portfolio/media':
+        specifier: workspace:^
+        version: link:../../../entities/media
+      '@allondeveen-portfolio/single-line-lexical':
+        specifier: workspace:*
+        version: link:../../../../shared/single-line-lexical
+      '@allondeveen-portfolio/ui':
+        specifier: workspace:*
+        version: link:../../../../shared/ui
+      '@payloadcms/richtext-lexical':
+        specifier: 'catalog:'
+        version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3)(yjs@13.6.32)
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
+      lucide-react:
+        specifier: 'catalog:'
+        version: 1.48.0(react@19.2.6)
       payload:
         specifier: 'catalog:'
         version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
@@ -1781,6 +1830,9 @@ importers:
       '@allondeveen-portfolio/embedded-video-block':
         specifier: workspace:*
         version: link:../../blocks/media/embedded-video
+      '@allondeveen-portfolio/file-download-block':
+        specifier: workspace:*
+        version: link:../../blocks/media/file-download
       '@allondeveen-portfolio/grid-block':
         specifier: workspace:*
         version: link:../../blocks/layout/grid
@@ -7790,6 +7842,11 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-react@1.48.0:
+    resolution: {integrity: sha512-R0CIKY/fXiC6y9xRBADgsK+VW2p/pcTJOMhLZf1T+uG+vJUvyUR02nGOgmIIC7MPkiNK4Ox8QDnbqF8rJYWPZQ==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -15588,6 +15645,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-react@1.48.0(react@19.2.6):
+    dependencies:
+      react: 19.2.6
 
   lz-string@1.5.0: {}
 

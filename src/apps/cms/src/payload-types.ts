@@ -72,6 +72,7 @@ export interface Config {
     'grid-item': GridItem;
     stack: Stack;
     embeddedVideo: EmbeddedVideo;
+    fileDownload: FileDownload;
     image: Image;
     copyright: Copyright;
     menu: MenuBlock;
@@ -409,7 +410,7 @@ export interface Label {
  * via the `definition` "textSection".
  */
 export interface TextSection {
-  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label | EmbeddedVideo)[] | null;
+  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label | EmbeddedVideo | FileDownload)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textSection';
@@ -509,6 +510,33 @@ export interface EmbeddedVideo {
   id?: string | null;
   blockName?: string | null;
   blockType: 'embeddedVideo';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fileDownload".
+ */
+export interface FileDownload {
+  style: 'link' | 'button';
+  variant?: ('default' | 'primary' | 'secondary' | 'disabled') | null;
+  label?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  download?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fileDownload';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -628,6 +656,7 @@ export interface Template {
     | GridItem
     | Stack
     | EmbeddedVideo
+    | FileDownload
     | Image
     | Copyright
     | MenuBlock
@@ -1560,6 +1589,7 @@ export interface Maintenance {
         | GridItem
         | Stack
         | EmbeddedVideo
+        | FileDownload
         | Image
         | Copyright
         | MenuBlock
@@ -1580,6 +1610,7 @@ export interface Maintenance {
     | GridItem
     | Stack
     | EmbeddedVideo
+    | FileDownload
     | Image
     | Copyright
     | MenuBlock

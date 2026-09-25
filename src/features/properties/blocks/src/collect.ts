@@ -1,6 +1,7 @@
 import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
 import { embeddedvideoBlock } from "@allondeveen-portfolio/embedded-video-block/config";
+import { filedownloadBlock } from "@allondeveen-portfolio/file-download-block/config";
 import { gridBlock } from "@allondeveen-portfolio/grid-block/config";
 import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
 import { groupBlock } from "@allondeveen-portfolio/group-block/config";
@@ -39,6 +40,7 @@ export const allBlocks: Block[] = [
 
   // Media
   embeddedvideoBlock,
+  filedownloadBlock,
   imageBlock,
 
   // Navigation
@@ -58,6 +60,7 @@ export const allBlocks: Block[] = [
     "list",
     "label",
     "embeddedVideo",
+    "fileDownload",
   ]),
 
   // Textual

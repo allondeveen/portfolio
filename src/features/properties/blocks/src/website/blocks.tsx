@@ -1,6 +1,7 @@
 import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { EmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/website";
+import { FileDownloadComponent } from "@allondeveen-portfolio/file-download-block/website";
 import { GridBlock } from "@allondeveen-portfolio/grid-block/website";
 import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
 import { GroupBlock } from "@allondeveen-portfolio/group-block/website";
@@ -31,6 +32,8 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
       return <Copyright {...block} />;
     case "embeddedVideo":
       return <EmbeddedVideo {...block} />;
+    case "fileDownload":
+      return <FileDownloadComponent {...block} />;
     case "grid":
       return (
         <GridBlock {...block}>

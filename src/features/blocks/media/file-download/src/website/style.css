@@ -1,0 +1,16 @@
+.file-download.button {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  white-space: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file-download.button > svg {
+  fill: none;
+}

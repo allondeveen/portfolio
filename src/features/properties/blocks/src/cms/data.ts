@@ -4,6 +4,10 @@ import {
   type EmbeddedVideo,
   EmbeddedVideoSchema,
 } from "@allondeveen-portfolio/embedded-video-block/cms";
+import {
+  type FileDownload,
+  FileDownloadSchema,
+} from "@allondeveen-portfolio/file-download-block/cms";
 import { type Grid, GridSchema } from "@allondeveen-portfolio/grid-block/cms";
 import { type GridItem, GridItemSchema } from "@allondeveen-portfolio/grid-item-block/cms";
 import { type Group, GroupSchema } from "@allondeveen-portfolio/group-block/cms";
@@ -30,6 +34,7 @@ export type Block =
   | WithBlocks<Container>
   | Copyright
   | EmbeddedVideo
+  | FileDownload
   | WithBlocks<Grid>
   | WithBlocks<GridItem>
   | WithBlocks<Group>
@@ -57,6 +62,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     withBlocks(ContainerSchema),
     CopyrightSchema,
     EmbeddedVideoSchema,
+    FileDownloadSchema,
     withBlocks(GridSchema),
     withBlocks(GridItemSchema),
     withBlocks(GroupSchema),
