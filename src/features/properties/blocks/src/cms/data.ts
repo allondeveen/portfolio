@@ -8,6 +8,7 @@ import {
   type FileDownload,
   FileDownloadSchema,
 } from "@allondeveen-portfolio/file-download-block/cms";
+import { type Gallery, GallerySchema } from "@allondeveen-portfolio/gallery-block/cms";
 import { type Grid, GridSchema } from "@allondeveen-portfolio/grid-block/cms";
 import { type GridItem, GridItemSchema } from "@allondeveen-portfolio/grid-item-block/cms";
 import { type Group, GroupSchema } from "@allondeveen-portfolio/group-block/cms";
@@ -35,6 +36,7 @@ export type Block =
   | Copyright
   | EmbeddedVideo
   | FileDownload
+  | (Gallery & { images: Block[] })
   | WithBlocks<Grid>
   | WithBlocks<GridItem>
   | WithBlocks<Group>
@@ -63,6 +65,9 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     CopyrightSchema,
     EmbeddedVideoSchema,
     FileDownloadSchema,
+    GallerySchema.extend({
+      images: z.array(BlockSchema).min(1),
+    }),
     withBlocks(GridSchema),
     withBlocks(GridItemSchema),
     withBlocks(GroupSchema),

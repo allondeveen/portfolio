@@ -73,6 +73,7 @@ export interface Config {
     stack: Stack;
     embeddedVideo: EmbeddedVideo;
     fileDownload: FileDownload;
+    gallery: Gallery;
     image: Image;
     copyright: Copyright;
     menu: MenuBlock;
@@ -410,7 +411,9 @@ export interface Label {
  * via the `definition` "textSection".
  */
 export interface TextSection {
-  blocks?: (Heading | RichText | Image | Grid | Stack | Quote | List | Label | EmbeddedVideo | FileDownload)[] | null;
+  blocks?:
+    | (Heading | RichText | Image | Grid | Stack | Quote | List | Label | EmbeddedVideo | FileDownload | Gallery)[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textSection';
@@ -540,6 +543,17 @@ export interface FileDownload {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  layout: 'grid' | 'masonry' | 'carousel';
+  images?: Image[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SiteTitleBlock".
  */
 export interface SiteTitleBlock {
@@ -657,6 +671,7 @@ export interface Template {
     | Stack
     | EmbeddedVideo
     | FileDownload
+    | Gallery
     | Image
     | Copyright
     | MenuBlock
@@ -1590,6 +1605,7 @@ export interface Maintenance {
         | Stack
         | EmbeddedVideo
         | FileDownload
+        | Gallery
         | Image
         | Copyright
         | MenuBlock
@@ -1611,6 +1627,7 @@ export interface Maintenance {
     | Stack
     | EmbeddedVideo
     | FileDownload
+    | Gallery
     | Image
     | Copyright
     | MenuBlock

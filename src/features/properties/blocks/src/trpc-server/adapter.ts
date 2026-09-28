@@ -2,6 +2,7 @@ import { mapContainer } from "@allondeveen-portfolio/container-block/trpc-server
 import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapEmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/trpc-server";
 import { mapFileDownload } from "@allondeveen-portfolio/file-download-block/trpc-server";
+import { mapGallery } from "@allondeveen-portfolio/gallery-block/trpc-server";
 import { mapGrid } from "@allondeveen-portfolio/grid-block/trpc-server";
 import { mapGridItem } from "@allondeveen-portfolio/grid-item-block/trpc-server";
 import { mapGroup } from "@allondeveen-portfolio/group-block/trpc-server";
@@ -48,6 +49,11 @@ export function mapBlock(options: MapBlockOptions) {
       case "fileDownload":
         return {
           block: await mapFileDownload(block, context),
+        };
+      case "gallery":
+        return {
+          block: await mapGallery(block, context),
+          blocks: await Promise.all(block.images.map((image) => mapBlock(options)(image, context))),
         };
       case "grid":
         return {
