@@ -1,4 +1,5 @@
 import { mapButton } from "@allondeveen-portfolio/button-block/trpc-server";
+import { mapButtonGroup } from "@allondeveen-portfolio/button-group-block/trpc-server";
 import { mapContainer } from "@allondeveen-portfolio/container-block/trpc-server";
 import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapEmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/trpc-server";
@@ -22,6 +23,8 @@ import {
 import { mapStack } from "@allondeveen-portfolio/stack-block/trpc-server";
 import { mapTextSection } from "@allondeveen-portfolio/text-section-block/trpc-server";
 
+import { buttonGroupChildPredicate } from "../../../../blocks/other/button-group/src/trpc-server/adapter";
+
 import type { Block as CMSBlock } from "../cms";
 import type { Block } from "../website/data";
 import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
@@ -37,6 +40,15 @@ export function mapBlock(options: MapBlockOptions) {
       case "button":
         return {
           block: await mapButton(block, context),
+        };
+      case "buttonGroup":
+        return {
+          block: await mapButtonGroup(block, context),
+          blocks: await Promise.all(
+            block.blocks
+              .filter(buttonGroupChildPredicate)
+              .map((block) => mapBlock(options)(block, context)),
+          ),
         };
       case "container":
         return {

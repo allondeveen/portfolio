@@ -966,6 +966,34 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
+  src/features/blocks/other/button-group:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.6(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
   src/features/blocks/other/group:
     dependencies:
       '@allondeveen-portfolio/adapter':
@@ -1898,6 +1926,9 @@ importers:
       '@allondeveen-portfolio/button-block':
         specifier: workspace:*
         version: link:../../blocks/call-to-action/button
+      '@allondeveen-portfolio/button-group-block':
+        specifier: workspace:*
+        version: link:../../blocks/other/button-group
       '@allondeveen-portfolio/container-block':
         specifier: workspace:*
         version: link:../../blocks/layout/container

@@ -1,0 +1,25 @@
+.button-group {
+  border-radius: 4px;
+  margin: 3rem 0;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.button-group .button,
+.button-group .file-download.button,
+.button-group .label {
+  border-radius: 0;
+}
+
+.button-group .label {
+  display: inline-block;
+}
+
+.button-group + .button-group {
+  margin-top: 1rem;
+}
+
+.button-group:has(+ .button-group) {
+  margin-bottom: 1rem;
+}

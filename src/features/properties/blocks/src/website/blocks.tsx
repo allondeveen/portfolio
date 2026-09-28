@@ -1,4 +1,5 @@
 import { ButtonComponent } from "@allondeveen-portfolio/button-block/website";
+import { ButtonGroupBlock } from "@allondeveen-portfolio/button-group-block/website";
 import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { EmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/website";
@@ -26,6 +27,12 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
   switch (block.kind) {
     case "button":
       return <ButtonComponent {...block} />;
+    case "buttonGroup":
+      return (
+        <ButtonGroupBlock {...block}>
+          <BlocksComponent blocks={blocks} />
+        </ButtonGroupBlock>
+      );
     case "container":
       return (
         <ContainerBlock {...block}>
