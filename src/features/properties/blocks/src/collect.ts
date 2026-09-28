@@ -1,3 +1,4 @@
+import { buttonBlock } from "@allondeveen-portfolio/button-block/config";
 import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
 import { embeddedvideoBlock } from "@allondeveen-portfolio/embedded-video-block/config";
@@ -21,6 +22,9 @@ import { textsectionBlock } from "@allondeveen-portfolio/text-section-block/conf
 import type { Block, BlockSlug } from "payload";
 
 export const allBlocks: Block[] = [
+  // Call to action
+  buttonBlock,
+
   // Group
   groupBlock(["heading", "richText", "image"]),
 
@@ -51,7 +55,7 @@ export const allBlocks: Block[] = [
   siteTitleBlock,
 
   // Section
-  heroBlock(["heading", "richText", "label"]),
+  heroBlock(["heading", "richText", "label", "button"]),
   textsectionBlock([
     "heading",
     "richText",
@@ -64,6 +68,7 @@ export const allBlocks: Block[] = [
     "embeddedVideo",
     "fileDownload",
     "gallery",
+    "button",
   ]),
 
   // Textual

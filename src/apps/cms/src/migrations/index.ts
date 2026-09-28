@@ -14,6 +14,7 @@ import * as migration_20260923_002625_add_embedded_video_block from "./20260923_
 import * as migration_20260925_031345_make_media_alt_prop_nullable from "./20260925_031345_make_media_alt_prop_nullable";
 import * as migration_20260925_061733_add_file_download_block from "./20260925_061733_add_file_download_block";
 import * as migration_20260928_164113_add_gallery_block from "./20260928_164113_add_gallery_block";
+import * as migration_20260928_204005_add_button_block from "./20260928_204005_add_button_block";
 
 export const migrations = [
   {
@@ -95,5 +96,10 @@ export const migrations = [
     up: migration_20260928_164113_add_gallery_block.up,
     down: migration_20260928_164113_add_gallery_block.down,
     name: "20260928_164113_add_gallery_block",
+  },
+  {
+    up: migration_20260928_204005_add_button_block.up,
+    down: migration_20260928_204005_add_button_block.down,
+    name: "20260928_204005_add_button_block",
   },
 ];

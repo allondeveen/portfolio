@@ -1,3 +1,4 @@
+import { ButtonComponent } from "@allondeveen-portfolio/button-block/website";
 import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { EmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/website";
@@ -23,6 +24,8 @@ import type { JSX } from "react";
 
 export function BlockComponent({ block, blocks }: Block): JSX.Element {
   switch (block.kind) {
+    case "button":
+      return <ButtonComponent {...block} />;
     case "container":
       return (
         <ContainerBlock {...block}>

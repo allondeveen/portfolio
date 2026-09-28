@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/button-block": "workspace:*",
     "@allondeveen-portfolio/container-block": "workspace:*",
     "@allondeveen-portfolio/copyright-block": "workspace:*",
     "@allondeveen-portfolio/embedded-video-block": "workspace:*",

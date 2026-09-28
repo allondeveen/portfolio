@@ -1,0 +1,18 @@
+a.button {
+  display: inline-flex;
+  padding: 0.5rem 1rem;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+a.button svg,
+a.button:hover svg {
+  fill: none;
+}

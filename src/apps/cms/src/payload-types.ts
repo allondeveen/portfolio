@@ -66,6 +66,7 @@ export interface Config {
     users: UserAuthOperations;
   };
   blocks: {
+    button: Button;
     group: Group;
     container: Container;
     grid: Grid;
@@ -184,13 +185,79 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "group".
+ * via the `definition` "button".
  */
-export interface Group {
-  blocks?: (Heading | RichText | Image)[] | null;
+export interface Button {
+  variant: 'default' | 'primary' | 'secondary' | 'disabled';
+  icon: 'linkedin' | 'github' | 'chevron-right' | 'arrow-up-right' | 'none';
+  location: {
+    externality: 'internal' | 'external';
+    internal?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'projects';
+          value: string | Project;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: string | Article;
+        } | null);
+    external?: string | null;
+  };
+  label: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'group';
+  blockType: 'button';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: string;
+  parent?: (string | null) | Page;
+  slug: string;
+  title: string;
+  blocks: (Hero | TextSection)[];
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero".
+ */
+export interface Hero {
+  variant?: ('default' | 'elevated' | 'overlay') | null;
+  blocks?: (Heading | RichText | Label | Button)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -244,6 +311,56 @@ export interface RichText {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "label".
+ */
+export interface Label {
+  variant: 'default' | 'primary' | 'secondary' | 'disabled';
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'label';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "textSection".
+ */
+export interface TextSection {
+  blocks?:
+    | (
+        | Heading
+        | RichText
+        | Image
+        | Grid
+        | Stack
+        | Quote
+        | List
+        | Label
+        | EmbeddedVideo
+        | FileDownload
+        | Gallery
+        | Button
+      )[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "image".
  */
 export interface Image {
@@ -276,26 +393,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "container".
- */
-export interface Container {
-  blocks?: (Heading | RichText | Stack | Grid | Image | Copyright | SiteTitleBlock | MenuBlock)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'container';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "stack".
- */
-export interface Stack {
-  blocks?: (Heading | RichText)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'stack';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "grid".
  */
 export interface Grid {
@@ -318,6 +415,16 @@ export interface GridItem {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stack".
+ */
+export interface Stack {
+  blocks?: (Heading | RichText)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stack';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "MenuBlock".
  */
 export interface MenuBlock {
@@ -336,7 +443,7 @@ export interface Menu {
   items: {
     id: string;
     label: string;
-    icon?: ('linkedin' | 'github' | 'logo') | null;
+    icon?: ('linkedin' | 'github' | 'logo' | 'chevron-right' | 'arrow-up-right') | null;
     externality: 'external' | 'internal';
     external?: string | null;
     internal?: {
@@ -350,73 +457,12 @@ export interface Menu {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "SiteTitleBlock".
  */
-export interface Page {
-  id: string;
-  parent?: (string | null) | Page;
-  slug: string;
-  title: string;
-  blocks: (Hero | TextSection)[];
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero".
- */
-export interface Hero {
-  variant?: ('default' | 'elevated' | 'overlay') | null;
-  blocks?: (Heading | RichText | Label)[] | null;
+export interface SiteTitleBlock {
   id?: string | null;
   blockName?: string | null;
-  blockType: 'hero';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "label".
- */
-export interface Label {
-  variant: 'default' | 'primary' | 'secondary' | 'disabled';
-  text: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'label';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "textSection".
- */
-export interface TextSection {
-  blocks?:
-    | (Heading | RichText | Image | Grid | Stack | Quote | List | Label | EmbeddedVideo | FileDownload | Gallery)[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textSection';
+  blockType: 'siteTitle';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -554,24 +600,6 @@ export interface Gallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SiteTitleBlock".
- */
-export interface SiteTitleBlock {
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'siteTitle';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "copyright".
- */
-export interface Copyright {
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'copyright';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -658,12 +686,42 @@ export interface Series {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "group".
+ */
+export interface Group {
+  blocks?: (Heading | RichText | Image)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'group';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "container".
+ */
+export interface Container {
+  blocks?: (Heading | RichText | Stack | Grid | Image | Copyright | SiteTitleBlock | MenuBlock)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'container';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "copyright".
+ */
+export interface Copyright {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'copyright';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
   id: string;
   location: string;
   blocks: (
+    | Button
     | Group
     | Container
     | Grid
@@ -1598,6 +1656,7 @@ export interface Maintenance {
   id: number;
   header?:
     | (
+        | Button
         | Group
         | Container
         | Grid
@@ -1620,6 +1679,7 @@ export interface Maintenance {
       )[]
     | null;
   blocks: (
+    | Button
     | Group
     | Container
     | Grid

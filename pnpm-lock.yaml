@@ -100,7 +100,7 @@ catalogs:
       specifier: 19.2.6
       version: 19.2.6
     react-router:
-      specifier: ^8
+      specifier: ^8.3.0
       version: 8.3.0
     ts-essentials:
       specifier: ^10.0.3
@@ -533,6 +533,49 @@ importers:
       wrangler:
         specifier: 'catalog:'
         version: 4.130.0
+
+  src/features/blocks/call-to-action/button:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/lexical-text':
+        specifier: workspace:*
+        version: link:../../../../shared/lexical-text
+      '@allondeveen-portfolio/single-line-lexical':
+        specifier: workspace:*
+        version: link:../../../../shared/single-line-lexical
+      '@allondeveen-portfolio/ui':
+        specifier: workspace:*
+        version: link:../../../../shared/ui
+      '@payloadcms/richtext-lexical':
+        specifier: 'catalog:'
+        version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3))(@types/react@19.2.14)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.77.4))(payload@3.87.0(graphql@16.14.2)(typescript@5.9.3))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(typescript@5.9.3)(yjs@13.6.32)
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(graphql@16.14.2)(typescript@5.9.3)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.6(react@19.2.6)
+      react-router:
+        specifier: 'catalog:'
+        version: 8.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
 
   src/features/blocks/layout/container:
     dependencies:
@@ -1852,6 +1895,9 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../shared/adapter
+      '@allondeveen-portfolio/button-block':
+        specifier: workspace:*
+        version: link:../../blocks/call-to-action/button
       '@allondeveen-portfolio/container-block':
         specifier: workspace:*
         version: link:../../blocks/layout/container
@@ -2449,6 +2495,9 @@ importers:
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
+      lucide-react:
+        specifier: 'catalog:'
+        version: 1.48.0(react@19.2.6)
       react:
         specifier: 'catalog:'
         version: 19.2.6

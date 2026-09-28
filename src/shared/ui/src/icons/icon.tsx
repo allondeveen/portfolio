@@ -1,3 +1,5 @@
+import { ArrowUpRight, ChevronRight } from "lucide-react";
+
 import { Logo } from "../logo/logo";
 import { GithubIcon } from "./brand/GithubIcon";
 import { LinkedinIcon } from "./brand/LinkedInIcon";
@@ -17,6 +19,10 @@ export function Icon({ name, ...props }: IconComponentProps) {
       return <LinkedinIcon {...props} />;
     case "logo":
       return <Logo {...props} />;
+    case "chevron-right":
+      return <ChevronRight aria-hidden="true" {...props} />;
+    case "arrow-up-right":
+      return <ArrowUpRight aria-hidden="true" {...props} />;
     default:
       return <></>;
   }

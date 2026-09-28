@@ -1,3 +1,4 @@
+import { mapButton } from "@allondeveen-portfolio/button-block/trpc-server";
 import { mapContainer } from "@allondeveen-portfolio/container-block/trpc-server";
 import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapEmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/trpc-server";
@@ -33,6 +34,10 @@ export function mapBlock(options: MapBlockOptions) {
   const { siteTitle } = options;
   return async (block: CMSBlock, context: MappingContext): Promise<Block> => {
     switch (block.blockType) {
+      case "button":
+        return {
+          block: await mapButton(block, context),
+        };
       case "container":
         return {
           block: await mapContainer(block, context),

@@ -1,3 +1,4 @@
+import { type Button, ButtonSchema } from "@allondeveen-portfolio/button-block/cms";
 import { type Container, ContainerSchema } from "@allondeveen-portfolio/container-block/cms";
 import { type Copyright, CopyrightSchema } from "@allondeveen-portfolio/copyright-block/cms";
 import {
@@ -32,6 +33,7 @@ type BlockChildren = {
 type WithBlocks<Type> = Type & BlockChildren;
 
 export type Block =
+  | Button
   | WithBlocks<Container>
   | Copyright
   | EmbeddedVideo
@@ -61,6 +63,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     });
   }
   return z.discriminatedUnion("blockType", [
+    ButtonSchema,
     withBlocks(ContainerSchema),
     CopyrightSchema,
     EmbeddedVideoSchema,
