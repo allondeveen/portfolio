@@ -28,3 +28,20 @@
 .button-group:has(.label) + .heading {
   margin-top: 1rem;
 }
+
+@media (max-width: 832px) {
+  .button-group {
+    width: 400px;
+    max-width: 100%;
+  }
+
+  .button-group:has(.label) {
+    width: 200px;
+  }
+
+  .button-group .button,
+  .button-group .file-download.button,
+  .button-group .label {
+    width: 100%;
+  }
+}
