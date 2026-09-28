@@ -20,6 +20,11 @@
   margin-top: 1rem;
 }
 
-.button-group:has(+ .button-group) {
+.button-group:has(+ .button-group),
+.button-group:has(.label) {
   margin-bottom: 1rem;
+}
+
+.button-group:has(.label) + .heading {
+  margin-top: 1rem;
 }
