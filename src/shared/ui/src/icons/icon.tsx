@@ -4,6 +4,7 @@ import { Logo } from "../logo/logo";
 import { GithubIcon } from "./brand/GithubIcon";
 import { LinkedinIcon } from "./brand/LinkedInIcon";
 import { ReactIcon } from "./brand/ReactIcon";
+import { ReactRouterIcon } from "./brand/ReactRouterIcon";
 
 import type { IconName } from "./collect";
 import type { IconProps } from "./iconProps";
@@ -26,6 +27,8 @@ export function Icon({ name, ...props }: IconComponentProps) {
       return <ArrowUpRight aria-hidden="true" {...props} />;
     case "react":
       return <ReactIcon {...props} />;
+    case "react-router":
+      return <ReactRouterIcon {...props} />;
     default:
       return <></>;
   }

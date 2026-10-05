@@ -1,5 +1,5 @@
 export type IconName =
-  "linkedin" | "github" | "logo" | "chevron-right" | "arrow-up-right" | "react";
+  "linkedin" | "github" | "logo" | "chevron-right" | "arrow-up-right" | "react" | "react-router";
 
 export const allIcons: IconName[] = [
   "linkedin",
@@ -8,4 +8,5 @@ export const allIcons: IconName[] = [
   "chevron-right",
   "arrow-up-right",
   "react",
+  "react-router",
 ];
