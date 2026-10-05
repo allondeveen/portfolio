@@ -1,1 +1,1 @@
-export { mapButtonGroup } from "./trpc-server/adapter";
+export { buttonGroupChildPredicate, mapButtonGroup } from "./trpc-server/adapter";
