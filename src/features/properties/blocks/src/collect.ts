@@ -11,6 +11,7 @@ import { groupBlock } from "@allondeveen-portfolio/group-block/config";
 import { headingBlock } from "@allondeveen-portfolio/heading-block/config";
 import { heroBlock } from "@allondeveen-portfolio/hero-block/config";
 import { iconBlock } from "@allondeveen-portfolio/icon-block/config";
+import { iconsBlock } from "@allondeveen-portfolio/icons-block/config";
 import { imageBlock } from "@allondeveen-portfolio/image-block/config";
 import { labelBlock } from "@allondeveen-portfolio/label-block/config";
 import { listblock } from "@allondeveen-portfolio/list-block/config";
@@ -51,6 +52,7 @@ export const allBlocks: Block[] = [
   filedownloadBlock,
   galleryBlock(["image"]),
   iconBlock,
+  iconsBlock(["icon"]),
   imageBlock,
 
   // Navigation
@@ -74,6 +76,7 @@ export const allBlocks: Block[] = [
     "gallery",
     "button",
     "buttonGroup",
+    "icons",
   ]),
 
   // Textual

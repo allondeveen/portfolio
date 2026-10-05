@@ -1,0 +1,57 @@
+.icons-block {
+  position: relative;
+}
+
+.icons-block .icons {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  width: fit-content;
+  margin: 3rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.icons-block .icons .icon {
+  display: block;
+  border-radius: 0;
+}
+
+.icons-block .icon-tooltip {
+  position: absolute;
+  top: anchor(bottom);
+  left: anchor(center);
+  transform: translateX(-50%);
+  z-index: 10;
+  margin-top: 0.5rem;
+
+  width: max-content;
+  max-width: 250px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.icons-block .icons + .icons-block .icons {
+  margin-top: 1rem;
+}
+
+.icons-block .icons:has(+ .icons-block .icons) {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 832px) {
+  .icons-block .icons {
+    width: 400px;
+    max-width: 100%;
+  }
+
+  .icons-block .icons .icon {
+    width: 100%;
+  }
+}

@@ -77,6 +77,7 @@ export interface Config {
     fileDownload: FileDownload;
     gallery: Gallery;
     icon: Icon;
+    icons: Icons;
     image: Image;
     copyright: Copyright;
     menu: MenuBlock;
@@ -415,6 +416,7 @@ export interface TextSection {
         | Gallery
         | Button
         | ButtonGroup
+        | Icons
       )[]
     | null;
   id?: string | null;
@@ -615,6 +617,42 @@ export interface Gallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icons {
+  blocks?: Icon[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'icons';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icon".
+ */
+export interface Icon {
+  variant: 'default' | 'primary' | 'secondary' | 'disabled';
+  icon: 'linkedin' | 'github' | 'chevron-right' | 'arrow-up-right' | 'react' | 'react-router' | 'typescript';
+  title?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'icon';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -730,32 +768,6 @@ export interface Copyright {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "icon".
- */
-export interface Icon {
-  variant: 'default' | 'primary' | 'secondary' | 'disabled';
-  icon: 'linkedin' | 'github' | 'chevron-right' | 'arrow-up-right' | 'react' | 'react-router' | 'typescript';
-  title?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'icon';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "templates".
  */
 export interface Template {
@@ -773,6 +785,7 @@ export interface Template {
     | FileDownload
     | Gallery
     | Icon
+    | Icons
     | Image
     | Copyright
     | MenuBlock
@@ -1710,6 +1723,7 @@ export interface Maintenance {
         | FileDownload
         | Gallery
         | Icon
+        | Icons
         | Image
         | Copyright
         | MenuBlock
@@ -1735,6 +1749,7 @@ export interface Maintenance {
     | FileDownload
     | Gallery
     | Icon
+    | Icons
     | Image
     | Copyright
     | MenuBlock
