@@ -53,6 +53,8 @@ allowBuilds:
   unrs-resolver: true
   workerd: true
 linkWorkspacePackages: true
+overrides:
+  sass: 1.105.1
 minimumReleaseAgeExclude:
   - miniflare@5.20260801.0-alpha || 5.20260908.0-alpha
   - wrangler@4.119.0 || 4.130.0
