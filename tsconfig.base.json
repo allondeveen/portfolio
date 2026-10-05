@@ -5,6 +5,7 @@
     "moduleResolution": "bundler",
     "strict": true,
     "verbatimModuleSyntax": true,
+    "noUncheckedSideEffectImports": false,
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "declaration": true,
