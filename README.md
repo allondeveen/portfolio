@@ -9,6 +9,17 @@ Setup is simple:
 - `pnpm install`
 - `pnpm dev`
 
+## TypeScript
+
+`pnpm typecheck` and the development watch scripts use TypeScript 7.0.2 through
+the root `@typescript/native` alias. Workspace scripts resolve its `tsc` executable
+from the root installation.
+
+The `typescript` catalog entry aliases `@typescript/typescript6` so ESLint, Next.js,
+and other tools can still import the TypeScript 6 JavaScript API. This compatibility
+package exposes `tsc6`, leaving `tsc` for TypeScript 7. Use `pnpm exec tsc --version`
+to check the compiler version.
+
 # Preview edge runtime compatibility
 
 To preview the edge runtime compatibility run `pnpm preview`.
