@@ -31,6 +31,7 @@ import { mapTextSection } from "@allondeveen-portfolio/text-section-block/trpc-s
 import type { Block as CMSBlock } from "../cms";
 import type { Block } from "../website/data";
 import type { MappingContext } from "@allondeveen-portfolio/adapter/trpc-server";
+import type { Icons as CMSIcons } from "@allondeveen-portfolio/icons-block/cms";
 
 export type MapBlockOptions = {
   siteTitle: SiteTitleAdapterOptions;
@@ -105,7 +106,7 @@ export function mapBlock(options: MapBlockOptions) {
         };
       case "icons":
         return {
-          block: await mapIcons(block, context),
+          block: await mapIcons(block as CMSIcons, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
         };
       case "image":

@@ -50,7 +50,7 @@ export type Block =
   | WithBlocks<Hero>
   | Image
   | Icon
-  | WithBlocks<Icons>
+  | WithBlocks<Omit<Icons, "blocks">>
   | Label
   | List
   | Menu
@@ -84,7 +84,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     HeadingSchema,
     withBlocks(HeroSchema),
     IconSchema,
-    withBlocks(IconsSchema),
+    withBlocks(IconsSchema.omit({ blocks: true })),
     ImageSchema,
     LabelSchema,
     ListSchema,
