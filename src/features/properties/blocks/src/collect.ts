@@ -10,6 +10,7 @@ import { gridItemBlock } from "@allondeveen-portfolio/grid-item-block/config";
 import { groupBlock } from "@allondeveen-portfolio/group-block/config";
 import { headingBlock } from "@allondeveen-portfolio/heading-block/config";
 import { heroBlock } from "@allondeveen-portfolio/hero-block/config";
+import { iconBlock } from "@allondeveen-portfolio/icon-block/config";
 import { imageBlock } from "@allondeveen-portfolio/image-block/config";
 import { labelBlock } from "@allondeveen-portfolio/label-block/config";
 import { listblock } from "@allondeveen-portfolio/list-block/config";
@@ -49,6 +50,7 @@ export const allBlocks: Block[] = [
   embeddedvideoBlock,
   filedownloadBlock,
   galleryBlock(["image"]),
+  iconBlock,
   imageBlock,
 
   // Navigation

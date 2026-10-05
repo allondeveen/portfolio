@@ -13,6 +13,7 @@ import { mapGridItem } from "@allondeveen-portfolio/grid-item-block/trpc-server"
 import { mapGroup } from "@allondeveen-portfolio/group-block/trpc-server";
 import { mapHeading } from "@allondeveen-portfolio/heading-block/trpc-server";
 import { mapHero } from "@allondeveen-portfolio/hero-block/trpc-server";
+import { mapIcon } from "@allondeveen-portfolio/icon-block/trpc-server";
 import { mapImage } from "@allondeveen-portfolio/image-block/trpc-server";
 import { mapLabel } from "@allondeveen-portfolio/label-block/trpc-server";
 import { mapList } from "@allondeveen-portfolio/list-block/trpc-server";
@@ -96,6 +97,10 @@ export function mapBlock(options: MapBlockOptions) {
         return {
           block: await mapHero(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
+        };
+      case "icon":
+        return {
+          block: await mapIcon(block, context),
         };
       case "image":
         return {

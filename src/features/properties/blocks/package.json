@@ -55,6 +55,7 @@
     "@allondeveen-portfolio/group-block": "workspace:*",
     "@allondeveen-portfolio/heading-block": "workspace:*",
     "@allondeveen-portfolio/hero-block": "workspace:*",
+    "@allondeveen-portfolio/icon-block": "workspace:*",
     "@allondeveen-portfolio/image-block": "workspace:*",
     "@allondeveen-portfolio/label-block": "workspace:*",
     "@allondeveen-portfolio/list-block": "workspace:*",

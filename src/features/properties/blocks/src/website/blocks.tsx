@@ -10,6 +10,7 @@ import { GridItemBlock } from "@allondeveen-portfolio/grid-item-block/website";
 import { GroupBlock } from "@allondeveen-portfolio/group-block/website";
 import { HeadingComponent } from "@allondeveen-portfolio/heading-block/website";
 import { HeroComponent } from "@allondeveen-portfolio/hero-block/website";
+import { IconComponent } from "@allondeveen-portfolio/icon-block/website";
 import { Image } from "@allondeveen-portfolio/image-block/website";
 import { LabelComponent } from "@allondeveen-portfolio/label-block/website";
 import { ListComponent } from "@allondeveen-portfolio/list-block/website";
@@ -77,6 +78,8 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
           <BlocksComponent blocks={blocks} />
         </HeroComponent>
       );
+    case "icon":
+      return <IconComponent {...block} />;
     case "image":
       return <Image {...block} />;
     case "label":
