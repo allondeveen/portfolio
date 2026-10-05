@@ -3,7 +3,7 @@ import {
   singleLineAdminSettings,
   SingleLineFeature,
 } from "@allondeveen-portfolio/single-line-lexical";
-import { allIcons } from "@allondeveen-portfolio/ui/icons/data";
+import { allIcons, mapIconsToOptions } from "@allondeveen-portfolio/ui/icons/data";
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -46,28 +46,13 @@ export const buttonBlock: Block = {
     {
       name: "icon",
       type: "select",
-      options: [...allIcons, "none"]
-        .filter((name) => name !== "logo")
-        .map((name) => {
-          const value: string = name;
-          switch (name) {
-            case "github":
-              return {
-                label: "GitHub",
-                value,
-              };
-            case "linkedin":
-              return {
-                label: "LinkedIn",
-                value,
-              };
-            default:
-              return {
-                label: `${value[0].toUpperCase()}${value.replaceAll("-", " ").slice(1)}`,
-                value: name,
-              };
-          }
-        }),
+      options: [
+        ...mapIconsToOptions(allIcons.filter((name) => name !== "logo")),
+        {
+          label: "None",
+          value: "none",
+        },
+      ],
       defaultValue: "none",
       required: true,
     },
