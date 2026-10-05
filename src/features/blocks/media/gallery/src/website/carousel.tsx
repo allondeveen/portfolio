@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 
 import type { CSSProperties, PropsWithChildren } from "react";
@@ -89,7 +90,7 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
           disabled={offset <= 0}
           onClick={() => move(-1)}
         >
-          <span aria-hidden="true">←</span>
+          <ArrowLeft aria-hidden="true" />
         </button>
         <button
           type="button"
@@ -98,7 +99,7 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
           disabled={offset >= geometry.maxOffset - 1}
           onClick={() => move(1)}
         >
-          <span aria-hidden="true">→</span>
+          <ArrowRight aria-hidden="true" />
         </button>
       </div>
     </div>

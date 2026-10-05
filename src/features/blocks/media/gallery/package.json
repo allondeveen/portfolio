@@ -41,6 +41,7 @@
     "@allondeveen-portfolio/adapter": "workspace:*",
     "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",
+    "lucide-react": "catalog:",
     "zod": "catalog:"
   }
 }
