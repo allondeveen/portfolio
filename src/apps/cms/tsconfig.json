@@ -30,5 +30,15 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "watchOptions": {
+    "excludeFiles": ["**/*.tsbuildinfo"],
+    "excludeDirectories": [
+      "**/node_modules",
+      "**/.git",
+      "**/.next/cache",
+      "**/.next/dev/cache",
+      "**/.next/dev/logs"
+    ]
+  }
 }
