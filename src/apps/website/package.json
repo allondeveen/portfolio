@@ -41,6 +41,7 @@
     "tailwindcss": "^4.2.2",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "wrangler": "catalog:"
+    "wrangler": "catalog:",
+    "sass-embedded": "catalog:"
   }
 }

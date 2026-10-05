@@ -11,7 +11,8 @@
     "./icons/data": {
       "types": "./src/icons/collect.ts",
       "import": "./src/icons/collect.ts"
-    }
+    },
+    "./mixins": "./src/mixins/_index.scss"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

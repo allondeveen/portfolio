@@ -1,3 +1,5 @@
+@use "@allondeveen-portfolio/ui/mixins" as ui;
+
 .icons-block {
   position: relative;
 }
@@ -18,23 +20,10 @@
 }
 
 .icons-block .icon-tooltip {
-  position: absolute;
+  @include ui.tooltip-base;
   top: anchor(bottom);
   left: anchor(center);
-  transform: translateX(-50%);
-  z-index: 10;
-  margin-top: 0.5rem;
-
-  width: max-content;
-  max-width: 250px;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  font-family: var(--font-heading);
-  white-space: nowrap;
-
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease-in-out;
 }
 
 .icons-block .icons + .icons-block .icons {

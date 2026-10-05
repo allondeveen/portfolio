@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import type { Icon as IconProps } from "./data";
 
-import "./style.css";
+import "./style.scss";
 
 export function IconComponent({ id, variant, icon, title }: IconProps) {
   let renderTitle = title;

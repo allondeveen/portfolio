@@ -1,0 +1,16 @@
+@mixin base {
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 10;
+  margin-top: 0.5rem;
+
+  width: max-content;
+  max-width: 250px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  white-space: nowrap;
+
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}

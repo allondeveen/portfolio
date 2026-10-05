@@ -33,6 +33,7 @@
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "wrangler": "catalog:"
+    "wrangler": "catalog:",
+    "sass-embedded": "catalog:"
   }
 }

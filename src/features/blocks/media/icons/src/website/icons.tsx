@@ -2,7 +2,7 @@ import { LexicalTextComponent } from "@allondeveen-portfolio/lexical-text/websit
 import { buttonVariants } from "@allondeveen-portfolio/ui";
 import clsx from "clsx";
 
-import "./style.css";
+import "./style.scss";
 
 import type { Icons } from "./data";
 import type { TextParagraph } from "@allondeveen-portfolio/lexical-text/website/data";

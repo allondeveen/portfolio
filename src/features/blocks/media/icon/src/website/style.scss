@@ -1,0 +1,27 @@
+@use "@allondeveen-portfolio/ui/mixins" as ui;
+
+.icon {
+  position: relative;
+  display: inline-block;
+  line-height: 1.6;
+  cursor: help;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+.icon svg.icon-figure {
+  width: var(--font-size-l);
+  height: var(--font-size-l);
+  line-height: 1.6;
+  display: block;
+}
+
+.icon .tooltip {
+  @include ui.tooltip-base;
+  top: 100%;
+  left: 50%;
+}
+
+.icon:hover .tooltip {
+  opacity: 1;
+}
