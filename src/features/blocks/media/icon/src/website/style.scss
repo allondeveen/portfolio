@@ -4,9 +4,12 @@
   position: relative;
   display: inline-block;
   line-height: 1.6;
-  cursor: help;
   padding: 0.75rem;
   border-radius: 4px;
+}
+
+.icon:has(.tooltip) {
+  cursor: help;
 }
 
 .icon svg.icon-figure {
