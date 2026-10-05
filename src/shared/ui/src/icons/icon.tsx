@@ -16,16 +16,16 @@ export type IconComponentProps = IconProps & {
 
 export function Icon({ name, ...props }: IconComponentProps) {
   switch (name) {
+    case "arrow-up-right":
+      return <ArrowUpRight aria-hidden="true" {...props} />;
+    case "chevron-right":
+      return <ChevronRight aria-hidden="true" {...props} />;
+    case "logo":
+      return <Logo {...props} />;
     case "github":
       return <GithubIcon {...props} />;
     case "linkedin":
       return <LinkedinIcon {...props} />;
-    case "logo":
-      return <Logo {...props} />;
-    case "chevron-right":
-      return <ChevronRight aria-hidden="true" {...props} />;
-    case "arrow-up-right":
-      return <ArrowUpRight aria-hidden="true" {...props} />;
     case "react":
       return <ReactIcon {...props} />;
     case "react-router":
