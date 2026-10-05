@@ -1,5 +1,12 @@
 export type IconName =
-  "linkedin" | "github" | "logo" | "chevron-right" | "arrow-up-right" | "react" | "react-router";
+  | "linkedin"
+  | "github"
+  | "logo"
+  | "chevron-right"
+  | "arrow-up-right"
+  | "react"
+  | "react-router"
+  | "typescript";
 
 export const allIcons: IconName[] = [
   "linkedin",
@@ -9,6 +16,7 @@ export const allIcons: IconName[] = [
   "arrow-up-right",
   "react",
   "react-router",
+  "typescript",
 ];
 
 export function mapIconsToOptions(icons: IconName[]): { label: string; value: string }[] {
@@ -38,6 +46,11 @@ export function mapIconsToOptions(icons: IconName[]): { label: string; value: st
       case "react-router":
         return {
           label: "React Router",
+          value,
+        };
+      case "typescript":
+        return {
+          label: "TypeScript",
           value,
         };
       default:

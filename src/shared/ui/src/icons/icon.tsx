@@ -5,6 +5,7 @@ import { GithubIcon } from "./brand/GithubIcon";
 import { LinkedinIcon } from "./brand/LinkedInIcon";
 import { ReactIcon } from "./brand/ReactIcon";
 import { ReactRouterIcon } from "./brand/ReactRouterIcon";
+import { TypeScriptIcon } from "./brand/TypeScriptIcon";
 
 import type { IconName } from "./collect";
 import type { IconProps } from "./iconProps";
@@ -29,6 +30,8 @@ export function Icon({ name, ...props }: IconComponentProps) {
       return <ReactIcon {...props} />;
     case "react-router":
       return <ReactRouterIcon {...props} />;
+    case "typescript":
+      return <TypeScriptIcon {...props} />;
     default:
       return <></>;
   }

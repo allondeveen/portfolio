@@ -190,7 +190,7 @@ export interface UserAuthOperations {
  */
 export interface Button {
   variant: 'default' | 'primary' | 'secondary' | 'disabled';
-  icon: 'linkedin' | 'github' | 'chevron-right' | 'arrow-up-right' | 'react' | 'react-router' | 'none';
+  icon: 'linkedin' | 'github' | 'chevron-right' | 'arrow-up-right' | 'react' | 'react-router' | 'typescript' | 'none';
   location: {
     externality: 'internal' | 'external';
     internal?:
@@ -482,7 +482,9 @@ export interface Menu {
   items: {
     id: string;
     label: string;
-    icon?: ('linkedin' | 'github' | 'logo' | 'chevron-right' | 'arrow-up-right' | 'react' | 'react-router') | null;
+    icon?:
+      | ('linkedin' | 'github' | 'logo' | 'chevron-right' | 'arrow-up-right' | 'react' | 'react-router' | 'typescript')
+      | null;
     externality: 'external' | 'internal';
     external?: string | null;
     internal?: {
