@@ -3,6 +3,7 @@ import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { Logo } from "../logo/logo";
 import { GithubIcon } from "./brand/GithubIcon";
 import { LinkedinIcon } from "./brand/LinkedInIcon";
+import { ReactIcon } from "./brand/ReactIcon";
 
 import type { IconName } from "./collect";
 import type { IconProps } from "./iconProps";
@@ -23,6 +24,8 @@ export function Icon({ name, ...props }: IconComponentProps) {
       return <ChevronRight aria-hidden="true" {...props} />;
     case "arrow-up-right":
       return <ArrowUpRight aria-hidden="true" {...props} />;
+    case "react":
+      return <ReactIcon {...props} />;
     default:
       return <></>;
   }
