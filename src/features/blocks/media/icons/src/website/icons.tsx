@@ -13,7 +13,9 @@ export type IconsBlockProps = PropsWithChildren<Icons>;
 export function IconsBlock({ children, tooltips }: IconsBlockProps) {
   return (
     <div className={clsx("icons-block")}>
-      <div className="icons">{children}</div>
+      <div className="icons-wrapper">
+        <div className="icons">{children}</div>
+      </div>
       {tooltips.map((tooltip) => {
         let renderTitle = tooltip.text;
         if (!renderTitle) return null;

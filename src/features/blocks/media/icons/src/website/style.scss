@@ -4,12 +4,17 @@
   position: relative;
 }
 
+.icons-wrapper {
+  max-width: 100%;
+  overflow-x: scroll;
+  margin: 3rem 0;
+}
+
 .icons-block .icons {
   display: flex;
   flex-wrap: wrap;
   max-width: 100%;
   width: fit-content;
-  margin: 3rem 0;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -32,15 +37,4 @@
 
 .icons-block .icons:has(+ .icons-block .icons) {
   margin-bottom: 1rem;
-}
-
-@media (max-width: 832px) {
-  .icons-block .icons {
-    width: 400px;
-    max-width: 100%;
-  }
-
-  .icons-block .icons .icon {
-    width: 100%;
-  }
 }
