@@ -1,5 +1,6 @@
 import { buttonBlock } from "@allondeveen-portfolio/button-block/config";
 import { buttongroupBlock } from "@allondeveen-portfolio/button-group-block/config";
+import { codeBlock } from "@allondeveen-portfolio/code-block/config";
 import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
 import { embeddedvideoBlock } from "@allondeveen-portfolio/embedded-video-block/config";
@@ -77,7 +78,11 @@ export const allBlocks: Block[] = [
     "button",
     "buttonGroup",
     "icons",
+    "code",
   ]),
+
+  // Technical
+  codeBlock,
 
   // Textual
   headingBlock,

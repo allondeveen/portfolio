@@ -1,5 +1,6 @@
 import { ButtonComponent } from "@allondeveen-portfolio/button-block/website";
 import { ButtonGroupBlock } from "@allondeveen-portfolio/button-group-block/website";
+import { CodeComponent } from "@allondeveen-portfolio/code-block/website";
 import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
 import { EmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/website";
@@ -35,6 +36,8 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
           <BlocksComponent blocks={blocks} />
         </ButtonGroupBlock>
       );
+    case "code":
+      return <CodeComponent {...block} />;
     case "container":
       return (
         <ContainerBlock {...block}>

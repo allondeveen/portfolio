@@ -1,5 +1,6 @@
 import { ButtonSchema } from "@allondeveen-portfolio/button-block/website/data";
 import { ButtonGroupSchema } from "@allondeveen-portfolio/button-group-block/website/data";
+import { CodeSchema } from "@allondeveen-portfolio/code-block/website/data";
 import { ContainerSchema } from "@allondeveen-portfolio/container-block/website/data";
 import { CopyrightSchema } from "@allondeveen-portfolio/copyright-block/website/data";
 import { EmbeddedVideoSchema } from "@allondeveen-portfolio/embedded-video-block/website/data";
@@ -26,6 +27,7 @@ import * as z from "zod";
 export const AnyBlockSchema = z.discriminatedUnion("kind", [
   ButtonSchema,
   ButtonGroupSchema,
+  CodeSchema,
   ContainerSchema,
   CopyrightSchema,
   EmbeddedVideoSchema,

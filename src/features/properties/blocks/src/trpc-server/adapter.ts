@@ -3,6 +3,7 @@ import {
   buttonGroupChildPredicate,
   mapButtonGroup,
 } from "@allondeveen-portfolio/button-group-block/trpc-server";
+import { mapCode } from "@allondeveen-portfolio/code-block/trpc-server";
 import { mapContainer } from "@allondeveen-portfolio/container-block/trpc-server";
 import { mapCopyright } from "@allondeveen-portfolio/copyright-block/trpc-server";
 import { mapEmbeddedVideo } from "@allondeveen-portfolio/embedded-video-block/trpc-server";
@@ -53,6 +54,10 @@ export function mapBlock(options: MapBlockOptions) {
               .filter(buttonGroupChildPredicate)
               .map((block) => mapBlock(options)(block, context)),
           ),
+        };
+      case "code":
+        return {
+          block: await mapCode(block, context),
         };
       case "container":
         return {

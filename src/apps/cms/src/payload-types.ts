@@ -84,6 +84,7 @@ export interface Config {
     siteTitle: SiteTitleBlock;
     hero: Hero;
     textSection: TextSection;
+    code: Code;
     heading: Heading;
     label: Label;
     list: List;
@@ -417,6 +418,7 @@ export interface TextSection {
         | Button
         | ButtonGroup
         | Icons
+        | Code
       )[]
     | null;
   id?: string | null;
@@ -653,6 +655,33 @@ export interface Icon {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "code".
+ */
+export interface Code {
+  files: {
+    language:
+      | 'javascript'
+      | 'typescript'
+      | 'tsx'
+      | 'csharp'
+      | 'php'
+      | 'json'
+      | 'html'
+      | 'css'
+      | 'scss'
+      | 'markdown'
+      | 'yaml'
+      | 'bash';
+    fileName: string;
+    code: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'code';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -792,6 +821,7 @@ export interface Template {
     | SiteTitleBlock
     | Hero
     | TextSection
+    | Code
     | Heading
     | Label
     | List
@@ -1730,6 +1760,7 @@ export interface Maintenance {
         | SiteTitleBlock
         | Hero
         | TextSection
+        | Code
         | Heading
         | Label
         | List
@@ -1756,6 +1787,7 @@ export interface Maintenance {
     | SiteTitleBlock
     | Hero
     | TextSection
+    | Code
     | Heading
     | Label
     | List

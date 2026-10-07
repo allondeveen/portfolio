@@ -1,0 +1,135 @@
+.code {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.code.inline {
+  align-items: start;
+  gap: 1rem;
+}
+
+.code .code--header ul,
+.code .code--content .code--content__header ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+.code .code--header ul {
+  width: 200px;
+}
+
+.code .code--header ul li {
+  margin: 0.5rem 0;
+}
+
+.code .code--header ul li:first-child {
+  margin-top: 0;
+}
+
+.code .code--header ul li:last-child {
+  margin-bottom: 0;
+}
+
+.code .code--header ul li button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.code .code--content {
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.code .code--content .code--content__header {
+  padding: 0.5rem 1rem;
+}
+
+.code .code--content .code--content__header ul.inline {
+  gap: 1rem;
+}
+
+.code .code--content .code--content__header ul.inline li {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.code .code--content .code--content__header ul.inline li.code--content__header__language {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+}
+
+.code .code--content .code--content__header ul.inline li.code--content__header__copy-button {
+  flex: 0 0 auto;
+  width: fit-content;
+}
+
+.code .code--content .code--content__header ul.inline li.code--content__header__copy-button button {
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.code
+  .code--content
+  .code--content__header
+  ul.inline
+  li.code--content__header__copy-button
+  button
+  svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+}
+
+.code .code--content .code--content__body pre {
+  --line-number-right-padding: 1.25rem;
+  margin: 0;
+  background-color: transparent !important;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.code .code--content .code--content__body pre code .line {
+  display: grid;
+  grid-template-columns: calc(3ch + var(--line-number-right-padding)) minmax(0, 1fr);
+  column-gap: 1rem;
+  padding-right: 1rem;
+}
+
+.code .code--content .code--content__body pre code .line .line-number {
+  display: block;
+  text-align: right;
+  user-select: none;
+  padding-right: var(--line-number-right-padding);
+}
+
+.code .code--content .code--content__body pre code .line .line-content {
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.code .code--content .code--content__body pre code .line:first-child .line-number,
+.code .code--content .code--content__body pre code .line:first-child .line-content {
+  padding-top: 2rem;
+}
+
+.code .code--content .code--content__body pre code .line:last-child .line-number,
+.code .code--content .code--content__body pre code .line:last-child .line-content {
+  padding-bottom: 2rem;
+}
