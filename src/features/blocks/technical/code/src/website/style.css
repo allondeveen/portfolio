@@ -154,7 +154,7 @@
   .code .code--header ul {
     display: flex;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
 
   .code .code--header ul li {
