@@ -1,6 +1,5 @@
 .container {
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 0 4rem;
 }
 
 .center {
@@ -22,4 +21,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+@media (max-width: 1230px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
