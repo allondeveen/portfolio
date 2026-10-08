@@ -3,8 +3,6 @@ import { withPayload } from "@payloadcms/next/withPayload";
 
 import type { NextConfig } from "next";
 
-initOpenNextCloudflareForDev();
-
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["cms-dev.allondeveen.com"],
 
@@ -33,4 +31,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(nextConfig, { devBundleServerPackages: false });
+export default async function config() {
+  // Remote bindings must be ready before Next starts accepting requests.
+  await initOpenNextCloudflareForDev();
+
+  return withPayload(nextConfig, { devBundleServerPackages: false });
+}
