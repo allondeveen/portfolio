@@ -104,6 +104,7 @@
   white-space: normal;
   word-break: break-word;
   overflow-x: auto;
+  font-size: 1rem;
 }
 
 .code .code--content .code--content__body pre code {
@@ -171,5 +172,11 @@
 
   .code .code--header ul li:last-child {
     margin-right: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .code .code--content .code--content__body pre {
+    font-size: 0.75rem;
   }
 }
