@@ -240,7 +240,7 @@ export interface Page {
   parent?: (string | null) | Page;
   slug: string;
   title: string;
-  blocks: (Hero | TextSection)[];
+  blocks: (Hero | TextSection | Story)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -738,7 +738,7 @@ export interface Project {
   technologies: (string | Topic)[];
   clients: (string | Client)[];
   title: string;
-  blocks: (Hero | TextSection)[];
+  blocks: (Hero | TextSection | Story)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -785,7 +785,7 @@ export interface Article {
   subjects: (string | Topic)[];
   series?: (string | null) | Series;
   title: string;
-  blocks: (Hero | TextSection)[];
+  blocks: (Hero | TextSection | Story)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -1866,7 +1866,7 @@ export interface SiteSetting {
  */
 export interface NotFound {
   id: number;
-  blocks: (Hero | TextSection)[];
+  blocks: (Hero | TextSection | Story)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1876,7 +1876,7 @@ export interface NotFound {
  */
 export interface ErrorPage {
   id: number;
-  blocks: (Hero | TextSection)[];
+  blocks: (Hero | TextSection | Story)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
