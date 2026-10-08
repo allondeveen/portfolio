@@ -34,12 +34,13 @@ The following articles are intended to be published when the portfolio goes live
 - Expand Applicative Functorial React:
   - Composition over combined user interaction using applicatives.
 
+## Planned blocks
+
+- [Story block](../implementation-backlog.md#blk-040--implement-story-block)
+
 ## Future blocks
 
 - Testimonials
-- Story
-  - A list of sections
-  - Keyframe animation synchronised with the sections
 - Timeline
   - A list of sections
   - A date or date range for each section

@@ -10,7 +10,7 @@ This file translates the accepted content strategy, functional design, technical
 - Split an issue further only when the resulting issues can be completed and verified independently without losing the requirements recorded here.
 - Source documents remain authoritative if this execution-oriented summary and a design document ever diverge.
 
-The backlog contains 114 issue candidates: 8 foundation, 19 model, 39 current-block, 7 CMS/publishing capability, 11 website, 8 AI, 12 operations/quality, 5 launch-content, and 5 deferred/future tasks.
+The backlog contains 115 issue candidates: 8 foundation, 19 model, 40 current-block, 7 CMS/publishing capability, 11 website, 8 AI, 12 operations/quality, 5 launch-content, and 5 deferred/future tasks.
 
 Recommended dependency order is Foundations → Models → Blocks → CMS/website/AI capabilities → Operations and release verification → Launch content. Operations work that establishes development environments, security controls, or CI can proceed alongside Models and Blocks.
 
@@ -746,6 +746,29 @@ Unless a task narrows the scope, applicable work is complete only when:
 **Implementation:** The technical design identifies this block but the functional Block library does not define its author-facing fields, allowed placement, or nesting. Resolve those details before implementation without changing the accepted server-side static-resolution boundary.
 
 **Sources:** [Block validation](design/technical/content-and-publishing.md#block-data-validation)
+
+### BLK-040 — Implement Story block
+
+**Labels:** `block`, `section`, `animation`
+
+**Requirements:** The Story block contains an ordered array of at least two items, called stories. Each story pairs normal content with animated content.
+
+| Configuration               | Description                                                                                                           | Required |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------- |
+| Stories                     | Ordered array containing at least two stories                                                                         | Yes      |
+| Normal content, per story   | Content blocks that occupy space in the normal document flow                                                          | Yes      |
+| Animated content, per story | Content that transitions as the normal content is scrolled past the viewport; this may also consist of content blocks | Yes      |
+
+- Stories appear in their authored order.
+- Normal content occupies space normally and provides the scroll progression through the story sequence.
+- Animated content transitions when its corresponding normal content is scrolled past the viewport.
+- The two content roles are distinct even when both are authored using content blocks.
+
+**Editorial and user value:** It can animate metadata such as dates or information structure. Examples include an engineering career timeline, project evolution, or a ReactFunctors concept within the wider knowledge graph.
+
+**Implementation:** Specific animations and presentation details are implementation choices. Render the content server-side and enhance it with scroll-driven transitions.
+
+**Scheduling context:** Previously deferred because the block is comparatively complex and its content can initially be communicated with a text section or chapter. Moving it into the implementation backlog does not by itself require inclusion in the first release.
 
 ## Epic D — CMS and publishing capabilities
 
