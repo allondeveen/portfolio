@@ -105,6 +105,7 @@
   word-break: break-word;
   overflow-x: auto;
   font-size: 1rem;
+  max-width: none;
 }
 
 .code .code--content .code--content__body pre code {
