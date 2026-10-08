@@ -98,10 +98,17 @@
 
 .code .code--content .code--content__body pre {
   --line-number-right-padding: 1.25rem;
+  display: block;
   margin: 0;
   background-color: transparent !important;
   white-space: normal;
   word-break: break-word;
+  overflow-x: auto;
+}
+
+.code .code--content .code--content__body pre code {
+  display: block;
+  min-width: 800px;
 }
 
 .code .code--content .code--content__body pre code .line {
