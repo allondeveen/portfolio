@@ -8,6 +8,7 @@ import type { CSSProperties, PropsWithChildren } from "react";
 export function GalleryCarousel({ children }: PropsWithChildren) {
   const trackId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const [geometry, setGeometry] = useState({
@@ -20,15 +21,14 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
   useEffect(() => {
     const root = rootRef.current;
     const track = trackRef.current;
-    if (!root || !track) return;
+    const viewport = viewportRef.current;
+    if (!root || !track || !viewport) return;
 
     const measure = () => {
       const bounds = root.getBoundingClientRect();
       const first = track.firstElementChild?.getBoundingClientRect();
-      const last = track.lastElementChild?.getBoundingClientRect();
       const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
-      const contentWidth = first && last ? last.right - first.left : 0;
-      const maxOffset = Math.max(0, contentWidth - track.clientWidth);
+      const maxOffset = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
 
       setGeometry({
         maxOffset,
@@ -36,12 +36,13 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
         bleedLeft: Math.max(0, bounds.left),
         bleedRight: Math.max(0, document.documentElement.clientWidth - bounds.right),
       });
-      setOffset((current) => Math.min(current, maxOffset));
+      setOffset(viewport.scrollLeft);
     };
 
     const observer = new ResizeObserver(measure);
     observer.observe(root);
     observer.observe(track);
+    observer.observe(viewport);
     for (const child of track.children) observer.observe(child);
     window.addEventListener("resize", measure);
 
@@ -52,9 +53,17 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
   }, [children]);
 
   const move = (direction: number) => {
-    setOffset((current) =>
-      Math.max(0, Math.min(geometry.maxOffset, current + direction * geometry.step)),
-    );
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    viewport.scrollTo({
+      left: Math.max(
+        0,
+        Math.min(geometry.maxOffset, viewport.scrollLeft + direction * geometry.step),
+      ),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
   };
 
   return (
@@ -72,13 +81,12 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
         } as CSSProperties
       }
     >
-      <div className="gallery__carousel-viewport">
-        <div
-          ref={trackRef}
-          id={trackId}
-          className="gallery__carousel-track"
-          style={{ transform: `translateX(${-offset}px)` }}
-        >
+      <div
+        className="gallery__carousel-viewport"
+        ref={viewportRef}
+        onScroll={(event) => setOffset(event.currentTarget.scrollLeft)}
+      >
+        <div ref={trackRef} id={trackId} className="gallery__carousel-track">
           {children}
         </div>
       </div>
