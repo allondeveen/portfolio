@@ -26,6 +26,7 @@ h5,
 h6 {
   font-family: var(--font-heading);
   line-height: 1.2;
+  max-width: 25ch;
 }
 
 h1 {
