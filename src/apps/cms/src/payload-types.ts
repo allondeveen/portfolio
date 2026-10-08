@@ -83,6 +83,7 @@ export interface Config {
     menu: MenuBlock;
     siteTitle: SiteTitleBlock;
     hero: Hero;
+    story: Story;
     textSection: TextSection;
     code: Code;
     heading: Heading;
@@ -419,6 +420,7 @@ export interface TextSection {
         | ButtonGroup
         | Icons
         | Code
+        | Story
       )[]
     | null;
   id?: string | null;
@@ -682,6 +684,52 @@ export interface Code {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "story".
+ */
+export interface Story {
+  items: {
+    content: (
+      | Heading
+      | RichText
+      | Image
+      | Grid
+      | Stack
+      | Quote
+      | List
+      | Label
+      | EmbeddedVideo
+      | FileDownload
+      | Gallery
+      | Button
+      | ButtonGroup
+      | Icons
+      | Code
+    )[];
+    frame: (
+      | Heading
+      | RichText
+      | Image
+      | Grid
+      | Stack
+      | Quote
+      | List
+      | Label
+      | EmbeddedVideo
+      | FileDownload
+      | Gallery
+      | Button
+      | ButtonGroup
+      | Icons
+      | Code
+    )[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'story';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -820,6 +868,7 @@ export interface Template {
     | MenuBlock
     | SiteTitleBlock
     | Hero
+    | Story
     | TextSection
     | Code
     | Heading
@@ -1759,6 +1808,7 @@ export interface Maintenance {
         | MenuBlock
         | SiteTitleBlock
         | Hero
+        | Story
         | TextSection
         | Code
         | Heading
@@ -1786,6 +1836,7 @@ export interface Maintenance {
     | MenuBlock
     | SiteTitleBlock
     | Hero
+    | Story
     | TextSection
     | Code
     | Heading

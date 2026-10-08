@@ -27,6 +27,7 @@ import {
   type SiteTitleAdapterOptions,
 } from "@allondeveen-portfolio/site-title-block/trpc-server";
 import { mapStack } from "@allondeveen-portfolio/stack-block/trpc-server";
+import { mapStory } from "@allondeveen-portfolio/story-block/trpc-server";
 import { mapTextSection } from "@allondeveen-portfolio/text-section-block/trpc-server";
 
 import type { Block as CMSBlock } from "../cms";
@@ -146,6 +147,23 @@ export function mapBlock(options: MapBlockOptions) {
         return {
           block: await mapStack(block, context),
           blocks: await Promise.all(block.blocks.map((block) => mapBlock(options)(block, context))),
+        };
+      case "story":
+        return {
+          block: {
+            ...(await mapStory(block, context)),
+            items: await Promise.all(
+              block.items.map(async (item) => ({
+                id: item.id,
+                content: await Promise.all(
+                  item.content.map(async (block) => await mapBlock(options)(block, context)),
+                ),
+                frame: await Promise.all(
+                  item.frame.map(async (block) => await mapBlock(options)(block, context)),
+                ),
+              })),
+            ),
+          },
         };
       case "textSection":
         return {

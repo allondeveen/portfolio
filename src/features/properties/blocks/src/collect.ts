@@ -21,6 +21,7 @@ import { quoteblock } from "@allondeveen-portfolio/quote-block/config";
 import { richTextblock } from "@allondeveen-portfolio/rich-text-block/config";
 import { siteTitleBlock } from "@allondeveen-portfolio/site-title-block/config";
 import { stackBlock } from "@allondeveen-portfolio/stack-block/config";
+import { storyBlock } from "@allondeveen-portfolio/story-block/config";
 import { textsectionBlock } from "@allondeveen-portfolio/text-section-block/config";
 
 import type { Block, BlockSlug } from "payload";
@@ -63,6 +64,23 @@ export const allBlocks: Block[] = [
 
   // Section
   heroBlock(["heading", "richText", "label", "button", "buttonGroup"]),
+  storyBlock([
+    "heading",
+    "richText",
+    "image",
+    "grid",
+    "stack",
+    "quote",
+    "list",
+    "label",
+    "embeddedVideo",
+    "fileDownload",
+    "gallery",
+    "button",
+    "buttonGroup",
+    "icons",
+    "code",
+  ]),
   textsectionBlock([
     "heading",
     "richText",
@@ -79,6 +97,7 @@ export const allBlocks: Block[] = [
     "buttonGroup",
     "icons",
     "code",
+    "story",
   ]),
 
   // Technical

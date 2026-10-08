@@ -21,6 +21,7 @@ import { QuoteComponent } from "@allondeveen-portfolio/quote-block/website";
 import { RichTextComponent } from "@allondeveen-portfolio/rich-text-block/website";
 import { SiteTitle } from "@allondeveen-portfolio/site-title-block/website";
 import { StackBlock } from "@allondeveen-portfolio/stack-block/website";
+import { StoryComponent } from "@allondeveen-portfolio/story-block/website";
 import { TextSectionComponent } from "@allondeveen-portfolio/text-section-block/website";
 
 import type { Block } from "./data";
@@ -109,6 +110,17 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
         <StackBlock {...block}>
           <BlocksComponent blocks={blocks} />
         </StackBlock>
+      );
+    case "story":
+      return (
+        <StoryComponent
+          {...block}
+          items={block.items.map((item) => ({
+            id: item.id,
+            content: <BlocksComponent blocks={item.content} />,
+            frame: <BlocksComponent blocks={item.frame} />,
+          }))}
+        />
       );
     case "textSection":
       return (

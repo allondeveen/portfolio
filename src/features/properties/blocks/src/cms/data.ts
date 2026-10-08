@@ -27,6 +27,12 @@ import { type Quote, QuoteSchema } from "@allondeveen-portfolio/quote-block/cms"
 import { type RichText, RichTextSchema } from "@allondeveen-portfolio/rich-text-block/cms";
 import { type SiteTitle, SiteTitleSchema } from "@allondeveen-portfolio/site-title-block/cms";
 import { type Stack, StackSchema } from "@allondeveen-portfolio/stack-block/cms";
+import {
+  type Story,
+  type StoryItems,
+  StoryItemsSchema,
+  StorySchema,
+} from "@allondeveen-portfolio/story-block/cms";
 import { type TextSection, TextSectionSchema } from "@allondeveen-portfolio/text-section-block/cms";
 import * as z from "zod";
 
@@ -60,6 +66,9 @@ export type Block =
   | RichText
   | SiteTitle
   | WithBlocks<Stack>
+  | (Story & {
+      items: StoryItems<Block>;
+    })
   | WithBlocks<TextSection>;
 
 export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
@@ -96,6 +105,9 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => {
     RichTextSchema,
     SiteTitleSchema,
     withBlocks(StackSchema),
+    StorySchema.extend({
+      items: StoryItemsSchema<Block>(BlockSchema),
+    }),
     withBlocks(TextSectionSchema),
   ]);
 });
