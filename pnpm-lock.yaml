@@ -566,6 +566,9 @@ importers:
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../../shared/ui
+      '@allondeveen-portfolio/variant-property':
+        specifier: workspace:*
+        version: link:../../../properties/variant
       '@payloadcms/richtext-lexical':
         specifier: 'catalog:'
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(yjs@13.6.32)
@@ -758,6 +761,9 @@ importers:
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../../shared/ui
+      '@allondeveen-portfolio/variant-property':
+        specifier: workspace:*
+        version: link:../../../properties/variant
       '@payloadcms/richtext-lexical':
         specifier: 'catalog:'
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(yjs@13.6.32)
@@ -838,6 +844,9 @@ importers:
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../../shared/ui
+      '@allondeveen-portfolio/variant-property':
+        specifier: workspace:*
+        version: link:../../../properties/variant
       '@payloadcms/richtext-lexical':
         specifier: 'catalog:'
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(yjs@13.6.32)
@@ -1294,6 +1303,9 @@ importers:
       '@allondeveen-portfolio/ui':
         specifier: workspace:*
         version: link:../../../../shared/ui
+      '@allondeveen-portfolio/variant-property':
+        specifier: workspace:*
+        version: link:../../../properties/variant
       '@payloadcms/richtext-lexical':
         specifier: 'catalog:'
         version: 3.87.0(@faceless-ui/modal@3.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@payloadcms/next@3.87.0(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(graphql@16.14.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(@types/react@19.2.14)(@typescript/typescript6@6.0.2)(monaco-editor@0.56.0)(next@16.2.6(@babel/core@7.29.7)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(sass@1.105.1))(payload@3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(yjs@13.6.32)
@@ -2211,6 +2223,19 @@ importers:
       payload:
         specifier: 'catalog:'
         version: 3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2)
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
+  src/features/properties/variant:
+    dependencies:
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       typescript:
         specifier: 'catalog:'

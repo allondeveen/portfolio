@@ -4,6 +4,7 @@ import {
   SingleLineFeature,
 } from "@allondeveen-portfolio/single-line-lexical";
 import { allIcons, mapIconsToOptions } from "@allondeveen-portfolio/ui/icons/data";
+import { variant } from "@allondeveen-portfolio/variant-property/config";
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -19,30 +20,7 @@ export const buttonBlock: Block = {
     group: "Call to action",
   },
   fields: [
-    {
-      type: "select",
-      name: "variant",
-      defaultValue: "default",
-      required: true,
-      options: [
-        {
-          label: "Default",
-          value: "default",
-        },
-        {
-          label: "Primary",
-          value: "primary",
-        },
-        {
-          label: "Secondary",
-          value: "secondary",
-        },
-        {
-          label: "Disabled",
-          value: "disabled",
-        },
-      ],
-    },
+    variant,
     {
       name: "icon",
       type: "select",

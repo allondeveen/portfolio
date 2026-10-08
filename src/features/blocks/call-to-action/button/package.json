@@ -43,6 +43,7 @@
     "@allondeveen-portfolio/lexical-text": "workspace:*",
     "@allondeveen-portfolio/single-line-lexical": "workspace:*",
     "@allondeveen-portfolio/ui": "workspace:*",
+    "@allondeveen-portfolio/variant-property": "workspace:*",
     "clsx": "catalog:",
     "react-router": "catalog:",
     "zod": "catalog:"
