@@ -10,10 +10,10 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
   const rootRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<number | null>(null);
   const [offset, setOffset] = useState(0);
   const [geometry, setGeometry] = useState({
     maxOffset: 0,
-    step: 0,
     bleedLeft: 0,
     bleedRight: 0,
   });
@@ -26,19 +26,20 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
 
     const measure = () => {
       const bounds = root.getBoundingClientRect();
-      const first = track.firstElementChild?.getBoundingClientRect();
-      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
       const maxOffset = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
 
       setGeometry({
         maxOffset,
-        step: first ? first.width + gap : 0,
         bleedLeft: Math.max(0, bounds.left),
         bleedRight: Math.max(0, document.documentElement.clientWidth - bounds.right),
       });
       setOffset(viewport.scrollLeft);
     };
 
+    const finishScroll = () => {
+      targetRef.current = null;
+    };
+    viewport.addEventListener("scrollend", finishScroll);
     const observer = new ResizeObserver(measure);
     observer.observe(root);
     observer.observe(track);
@@ -47,6 +48,7 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
     window.addEventListener("resize", measure);
 
     return () => {
+      viewport.removeEventListener("scrollend", finishScroll);
       observer.disconnect();
       window.removeEventListener("resize", measure);
     };
@@ -54,12 +56,27 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
 
   const move = (direction: number) => {
     const viewport = viewportRef.current;
-    if (!viewport) return;
-    viewport.scrollTo({
-      left: Math.max(
-        0,
-        Math.min(geometry.maxOffset, viewport.scrollLeft + direction * geometry.step),
+    const track = trackRef.current;
+    if (!viewport || !track) return;
+    const maxOffset = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const first = track.firstElementChild?.getBoundingClientRect();
+    if (!first) return;
+    const positions = [
+      0,
+      ...Array.from(track.children, (child) =>
+        Math.max(0, Math.min(maxOffset, child.getBoundingClientRect().left - first.left)),
       ),
+      maxOffset,
+    ];
+    const current = targetRef.current ?? viewport.scrollLeft;
+    const target =
+      direction > 0
+        ? (positions.find((position) => position > current + 1) ?? maxOffset)
+        : (positions.reverse().find((position) => position < current - 1) ?? 0);
+    targetRef.current = target;
+    setGeometry((currentGeometry) => ({ ...currentGeometry, maxOffset }));
+    viewport.scrollTo({
+      left: target,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "instant"
         : "smooth",
@@ -84,7 +101,19 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
       <div
         className="gallery__carousel-viewport"
         ref={viewportRef}
-        onScroll={(event) => setOffset(event.currentTarget.scrollLeft)}
+        onPointerDown={() => {
+          targetRef.current = null;
+        }}
+        onWheel={() => {
+          targetRef.current = null;
+        }}
+        onScroll={(event) => {
+          const viewport = event.currentTarget;
+          setOffset(viewport.scrollLeft);
+          if (targetRef.current !== null && Math.abs(viewport.scrollLeft - targetRef.current) < 1) {
+            targetRef.current = null;
+          }
+        }}
       >
         <div ref={trackRef} id={trackId} className="gallery__carousel-track">
           {children}
@@ -95,7 +124,7 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
           type="button"
           aria-label="Previous images"
           aria-controls={trackId}
-          disabled={offset <= 0}
+          disabled={offset <= 1}
           onClick={() => move(-1)}
         >
           <ArrowLeft aria-hidden="true" />
