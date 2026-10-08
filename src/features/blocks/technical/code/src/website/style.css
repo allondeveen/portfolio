@@ -109,7 +109,7 @@
 
 .code .code--content .code--content__body pre code {
   display: block;
-  min-width: 800px;
+  min-width: 650px;
 }
 
 .code .code--content .code--content__body pre code .line {
