@@ -9,11 +9,22 @@ export type StoryComponentProps = Story & {
   items: StoryItems<ReactElement>;
 };
 
-export function StoryComponent({ id, items }: StoryComponentProps) {
+export function StoryComponent({
+  id,
+  items,
+  columnDistribution,
+  mobileColumnDistribution,
+}: StoryComponentProps) {
   const timelineName = (itemId: string) => `--story-${id}-${itemId}`;
   return (
     <section
       className={clsx("story", "block")}
+      data-content-width={
+        columnDistribution === "1/1" ? "1" : columnDistribution === "1/2" ? "2" : "3"
+      }
+      data-mobile-content-width={
+        mobileColumnDistribution === "1/1" ? "1" : mobileColumnDistribution === "1/2" ? "2" : "3"
+      }
       style={{
         timelineScope: items.map((item) => timelineName(item.id)).join(", "),
       }}

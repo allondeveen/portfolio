@@ -3,6 +3,8 @@ import * as z from "zod";
 export const StorySchema = z.object({
   id: z.string(),
   kind: z.literal("story"),
+  columnDistribution: z.literal("1/1").or(z.literal("1/2")).or(z.literal("1/3")),
+  mobileColumnDistribution: z.literal("1/1").or(z.literal("1/2")).or(z.literal("1/3")),
 });
 
 export const StoryItemsSchema = <Block>(BlockSchema: z.ZodType<Block>) =>

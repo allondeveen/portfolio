@@ -6,5 +6,7 @@ export const mapStory: Adapter<CMSStory, Story> = async (textsection) => {
   return {
     id: textsection.id,
     kind: textsection.blockType,
+    columnDistribution: textsection.columnDistribution ?? "1/1",
+    mobileColumnDistribution: textsection.mobileColumnDistribution ?? "1/1",
   };
 };

@@ -687,6 +687,8 @@ export interface Code {
  * via the `definition` "story".
  */
 export interface Story {
+  columnDistribution?: ('1/1' | '1/2' | '1/3') | null;
+  mobileColumnDistribution?: ('1/1' | '1/2' | '1/3') | null;
   items: {
     content: (
       | Heading

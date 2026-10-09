@@ -7,6 +7,44 @@ export const storyBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
   },
   fields: [
     {
+      type: "select",
+      name: "columnDistribution",
+      options: [
+        {
+          label: "1|1",
+          value: "1/1",
+        },
+        {
+          label: "1|2",
+          value: "1/2",
+        },
+        {
+          label: "1|3",
+          value: "1/3",
+        },
+      ],
+      defaultValue: "1/1",
+    },
+    {
+      type: "select",
+      name: "mobileColumnDistribution",
+      options: [
+        {
+          label: "1|1",
+          value: "1/1",
+        },
+        {
+          label: "1|2",
+          value: "1/2",
+        },
+        {
+          label: "1|3",
+          value: "1/3",
+        },
+      ],
+      defaultValue: "1/1",
+    },
+    {
       type: "array",
       name: "items",
       fields: [
