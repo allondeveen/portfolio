@@ -1,3 +1,7 @@
+import {
+  type BackgroundVariant,
+  BackgroundVariantSchema,
+} from "@allondeveen-portfolio/background-variant-property/cms";
 import * as z from "zod";
 
 export const StorySchema = z.object({
@@ -18,6 +22,7 @@ export const StoryItemsSchema = <Block>(BlockSchema: z.ZodType<Block>) =>
         id: z.string().min(1),
         content: z.array(BlockSchema).min(1),
         frame: z.array(BlockSchema).min(1),
+        variant: BackgroundVariantSchema,
       }),
     )
     .min(2);
@@ -28,4 +33,5 @@ export type StoryItems<Block> = {
   id: string;
   content: Block[];
   frame: Block[];
+  variant: BackgroundVariant;
 }[];

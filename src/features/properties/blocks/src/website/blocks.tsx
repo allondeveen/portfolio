@@ -126,6 +126,7 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
             id: item.id,
             content: <BlocksComponent blocks={item.content} />,
             frame: <BlocksComponent blocks={item.frame} />,
+            variant: item.variant,
           }))}
         />
       );

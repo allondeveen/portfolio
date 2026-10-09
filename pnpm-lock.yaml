@@ -1211,6 +1211,9 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/background-variant-property':
+        specifier: workspace:*
+        version: link:../../../properties/background-variant
       clsx:
         specifier: 'catalog:'
         version: 2.1.1

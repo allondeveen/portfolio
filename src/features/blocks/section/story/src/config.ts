@@ -1,3 +1,5 @@
+import { backgroundVariant } from "@allondeveen-portfolio/background-variant-property/config";
+
 import type { Block, BlockSlug } from "payload";
 
 export const storyBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
@@ -48,6 +50,7 @@ export const storyBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
       type: "array",
       name: "items",
       fields: [
+        backgroundVariant,
         {
           type: "blocks",
           name: "content",

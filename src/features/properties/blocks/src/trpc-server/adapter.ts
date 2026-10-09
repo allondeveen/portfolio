@@ -167,6 +167,7 @@ export function mapBlock(options: MapBlockOptions) {
                 frame: await Promise.all(
                   item.frame.map(async (block) => await mapBlock(options)(block, context)),
                 ),
+                variant: item.variant,
               })),
             ),
           },

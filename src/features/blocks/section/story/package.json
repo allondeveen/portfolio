@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@allondeveen-portfolio/adapter": "workspace:*",
+    "@allondeveen-portfolio/background-variant-property": "workspace:*",
     "clsx": "catalog:",
     "zod": "catalog:"
   }

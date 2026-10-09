@@ -1,3 +1,4 @@
+import { backgroundVariants } from "@allondeveen-portfolio/background-variant-property/website";
 import clsx from "clsx";
 import { type ReactElement } from "react";
 
@@ -59,7 +60,10 @@ export function StoryComponent({
           return (
             <section
               key={item.id}
-              className="story__stories--story"
+              className={clsx(
+                "story__stories--story",
+                item.variant !== "default" ? backgroundVariants[item.variant] : "",
+              )}
               id={timelineName(item.id)}
               style={{
                 viewTimelineName: timelineName(item.id),
