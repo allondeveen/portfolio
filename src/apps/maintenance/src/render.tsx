@@ -1,5 +1,5 @@
 import { darkTheme } from "@allondeveen-portfolio/design-system";
-import "@allondeveen-portfolio/design-system/index.css";
+import "@allondeveen-portfolio/design-system/index.scss";
 import "@allondeveen-portfolio/design-system/global.css";
 import { MaintenancePage } from "@allondeveen-portfolio/maintenance-content/website";
 import { StrictMode } from "react";
