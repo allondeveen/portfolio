@@ -18,7 +18,7 @@ export function StoryComponent({ id, items }: StoryComponentProps) {
         timelineScope: items.map((item) => timelineName(item.id)).join(", "),
       }}
     >
-      <div className="story__frames">
+      <div className="story__frames" aria-hidden={true}>
         {items.map((item, index) => {
           const previous = items[index - 1];
           return (
@@ -55,6 +55,7 @@ export function StoryComponent({ id, items }: StoryComponentProps) {
                 viewTimelineAxis: "block",
               }}
             >
+              <div className="sr-only">{item.frame}</div>
               <div className="stories__story--content">{item.content}</div>
             </section>
           );
