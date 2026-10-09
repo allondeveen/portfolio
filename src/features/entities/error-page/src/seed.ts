@@ -17,6 +17,9 @@ export const errorPageSeeds: GlobalSeedFunction<
     limit: 1,
   });
   const homePage = homePageResults.docs.at(0);
+  if (!homePage) {
+    throw new Error("Cannot seed error-page content before the homepage exists.");
+  }
   return {
     blocks: [
       {
@@ -73,7 +76,7 @@ export const errorPageSeeds: GlobalSeedFunction<
                         type: "link",
                         fields: {
                           doc: {
-                            value: homePage,
+                            value: homePage.id,
                             relationTo: "pages",
                           },
                           linkType: "internal",
