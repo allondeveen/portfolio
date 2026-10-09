@@ -67,6 +67,7 @@ export interface Config {
   };
   blocks: {
     button: Button;
+    callToAction: CallToAction;
     buttonGroup: ButtonGroup;
     group: Group;
     container: Container;
@@ -240,7 +241,7 @@ export interface Page {
   parent?: (string | null) | Page;
   slug: string;
   title: string;
-  blocks: (Hero | TextSection | Story)[];
+  blocks: (Hero | TextSection | Story | CallToAction)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -258,7 +259,7 @@ export interface Page {
  * via the `definition` "hero".
  */
 export interface Hero {
-  variant?: ('default' | 'elevated' | 'overlay') | null;
+  variant: 'default' | 'elevated' | 'overlay';
   blocks?: (Heading | RichText | Label | Button | ButtonGroup)[] | null;
   id?: string | null;
   blockName?: string | null;
@@ -421,6 +422,7 @@ export interface TextSection {
         | Icons
         | Code
         | Story
+        | CallToAction
       )[]
     | null;
   id?: string | null;
@@ -732,6 +734,17 @@ export interface Story {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "callToAction".
+ */
+export interface CallToAction {
+  variant: 'default' | 'elevated' | 'overlay';
+  blocks?: (Heading | RichText | ButtonGroup)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'callToAction';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -740,7 +753,7 @@ export interface Project {
   technologies: (string | Topic)[];
   clients: (string | Client)[];
   title: string;
-  blocks: (Hero | TextSection | Story)[];
+  blocks: (Hero | TextSection | Story | CallToAction)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -787,7 +800,7 @@ export interface Article {
   subjects: (string | Topic)[];
   series?: (string | null) | Series;
   title: string;
-  blocks: (Hero | TextSection | Story)[];
+  blocks: (Hero | TextSection | Story | CallToAction)[];
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -854,6 +867,7 @@ export interface Template {
   location: string;
   blocks: (
     | Button
+    | CallToAction
     | ButtonGroup
     | Group
     | Container
@@ -1794,6 +1808,7 @@ export interface Maintenance {
   header?:
     | (
         | Button
+        | CallToAction
         | ButtonGroup
         | Group
         | Container
@@ -1822,6 +1837,7 @@ export interface Maintenance {
     | null;
   blocks: (
     | Button
+    | CallToAction
     | ButtonGroup
     | Group
     | Container
@@ -1868,7 +1884,7 @@ export interface SiteSetting {
  */
 export interface NotFound {
   id: number;
-  blocks: (Hero | TextSection | Story)[];
+  blocks: (Hero | TextSection | Story | CallToAction)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1878,7 +1894,7 @@ export interface NotFound {
  */
 export interface ErrorPage {
   id: number;
-  blocks: (Hero | TextSection | Story)[];
+  blocks: (Hero | TextSection | Story | CallToAction)[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

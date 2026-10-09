@@ -18,7 +18,7 @@ export function StoryComponent({
   const timelineName = (itemId: string) => `--story-${id}-${itemId}`;
   return (
     <section
-      className={clsx("story", "block")}
+      className={clsx("story", "block", "container")}
       data-content-width={
         columnDistribution === "1/1" ? "1" : columnDistribution === "1/2" ? "2" : "3"
       }

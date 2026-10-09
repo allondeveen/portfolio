@@ -1,10 +1,10 @@
 import { BackgroundVariantSchema } from "@allondeveen-portfolio/background-variant-property/website/data";
-import * as z from "zod";
+import z from "zod";
 
-export const HeroSchema = z.object({
+export const CallToActionSchema = z.object({
   id: z.string(),
-  kind: z.literal("hero"),
+  kind: z.literal("callToAction"),
   variant: BackgroundVariantSchema,
 });
 
-export type Hero = z.infer<typeof HeroSchema>;
+export type CallToAction = z.infer<typeof CallToActionSchema>;

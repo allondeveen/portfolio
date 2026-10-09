@@ -598,6 +598,37 @@ importers:
         specifier: 'catalog:'
         version: '@typescript/typescript6@6.0.2'
 
+  src/features/blocks/call-to-action/call-to-action:
+    dependencies:
+      '@allondeveen-portfolio/adapter':
+        specifier: workspace:*
+        version: link:../../../../shared/adapter
+      '@allondeveen-portfolio/background-variant-property':
+        specifier: workspace:*
+        version: link:../../../properties/background-variant
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2)
+      react:
+        specifier: 'catalog:'
+        version: 19.2.6
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.6(react@19.2.6)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
   src/features/blocks/layout/container:
     dependencies:
       '@allondeveen-portfolio/adapter':
@@ -1140,9 +1171,9 @@ importers:
       '@allondeveen-portfolio/adapter':
         specifier: workspace:*
         version: link:../../../../shared/adapter
-      '@allondeveen-portfolio/design-system':
+      '@allondeveen-portfolio/background-variant-property':
         specifier: workspace:*
-        version: link:../../../../shared/design-system
+        version: link:../../../properties/background-variant
       '@allondeveen-portfolio/heading-block':
         specifier: workspace:^
         version: link:../../textual/heading
@@ -1152,9 +1183,6 @@ importers:
       '@allondeveen-portfolio/rich-text-block':
         specifier: workspace:^
         version: link:../../textual/rich-text
-      '@vanilla-extract/css':
-        specifier: 'catalog:'
-        version: 1.21.2(babel-plugin-macros@3.1.0)
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
@@ -2102,6 +2130,25 @@ importers:
         specifier: 'catalog:'
         version: '@typescript/typescript6@6.0.2'
 
+  src/features/properties/background-variant:
+    dependencies:
+      '@allondeveen-portfolio/design-system':
+        specifier: workspace:*
+        version: link:../../../shared/design-system
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.21.2(babel-plugin-macros@3.1.0)
+      payload:
+        specifier: 'catalog:'
+        version: 3.87.0(@typescript/typescript6@6.0.2)(graphql@16.14.2)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: '@typescript/typescript6@6.0.2'
+
   src/features/properties/blocks:
     dependencies:
       '@allondeveen-portfolio/adapter':
@@ -2113,6 +2160,9 @@ importers:
       '@allondeveen-portfolio/button-group-block':
         specifier: workspace:*
         version: link:../../blocks/other/button-group
+      '@allondeveen-portfolio/call-to-action-block':
+        specifier: workspace:*
+        version: link:../../blocks/call-to-action/call-to-action
       '@allondeveen-portfolio/code-block':
         specifier: workspace:*
         version: link:../../blocks/technical/code

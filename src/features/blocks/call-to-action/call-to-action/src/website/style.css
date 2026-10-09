@@ -1,0 +1,30 @@
+.call-to-action.block {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  min-height: 60svh;
+}
+
+.call-to-action.block.inline {
+  flex-direction: row;
+}
+
+.call-to-action .call-to-action__content {
+  width: 100%;
+}
+
+.call-to-action .call-to-action__content > * {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.call-to-action .call-to-action__content > *:first-child {
+  margin-top: 0;
+}
+
+.call-to-action .call-to-action__content > *:last-child {
+  margin-bottom: 0;
+}
+
+.call-to-action .call-to-action__content > .button {
+  box-sizing: unset;
+}

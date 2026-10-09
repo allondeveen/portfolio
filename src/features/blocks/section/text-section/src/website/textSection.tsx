@@ -8,5 +8,5 @@ import type { PropsWithChildren } from "react";
 export type TextSectionComponentProps = PropsWithChildren<TextSection>;
 
 export function TextSectionComponent({ children }: TextSectionComponentProps) {
-  return <section className={clsx("block", "text-section", "container")}>{children}</section>;
+  return <section className={clsx("block", "text-section")}>{children}</section>;
 }

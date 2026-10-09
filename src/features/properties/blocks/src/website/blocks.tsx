@@ -1,5 +1,6 @@
 import { ButtonComponent } from "@allondeveen-portfolio/button-block/website";
 import { ButtonGroupBlock } from "@allondeveen-portfolio/button-group-block/website";
+import { CallToActionBlock } from "@allondeveen-portfolio/call-to-action-block/website";
 import { CodeComponent } from "@allondeveen-portfolio/code-block/website";
 import { ContainerBlock } from "@allondeveen-portfolio/container-block/website";
 import { Copyright } from "@allondeveen-portfolio/copyright-block/website";
@@ -36,6 +37,12 @@ export function BlockComponent({ block, blocks }: Block): JSX.Element {
         <ButtonGroupBlock {...block}>
           <BlocksComponent blocks={blocks} />
         </ButtonGroupBlock>
+      );
+    case "callToAction":
+      return (
+        <CallToActionBlock {...block}>
+          <BlocksComponent blocks={blocks} />
+        </CallToActionBlock>
       );
     case "code":
       return <CodeComponent {...block} />;

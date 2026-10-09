@@ -2,10 +2,10 @@ import { backgroundVariant } from "@allondeveen-portfolio/background-variant-pro
 
 import type { Block, BlockSlug } from "payload";
 
-export const heroBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
-  slug: "hero",
+export const callToActionBlock = (allowedBlocks: readonly BlockSlug[]): Block => ({
+  slug: "callToAction",
   admin: {
-    group: "Section",
+    group: "Call to action",
   },
   fields: [
     backgroundVariant,

@@ -1,5 +1,6 @@
 import { buttonBlock } from "@allondeveen-portfolio/button-block/config";
 import { buttongroupBlock } from "@allondeveen-portfolio/button-group-block/config";
+import { callToActionBlock } from "@allondeveen-portfolio/call-to-action-block/config";
 import { codeBlock } from "@allondeveen-portfolio/code-block/config";
 import { containerBlock } from "@allondeveen-portfolio/container-block/config";
 import { copyrightBlock } from "@allondeveen-portfolio/copyright-block/config";
@@ -29,6 +30,7 @@ import type { Block, BlockSlug } from "payload";
 export const allBlocks: Block[] = [
   // Call to action
   buttonBlock,
+  callToActionBlock(["heading", "richText", "buttonGroup"]),
 
   // Group
   buttongroupBlock(["button", "fileDownload", "label"]),
@@ -98,6 +100,7 @@ export const allBlocks: Block[] = [
     "icons",
     "code",
     "story",
+    "callToAction",
   ]),
 
   // Technical

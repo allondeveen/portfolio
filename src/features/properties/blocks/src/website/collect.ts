@@ -3,6 +3,10 @@ import {
   type ButtonGroup,
   ButtonGroupSchema,
 } from "@allondeveen-portfolio/button-group-block/website/data";
+import {
+  type CallToAction,
+  CallToActionSchema,
+} from "@allondeveen-portfolio/call-to-action-block/website/data";
 import { type Code, CodeSchema } from "@allondeveen-portfolio/code-block/website/data";
 import {
   type Container,
@@ -56,6 +60,7 @@ import { type Block, BlockSchema } from "./data";
 export type AnyBlock =
   | Button
   | ButtonGroup
+  | CallToAction
   | Code
   | Container
   | Copyright
@@ -86,6 +91,7 @@ export const AnyBlockSchema: z.ZodType<AnyBlock> = z.lazy(() =>
   z.discriminatedUnion("kind", [
     ButtonSchema,
     ButtonGroupSchema,
+    CallToActionSchema,
     CodeSchema,
     ContainerSchema,
     CopyrightSchema,

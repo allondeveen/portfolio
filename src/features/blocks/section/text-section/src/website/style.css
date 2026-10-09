@@ -1,3 +1,25 @@
 .block.text-section > *:first-child {
   margin-top: 0;
 }
+
+.block.text-section > *:not(.call-to-action):not(.story):not(.label) {
+  padding-right: 4rem;
+  padding-left: 4rem;
+}
+
+.block.text-section > .label {
+  margin-right: 4rem;
+  margin-left: 4rem;
+}
+
+@media (max-width: 1230px) {
+  .block.text-section > *:not(.call-to-action):not(.story) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .block.text-section > .label {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
