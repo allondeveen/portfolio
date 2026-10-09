@@ -13,7 +13,7 @@
 }
 
 @media (max-width: 1230px) {
-  .block.text-section > *:not(.call-to-action):not(.story) {
+  .block.text-section > *:not(.call-to-action):not(.story):not(.label) {
     padding-right: 1rem;
     padding-left: 1rem;
   }
