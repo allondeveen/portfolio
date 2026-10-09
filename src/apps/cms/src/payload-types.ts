@@ -423,6 +423,7 @@ export interface TextSection {
         | Code
         | Story
         | CallToAction
+        | Group
       )[]
     | null;
   id?: string | null;
@@ -745,6 +746,16 @@ export interface CallToAction {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "group".
+ */
+export interface Group {
+  blocks?: (Heading | RichText | Image | FileDownload | Button)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'group';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -828,16 +839,6 @@ export interface Series {
   };
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "group".
- */
-export interface Group {
-  blocks?: (Heading | RichText | Image)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'group';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

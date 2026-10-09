@@ -21,6 +21,7 @@ import * as migration_20261007_131347_add_code_block from "./20261007_131347_add
 import * as migration_20261008_183832_add_story_block from "./20261008_183832_add_story_block";
 import * as migration_20261009_041057_add_column_distribution_fields_to_story_block from "./20261009_041057_add_column_distribution_fields_to_story_block";
 import * as migration_20261009_065237_add_call_to_action_block from "./20261009_065237_add_call_to_action_block";
+import * as migration_20261009_095405_expand_block_allowance from "./20261009_095405_expand_block_allowance";
 
 export const migrations = [
   {
@@ -137,5 +138,10 @@ export const migrations = [
     up: migration_20261009_065237_add_call_to_action_block.up,
     down: migration_20261009_065237_add_call_to_action_block.down,
     name: "20261009_065237_add_call_to_action_block",
+  },
+  {
+    up: migration_20261009_095405_expand_block_allowance.up,
+    down: migration_20261009_095405_expand_block_allowance.down,
+    name: "20261009_095405_expand_block_allowance",
   },
 ];

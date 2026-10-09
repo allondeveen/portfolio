@@ -34,7 +34,7 @@ export const allBlocks: Block[] = [
 
   // Group
   buttongroupBlock(["button", "fileDownload", "label"]),
-  groupBlock(["heading", "richText", "image"]),
+  groupBlock(["heading", "richText", "image", "fileDownload", "button"]),
 
   // Layout
   containerBlock([
@@ -101,6 +101,7 @@ export const allBlocks: Block[] = [
     "code",
     "story",
     "callToAction",
+    "group",
   ]),
 
   // Technical
