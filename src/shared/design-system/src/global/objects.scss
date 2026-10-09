@@ -1,3 +1,5 @@
+@use "./mixins.scss" as mixins;
+
 .block {
   --margin: 5rem;
   margin-top: var(--margin);
@@ -10,4 +12,8 @@
 
 .block:first-child:last-child {
   margin-bottom: 0;
+}
+
+.sr-only {
+  @include mixins.sr-only;
 }

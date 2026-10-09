@@ -16,7 +16,7 @@ import {
 
 import type { Route } from "./+types/root";
 
-import "@allondeveen-portfolio/design-system/index.css";
+import "@allondeveen-portfolio/design-system/index.scss";
 import "@allondeveen-portfolio/design-system/global.css";
 
 export const links: Route.LinksFunction = () => [
