@@ -40,6 +40,8 @@ export function CodeComponent({ kind, files }: Code) {
               return (
                 <li key={file.fileName} className="file-name">
                   <button
+                    type="button"
+                    aria-pressed={file.fileName === currentFileName}
                     onClick={onClick(file.fileName)}
                     className={clsx(
                       fileNameButtonClassName,
@@ -59,7 +61,7 @@ export function CodeComponent({ kind, files }: Code) {
           <ul className="inline">
             <li className="code--content__header__language">{current.language}</li>
             <li className="code--content__header__copy-button">
-              <button onClick={copy} className={copyCodeButtonClassName}>
+              <button type="button" onClick={copy} className={copyCodeButtonClassName}>
                 {copied ? <Check /> : <Copy />}
               </button>
             </li>

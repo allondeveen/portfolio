@@ -13,13 +13,19 @@ export const copyCodeButtonClassName = style({
   backgroundColor: vars.colors.background,
   color: vars.colors.textPrimary,
   selectors: {
-    "&:hover": {
-      backgroundColor: vars.colors.textPrimary,
-      color: vars.colors.background,
-    },
     "&:active": {
       backgroundColor: vars.colors.primary,
       color: vars.colors.background,
+    },
+  },
+  "@media": {
+    "(hover: hover) and (pointer: fine)": {
+      selectors: {
+        "&:hover": {
+          backgroundColor: vars.colors.textPrimary,
+          color: vars.colors.background,
+        },
+      },
     },
   },
 });
@@ -28,13 +34,19 @@ export const fileNameButtonClassName = style({
   backgroundColor: vars.colors.backgroundElevated,
   color: vars.colors.textPrimary,
   selectors: {
-    "&:hover": {
-      backgroundColor: vars.colors.textPrimary,
-      color: vars.colors.background,
-    },
     "&:active, &.active": {
       backgroundColor: vars.colors.backgroundOverlay,
       color: vars.colors.textPrimary,
+    },
+  },
+  "@media": {
+    "(hover: hover) and (pointer: fine)": {
+      selectors: {
+        "&:hover:not(.active)": {
+          backgroundColor: vars.colors.textPrimary,
+          color: vars.colors.background,
+        },
+      },
     },
   },
 });
