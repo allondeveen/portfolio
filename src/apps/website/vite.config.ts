@@ -30,6 +30,20 @@ export default defineConfig(({ mode }) => {
       cloudflare({ viteEnvironment: { name: "ssr" }, inspectorPort }),
       reactRouter(),
     ],
+    optimizeDeps: {
+      include: [
+        "react",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+        "react-dom",
+        "react-dom/client",
+        "react-router",
+        "react-router/dom",
+        "clsx",
+        "lucide-react",
+        "zod",
+      ],
+    },
     preview: {
       port,
       strictPort: true,

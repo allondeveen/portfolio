@@ -8,6 +8,20 @@ export default defineConfig(({ mode }) => {
   const inspectorPort = parseInt(env.INSPECTOR_PORT) || 9230;
   return {
     plugins: [vanillaExtractPlugin({ identifiers: "short" }), cloudflare({ inspectorPort })],
+    optimizeDeps: {
+      include: [
+        "react",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+        "react-dom",
+        "react-dom/client",
+        "react-router",
+        "react-router/dom",
+        "clsx",
+        "lucide-react",
+        "zod",
+      ],
+    },
     preview: {
       port,
       strictPort: true,
