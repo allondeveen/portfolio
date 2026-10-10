@@ -98,46 +98,51 @@ export function GalleryCarousel({ children }: PropsWithChildren) {
         } as CSSProperties
       }
     >
-      <div
-        className="gallery__carousel-viewport"
-        ref={viewportRef}
-        onPointerDown={() => {
-          targetRef.current = null;
-        }}
-        onWheel={() => {
-          targetRef.current = null;
-        }}
-        onScroll={(event) => {
-          const viewport = event.currentTarget;
-          setOffset(viewport.scrollLeft);
-          if (targetRef.current !== null && Math.abs(viewport.scrollLeft - targetRef.current) < 1) {
+      <div className="gallery-carousel__content">
+        <div
+          className="gallery__carousel-viewport"
+          ref={viewportRef}
+          onPointerDown={() => {
             targetRef.current = null;
-          }
-        }}
-      >
-        <div ref={trackRef} id={trackId} className="gallery__carousel-track">
-          {children}
+          }}
+          onWheel={() => {
+            targetRef.current = null;
+          }}
+          onScroll={(event) => {
+            const viewport = event.currentTarget;
+            setOffset(viewport.scrollLeft);
+            if (
+              targetRef.current !== null &&
+              Math.abs(viewport.scrollLeft - targetRef.current) < 1
+            ) {
+              targetRef.current = null;
+            }
+          }}
+        >
+          <div ref={trackRef} id={trackId} className="gallery__carousel-track">
+            {children}
+          </div>
         </div>
-      </div>
-      <div className="gallery__carousel-controls">
-        <button
-          type="button"
-          aria-label="Previous images"
-          aria-controls={trackId}
-          disabled={offset <= 1}
-          onClick={() => move(-1)}
-        >
-          <ArrowLeft aria-hidden="true" />
-        </button>
-        <button
-          type="button"
-          aria-label="Next images"
-          aria-controls={trackId}
-          disabled={offset >= geometry.maxOffset - 1}
-          onClick={() => move(1)}
-        >
-          <ArrowRight aria-hidden="true" />
-        </button>
+        <div className="gallery__carousel-controls">
+          <button
+            type="button"
+            aria-label="Previous images"
+            aria-controls={trackId}
+            disabled={offset <= 1}
+            onClick={() => move(-1)}
+          >
+            <ArrowLeft aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next images"
+            aria-controls={trackId}
+            disabled={offset >= geometry.maxOffset - 1}
+            onClick={() => move(1)}
+          >
+            <ArrowRight aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </div>
   );

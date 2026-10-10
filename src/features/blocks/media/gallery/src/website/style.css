@@ -17,7 +17,7 @@
   gap: var(--gallery-gap);
 }
 
-.gallery[data-layout="carousel"] {
+.gallery[data-layout="carousel"] .gallery-carousel__content {
   position: relative;
   min-width: 0;
 }
@@ -36,7 +36,7 @@
 
 .gallery__carousel-track {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--gallery-gap);
 }
 
